@@ -1,0 +1,28 @@
+<Project><PropertyGroup><PluginDll>$(MSBuildThisFileDirectory)BotTraversal-0.9.0-BETA-SOURCE\bin\Release\net472\BotTraversal.dll</PluginDll></PropertyGroup><ItemGroup>
+  <CheckProject Include="QA\Regression\Round2\LifecycleTests\LifecycleTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3\CapabilityTests\CapabilityTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3C\PhaseTests\PhaseTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3D\MotionTests\MotionTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3E\ActuationTests\ActuationTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3F\HelperTests\HelperTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3H\FrameTests\FrameTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3I\AdjacentTests\AdjacentTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3J\FrontierTests\FrontierTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3K\PreparationTests\PreparationTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3L\DropDownTests\DropDownTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3M\CapabilityTests\CapabilityTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3N\RecoveryTests\RecoveryTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3O\ClimbTests\ClimbTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3P\GeometryTests\GeometryTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3Q\ContinuityTests\ContinuityTests.csproj" />
+  <CheckProject Include="QA\Regression\Round3R\HandoffTests\HandoffTests.csproj" />
+  <CheckProject Include="QA\Continuity\Tests\Tests.csproj" />
+  <CheckProject Include="QA\RouteRegression\Tests\Tests.csproj" />
+  <CheckProject Include="QA\Round3Y\Tests\Tests.csproj" />
+  <CheckProject Include="QA\Round3Z\Tests\Tests.csproj" />
+  <CheckProject Include="QA\Round4B\Oracle\Oracle.csproj" />
+  <CheckProject Include="QA\Round4B\ScopeAudit\ScopeAudit.csproj" />
+  <CheckProject Include="QA\Round4B\Fingerprint\Fingerprint.csproj" />
+  <CheckProject Include="QA\Round4C\Tests\Tests.csproj" />
+<CheckProject Include="QA\Round4C\Compatibility\Compatibility.csproj" />
+</ItemGroup><Target Name="Build"><MSBuild Projects="@(CheckProject)" Targets="Restore;Build" BuildInParallel="false" Properties="Configuration=Release;PluginDll=$(PluginDll);UseSharedCompilation=false;RestoreIgnoreFailedSources=true" /></Target></Project>
