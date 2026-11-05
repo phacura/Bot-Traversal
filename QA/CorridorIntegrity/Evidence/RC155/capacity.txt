@@ -1,0 +1,50 @@
+
+20261105-205817-730-bigmap-g2.jsonl capacity removals 9
+id 263 pruned 473.623 registered [(473.623, 21)]
+id 265 pruned 489.23 registered [(489.23, 23)]
+id 261 pruned 561.166 registered [(472.956, 20)]
+id 262 pruned 561.166 registered [(472.956, 19)]
+id 268 pruned 561.926 registered [(561.926, 28)]
+id 264 pruned 580.297 registered [(488.647, 22)]
+id 266 pruned 580.297 registered [(561.166, 27)]
+id 267 pruned 605.322 registered [(561.166, 26)]
+id 272 pruned 605.895 registered [(605.895, 32)]
+noStart pruned ids 144
+QUEUE Counter({'portalOwnedByOtherBot': 560, 'oneSecondCompletionCooldown': 202, 'nearerEligibleBot': 16})
+
+20261105-211341-278-bigmap-g5.jsonl capacity removals 13
+id 257 pruned 849.93 registered [(849.93, 3)]
+id 260 pruned 872.079 registered [(872.079, 5)]
+id 261 pruned 872.62 registered [(872.62, 6)]
+id 262 pruned 880.095 registered [(880.095, 7)]
+id 263 pruned 906.071 registered [(906.071, 9)]
+id 264 pruned 906.675 registered [(906.675, 10)]
+id 265 pruned 934.814 registered [(934.814, 11)]
+id 266 pruned 959.708 registered [(959.708, 13)]
+id 267 pruned 969.194 registered [(969.194, 14)]
+id 268 pruned 995.309 registered [(995.309, 15)]
+id 269 pruned 995.946 registered [(995.946, 16)]
+noStart pruned ids 398
+QUEUE Counter({'portalOwnedByOtherBot': 32, 'oneSecondCompletionCooldown': 12, 'nearerEligibleBot': 1})
+
+20261105-211709-270-bigmap-g8.jsonl capacity removals 2
+id 257 pruned 1026.126 registered [(1026.126, 1)]
+id 258 pruned 1026.801 registered [(1026.801, 2)]
+noStart pruned ids 29
+QUEUE Counter()
+
+20261105-212519-858-bigmap-g2.jsonl capacity removals 6
+id 257 pruned 138.222 registered [(138.222, 1)]
+id 258 pruned 143.463 registered [(143.463, 2)]
+id 259 pruned 175.311 registered [(175.311, 3)]
+id 260 pruned 175.862 registered [(175.862, 4)]
+id 261 pruned 213.331 registered [(213.331, 5)]
+id 262 pruned 243.275 registered [(243.275, 11)]
+noStart pruned ids 383
+QUEUE Counter({'portalOwnedByOtherBot': 12, 'oneSecondCompletionCooldown': 6})
+
+20261105-213706-085-bigmap-g2.jsonl capacity removals 2
+id 257 pruned 147.07 registered [(147.07, 5)]
+id 258 pruned 225.539 registered [(225.539, 7)]
+noStart pruned ids 668
+QUEUE Counter({'portalOwnedByOtherBot': 57, 'oneSecondCompletionCooldown': 24})

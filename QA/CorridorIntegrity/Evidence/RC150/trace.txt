@@ -1,0 +1,27 @@
+
+ Ada_Wong
+403.003 followerSnapshot {'botPosition': {'x': -13.0813522, 'y': -0.664101839, 'z': -1.63226891}}
+404.018 followerSnapshot {'botPosition': {'x': -13.0805359, 'y': -0.6637665, 'z': -1.62922478}}
+405.019 followerSnapshot {'botPosition': {'x': -12.9873352, 'y': -0.432761431, 'z': 0.484516144}}
+405.084 learningV32NativeExecutionEpochStarted {'kind': 'Climb', 'source': 'sequenceNative', 'position': {'x': -12.9942856, 'y': -0.416695476, 'z': 0.6208906}}
+406.031 followerSnapshot {'botPosition': {'x': -13.1786423, 'y': 0.2812612, 'z': 0.8203049}}
+406.706 learningV322TraversalAttemptSummary {'kind': 'Climb', 'nativeActuatorTriggered': True, 'physicalCrossing': True, 'executionTruth': 'Unproven', 'reason': 'implicitUnregister:forceRelease:sequenceAttemptFailed:routeContinuationNeedsRecovery:climbOffNavMeshUpperLanding'}
+406.706 capabilityFailureSequenceAdvanced {'stage': 'ReturnToEntry', 'reason': 'routeContinuationNeedsRecovery:climbOffNavMeshUpperLanding'}
+407.04 followerSnapshot {'botPosition': {'x': -13.4698944, 'y': 0.910691857, 'z': 1.229186}}
+408.054 followerSnapshot {'botPosition': {'x': -13.4698639, 'y': 0.912262142, 'z': 1.22599792}}
+409.065 followerSnapshot {'botPosition': {'x': -13.4698639, 'y': 0.912262142, 'z': 1.22599792}}
+410.067 followerSnapshot {'botPosition': {'x': -13.4698639, 'y': 0.912262142, 'z': 1.22599792}}
+
+ Chris_Redfield
+291.853 learningV322TraversalAttemptSummary {'kind': 'WalkThrough', 'nativeActuatorTriggered': True, 'physicalCrossing': True, 'executionTruth': 'NativePhysical', 'reason': 'chainIntermediate'}
+291.853 followerRouteMissionAdvanced {}
+292.046 followerSnapshot {'botPosition': {'x': 354.616943, 'y': 3.33273864, 'z': -133.080231}}
+292.157 capabilityFailureSequenceAdvanced {'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway'}
+
+ Knight
+409.065 followerSnapshot {'botPosition': {'x': -13.69825, 'y': -0.364244938, 'z': -0.231491089}}
+409.396 learningV32NativeExecutionEpochStarted {'kind': 'Climb', 'source': 'sequenceNative', 'position': {'x': -13.2511444, 'y': -0.37054348, 'z': 0.395270348}}
+410.067 followerSnapshot {'botPosition': {'x': -12.9571915, 'y': 0.108846664, 'z': 0.703513145}}
+411.072 followerSnapshot {'botPosition': {'x': -13.28569, 'y': 0.657749, 'z': 0.8012104}}
+411.267 learningV322TraversalAttemptSummary {'kind': 'Climb', 'nativeActuatorTriggered': True, 'physicalCrossing': False, 'executionTruth': 'Unproven', 'reason': 'implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeLandingContinuation'}
+411.267 capabilityFailureSequenceAdvanced {'stage': 'ReturnToEntry', 'reason': 'nativeRecovery:nativeLandingContinuation'}

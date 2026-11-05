@@ -1,0 +1,10 @@
+capabilityFailureSequenceAdvanced 10 {'ReturnToEntry': 8, 'RecoveryTeleport': 1, 'SelfRescue': 1}
+capabilityTeleportRouteWorkCleared 40 {'capabilityFailureSequenceExhausted': 12, 'manualRegroup': 28}
+learningV347TraversalOpportunityNoStart 501 {'stepCreationRejected': 109, 'redundantWithEquivalentRouteStep': 392}
+capabilitySequenceReturnFailed 5 {'returnNoProgress': 5}
+capabilityFullRouteReplayStarted 3 {'': 3}
+capabilitySequenceRecoveryTeleportBlocked 0 {}
+attempts 88 summaries 88
+all fails
+173.646 Knight WalkThrough 196 201 implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:ownershipLeaseExpired:noProgressOnly:1.75s
+358.934 Chris_Redfield DropDown 0 84 implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:verifyTimeout

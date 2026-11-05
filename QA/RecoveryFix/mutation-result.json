@@ -1,0 +1,54 @@
+﻿{
+    "cases":  [
+                  {
+                      "id":  "healthy_return_forced_repath",
+                      "rejected":  true,
+                      "exitCode":  -532462766,
+                      "compiledFromMutantSource":  false,
+                      "oracle":  "actual continuous policy/lifecycle tests",
+                      "actualBinaryModified":  true
+                  },
+                  {
+                      "id":  "hold_always_hard_stops",
+                      "rejected":  true,
+                      "exitCode":  -532462766,
+                      "compiledFromMutantSource":  false,
+                      "oracle":  "actual continuous policy/lifecycle tests",
+                      "actualBinaryModified":  true
+                  },
+                  {
+                      "id":  "path_budget_always_accepts",
+                      "rejected":  true,
+                      "exitCode":  -532462766,
+                      "compiledFromMutantSource":  false,
+                      "oracle":  "actual continuous policy/lifecycle tests",
+                      "actualBinaryModified":  true
+                  },
+                  {
+                      "id":  "manual_reset_retirement_removed",
+                      "rejected":  true,
+                      "exitCode":  1,
+                      "compiledFromMutantSource":  false,
+                      "oracle":  "actual native adapter/reset/update IL",
+                      "actualBinaryModified":  true
+                  },
+                  {
+                      "id":  "native_hold_adapter_disconnected",
+                      "rejected":  true,
+                      "exitCode":  1,
+                      "compiledFromMutantSource":  false,
+                      "oracle":  "actual native adapter/reset/update IL",
+                      "actualBinaryModified":  true
+                  },
+                  {
+                      "id":  "recovery_skips_observations",
+                      "rejected":  true,
+                      "exitCode":  1,
+                      "compiledFromMutantSource":  false,
+                      "oracle":  "actual native adapter/reset/update IL",
+                      "actualBinaryModified":  true
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

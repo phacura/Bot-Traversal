@@ -1,0 +1,2563 @@
+﻿{
+    "kind":  "structural IL omission detection; mutated DLLs never executed",
+    "faults":  [
+                   {
+                       "method":  "PruneLearnedTraversalEdges",
+                       "detected":  true,
+                       "removedCall":  "CanDiscardCapabilityTraversalEdge"
+                   },
+                   {
+                       "method":  "CanDiscardCapabilityTraversalEdge",
+                       "detected":  true,
+                       "removedCall":  "CanDiscard"
+                   },
+                   {
+                       "method":  "CanDiscardCapabilityTraversalEdge",
+                       "detected":  true,
+                       "removedCall":  "IsTraversalEdgeActivelyReferenced"
+                   },
+                   {
+                       "method":  "CanDiscardCapabilityTraversalEdge",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFreshTraversalDefinition"
+                   },
+                   {
+                       "method":  "HasCapabilityFreshTraversalDefinition",
+                       "detected":  true,
+                       "removedCall":  "FreshDemonstration"
+                   },
+                   {
+                       "method":  "IsTraversalEdgeActivelyReferenced",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityRecordedEdgeReference"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "RankCapabilityLearnedRecovery"
+                   },
+                   {
+                       "method":  "RankCapabilityLearnedRecovery",
+                       "detected":  true,
+                       "removedCall":  "RecoveryRank"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "WalkingTurnSpeed"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "NeedsCapabilityWalkThroughPrecision"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "WalkingGaitCorrection"
+                   },
+                   {
+                       "method":  "TryPublishLearningV414PathlessNativeInputLease",
+                       "detected":  true,
+                       "removedCall":  "WalkingTurnSpeed"
+                   },
+                   {
+                       "method":  "TryPublishLearningV414PathlessNativeInputLease",
+                       "detected":  true,
+                       "removedCall":  "NeedsCapabilityWalkThroughPrecision"
+                   },
+                   {
+                       "method":  "FinalizeActiveWalkThroughEpisode",
+                       "detected":  true,
+                       "removedCall":  "ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "NeedsCapabilityWalkThroughPrecision"
+                   },
+                   {
+                       "method":  "NeedsCapabilityWalkThroughPrecision",
+                       "detected":  true,
+                       "removedCall":  "WalkingTurnPrecision"
+                   },
+                   {
+                       "method":  "NeedsCapabilityWalkThroughPrecision",
+                       "detected":  true,
+                       "removedCall":  "WalkingLanePrecision"
+                   },
+                   {
+                       "method":  "NeedsCapabilityWalkThroughPrecision",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "NeedsCapabilityWalkThroughPrecision",
+                       "detected":  true,
+                       "removedCall":  "IsRouteMissionSameChainImmediateSuccessor"
+                   },
+                   {
+                       "method":  "BeginWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "TryGetLearningV372CurrentEpisodeWalkThroughCorridorWitness"
+                   },
+                   {
+                       "method":  "BeginWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "WalkingInterior"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "ObservedLowerDrop"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "ImmediateEntryDistance"
+                   },
+                   {
+                       "method":  "GetCapabilityQueueAnchor",
+                       "detected":  true,
+                       "removedCall":  "CanonicalQueue"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityQueueAnchor"
+                   },
+                   {
+                       "method":  "BeginWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityWalkThroughEntryTarget"
+                   },
+                   {
+                       "method":  "*GetCapabilityWalkingRecoveryProof*",
+                       "detected":  true,
+                       "removedCall":  "WalkingIdentity"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "SideCenterTurn"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityObstacleCenterFacing"
+                   },
+                   {
+                       "method":  "TryGetCapabilityObstacleCenterFacing",
+                       "detected":  true,
+                       "removedCall":  "ObstacleCenterTolerance"
+                   },
+                   {
+                       "method":  "TryConstrainCapabilityWalkThroughTarget",
+                       "detected":  true,
+                       "removedCall":  "TrySelectCapabilityClearForwardCorner"
+                   },
+                   {
+                       "method":  "TrySelectCapabilityClearForwardCorner",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilitySupportedLocalAim"
+                   },
+                   {
+                       "method":  "TrySelectCapabilityClearForwardCorner",
+                       "detected":  true,
+                       "removedCall":  "ForwardCorner"
+                   },
+                   {
+                       "method":  "CommitCapabilityPortalHold",
+                       "detected":  true,
+                       "removedCall":  "QueuedDropWitness"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "TryAdvanceLearningV468ObservedDropDownLandingDebt"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "RestoreSemanticWalkEntry"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "ObstacleCenterTolerance"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "QueueClaimCurrent"
+                   },
+                   {
+                       "method":  "UpdateUnifiedTraversalEgress",
+                       "detected":  true,
+                       "removedCall":  "NativeEgressKind"
+                   },
+                   {
+                       "method":  "UpdateUnifiedTraversalEgress",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "TryGetLearningV424ActuatorExecutorAdmission"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "SupportedEntry"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "TryValidateCapabilitySemanticWalkingRamp"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "TryValidateCapabilityPortalApproachPath"
+                   },
+                   {
+                       "method":  "TryBeginInjectedNativeVault",
+                       "detected":  true,
+                       "removedCall":  "RescueScanRequired"
+                   },
+                   {
+                       "method":  "TryBeginInjectedNativeVault",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "TryValidateWalkThroughCorridor",
+                       "detected":  true,
+                       "removedCall":  "CorridorSegmentLength"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "ImmediateDispatchKind"
+                   },
+                   {
+                       "method":  "IsCapabilityCurrentPassageInFlight",
+                       "detected":  true,
+                       "removedCall":  "DropInFlight"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityClimbAtSuccessor",
+                       "detected":  true,
+                       "removedCall":  "TryGetLearningV341ImmediateSemanticSuccessor"
+                   },
+                   {
+                       "method":  "TryBeginPlayerRouteContinuationBridge",
+                       "detected":  true,
+                       "removedCall":  "TryCloseCapabilityClimbAtSuccessor"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryCloseCapabilityClimbAtSuccessor"
+                   },
+                   {
+                       "method":  "TryPreserveCf23NativeVaultClimbLandingProgress",
+                       "detected":  true,
+                       "removedCall":  "ClimbUpperPending"
+                   },
+                   {
+                       "method":  "TryPreserveCf23NativeVaultClimbLandingProgress",
+                       "detected":  true,
+                       "removedCall":  "get_normalized"
+                   },
+                   {
+                       "method":  "ArmExitAuthorityRebase",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "ArmExitAuthorityRebase",
+                       "detected":  true,
+                       "removedCall":  "TryScrubLearningV364NativeMoverEpochAnchor"
+                   },
+                   {
+                       "method":  "ArmExitAuthorityRebase",
+                       "detected":  true,
+                       "removedCall":  "ShouldPreserveCapabilityProbeGait"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "DriveTraversalPoseAcquisition"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "QueueMovingAway"
+                   },
+                   {
+                       "method":  "UpdateUnifiedTraversalVerify",
+                       "detected":  true,
+                       "removedCall":  "TryCorrectCapabilityDropVerify"
+                   },
+                   {
+                       "method":  "TryCorrectCapabilityDropVerify",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "TryCorrectCapabilityDropVerify",
+                       "detected":  true,
+                       "removedCall":  "VerifyExitCorrection"
+                   },
+                   {
+                       "method":  "TryCorrectCapabilityDropVerify",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilitySupportedLocalAim"
+                   },
+                   {
+                       "method":  "TryCorrectCapabilityDropVerify",
+                       "detected":  true,
+                       "removedCall":  "TryCommitV2ProbePhysicalMotion"
+                   },
+                   {
+                       "method":  "ProtectCapabilityLocalBodyProjection",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityAdmittedIngress"
+                   },
+                   {
+                       "method":  "OwnsCapabilityAdmittedIngress",
+                       "detected":  true,
+                       "removedCall":  "OwnedIngress"
+                   },
+                   {
+                       "method":  "OwnsCapabilityAdmittedIngress",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "TryScrubLearningV364NativeMoverEpochAnchor"
+                   },
+                   {
+                       "method":  "ShouldSuppressNativeNavMeshBodyRelink",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityAdmittedIngress"
+                   },
+                   {
+                       "method":  "ApplyProbeLocomotionIntent",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityRouteSprint"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "ExecutionGaitPhase"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughEntryConvergence",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityWalkThroughEntryTarget"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityWalkThroughEntryTarget"
+                   },
+                   {
+                       "method":  "NeedsCapabilityEntryRun",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityWalkThroughEntryTarget"
+                   },
+                   {
+                       "method":  "GetCurrentWalkThroughCorridorTarget",
+                       "detected":  true,
+                       "removedCall":  "SelectCapabilityWalkThroughCornerTarget"
+                   },
+                   {
+                       "method":  "SelectCapabilityWalkThroughCornerTarget",
+                       "detected":  true,
+                       "removedCall":  "ChordDeviation"
+                   },
+                   {
+                       "method":  "SelectCapabilityWalkThroughCornerTarget",
+                       "detected":  true,
+                       "removedCall":  "RejoinChordInside"
+                   },
+                   {
+                       "method":  "TryConstrainCapabilityWalkThroughTarget",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "TryConstrainCapabilityWalkThroughTarget",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "TryConstrainCapabilityWalkThroughTarget",
+                       "detected":  true,
+                       "removedCall":  "WallBlocks"
+                   },
+                   {
+                       "method":  "TryPublishLearningV414PathlessNativeInputLease",
+                       "detected":  true,
+                       "removedCall":  "TryConstrainCapabilityWalkThroughTarget"
+                   },
+                   {
+                       "method":  "TryPublishLearningV414PathlessNativeInputLease",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityRouteSprint"
+                   },
+                   {
+                       "method":  "NeedsCapabilityEntryRun",
+                       "detected":  true,
+                       "removedCall":  "EntryCorrection"
+                   },
+                   {
+                       "method":  "NeedsCapabilityEntryRun",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "NeedsCapabilityEntryRun",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "ApplyCapabilityReturnWalking",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRetryWalking"
+                   },
+                   {
+                       "method":  "ApplyCapabilityReturnWalking",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityRouteSprint"
+                   },
+                   {
+                       "method":  "EnforceLearningV368TraversalProducerOwnership",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "CanAllocateCapabilityWalkingKind",
+                       "detected":  true,
+                       "removedCall":  "WalkingRecoveryKind"
+                   },
+                   {
+                       "method":  "TryResolveUnifiedTraversalEgressTarget",
+                       "detected":  true,
+                       "removedCall":  "TryResolveCapabilityWalkThroughEgress"
+                   },
+                   {
+                       "method":  "TryResolveCapabilityWalkThroughEgress",
+                       "detected":  true,
+                       "removedCall":  "WalkExitSample"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityProvenWalkThrough",
+                       "detected":  true,
+                       "removedCall":  "TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery"
+                   },
+                   {
+                       "method":  "BeginExitAuthorityCommit",
+                       "detected":  true,
+                       "removedCall":  "TryCloseCapabilityProvenWalkThrough"
+                   },
+                   {
+                       "method":  "UpdateExitAuthorityCommit",
+                       "detected":  true,
+                       "removedCall":  "TryCloseCapabilityProvenWalkThrough"
+                   },
+                   {
+                       "method":  "UpdateLearningV349GenericPhysicalProgressWatchdog",
+                       "detected":  true,
+                       "removedCall":  "AttemptStallAge"
+                   },
+                   {
+                       "method":  "TryYieldLearningV402PersistentRouteTransactionToTerminalRecovery",
+                       "detected":  true,
+                       "removedCall":  "TerminalMayYield"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityWalkingRecoveryOnly"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "TrySelectCapabilityWalkingRescue"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "WalkingRecoveryKind"
+                   },
+                   {
+                       "method":  "TrySelectCapabilityWalkingRescue",
+                       "detected":  true,
+                       "removedCall":  "WalkingRescue"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilitySequenceProbe",
+                       "detected":  true,
+                       "removedCall":  "CanAllocateCapabilityWalkingKind"
+                   },
+                   {
+                       "method":  "IsCapabilityWalkingRecoveryOnly",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityWalkingRecoveryProof"
+                   },
+                   {
+                       "method":  "*GetCapabilityWalkingRecoveryProof*",
+                       "detected":  true,
+                       "removedCall":  "SameWalkingPortal"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "ReturnDiverging"
+                   },
+                   {
+                       "method":  "TryConsumeLearningV429AtomicJumpAdmission",
+                       "detected":  true,
+                       "removedCall":  "MarkLearningV32NativeEntryAcquired"
+                   },
+                   {
+                       "method":  "TryTriggerLearningV354RollingJumpActuatorLead",
+                       "detected":  true,
+                       "removedCall":  "MarkLearningV32NativeEntryAcquired"
+                   },
+                   {
+                       "method":  "IsCapabilityJumpTriggerReady",
+                       "detected":  true,
+                       "removedCall":  "AtomicJumpReceipt"
+                   },
+                   {
+                       "method":  "IsCapabilityJumpTriggerReady",
+                       "detected":  true,
+                       "removedCall":  "JumpTriggerWindow"
+                   },
+                   {
+                       "method":  "IsCapabilityJumpTriggerReady",
+                       "detected":  true,
+                       "removedCall":  "IsCf60LegalOneFrameJumpTriggerForecast"
+                   },
+                   {
+                       "method":  "HasCapabilityMeasuredMissedJumpWindow",
+                       "detected":  true,
+                       "removedCall":  "MissedJumpWindow"
+                   },
+                   {
+                       "method":  "TryRecoverCapabilityStalledJumpPreparation",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityMeasuredMissedJumpWindow"
+                   },
+                   {
+                       "method":  "IsCapabilityJumpTriggerReady",
+                       "detected":  true,
+                       "removedCall":  "TryGetLearningV459ReservedJumpExactSuccessorContinuity"
+                   },
+                   {
+                       "method":  "IsCapabilityJumpTriggerReady",
+                       "detected":  true,
+                       "removedCall":  "IsLearningV450LiveEftJumpAttemptLegal"
+                   },
+                   {
+                       "method":  "IsLearningV450LiveEftJumpAttemptLegal",
+                       "detected":  true,
+                       "removedCall":  "LiveJumpAttempt"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "PhysicalWalkEntry"
+                   },
+                   {
+                       "method":  "TryGetCapabilitySupportedLocalAim",
+                       "detected":  true,
+                       "removedCall":  "LocalAimFraction"
+                   },
+                   {
+                       "method":  "TryGetCapabilitySupportedLocalAim",
+                       "detected":  true,
+                       "removedCall":  "GroundAim"
+                   },
+                   {
+                       "method":  "TryGetCapabilitySupportedLocalAim",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfRaycastHit"
+                   },
+                   {
+                       "method":  "TryGetCapabilitySupportedLocalAim",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilitySupportedLocalAim"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "IsCapabilityCurrentPassageInFlight",
+                       "detected":  true,
+                       "removedCall":  "PassageInFlight"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityCurrentPassageInFlight"
+                   },
+                   {
+                       "method":  "\u003cTickCapabilityPortalWait\u003eg__Live|0",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityCurrentPassageInFlight"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "LeftAdmittedIngress"
+                   },
+                   {
+                       "method":  "PrepareCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "GenericFollowStart"
+                   },
+                   {
+                       "method":  "PrepareCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "CanAcceptFollowPath"
+                   },
+                   {
+                       "method":  "PrepareCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "SamplePosition"
+                   },
+                   {
+                       "method":  "PrepareCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "PrepareCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "TryScrubLearningV364NativeMoverEpochAnchor"
+                   },
+                   {
+                       "method":  "CompleteCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "GenericFollowCommit"
+                   },
+                   {
+                       "method":  "CompleteCapabilityGenericFollowHandoff",
+                       "detected":  true,
+                       "removedCall":  "PeekExactGeneration"
+                   },
+                   {
+                       "method":  "HasCapabilityNormalFormationConsumer",
+                       "detected":  true,
+                       "removedCall":  "NormalFormation"
+                   },
+                   {
+                       "method":  "HasCapabilityNormalFormationConsumer",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityLivePassageProducer"
+                   },
+                   {
+                       "method":  "UpdatePostTraversalIntegrityWatch",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityNormalFormationConsumer"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "GetLearningV357ActuatorEntryLateralTolerance"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "ObstacleNeedsCenter"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "FollowPrefix",
+                       "detected":  true,
+                       "removedCall":  "PrepareCapabilityGenericFollowHandoff"
+                   },
+                   {
+                       "method":  "FollowPostfix",
+                       "detected":  true,
+                       "removedCall":  "CompleteCapabilityGenericFollowHandoff"
+                   },
+                   {
+                       "method":  "FollowFinalizer",
+                       "detected":  true,
+                       "removedCall":  "CompleteCapabilityGenericFollowHandoff"
+                   },
+                   {
+                       "method":  "MarkLearningV32NativeEntryAcquired",
+                       "detected":  true,
+                       "removedCall":  "CaptureCapabilityNativeJumpEntry"
+                   },
+                   {
+                       "method":  "CaptureCapabilityNativeJumpEntry",
+                       "detected":  true,
+                       "removedCall":  "CaptureJumpEntry"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilitySequenceProbe",
+                       "detected":  true,
+                       "removedCall":  "UnownedSequenceProbe"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "TryObserveCapabilityRescueObstacle"
+                   },
+                   {
+                       "method":  "TryBeginInjectedNativeVault",
+                       "detected":  true,
+                       "removedCall":  "TryObserveCapabilityRescueObstacle"
+                   },
+                   {
+                       "method":  "TryObserveCapabilityRescueObstacle",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "TryObserveCapabilityRescueObstacle",
+                       "detected":  true,
+                       "removedCall":  "RescueObstacle"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "CanApproachCapabilityUnfinishedWalkEntry"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilityHeadWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "CanApproachCapabilityUnfinishedWalkEntry"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "CanApproachCapabilityUnfinishedWalkEntry"
+                   },
+                   {
+                       "method":  "CanApproachCapabilityUnfinishedWalkEntry",
+                       "detected":  true,
+                       "removedCall":  "EntryStillAhead"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "QueueDistance"
+                   },
+                   {
+                       "method":  "UpdateLearningV349GenericPhysicalProgressWatchdog",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "CanConsumeCapabilityCursorFloor"
+                   },
+                   {
+                       "method":  "CanConsumeCapabilityCursorFloor",
+                       "detected":  true,
+                       "removedCall":  "CursorFloor"
+                   },
+                   {
+                       "method":  "IsFollowerRouteMissionStepPhysicallyPassed",
+                       "detected":  true,
+                       "removedCall":  "CorridorExit"
+                   },
+                   {
+                       "method":  "EnsureFollowerRouteMissionCommitment",
+                       "detected":  true,
+                       "removedCall":  "RefreshCapabilityCurrentPhysicalCorridor"
+                   },
+                   {
+                       "method":  "EnsureFollowerRouteMissionCommitment",
+                       "detected":  true,
+                       "removedCall":  "CanConsumeCapabilityCursorFloor"
+                   },
+                   {
+                       "method":  "RefreshCapabilityCurrentPhysicalCorridor",
+                       "detected":  true,
+                       "removedCall":  "CorridorExtension"
+                   },
+                   {
+                       "method":  "PrepareCapabilityOriginalFollowPath",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityLiveResolvedFollow"
+                   },
+                   {
+                       "method":  "PrepareCapabilityOriginalFollowPath",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "PrepareCapabilityOriginalFollowPath",
+                       "detected":  true,
+                       "removedCall":  "TryScrubLearningV364NativeMoverEpochAnchor"
+                   },
+                   {
+                       "method":  "CompleteCapabilityOriginalFollowPath",
+                       "detected":  true,
+                       "removedCall":  "NativeFollowReceipt"
+                   },
+                   {
+                       "method":  "CompleteCapabilityOriginalFollowPath",
+                       "detected":  true,
+                       "removedCall":  "RecordFollowPathResult"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityOriginalFollowIdle",
+                       "detected":  true,
+                       "removedCall":  "NativeFollowIdle"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityOriginalFollowIdle",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "IsCapabilityLowStepProducerCurrent",
+                       "detected":  true,
+                       "removedCall":  "IsLearningV369PhysicalCorridorStep"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGenericLowStep",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityLowStepProducerCurrent"
+                   },
+                   {
+                       "method":  "TryContinueLearningV365ContinuousTypedPhysicalRoute",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityGenericLowStep"
+                   },
+                   {
+                       "method":  "HasCapabilityLivePassageProducer",
+                       "detected":  true,
+                       "removedCall":  "PassageLease"
+                   },
+                   {
+                       "method":  "OwnsCapabilityLocalMotion",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityLivePassageProducer"
+                   },
+                   {
+                       "method":  "TryGetCapabilityLiveResolvedFollow",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityLivePassageProducer"
+                   },
+                   {
+                       "method":  "TryGetCapabilityCleanCompletedFollow",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityLivePassageProducer"
+                   },
+                   {
+                       "method":  "PatchBotOwnerGoToPointStatus",
+                       "detected":  true,
+                       "removedCall":  "PrepareCapabilityOriginalFollowPath"
+                   },
+                   {
+                       "method":  "ObserveNativeFollowPathResult",
+                       "detected":  true,
+                       "removedCall":  "CompleteCapabilityOriginalFollowPath"
+                   },
+                   {
+                       "method":  "FollowPostfix",
+                       "detected":  true,
+                       "removedCall":  "QuiesceCapabilityOriginalFollowIdle"
+                   },
+                   {
+                       "method":  "CancelDelivery",
+                       "detected":  true,
+                       "removedCall":  "Remove"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "TryYieldCapabilityCompletedFollow"
+                   },
+                   {
+                       "method":  "TryAdvanceCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "AfterFailure"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityWalkThroughSeam"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityWalkThroughSeam",
+                       "detected":  true,
+                       "removedCall":  "WalkSeam"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityWalkThroughSeam",
+                       "detected":  true,
+                       "removedCall":  "WalkSeamSupport"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityWalkThroughSeam",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfRaycastHit"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityWalkThroughSeam",
+                       "detected":  true,
+                       "removedCall":  "TryUpdateWalkThroughStepAssist"
+                   },
+                   {
+                       "method":  "TryYieldCapabilityCompletedFollow",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "TryUseLearnedTraversalCommitment",
+                       "detected":  true,
+                       "removedCall":  "HandleCapabilityRecordedTeleportFailure"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "RecordedRecoveryScope"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "CenterSideOnly"
+                   },
+                   {
+                       "method":  "TryUseLearnedTraversalCommitment",
+                       "detected":  true,
+                       "removedCall":  "RejectCapabilityForeignCommitment"
+                   },
+                   {
+                       "method":  "TryTeleportMissedLearnedTraversal",
+                       "detected":  true,
+                       "removedCall":  "HandleCapabilityRecordedTeleportFailure"
+                   },
+                   {
+                       "method":  "RejectCapabilityForeignCommitment",
+                       "detected":  true,
+                       "removedCall":  "HasActiveTraversalProbe"
+                   },
+                   {
+                       "method":  "RejectCapabilityForeignCommitment",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityUnfinishedCommitment"
+                   },
+                   {
+                       "method":  "RejectCapabilityForeignCommitment",
+                       "detected":  true,
+                       "removedCall":  "TryPrepareCapabilityAutomaticProbeMission"
+                   },
+                   {
+                       "method":  "RejectCapabilityForeignCommitment",
+                       "detected":  true,
+                       "removedCall":  "ForeignCommitment"
+                   },
+                   {
+                       "method":  "RejectCapabilityForeignCommitment",
+                       "detected":  true,
+                       "removedCall":  "ClearLearnedTraversalCommitment"
+                   },
+                   {
+                       "method":  "RejectCapabilityForeignCommitment",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "RecordedFallback"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "TryPrepareCapabilityAutomaticProbeMission"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityUnfinishedCommitment"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "HandleCapabilityRecordedTeleportFailure",
+                       "detected":  true,
+                       "removedCall":  "ClearLearnedTraversalCommitment"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityClimbAtSuccessor",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityClimbAtSuccessor",
+                       "detected":  true,
+                       "removedCall":  "TryGetLearningV375FutureSameChainSuccessor"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityClimbAtSuccessor",
+                       "detected":  true,
+                       "removedCall":  "IsEffectivelySupportedForProbe"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityClimbAtSuccessor",
+                       "detected":  true,
+                       "removedCall":  "ClimbSuccessor"
+                   },
+                   {
+                       "method":  "TryCloseCapabilityClimbAtSuccessor",
+                       "detected":  true,
+                       "removedCall":  "TryFinalizeTraversalChainIntermediate"
+                   },
+                   {
+                       "method":  "BeginUnifiedTraversalEgressOrVerify",
+                       "detected":  true,
+                       "removedCall":  "TryCloseCapabilityClimbAtSuccessor"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "ObstacleNear"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "EntryTurnHold"
+                   },
+                   {
+                       "method":  "SideCenterTurn",
+                       "detected":  true,
+                       "removedCall":  "ObstacleCenterTurn"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "ObstacleEntrySpeed"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "PrefixPath"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfRaycastHit"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "GroundLead"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGroundEntryLead",
+                       "detected":  true,
+                       "removedCall":  "ApplyCollisionActivePhysicalRouteMotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityGroundEntryLead"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityGroundEntryLead"
+                   },
+                   {
+                       "method":  "TryGetCapabilityLiveResolvedFollow",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "TryGetCapabilityLiveResolvedFollow",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityNewRecordedWork"
+                   },
+                   {
+                       "method":  "TryGetCapabilityLiveResolvedFollow",
+                       "detected":  true,
+                       "removedCall":  "CapabilityGenericResumeFloor"
+                   },
+                   {
+                       "method":  "TryGetCapabilityLiveResolvedFollow",
+                       "detected":  true,
+                       "removedCall":  "LiveFollow"
+                   },
+                   {
+                       "method":  "TryYieldCapabilityCompletedFollow",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityLiveResolvedFollow"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "JumpDispatch"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "EnsureFollowerRouteMissionCommitment"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityCurrentAction",
+                       "detected":  true,
+                       "removedCall":  "TryStartEmpiricalLocalEntryBridge"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilityCurrentAction"
+                   },
+                   {
+                       "method":  "TryFinalizeLearningV423PostCompletionMissionConsumer",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilityCurrentAction"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityMoveRetry"
+                   },
+                   {
+                       "method":  "BeginUnifiedTraversalEgressOrVerify",
+                       "detected":  true,
+                       "removedCall":  "TryValidateCapabilitySemanticWalkingRamp"
+                   },
+                   {
+                       "method":  "TryValidateCapabilitySemanticWalkingRamp",
+                       "detected":  true,
+                       "removedCall":  "RampEnvelope"
+                   },
+                   {
+                       "method":  "TryValidateCapabilitySemanticWalkingRamp",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfRaycastHit"
+                   },
+                   {
+                       "method":  "TryValidateCapabilitySemanticWalkingRamp",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "TryValidateCapabilitySemanticWalkingRamp",
+                       "detected":  true,
+                       "removedCall":  "RampSample"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "TryAdmitCapabilityHeadWalkThroughEntry"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilityHeadWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "HeadEntry"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilityHeadWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "TryStartEmpiricalLocalEntryBridge"
+                   },
+                   {
+                       "method":  "BeginUnifiedTraversalEgressOrVerify",
+                       "detected":  true,
+                       "removedCall":  "SemanticContinuation"
+                   },
+                   {
+                       "method":  "BeginUnifiedTraversalEgressOrVerify",
+                       "detected":  true,
+                       "removedCall":  "FinalizeOrEscalateTraversalFailure"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "TryArmCapabilityStrictReturnCorridor"
+                   },
+                   {
+                       "method":  "TryArmCapabilityStrictReturnCorridor",
+                       "detected":  true,
+                       "removedCall":  "PathWithinBudget"
+                   },
+                   {
+                       "method":  "TryArmCapabilityStrictReturnCorridor",
+                       "detected":  true,
+                       "removedCall":  "ReturnSegment"
+                   },
+                   {
+                       "method":  "TryArmCapabilityStrictReturnCorridor",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfRaycastHit"
+                   },
+                   {
+                       "method":  "TryArmCapabilityStrictReturnCorridor",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "TryArmCapabilityStrictReturnCorridor",
+                       "detected":  true,
+                       "removedCall":  "PrefixPath"
+                   },
+                   {
+                       "method":  "TryUseLearnedTraversalCommitment",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityUnfinishedCommitment"
+                   },
+                   {
+                       "method":  "TryGetCapabilityCleanCompletedFollow",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityNewRecordedWork"
+                   },
+                   {
+                       "method":  "TryGetCapabilityCleanCompletedFollow",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "TryGetCapabilityCleanCompletedFollow",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryYieldCapabilityCompletedFollow"
+                   },
+                   {
+                       "method":  "PatchBotOwnerGoToPointStatus",
+                       "detected":  true,
+                       "removedCall":  "ReadCapabilityDestination"
+                   },
+                   {
+                       "method":  "PatchBotOwnerGoToPointVoid",
+                       "detected":  true,
+                       "removedCall":  "ReadCapabilityDestination"
+                   },
+                   {
+                       "method":  "PatchBotMoverDestination",
+                       "detected":  true,
+                       "removedCall":  "ReadCapabilityDestination"
+                   },
+                   {
+                       "method":  "PatchPointDataDestination",
+                       "detected":  true,
+                       "removedCall":  "ReadCapabilityDestination"
+                   },
+                   {
+                       "method":  "DispatchV2WalkThroughEntryApproach",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityLocalWalkThroughEntry"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "LocalEntryPath"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "ManualEntry"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "ApplyCollisionActivePhysicalRouteMotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityLocalWalkThroughEntry",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "DriveLearningV32NativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityObstacleEntry"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "ObstacleHold"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityObstacleEntry",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "PrepareCapabilityStationaryRescue"
+                   },
+                   {
+                       "method":  "PrepareCapabilityStationaryRescue",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "PrepareCapabilityStationaryRescue",
+                       "detected":  true,
+                       "removedCall":  "RescueSettled"
+                   },
+                   {
+                       "method":  "PrepareCapabilityStationaryRescue",
+                       "detected":  true,
+                       "removedCall":  "ApplyCollisionActivePhysicalRouteMotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "LocalJoin"
+                   },
+                   {
+                       "method":  "IsCapabilityRelatedPrefix",
+                       "detected":  true,
+                       "removedCall":  "RelatedPrefix"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredDropOverlap",
+                       "detected":  true,
+                       "removedCall":  "TryRetireCapabilityCoveredLowerDrop"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredLowerDrop",
+                       "detected":  true,
+                       "removedCall":  "CoveredLowerDrop"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredLowerDrop",
+                       "detected":  true,
+                       "removedCall":  "IsLifecycleCompletionForStep"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredLowerDrop",
+                       "detected":  true,
+                       "removedCall":  "TryAdvanceRouteMission"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredLowerDrop",
+                       "detected":  true,
+                       "removedCall":  "All"
+                   },
+                   {
+                       "method":  "TryAdvanceLearningV365GenericPhysicalTarget",
+                       "detected":  true,
+                       "removedCall":  "TargetAfterFloor"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityGenericLowStep",
+                       "detected":  true,
+                       "removedCall":  "TargetAfterFloor"
+                   },
+                   {
+                       "method":  "CommitCapabilityResolvedNavigation",
+                       "detected":  true,
+                       "removedCall":  "TargetAfterFloor"
+                   },
+                   {
+                       "method":  "TryDriveLearningV349GenericEmpiricalPassageCorridor",
+                       "detected":  true,
+                       "removedCall":  "CapabilityGenericResumeFloor"
+                   },
+                   {
+                       "method":  "TryGetLearningV363ActuatorRouteEntryLaneTarget",
+                       "detected":  true,
+                       "removedCall":  "DropLead"
+                   },
+                   {
+                       "method":  "TryGetLearningV363ActuatorRouteEntryLaneTarget",
+                       "detected":  true,
+                       "removedCall":  "ForwardLaneSample"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "PrepareCapabilityDropIngressLocomotion"
+                   },
+                   {
+                       "method":  "PrepareCapabilityDropIngressLocomotion",
+                       "detected":  true,
+                       "removedCall":  "RequestCapabilityLocomotionResume"
+                   },
+                   {
+                       "method":  "TryMaintainCapabilityNativeInput",
+                       "detected":  true,
+                       "removedCall":  "FreshInput"
+                   },
+                   {
+                       "method":  "HoldForwardInput",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityNativePlayerInput"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPassageInFlight"
+                   },
+                   {
+                       "method":  "IsCapabilityPassageInFlight",
+                       "detected":  true,
+                       "removedCall":  "PassageInFlight"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "LocalApproachPath"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "PrefixPath"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "ApplyCollisionActivePhysicalRouteMotion"
+                   },
+                   {
+                       "method":  "DriveCapabilityStrategyApproach",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "WorldInput"
+                   },
+                   {
+                       "method":  "ReconcileCapabilityRetiredProbeConsumer",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "TryBeginLearningV331NativeGroundContinuation",
+                       "detected":  true,
+                       "removedCall":  "ContinuationBudget"
+                   },
+                   {
+                       "method":  "UpdateLearningV331NativeGroundContinuation",
+                       "detected":  true,
+                       "removedCall":  "ExitOverrun"
+                   },
+                   {
+                       "method":  "UpdateLearningV331NativeGroundContinuation",
+                       "detected":  true,
+                       "removedCall":  "LandingCorrection"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryBeginNativeTraversalRunOut"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryBeginLearningV408JumpPartialCrossingForwardContinuation"
+                   },
+                   {
+                       "method":  "TryBeginAssistedTraversalReplay",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilitySequenceNative"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TickCapabilityFailureSequence"
+                   },
+                   {
+                       "method":  "TryValidateV2CurrentTypedStep",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "DriveLearningV32NativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "GetFlatDirection"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "ContinueExecutedJump"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "TryAdmitCapabilitySequenceProbe"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "TryGetLearningV353JumpRouteFunnelTarget",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityStrategyPending"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilitySequenceProbe",
+                       "detected":  true,
+                       "removedCall":  "CanAllocateStrategy"
+                   },
+                   {
+                       "method":  "HasCapabilityFailureStrategy",
+                       "detected":  true,
+                       "removedCall":  "OwnsStrategy"
+                   },
+                   {
+                       "method":  "EscalateTraversalFailureMonotonic",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryTeleportPlayerValidatedTraversalAtExit",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryBeginPlayerRouteContinuationBridge",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "UpdateUnifiedTraversalVerify",
+                       "detected":  true,
+                       "removedCall":  "TryRetainCapabilityObservedJumpBeforePassageBridge"
+                   },
+                   {
+                       "method":  "TryRetainCapabilityObservedJumpBeforePassageBridge",
+                       "detected":  true,
+                       "removedCall":  "CanClosePassageBoundary"
+                   },
+                   {
+                       "method":  "TryRetainCapabilityObservedJumpBeforePassageBridge",
+                       "detected":  true,
+                       "removedCall":  "TryFinalizeTraversalChainIntermediate"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "PastObstacleEntry"
+                   },
+                   {
+                       "method":  "UpdateSharedNativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "EntryBudget"
+                   },
+                   {
+                       "method":  "TryRequestCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "IsCancellation"
+                   },
+                   {
+                       "method":  "TryRetainCapabilityObservedJumpBeforePassageBridge",
+                       "detected":  true,
+                       "removedCall":  "TryLatchLearningV372WalkThroughPhysicalPassageProof"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "TryPrepareCapabilityAutomaticProbeMission"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "RegisterCapabilityLocalMission"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "RegisterCapabilityLocalMission"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "HeadStalled"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TryValidateV2CurrentTypedStep",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TryMaintainCapabilityNativeInput",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "IsCapabilityRetryWalking",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "DriveLearningV32NativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "EntryRequiresPointAim"
+                   },
+                   {
+                       "method":  "RestoreTraversalMovementAuthorityAfterTeleportAttempt",
+                       "detected":  true,
+                       "removedCall":  "IsActiveProbe"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "Mark"
+                   },
+                   {
+                       "method":  "RegisterCapabilityLocalMission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "IsTraversalEpisodeAlreadyConsumed",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "IsLearningV366RuntimeEpisodeBehindExecutionFrontier",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "PruneCapabilityResolvedCommitment"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "InWindow"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "CanCommitScopedPhysicalMotion"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "BlockOriginalFollowDestination"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityLocalMotion"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "IsOriginalPITFollowCall"
+                   },
+                   {
+                       "method":  "PatchBotMoverDestination",
+                       "detected":  true,
+                       "removedCall":  "TryRejectOriginalPITFollowWrite"
+                   },
+                   {
+                       "method":  "PatchPointDataDestination",
+                       "detected":  true,
+                       "removedCall":  "TryRejectOriginalPITFollowWrite"
+                   },
+                   {
+                       "method":  "FinishProbeWithoutReanchor",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughEntryConvergence",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityResolvedNavigation"
+                   },
+                   {
+                       "method":  "CommitCapabilityResolvedNavigation",
+                       "detected":  true,
+                       "removedCall":  "ResolvedNavigationFloor"
+                   },
+                   {
+                       "method":  "CommitCapabilityResolvedNavigation",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "Approach"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "UpdateSharedNativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "AngularProgress"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "CalculateStrictPath"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "LocalApproachPath"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryValidateCapabilityPortalApproachPath"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "IsFollowerRouteMissionStepPhysicallyPassed"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "HasWriter"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "MayReleaseResolvedAuthority"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "TransitionTraversalToFollowIfIdleExact"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "MarkWriter"
+                   },
+                   {
+                       "method":  "UnregisterActiveProbe",
+                       "detected":  true,
+                       "removedCall":  "ReconcileCapabilityRetiredProbeConsumer"
+                   },
+                   {
+                       "method":  "ReconcileCapabilityRetiredProbeConsumer",
+                       "detected":  true,
+                       "removedCall":  "MayRetireConsumer"
+                   },
+                   {
+                       "method":  "ReconcileCapabilityRetiredProbeConsumer",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "CapabilitySelfRescueFrontier",
+                       "detected":  true,
+                       "removedCall":  "RescueAtBody"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "CapabilitySelfRescueFrontier"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "MayYieldApproach"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "EndLearningV375PersistentRouteTransaction"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "TransitionTraversalToFollowIfIdleExact"
+                   },
+                   {
+                       "method":  "ClearCapabilityNativeDestinationData",
+                       "detected":  true,
+                       "removedCall":  "CanCommitScopedPhysicalMotion"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "DriveCapabilityStrategyApproach"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryReleaseCapabilityResolvedAuthority"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryPrepareCapabilityPortalApproachDelivery"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "PrefixPath"
+                   },
+                   {
+                       "method":  "ClearCapabilityStrategyTargets",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "ClearCapabilityStrategyTargets",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "StrategyEntryReady"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "Distance"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "TryGetLearningV353JumpRouteFunnelTarget",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "TryCaptureCapabilityJumpPreparation",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "IsCapabilityRetryWalking",
+                       "detected":  true,
+                       "removedCall":  "NeedsCapabilityEntryRun"
+                   },
+                   {
+                       "method":  "OnBotOwnerUpdate",
+                       "detected":  true,
+                       "removedCall":  "ApplyCapabilitySequenceWalking"
+                   },
+                   {
+                       "method":  "TryGetCapabilityCurrentJumpGait",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityRouteSprint"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityCurrentJumpGait"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "StrategyExpired"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityCompletedPrefixBoundary"
+                   },
+                   {
+                       "method":  "MaintainCapabilityInputBeforeNativeConsumer",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilityJumpAtNativeUpdate"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityPreparedJump",
+                       "detected":  true,
+                       "removedCall":  "TryCaptureCapabilityJumpPreparation"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityPreparedJump",
+                       "detected":  true,
+                       "removedCall":  "ShouldDeferCapabilityJumpProbe"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilityPreparedJump",
+                       "detected":  true,
+                       "removedCall":  "TryStartProbeForBot"
+                   },
+                   {
+                       "method":  "TickCapabilityPreparationConsumerFrames",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilityPreparedJump"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "PatchBotOwnerIngressSpeed",
+                       "detected":  true,
+                       "removedCall":  "LimitCapabilityIngressSpeed"
+                   },
+                   {
+                       "method":  "PatchBotMoverIngressSpeed",
+                       "detected":  true,
+                       "removedCall":  "LimitCapabilityIngressSpeed"
+                   },
+                   {
+                       "method":  "PatchBotSteeringIntent",
+                       "detected":  true,
+                       "removedCall":  "TryRejectOriginalPITFollowWrite"
+                   },
+                   {
+                       "method":  "Prefix",
+                       "detected":  true,
+                       "removedCall":  "KeepNativeMove"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAdjacentJumpRunup",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityRouteSprint"
+                   },
+                   {
+                       "method":  "ApplyCapabilitySequenceWalking",
+                       "detected":  true,
+                       "removedCall":  "NeedsCapabilityRunTakeoff"
+                   },
+                   {
+                       "method":  "LimitCapabilityIngressSpeed",
+                       "detected":  true,
+                       "removedCall":  "CapabilityIngressSpeed"
+                   },
+                   {
+                       "method":  "TryAdvanceCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "PendingDeadline"
+                   },
+                   {
+                       "method":  "PrepareCapabilityAlternateReplay",
+                       "detected":  true,
+                       "removedCall":  "CapabilitySemanticCommitment"
+                   },
+                   {
+                       "method":  "CapabilityIngressSpeed",
+                       "detected":  true,
+                       "removedCall":  "ApproachSpeed"
+                   },
+                   {
+                       "method":  "CapabilityIngressSpeed",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "TickCapabilityUnstartedNative",
+                       "detected":  true,
+                       "removedCall":  "NativeExpired"
+                   },
+                   {
+                       "method":  "TickCapabilityUnstartedNative",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TickCapabilityUnstartedNative",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "TickCapabilityUnstartedNative",
+                       "detected":  true,
+                       "removedCall":  "IsFollowerRouteMissionStepPhysicallyPassed"
+                   },
+                   {
+                       "method":  "TickCapabilityUnstartedNative",
+                       "detected":  true,
+                       "removedCall":  "HasActiveTraversalProbe"
+                   },
+                   {
+                       "method":  "TickCapabilityUnstartedNative",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "TickCapabilityUnstartedNative"
+                   },
+                   {
+                       "method":  "CommitCapabilityPortalHold",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "CommitCapabilityPortalHold",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "CommitCapabilityPortalHold",
+                       "detected":  true,
+                       "removedCall":  "EndLearningV375PersistentRouteTransaction"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityPortalHold"
+                   },
+                   {
+                       "method":  "ShouldSuppressSetPlayerToNavMesh",
+                       "detected":  true,
+                       "removedCall":  "ProtectCapabilityLocalBodyProjection"
+                   },
+                   {
+                       "method":  "ShouldSuppressNativeNavMeshBodyRelink",
+                       "detected":  true,
+                       "removedCall":  "ProtectCapabilityLocalBodyProjection"
+                   },
+                   {
+                       "method":  "ProtectCapabilityLocalBodyProjection",
+                       "detected":  true,
+                       "removedCall":  "ProtectLocalBody"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "ClearCapabilityStrategyTargets",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "OnBotOwnerUpdate",
+                       "detected":  true,
+                       "removedCall":  "TryReleaseCapabilityResolvedAuthority"
+                   },
+                   {
+                       "method":  "ShouldSuppressNativeNavMeshBodyRelink",
+                       "detected":  true,
+                       "removedCall":  "RejectCapabilityPostCompletionProjection"
+                   },
+                   {
+                       "method":  "RejectCapabilityPostCompletionProjection",
+                       "detected":  true,
+                       "removedCall":  "RejectPostCompletionProjection"
+                   },
+                   {
+                       "method":  "RejectCapabilityPostCompletionProjection",
+                       "detected":  true,
+                       "removedCall":  "PeekExactGeneration"
+                   },
+                   {
+                       "method":  "RejectCapabilityPostCompletionProjection",
+                       "detected":  true,
+                       "removedCall":  "HasActiveTraversalProbe"
+                   },
+                   {
+                       "method":  "RejectCapabilityPostCompletionProjection",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "ExecutionSprint"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "GetLearningV442JumpAdmissionEntry"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "GetCurrentWalkThroughCorridorTarget"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "TryProjectOntoWalkThroughCorridor"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "IsRouteMissionSameChainImmediateSuccessor"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityRouteSprint"
+                   },
+                   {
+                       "method":  "UpdateSharedNativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "ConsumeReadyEntry"
+                   },
+                   {
+                       "method":  "TryDispatchCapabilitySequenceNative",
+                       "detected":  true,
+                       "removedCall":  "UpdateSharedNativeEntryAcquisition"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "HasActiveTraversalProbe"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityReturnInProgress"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "CalculateStrictPath"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "LocalApproachPath"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityCompletedPrefixBoundary"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "PrefixPath"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfRaycastHit"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "TryGetFirstNonSelfCapsuleCastHit"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "Connector"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "TryDriveCapabilityRecordedEntryConnector",
+                       "detected":  true,
+                       "removedCall":  "ApplyCollisionActivePhysicalRouteMotion"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "TryDriveCapabilityRecordedEntryConnector"
+                   },
+                   {
+                       "method":  "OnBotOwnerUpdate",
+                       "detected":  true,
+                       "removedCall":  "QuiesceCapabilityCompletedFollowInput"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityCompletedFollowInput",
+                       "detected":  true,
+                       "removedCall":  "StopCompletedFollowInput"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityCompletedFollowInput",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityCompletedFollowInput",
+                       "detected":  true,
+                       "removedCall":  "HasCurrentCapabilityNativeWay"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityCompletedFollowInput",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "QuiesceCapabilityCompletedFollowInput",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "UpdateSharedNativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityReadyJumpMotion"
+                   },
+                   {
+                       "method":  "HasCapabilityReadyJumpMotion",
+                       "detected":  true,
+                       "removedCall":  "TryObserveCapabilityJumpBodyVelocity"
+                   },
+                   {
+                       "method":  "HasCapabilityReadyJumpMotion",
+                       "detected":  true,
+                       "removedCall":  "ReadyJumpMotion"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughEntryConvergence",
+                       "detected":  true,
+                       "removedCall":  "Lane"
+                   },
+                   {
+                       "method":  "TryPublishLearningV414PathlessNativeInputLease",
+                       "detected":  true,
+                       "removedCall":  "Center"
+                   },
+                   {
+                       "method":  "DispatchV2WalkThroughEntryApproach",
+                       "detected":  true,
+                       "removedCall":  "TryPublishLearningV414PathlessNativeInputLease"
+                   },
+                   {
+                       "method":  "DispatchV2WalkThroughEntryApproach",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityRouteRetryZeroInput"
+                   },
+                   {
+                       "method":  "TryGetCapabilityRouteSprint",
+                       "detected":  true,
+                       "removedCall":  "SprintIntent"
+                   },
+                   {
+                       "method":  "IsCapabilityEpisodeRetired",
+                       "detected":  true,
+                       "removedCall":  "RetiredEpisode"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityEpisodeRetired"
+                   },
+                   {
+                       "method":  "RegisterCapabilityLocalMission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityEpisodeRetired"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "UpdateLearningV331NativeGroundContinuation",
+                       "detected":  true,
+                       "removedCall":  "HoldLanding"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredDropOverlap",
+                       "detected":  true,
+                       "removedCall":  "CoveredDropOverlap"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredDropOverlap",
+                       "detected":  true,
+                       "removedCall":  "IsLifecycleCompletionForStep"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredDropOverlap",
+                       "detected":  true,
+                       "removedCall":  "CaptureRouteDebtObservation"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredDropOverlap",
+                       "detected":  true,
+                       "removedCall":  "TryAdvanceRouteMission"
+                   },
+                   {
+                       "method":  "TryRetireCapabilityCoveredDropOverlap",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRouteRetrySafe"
+                   },
+                   {
+                       "method":  "EnsureFollowerRouteMissionCommitment",
+                       "detected":  true,
+                       "removedCall":  "TryRetireCapabilityCoveredDropOverlap"
+                   },
+                   {
+                       "method":  "TickCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "TryRetireCapabilityCoveredDropOverlap"
+                   },
+                   {
+                       "method":  "ArmExitAuthorityRebase",
+                       "detected":  true,
+                       "removedCall":  "forbidden exit operation restored: BotMoverTeleport"
+                   },
+                   {
+                       "method":  "ArmExitAuthorityRebase",
+                       "detected":  true,
+                       "removedCall":  "forbidden exit operation restored: PlayerTeleport"
+                   },
+                   {
+                       "method":  "UpdateExitAuthorityCommit",
+                       "detected":  true,
+                       "removedCall":  "forbidden exit operation restored: ArmExitAuthorityRebase"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "forbidden near-successor terminal marker injected"
+                   },
+                   {
+                       "method":  "RegisterCapabilityLocalMission",
+                       "detected":  true,
+                       "removedCall":  "upstream snapshot32 replaced by1"
+                   },
+                   {
+                       "method":  "AssemblyVersion",
+                       "detected":  true,
+                       "removedCall":  "version-only artifact fault"
+                   },
+                   {
+                       "method":  "PluginVersion",
+                       "detected":  true,
+                       "removedCall":  "version-only artifact fault"
+                   }
+               ],
+    "gameExecuted":  false,
+    "checks":  511,
+    "passed":  true
+}

@@ -1,0 +1,57 @@
+--- RC120/QA/FailureOnly/Test-FailureOnlyBoundary.ps1
++++ RC121/QA/FailureOnly/Test-FailureOnlyBoundary.ps1
+@@ -25,7 +25,7 @@
+ }
+ Check $guard 'first normal pass returns false before recovery side effects until returning phase exists'
+ $all=@($m.GetTypes()|ForEach-Object{$_.Methods}|Where-Object HasBody);$callers=@($all|Where-Object{(Calls $_ 'TryRequestCapabilityFullRouteRetry').Count -gt 0}|ForEach-Object{$_.Name.String}|Sort-Object -Unique)
+-Check (($callers -join ',') -eq 'FinalizeOrEscalateTraversalFailure,FinalizeUnifiedTraversalFailure,FinishProbeWithoutReanchor,ShouldDeferCapabilityJumpProbe,TickCapabilityFullRouteRetry,TriggerNativeJump,TryArmLearningV431EquivalentLocalBarrierSelfRescue,TryBeginLearningV3NativeEntryCorrection,TryBeginLearningV450MissedJumpCurrentBodySelfRescue,TryHandleCapabilityRescueTerminal,TryRecoverCapabilityStalledJumpPreparation,TryRequestCapabilityFullRouteRetry') 'finite failure/expiry caller surface has no normal mover/ingress/input callers'
++Check (($callers -join ',') -eq 'FinalizeOrEscalateTraversalFailure,FinalizeUnifiedTraversalFailure,FinishProbeWithoutReanchor,ShouldDeferCapabilityJumpProbe,TickCapabilityFailureSequence,TickCapabilityFullRouteRetry,TriggerNativeJump,TryArmLearningV431EquivalentLocalBarrierSelfRescue,TryBeginLearningV3NativeEntryCorrection,TryBeginLearningV450MissedJumpCurrentBodySelfRescue,TryDispatchCapabilitySequenceNative,TryHandleCapabilityRescueTerminal,TryRecoverCapabilityStalledJumpPreparation,TryRecoverPlayerValidatedTraversal,TryRecoverVaultClimbCrossingBeforeEgress,TryRequestCapabilityFullRouteRetry') 'finite failure/expiry caller surface has no normal mover/ingress/input callers'
+ $p=$m.GetTypes()|Where-Object Name -eq 'FollowerCapabilityRouteRetryPolicy';foreach($name in @('MissedEntry','JumpHeading','HoldEntryAlignment')){Check (@($p.Methods|Where-Object Name -eq $name).Count -eq 0) ('retired unused normal strategy removed '+$name)}
+ foreach($name in @('StageReached','StagePosition','ReturnDecision','PathProgress','HoldNeedsStop')){Check (@($p.Methods|Where-Object Name -eq $name).Count -eq 1) ('failure-only replay/return requirement retained '+$name)}
+ $h=[Security.Cryptography.SHA256]::Create();try{$sha=[BitConverter]::ToString($h.ComputeHash([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $Dll).Path))).Replace('-','')}finally{$h.Dispose()}
+--- RC120/QA/IngressContract/Test-IngressContractBoundary.ps1
++++ RC121/QA/IngressContract/Test-IngressContractBoundary.ps1
+@@ -31,7 +31,9 @@
+ Check (Before $step 'TryEnterBoundPhysicalMotion' 'TryMovementContextApplyApproachMotion') 'generic step rebinds exact live scope before collision motion'
+ Check (@($step.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'R116-116A00000006'}).Count -eq 1) 'generic collision step uses reviewed exact control site'
+ foreach($name in @('TryPlayerTeleport','TryICharacterControllerMove','TriggerNativeJump','PublishCapabilityCompletion','BotOwnerGoToPoint')){Check ((Calls $step $name).Count -eq 0) ('low step cannot mint unrelated action '+$name)}
+-$tick=Method 'TickCapabilityFullRouteRetry';Check ((Calls $tick 'PrecisionReturn').Count -eq 1) 'failure return owns sticky walking latch'
++$tick=Method 'TickCapabilityFullRouteRetry';$walkStores=@($tick.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'PrecisionWalking'});$wholeReturnWalk=$false
++foreach($store in $walkStores){$idx=$tick.Body.Instructions.IndexOf($store);if($tick.Body.Instructions[$idx-1].IsLdcI4() -and $tick.Body.Instructions[$idx-1].GetLdcI4Value() -eq 1){$wholeReturnWalk=$true}}
++Check $wholeReturnWalk 'entire return owns walking latch from its first tick, beyond old near-entry activation'
+ Check ((Calls (Method 'TryMaintainCapabilityRouteRetryHold') 'ApplyCapabilityReturnWalking').Count -eq 1) 'native input consumer enforces return walk beyond one update'
+ Check ((Calls (Method 'ApplyCapabilityReturnWalking') 'PlayerEnableSprint').Count -eq 1) 'return walk releases actual native sprint latch'
+ $h=[Security.Cryptography.SHA256]::Create();try{$sha=[BitConverter]::ToString($h.ComputeHash([IO.File]::ReadAllBytes((Resolve-Path -LiteralPath $Dll).Path))).Replace('-','')}finally{$h.Dispose()}
+--- RC120/QA/Round4B/Fingerprint/Program.cs
++++ RC121/QA/Round4B/Fingerprint/Program.cs
+@@ -33,7 +33,7 @@
+    Local local=>"local:"+local.Index,Parameter param=>"arg:"+param.Index,
+    IFullName member=>Canon(member.FullName),
+    float f=>"f32:"+Convert.ToHexString(BitConverter.GetBytes(f)),double d=>"f64:"+Convert.ToHexString(BitConverter.GetBytes(d)),
+-   string s=>s.Replace("V2-RC109-R4A","V2-RC108-R3Z").Replace("V2-RC110-R4B","V2-RC108-R3Z").Replace("V2-RC111-R4C","V2-RC108-R3Z").Replace("V2-RC112-RouteRetry","V2-RC108-R3Z").Replace("V2-RC113-RecoveryFix","V2-RC108-R3Z").Replace("V2-RC114-FailureOnly","V2-RC108-R3Z").Replace("V2-RC115-RouteRecovery","V2-RC108-R3Z").Replace("V2-RC116-IngressContract","V2-RC108-R3Z").Replace("V2-RC117-PassageAdmission","V2-RC108-R3Z").Replace("V2-RC118-MotionEvidence","V2-RC108-R3Z").Replace("V2-RC119-JumpBoundary","V2-RC108-R3Z").Replace("V2-RC120-RescueDisposition","V2-RC108-R3Z"),_=>Convert.ToString(v,CultureInfo.InvariantCulture)??""};
++   string s=>s.Replace("V2-RC109-R4A","V2-RC108-R3Z").Replace("V2-RC110-R4B","V2-RC108-R3Z").Replace("V2-RC111-R4C","V2-RC108-R3Z").Replace("V2-RC112-RouteRetry","V2-RC108-R3Z").Replace("V2-RC113-RecoveryFix","V2-RC108-R3Z").Replace("V2-RC114-FailureOnly","V2-RC108-R3Z").Replace("V2-RC115-RouteRecovery","V2-RC108-R3Z").Replace("V2-RC116-IngressContract","V2-RC108-R3Z").Replace("V2-RC117-PassageAdmission","V2-RC108-R3Z").Replace("V2-RC118-MotionEvidence","V2-RC108-R3Z").Replace("V2-RC119-JumpBoundary","V2-RC108-R3Z").Replace("V2-RC120-RescueDisposition","V2-RC108-R3Z").Replace("V2-RC121-CoordinatedTraversal","V2-RC108-R3Z"),_=>Convert.ToString(v,CultureInfo.InvariantCulture)??""};
+   var lines=new List<string>{method.Attributes+"|"+method.ImplAttributes+"|"+method.Body.InitLocals};
+   lines.AddRange(method.Body.Variables.Select(v=>"local:"+Canon(v.Type.FullName)));
+   lines.AddRange(ins.Select(i=>i.OpCode.Name+" "+Operand(i.Operand)));
+--- RC120/QA/Round4B/analyze_scopes.py
++++ RC121/QA/Round4B/analyze_scopes.py
+@@ -10,7 +10,7 @@
+  proven|=added
+  for key in added:levels[key]=depth
+ input_directory=Path(__import__('sys').argv[1]).resolve().parent if len(__import__('sys').argv)>1 else q
+-base=j(q/'baseline-il.json');current=j(input_directory/'current-il.json');base['catalog'].update({k:v for k,v in current['catalog'].items() if k.startswith(('R112-','R113-','R116-'))});sites={row['arguments'][0].strip('"'):row for row in s['routed']};promoted=sorted(site for site,row in sites.items() if base['catalog'][site]['mode']==1 and row['enclosing'] in proven)
++base=j(q/'baseline-il.json');current=j(input_directory/'current-il.json');base['catalog'].update({k:v for k,v in current['catalog'].items() if k.startswith(('R112-','R113-','R116-','R121-'))});sites={row['arguments'][0].strip('"'):row for row in s['routed']};promoted=sorted(site for site,row in sites.items() if base['catalog'][site]['mode']==1 and row['enclosing'] in proven)
+ def reasons(key):
+  node=nodes.get(key)
+  if not node:return ['accessor, constructor or nonordinary entry requires separate contract']
+--- RC120/QA/Round4C/Compatibility/Program.cs
++++ RC121/QA/Round4C/Compatibility/Program.cs
+@@ -17,7 +17,7 @@
+  else if(mode==ControlSiteMode.ReviewedLegacy){compat++;Check(P.Decide(true,true,mode,true,false,false,true)==ControlAdmission.ReviewedCompatibility,id+": original unscoped authority retained with bound actor");}
+  else throw new Exception("unreviewed catalog mode");
+ }
+-Check(strict==486&&compat==404&&infra==32,"six additional exact-scoped ingress/low-step sites; compatibility/infrastructure surface cannot expand");
++Check(strict==489&&compat==404&&infra==29,"three removed friendly push/reset infrastructure sites replaced by three exact-scoped queue hold sites; all 404 compatibility sites retained");
+ for(int m=3;m<16;m++)Check(P.Decide(true,true,(ControlSiteMode)m,true,true,true,true)==ControlAdmission.Reject,"unknown future mode must be reviewed "+m);
+ string hash=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(typeof(P).Assembly.Location)));
+ if(scan.GetProperty("dllSha256").GetString()!=hash)throw new Exception("catalog and policy must come from same actual DLL");

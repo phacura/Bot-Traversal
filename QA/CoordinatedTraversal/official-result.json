@@ -1,0 +1,23 @@
+﻿{
+    "retainedRouteRecoveryChecks":  151,
+    "retainedRescueDispositionChecks":  20,
+    "totalSeconds":  352.7917778,
+    "actualBinaryMutants":  57,
+    "retainedFailureOnlyChecks":  82,
+    "dllSha256":  "0F7BA4A62AF736312B349869FDC97B4B0AB7F9EEBD67324B890CE28AD13D2C32",
+    "retainedMotionEvidenceChecks":  76,
+    "retainedIngressContractChecks":  118,
+    "retainedSuites":  21,
+    "newCoordinationChecks":  1723,
+    "retainedRouteRetryChecks":  82,
+    "retainedBehaviorChecks":  1871,
+    "passed":  true,
+    "physicsSimulated":  false,
+    "retainedPassageAdmissionChecks":  44,
+    "normalRC111MethodBodies":  5,
+    "retainedRecoveryChecks":  111,
+    "actualRC120NegativeRejected":  true,
+    "retainedJumpBoundaryChecks":  49,
+    "release":  "RC121-CoordinatedTraversal",
+    "retainedContinuityChecks":  809
+}

@@ -1,0 +1,31 @@
+{
+  "byAbility": {
+    "Vault": {
+      "NativePhysical": 4,
+      "Unproven": 3
+    },
+    "Climb": {
+      "NativePhysical": 4
+    },
+    "DropDown": {
+      "NativePhysical": 4
+    },
+    "WalkThrough": {
+      "NativePhysical": 16
+    },
+    "Jump": {
+      "NativePhysical": 4
+    }
+  },
+  "stageDestinations": {
+    "Alternate": 2,
+    "SelfRescue": 2
+  },
+  "cleanupReasons": {
+    "manualRegroup": 24
+  },
+  "noStartReasons": {
+    "stepCreationRejected": 115,
+    "redundantWithEquivalentRouteStep": 94
+  }
+}

@@ -1,0 +1,28 @@
+native proof load [(180, None, 'b057fe4062fa4c488021832e0050e8ef'), (239, None, 'b45c94dddcb849e29f9e2673024c08bb')]
+EDGE 201
+155.756 Knight capabilityPortalQueueAdmitted None
+158.409 Knight learningV322TraversalAttemptSummary NativePhysical
+159.427 Ada_Wong capabilityPortalQueueAdmitted None
+162.534 Ada_Wong learningV322TraversalAttemptSummary NativePhysical
+163.548 Chris_Redfield capabilityPortalQueueAdmitted None
+167.189 Chris_Redfield learningV322TraversalAttemptSummary NativePhysical
+168.197 Ghost capabilityPortalQueueAdmitted None
+171.203 Ghost learningV322TraversalAttemptSummary NativePhysical
+EDGE 188
+493.624 Ada_Wong capabilityPortalQueueAdmitted None
+496.805 Ada_Wong learningV322TraversalAttemptSummary NativePhysical
+497.818 Ghost capabilityPortalQueueAdmitted None
+501.419 Ghost learningV322TraversalAttemptSummary NativePhysical
+502.423 Chris_Redfield capabilityPortalQueueAdmitted None
+505.689 Chris_Redfield learningV322TraversalAttemptSummary NativePhysical
+506.693 Knight capabilityPortalQueueAdmitted None
+510.137 Knight learningV322TraversalAttemptSummary NativePhysical
+605.517 Ghost capabilityPortalQueueAdmitted None
+608.438 Ghost learningV322TraversalAttemptSummary NativePhysical
+609.451 Chris_Redfield capabilityPortalQueueAdmitted None
+612.884 Chris_Redfield learningV322TraversalAttemptSummary NativePhysical
+613.893 Ada_Wong capabilityPortalQueueAdmitted None
+616.631 Ada_Wong learningV322TraversalAttemptSummary NativePhysical
+617.639 Knight capabilityPortalQueueAdmitted None
+621.132 Knight learningV322TraversalAttemptSummary NativePhysical
+return divergence 426.326 Ghost {"missionId": 84, "body": {"x": -146.936844, "y": 1.98498189, "z": 11.2920027}, "target": {"x": -145.148987, "y": 2.65123081, "z": 11.0227146}, "bestRemaining": 2.960458, "remaining": 3.34081459, "noProgressAge": 0.2359314, "nativeSuccessRecorded": false}

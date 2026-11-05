@@ -1,0 +1,180 @@
+{
+  "evidence_id": "ev_6c61050b0f79e6629e4099ff55559df51cd9b08a39dfe9339e150a658db01f34",
+  "subject": {
+    "name": "Assembly-CSharp.dll",
+    "digest": {
+      "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982"
+    },
+    "local_path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+    "format": "pe",
+    "architecture": "x86"
+  },
+  "provider": {
+    "id": "rea-analysis-view",
+    "name": "REA analysis view projection",
+    "version": "1"
+  },
+  "analysis_profile": null,
+  "predicate_type": "rea.analysis-view",
+  "operation": "inspect_analysis_view",
+  "parameters": {
+    "parent_evidence_id": "ev_159d01eac8f1689158c837a5b0bc2adc2ec29cb408c0f94f9b0239392a7e4629",
+    "view": {
+      "kind": "summary"
+    }
+  },
+  "raw_result": null,
+  "normalized_result": {
+    "kind": "summary",
+    "view": {
+      "kind": "summary"
+    },
+    "parent_evidence_id": "ev_159d01eac8f1689158c837a5b0bc2adc2ec29cb408c0f94f9b0239392a7e4629",
+    "parent_operation": "inspect_managed_members",
+    "parent_digest": "159d01eac8f1689158c837a5b0bc2adc2ec29cb408c0f94f9b0239392a7e4629",
+    "view_digest": "882ecc11af92de1b061a66642d95f0697579e74ef22e256b1fdb2e469d1a2873",
+    "artifact": {
+      "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+      "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982"
+    },
+    "coverage": {
+      "status": "complete-within-view",
+      "examined": 1,
+      "total": 1,
+      "next_offset": null,
+      "exhausted": true
+    },
+    "limitations": [
+      "Member decoding exceeded capacity after the type inventory was admitted; fields, methods, member references, call edges, field accesses, exported types and user strings are not examined to completion. Empty member collections do not establish absence.",
+      "Metadata tokens are build-local coordinates and require the reported artifact SHA-256 and MVID. Type names and list ranges retain their original metadata and nesting uncertainty.",
+      "Types, fields, methods, call edges, field accesses, and user strings cover only the selected declaring types; coverage describes that selection. Edge targets outside it keep their names but are not described.",
+      "Use the returned TypeDef full_name values with type_names (CLI --type) to inspect a smaller selection; a single selected type can still exceed capacity."
+    ],
+    "unknowns": [
+      "Collection counts and pages cover producer-returned rows; member completeness remains the original coverage, not an absence claim about unreturned rows.",
+      "Exported types and member references cover the whole assembly; the other collections cover only the selected declaring types.",
+      "Metadata tokens are build-local coordinates bound to the recorded artifact SHA-256 and module MVID; this view does not load or execute the assembly."
+    ],
+    "summary": {
+      "signature_resolution": null,
+      "nesting_read": true,
+      "artifact": {
+        "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+        "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982",
+        "byte_length": 15899648,
+        "format": "pe"
+      },
+      "module": {
+        "name": "Assembly-CSharp.dll",
+        "generation": 0,
+        "mvid": "ad47400a-25db-462c-bf0a-531df654c3c3",
+        "enc_id": null,
+        "enc_base_id": null,
+        "token": "0x00000001",
+        "row_offset": 7591872
+      },
+      "assembly": null,
+      "metadata": {
+        "status": "partial",
+        "version": "v4.0.30319",
+        "table_row_counts": {
+          "Module": 1,
+          "TypeRef": 1360,
+          "TypeDef": 15137,
+          "Field": 77289,
+          "MethodDef": 90767,
+          "Param": 70452,
+          "InterfaceImpl": 6278,
+          "MemberRef": 32505,
+          "Constant": 13069,
+          "CustomAttribute": 42450,
+          "FieldMarshal": 12,
+          "DeclSecurity": 1,
+          "ClassLayout": 66,
+          "FieldLayout": 43,
+          "StandAloneSig": 13447,
+          "EventMap": 545,
+          "Event": 1203,
+          "PropertyMap": 4145,
+          "Property": 13719,
+          "MethodSemantics": 19940,
+          "MethodImpl": 6180,
+          "ModuleRef": 4,
+          "TypeSpec": 9947,
+          "ImplMap": 19,
+          "FieldRVA": 96,
+          "Assembly": 1,
+          "AssemblyRef": 73,
+          "ManifestResource": 1,
+          "NestedClass": 6454,
+          "GenericParam": 2077,
+          "MethodSpec": 9338,
+          "GenericParamConstraint": 1228
+        }
+      },
+      "identity_scope": {
+        "token_identity": "build-local",
+        "requires_artifact_sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982",
+        "requires_mvid": "ad47400a-25db-462c-bf0a-531df654c3c3"
+      },
+      "selection": {
+        "type_names": [
+          "PathControllerClass"
+        ],
+        "unmatched_type_names": []
+      },
+      "method_rows": {
+        "offset": 0,
+        "count": 90767,
+        "total": 90767
+      },
+      "coverage": {
+        "state": "partial",
+        "issues": [
+          {
+            "code": "resource-limit",
+            "scope": "metadata.representation",
+            "offset": 14632460,
+            "detail": "Managed metadata exceeds the 67108864 byte representation budget"
+          }
+        ]
+      },
+      "user_strings": null,
+      "limitations": [
+        "Types, fields, methods, call edges, field accesses, and user strings cover only the selected declaring types; coverage describes that selection. Edge targets outside it keep their names but are not described.",
+        "Member decoding exceeded capacity after the type inventory was admitted; fields, methods, member references, call edges, field accesses, exported types and user strings are not examined to completion. Empty member collections do not establish absence.",
+        "Use the returned TypeDef full_name values with type_names (CLI --type) to inspect a smaller selection; a single selected type can still exceed capacity.",
+        "Metadata tokens are build-local coordinates and require the reported artifact SHA-256 and MVID. Type names and list ranges retain their original metadata and nesting uncertainty."
+      ],
+      "reported_counts": {
+        "types": 1,
+        "exported_types": null,
+        "fields": 0,
+        "methods": 0,
+        "member_refs": 0,
+        "call_edges": 0,
+        "field_accesses": 0,
+        "user_strings": null
+      }
+    }
+  },
+  "confidence": "derived",
+  "authority": "shipped-artifact",
+  "environment": null,
+  "limitations": [
+    "Member decoding exceeded capacity after the type inventory was admitted; fields, methods, member references, call edges, field accesses, exported types and user strings are not examined to completion. Empty member collections do not establish absence.",
+    "Metadata tokens are build-local coordinates and require the reported artifact SHA-256 and MVID. Type names and list ranges retain their original metadata and nesting uncertainty.",
+    "Types, fields, methods, call edges, field accesses, and user strings cover only the selected declaring types; coverage describes that selection. Edge targets outside it keep their names but are not described.",
+    "Use the returned TypeDef full_name values with type_names (CLI --type) to inspect a smaller selection; a single selected type can still exceed capacity."
+  ],
+  "relationship_coverage": null,
+  "locations": [
+    {
+      "kind": "artifact-path",
+      "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll"
+    }
+  ],
+  "evidence_links": [
+    "ev_159d01eac8f1689158c837a5b0bc2adc2ec29cb408c0f94f9b0239392a7e4629"
+  ]
+}

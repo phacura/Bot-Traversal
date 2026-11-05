@@ -1,0 +1,46 @@
+
+ queuehead
+206.247 followerSnapshot {'botPosition': {'x': 476.195068, 'y': 4.21953, 'z': -143.542709}, 'playerState': 'Idle'}
+206.899 capabilityPortalQueueApproachReleased {}
+206.899 v2rc52WorldLockedIngressInput {'direction': {'x': -0.985526145, 'y': 0.0, 'z': 0.169523686}}
+206.899 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 9, 'state': 'Idle', 'direction': {'x': -0.985526145, 'y': 0.0, 'z': 0.169523686}, 'input': {'x': 0.255371839, 'y': 0.9668429}, 'sprint': False, 'targetMoveSpeed': 0.85}
+206.899 movementWriterGenerationAdvanced {'owner': 'Follow', 'generation': 10, 'reason': 'portalApproachOwnerHandoff'}
+
+ climb
+681.006 learningV409NativeLocomotionIntentPublished {'owner': 'Follow', 'generation': 70, 'state': 'Run', 'direction': {'x': -0.8156572, 'y': 0.0, 'z': -0.578535557}, 'input': {'x': 0.00377296982, 'y': 0.9999929}, 'sprint': False, 'targetMoveSpeed': 0.340653151}
+681.096 v2rc52WorldLockedIngressInput {'direction': {'x': -0.8172135, 'y': 0.0, 'z': -0.5763351}}
+681.184 movementWriterGenerationAdvanced {'owner': 'Traversal', 'generation': 71, 'reason': 'learningV376Start:probeStart:edge=116:chain=57:kind=Climb'}
+681.214 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 71, 'state': 'Run', 'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}, 'input': {'x': 0.0, 'y': 0.0}, 'sprint': False, 'targetMoveSpeed': 0.0}
+681.258 v2rc52WorldLockedIngressInput {'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}}
+681.421 v2rc52WorldLockedIngressInput {'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}}
+681.421 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 71, 'state': 'Run', 'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}, 'input': {'x': 5.051818e-08, 'y': 1.0}, 'sprint': True, 'targetMoveSpeed': 1.0}
+681.584 v2rc52WorldLockedIngressInput {'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}}
+681.629 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 71, 'state': 'Sprint', 'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}, 'input': {'x': 5.051818e-08, 'y': 1.0}, 'sprint': False, 'targetMoveSpeed': 0.35}
+681.748 v2rc52WorldLockedIngressInput {'direction': {'x': -0.5307085, 'y': 0.0, 'z': -0.847554445}}
+681.984 followerSnapshot {'botPosition': {'x': -276.307617, 'y': -0.5604595, 'z': -50.5822258}, 'playerState': 'Transition'}
+682.988 followerSnapshot {'botPosition': {'x': -276.796753, 'y': -0.231897235, 'z': -50.84746}, 'playerState': 'Run'}
+683.991 followerSnapshot {'botPosition': {'x': -276.599182, 'y': -0.884198666, 'z': -48.18111}, 'playerState': 'Sprint'}
+684.924 movementWriterGenerationAdvanced {'owner': 'Teleport', 'generation': 72, 'reason': 'teleportReset:capabilityFailureSequenceExhausted'}
+684.997 followerSnapshot {'botPosition': {'x': -288.237366, 'y': -0.860331535, 'z': -63.90098}, 'playerState': 'Transition'}
+
+ slope
+232.075 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Run', 'direction': {'x': -0.576470554, 'y': 0.0, 'z': 0.8171179}, 'input': {'x': 0.0373672061, 'y': 0.9993016}, 'sprint': False, 'targetMoveSpeed': 0.7}
+232.091 v2rc52WorldLockedIngressInput {'direction': {'x': -0.5431135, 'y': 0.0, 'z': 0.8396593}}
+232.448 followerSnapshot {'botPosition': {'x': 471.4062, 'y': 4.219528, 'z': -142.5446}, 'playerState': 'Run'}
+232.555 v2rc52WorldLockedIngressInput {'direction': {'x': -0.126208186, 'y': 0.0, 'z': -0.9920038}}
+232.555 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Run', 'direction': {'x': -0.126208186, 'y': 0.0, 'z': -0.9920038}, 'input': {'x': -0.99999994, 'y': -0.000316778169}, 'sprint': True, 'targetMoveSpeed': 1.0}
+232.71 v2rc52WorldLockedIngressInput {'direction': {'x': -0.128750533, 'y': 0.0, 'z': -0.991677046}}
+232.756 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Sprint', 'direction': {'x': -0.524727, 'y': 0.0, 'z': -0.851270556}, 'input': {'x': -0.194017366, 'y': 0.9809981}, 'sprint': True, 'targetMoveSpeed': 1.0}
+232.905 v2rc52WorldLockedIngressInput {'direction': {'x': -0.381576866, 'y': 0.0, 'z': 0.9243371}}
+232.92 walkThroughProgress {'position': {'x': 469.940735, 'y': 4.52610254, 'z': -142.838989}, 'target': {'x': 467.023621, 'y': 5.46919, 'z': -142.207214}}
+232.966 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Sprint', 'direction': {'x': 0.126213327, 'y': 0.0, 'z': 0.992003143}, 'input': {'x': 0.969112039, 'y': -0.246620938}, 'sprint': True, 'targetMoveSpeed': 1.0}
+233.057 v2rc52WorldLockedIngressInput {'direction': {'x': 0.126225322, 'y': 0.0, 'z': 0.9920016}}
+233.179 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Sprint', 'direction': {'x': 0.126207411, 'y': 0.0, 'z': 0.992003858}, 'input': {'x': 0.729725063, 'y': 0.6837407}, 'sprint': True, 'targetMoveSpeed': 1.0}
+233.222 v2rc52WorldLockedIngressInput {'direction': {'x': 0.126218677, 'y': 0.0, 'z': 0.9920025}}
+233.28 walkThroughProgress {'position': {'x': 468.2815, 'y': 5.05296659, 'z': -142.765549}, 'target': {'x': 467.023621, 'y': 5.46919, 'z': -142.207214}}
+233.385 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Sprint', 'direction': {'x': -0.996348739, 'y': 0.0, 'z': 0.085377}, 'input': {'x': -0.9320782, 'y': 0.362257272}, 'sprint': True, 'targetMoveSpeed': 1.0}
+233.415 v2rc52WorldLockedIngressInput {'direction': {'x': -0.9975354, 'y': 0.0, 'z': -0.07016456}}
+233.459 followerSnapshot {'botPosition': {'x': 467.8537, 'y': 5.2227807, 'z': -141.935974}, 'playerState': 'Sprint'}
+233.578 v2rc52WorldLockedIngressInput {'direction': {'x': -0.126233459, 'y': 0.0, 'z': -0.9920006}}
+233.593 learningV409NativeLocomotionIntentPublished {'owner': 'Traversal', 'generation': 15, 'state': 'Sprint', 'direction': {'x': -0.1262312, 'y': 0.0, 'z': -0.9920009}, 'input': {'x': -0.983949661, 'y': -0.178446487}, 'sprint': True, 'targetMoveSpeed': 1.0}
+234.143 movementWriterGenerationAdvanced {'owner': 'Follow', 'generation': 16, 'reason': 'fullRouteRetryReturn'}

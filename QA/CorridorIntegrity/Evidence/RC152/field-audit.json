@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "addedTelemetryFields": [
+    "<bodyRelocated>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<bodyRelocated>i__Field",
+    "<completedPrefixRetained>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<completedPrefixRetained>i__Field",
+    "<EdgeId>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<EdgeId>i__Field",
+    "<entry>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<entry>i__Field",
+    "<missionId>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<missionId>i__Field",
+    "<nativeSuccessRecorded>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<nativeSuccessRecorded>i__Field",
+    "<stepIndex>j__TPar anon[missionId,stepIndex,EdgeId,entry,completedPrefixRetained,nativeSuccessRecorded,bodyRelocated]`7::<stepIndex>i__Field"
+  ],
+  "changedExistingFields": [],
+  "newBotStateFields": 0,
+  "catalogSame": true
+}

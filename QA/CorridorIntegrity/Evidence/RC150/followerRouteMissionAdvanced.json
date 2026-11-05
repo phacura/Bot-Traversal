@@ -1,0 +1,77 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-145751-577-bigmap-g2",
+    "sequence": 10448,
+    "utc": "2026-11-04T07:00:21.4938436Z",
+    "raidTime": 291.853119,
+    "frame": 15408,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerRouteMissionAdvanced",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 190,
+      "completedEpisodeId": 18,
+      "completedEdgeId": 229,
+      "previousStepIndex": 0,
+      "currentStepIndex": 1,
+      "remainingSteps": 1,
+      "consumedBreadcrumbSequence": 612
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-145751-577-bigmap-g2",
+    "sequence": 10711,
+    "utc": "2026-11-04T07:00:24.9895637Z",
+    "raidTime": 295.348083,
+    "frame": 15627,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerRouteMissionAdvanced",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 191,
+      "completedEpisodeId": 18,
+      "completedEdgeId": 229,
+      "previousStepIndex": 0,
+      "currentStepIndex": 1,
+      "remainingSteps": 1,
+      "consumedBreadcrumbSequence": 612
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-145751-577-bigmap-g2",
+    "sequence": 10982,
+    "utc": "2026-11-04T07:00:28.7548758Z",
+    "raidTime": 299.114319,
+    "frame": 15859,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerRouteMissionAdvanced",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 188,
+      "completedEpisodeId": 18,
+      "completedEdgeId": 229,
+      "previousStepIndex": 0,
+      "currentStepIndex": 1,
+      "remainingSteps": 1,
+      "consumedBreadcrumbSequence": 612
+    }
+  }
+]

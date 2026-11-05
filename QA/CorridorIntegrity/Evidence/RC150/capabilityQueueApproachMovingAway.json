@@ -1,0 +1,116 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-145751-577-bigmap-g2",
+    "sequence": 10500,
+    "utc": "2026-11-04T07:00:21.7978239Z",
+    "raidTime": 292.1572,
+    "frame": 15427,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityQueueApproachMovingAway",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 190,
+      "stepIndex": 1,
+      "body": {
+        "x": 354.654541,
+        "y": 3.05445838,
+        "z": -133.3367
+      },
+      "entry": {
+        "x": 354.563934,
+        "y": 3.52970219,
+        "z": -132.551926
+      },
+      "best": 0.0284333322,
+      "progressDistance": 0.789988,
+      "velocity": {
+        "x": 0.257492065,
+        "y": 0.0,
+        "z": -1.79195392
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-145751-577-bigmap-g2",
+    "sequence": 10760,
+    "utc": "2026-11-04T07:00:25.2934061Z",
+    "raidTime": 295.653229,
+    "frame": 15646,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityQueueApproachMovingAway",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 191,
+      "stepIndex": 1,
+      "body": {
+        "x": 354.657166,
+        "y": 3.04851961,
+        "z": -133.378036
+      },
+      "entry": {
+        "x": 354.563934,
+        "y": 3.52970219,
+        "z": -132.551926
+      },
+      "best": 0.05210491,
+      "progressDistance": 0.831355035,
+      "velocity": {
+        "x": 0.2593994,
+        "y": 0.0,
+        "z": -1.83391559
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-145751-577-bigmap-g2",
+    "sequence": 11031,
+    "utc": "2026-11-04T07:00:29.0612397Z",
+    "raidTime": 299.420044,
+    "frame": 15878,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityQueueApproachMovingAway",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 188,
+      "stepIndex": 1,
+      "body": {
+        "x": 354.6662,
+        "y": 3.08473277,
+        "z": -133.33905
+      },
+      "entry": {
+        "x": 354.563934,
+        "y": 3.52970219,
+        "z": -132.551926
+      },
+      "best": 0.039688874,
+      "progressDistance": 0.793740034,
+      "velocity": {
+        "x": 0.291824341,
+        "y": 0.0,
+        "z": -1.76048267
+      },
+      "nativeSuccessRecorded": false
+    }
+  }
+]

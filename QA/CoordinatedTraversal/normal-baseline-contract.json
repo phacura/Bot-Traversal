@@ -1,0 +1,48 @@
+{
+  "baselineRelease": "RC111-R4C",
+  "baselineDllSha256": "46A33C4141A6F873E4122F5F1EF2DBE31CE4C3B4744952A583BE59CE935E30A4",
+  "methods": {
+    "System.Boolean BotTraversal.Core.FollowerTraversalTestRuntime::TryGetLearningV425OrientationOnlyActuatorAdmission(EFT.BotOwner,BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,UnityEngine.Vector3&,System.String&)": {
+      "hash": "CBF84BD429C123378E1B584AF53F637B09B9DCC9B6BF86239CEA045F71C3ABBE",
+      "calls": null,
+      "strings": [
+        "R1-662BF30376B6"
+      ],
+      "il": null
+    },
+    "System.Boolean BotTraversal.Core.FollowerTraversalTestRuntime/CapabilityFrontierPort::TryObserve(BotTraversal.Core.CapabilityFrontierSnapshot&)": {
+      "hash": "F0D42800B843616E3C977CBDC8868C7C20B127FFF82E9B30D48A4E86D6DC8F6C",
+      "calls": null,
+      "strings": [],
+      "il": null
+    },
+    "System.Void BotTraversal.Core.FollowerTraversalTestRuntime::ForceReleaseTraversalProbe(BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime,System.String)": {
+      "hash": "5FB01A8A3C64ACF54A33AEB365BE28570946F6BD950099BA03F96012FD97DCC0",
+      "calls": null,
+      "strings": [
+        "R1-E972CAEAE3E7",
+        "R1-05D09D446276",
+        "R1-51296BD5A233",
+        "R1-8E2495493003",
+        "R1-351FCB34934F",
+        "R1-C74B63C959BF",
+        "R1-32F9E2A56B0A",
+        "R1-E82DB3C66217",
+        "R1-6B5BF1F20151"
+      ],
+      "il": null
+    },
+    "System.Void BotTraversal.Core.FollowerTraversalTestRuntime/CapabilityFrontierPort::RestrictForward(System.Single)": {
+      "hash": "C798832BFC4497E3DDCE1AB7819B63529B98BD1172DE0763F765BD2E7FB1E6B9",
+      "calls": null,
+      "strings": [],
+      "il": null
+    },
+    "UnityEngine.Vector3 BotTraversal.Core.FollowerTraversalTestRuntime::ConstrainCapabilityMotionFrontier(EFT.MovementContext,EFT.Player,UnityEngine.Vector3)": {
+      "hash": "C9123FCC0288FBF82E5F00D145BDC22DFADCFB1F2BFDEA71D92CB0302E36DC17",
+      "calls": null,
+      "strings": [],
+      "il": null
+    }
+  }
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-104436-833-bigmap-g2",
+    "sequence": 35828,
+    "utc": "2026-11-04T02:54:04.3330321Z",
+    "raidTime": 701.7629,
+    "frame": 40556,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV382DownstreamActionDebtPhysicallySubsumed",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 240,
+      "stepIndex": 1,
+      "predecessorEpisodeId": 71,
+      "predecessorEdgeId": 117,
+      "successorEpisodeId": 72,
+      "successorEdgeId": 36,
+      "successorKind": "DropDown",
+      "chainId": 65,
+      "body": {
+        "x": -279.270142,
+        "y": 0.420559525,
+        "z": -51.8763542
+      },
+      "rawEntry": {
+        "x": -278.249481,
+        "y": 1.04777884,
+        "z": -51.19902
+      },
+      "rawExit": {
+        "x": -279.404633,
+        "y": 0.49170658,
+        "z": -52.12243
+      },
+      "projection": 1.22016978,
+      "requiredProjection": 1.22887051,
+      "localCorridorDistance": 0.108223788,
+      "predecessorCompletionAge": 0.5415039,
+      "routeDebtConsumed": true,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "physicalPredecessorAlreadyCarriedBodyAcrossImmediateSuccessorRetireExecutionDebtWithoutSuccessCredit"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-104436-833-bigmap-g2",
+    "sequence": 35831,
+    "utc": "2026-11-04T02:54:04.3330321Z",
+    "raidTime": 701.7629,
+    "frame": 40556,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV424ActuatorSuccessorPhysicallySubsumed",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 240,
+      "previousStepIndex": 1,
+      "currentStepIndex": 2,
+      "episodeId": 72,
+      "edgeId": 36,
+      "kind": "DropDown",
+      "projection": 1.22016978,
+      "requiredProjection": 1.22887051,
+      "source": "persistentRoutePreActuatorAdmission",
+      "traversalSuccessRecorded": false,
+      "nativeSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "bodyRelocated": false,
+      "action": "bodyChronologyBeyondActuatorRetiresExecutionDebtBeforeAnyEntryProducerCanRewindOrHold"
+    }
+  }
+]

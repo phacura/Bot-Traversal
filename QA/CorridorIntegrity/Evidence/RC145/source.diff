@@ -1,0 +1,293 @@
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.7+RC144")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.8+RC145")]
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 7 loaded: V2-RC144-Beta7");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 8 loaded: V2-RC145-Beta8");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityActuationPolicy.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityActuationPolicy.cs
+@@ -20,6 +20,10 @@
+         internal static bool CanDispatchNativeJump(bool physicalWindow,bool locomotion,bool grounded,
+             bool canJump,bool centered,bool facing,bool heading,bool measuredMomentum) =>
+             physicalWindow&&locomotion&&grounded&&canJump&&centered&&facing&&heading&&measuredMomentum;
++        internal static bool AtomicJumpReceipt(bool supplied,bool current,bool consumed,bool lead,bool reserved,bool writer)
++            => supplied&&current&&consumed&&lead&&reserved&&writer;
++        internal static bool JumpTriggerWindow(bool physical,bool successor,bool atomic,bool forecast)
++            => physical||successor||(atomic&&forecast);
+         internal static bool LiveJumpAttempt(bool window,bool entry,bool captured,bool grounded,bool canJump,bool locomotion,
+             bool input,bool position,bool facing,bool heading,bool momentum)
+             => entry&&captured&&input&&CanDispatchNativeJump(window,locomotion,grounded,canJump,position,facing,heading,momentum);
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityApproachPolicy.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityApproachPolicy.cs
+@@ -52,6 +52,9 @@
+             Finite(entryAlong)&&entryAlong>=.20f&&Finite(span)&&span>=.20f&&entryAlong<=span+.16f&&
+             Finite(endpointOverlap)&&endpointOverlap>=-.16f&&endpointOverlap<=1.50f&&Finite(bodyAlong)&&bodyAlong>=Math.Max(.20f,entryAlong-.95f)&&bodyAlong<=entryAlong+.16f&&
+             Finite(bodySide)&&bodySide>=0f&&bodySide<=.65f&&Finite(jumpSide)&&jumpSide>=0f&&jumpSide<=.36f&&Finite(height)&&height>=0f&&height<=.65f;
++        internal static bool MissedJumpWindow(bool current,float forward,float side,float duration)=>current&&
++            Finite(forward)&&forward>.16f&&forward<=.75f&&Finite(side)&&side>=0f&&side<=.72f&&
++            Finite(duration)&&duration>=.04f&&duration<=.12f;
+         internal static bool CrossedJumpWindow(bool current,float before,float after,float duration,float side)=>current&&
+             Finite(before)&&before<=.16f&&before>=-.95f&&Finite(after)&&after>.16f&&after<=.75f&&after-before>=.04f&&
+             Finite(duration)&&duration>=.04f&&duration<=.12f&&Finite(side)&&side>=0f&&side<=.36f;
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPreparationHost.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPreparationHost.cs
+@@ -214,7 +214,9 @@
+             var sample=cursor.CapabilityBodyVelocity;var entry=GetLearningV442JumpAdmissionEntry(step);var axis=GetFlatDirection(step.RawExit-step.RawEntry);
+             var before=GetFlatDelta(entry,sample.PreviousPosition);var now=GetFlatDelta(entry,bot.Position);
+             return FollowerCapabilityApproachPolicy.CrossedJumpWindow(step.CurrentRaidRouteAuthority,Vector3.Dot(before,axis),forward,
+-                Time.time-sample.PreviousAt,(now-axis*forward).magnitude);
++                Time.time-sample.PreviousAt,(now-axis*forward).magnitude)||
++                FollowerCapabilityApproachPolicy.MissedJumpWindow(step.CurrentRaidRouteAuthority,forward,
++                    (now-axis*forward).magnitude,Time.time-sample.PreviousAt);
+         }
+         private static bool IsCapabilityColdRunJumpTrialReady(BotOwner bot,FollowerRouteMissionStep jump)
+         {
+@@ -318,6 +320,8 @@
+         private static bool TryRecoverCapabilityStalledJumpPreparation(BotOwner bot,FollowerRouteMission mission,FollowerRouteMissionStep step)
+         {
+             if(!TryCaptureCapabilityJumpPreparation(bot,mission,step,out var axis,out float forward,out float speed))return false;
++            if(HasCapabilityMeasuredMissedJumpWindow(bot,mission,step,forward))
++                return TryRequestCapabilityFullRouteRetry(bot,mission,"jumpPreparationMeasuredMissedWindow");
+             var player=bot.GetPlayer;var delta=GetFlatDelta(GetLearningV442JumpAdmissionEntry(step),player.Position);
+             var measured=GetFlatDelta(mission.LastProgressPosition,player.Position);
+             if(FollowerCapabilityApproachPolicy.HorizontalProgress(measured.magnitude,Vector3.Dot(measured,axis),.05f,.04f))
+@@ -331,12 +335,13 @@
+             return TryRequestCapabilityFullRouteRetry(bot,mission,"jumpPreparationMeasuredStall");
+         }
+         private static Vector3 GetFlatDelta(Vector3 from,Vector3 to){var delta=to-from;delta.y=0f;return delta;}
+-        private static bool IsCapabilityJumpTriggerReady(ProbeRuntime probe,out string reason)
++        private static bool IsCapabilityJumpTriggerReady(ProbeRuntime probe,out string reason,bool atomicAdmission=false)
+         {
+             reason="nativeJumpOriginUnavailable";
+             if(probe?.LifecycleMission==null||!string.Equals(probe.RequestedTraversalKind,"Jump",StringComparison.OrdinalIgnoreCase))return true;
+             var player=probe.Player;var context=player?.MovementContext;
+-            if(context==null||!IsProbeLifecycleCurrent(probe)||!TryGetLearnedCommitmentForProbe(probe,out var commitment)||commitment==null)return false;
++            bool current=IsProbeLifecycleCurrent(probe);
++            if(context==null||!current||!TryGetLearnedCommitmentForProbe(probe,out var commitment)||commitment==null)return false;
+             float speed=GetLearningV329PlanarSpeed(player);
+             int template=commitment.SkillTransferTransient?commitment.SkillTemplateEdgeId:commitment.EdgeId;
+             var edge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==template);
+@@ -349,12 +354,21 @@
+             float side=(offset-axis*forward).magnitude;
+             var velocity=GetCapabilityJumpPlanarVelocity(player);var facing=GetFlatDirection(context.PlayerRealForward);
+             bool reserved=TryGetLearningV459ReservedJumpExactSuccessorContinuity(probe,forward,out _,out float reservedMaximum);
+-            bool window=IsLearningV449JumpInsidePhysicalTriggerHorizon(forward,speed,probe.Bot)||reserved;
++            // A stack-only V429 call may consume its already validated one-frame forecast.
++            // Ordinary trigger callers cannot obtain forecast permission from a reservation alone.
++            long generation=FollowerMovementWriterAuthority.PeekExactGeneration(probe.Bot,out var owner);
++            bool atomic=FollowerCapabilityActuationPolicy.AtomicJumpReceipt(atomicAdmission,current,
++                probe.NativeExecutorConsumed,probe.LearningV354JumpActuatorLeadTriggered,
++                probe.LifecycleStep?.LearningV429JumpAdmissionReserved==true,
++                generation>0&&generation==probe.MovementWriterGeneration&&owner==FollowerMovementWriterAuthority.WriterDomain.Traversal);
++            bool forecast=atomic&&IsCf60LegalOneFrameJumpTriggerForecast(probe.Bot,forward,speed,out _,out _);
++            bool window=FollowerCapabilityActuationPolicy.JumpTriggerWindow(
++                IsLearningV449JumpInsidePhysicalTriggerHorizon(forward,speed,probe.Bot),reserved,atomic,forecast);
+             bool ready=axis.sqrMagnitude>.5f&&IsLearningV450LiveEftJumpAttemptLegal(window,probe.LearningV32NativeEntryAcquired,
+                 probe.JumpEntryCaptured,context.IsGrounded,context.CanJump,player.CurrentStateName,player.InputDirection,context.MovementDirection,
+                 forward,side,Vector3.Dot(facing,axis),Vector3.Dot(GetFlatDirection(velocity),axis),speed,
+                 reserved?reservedMaximum:LearningV352JumpTakeoffCorridorMaxForwardOvershoot);
+-            if(!ready)WriteEvent("capabilityJumpFinalLiveEvidence",probe.Bot,new{window,reserved,forward,side,speed,
++            if(!ready)WriteEvent("capabilityJumpFinalLiveEvidence",probe.Bot,new{window,reserved,atomic,forecast,forward,side,speed,
+                 entryAcquired=probe.LearningV32NativeEntryAcquired,captured=probe.JumpEntryCaptured,grounded=context.IsGrounded,
+                 canJump=context.CanJump,state=player.CurrentStateName.ToString(),nativeJumpTriggered=false});
+             reason=ready?string.Empty:"nativeLiveWindowOrGeometry";
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteAdmissionHost.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteAdmissionHost.cs
+@@ -2451,6 +2451,11 @@
+                 step.LearningV429JumpAdmissionLeadSeconds;
+             probe.LearningV354JumpActuatorLeadDistanceAtTrigger =
+                 step.LearningV429JumpAdmissionLeadDistance;
++            // The exact reservation has passed current geometry, state and writer checks.
++            // Publish the same entry witness as the shared acquisition path BEFORE the epoch.
++            MarkLearningV32NativeEntryAcquired(probe, rawEntry, rawExit,
++                Vector3.Distance(probe.Player.Position, rawEntry), learningV429AlignmentAngle,
++                lateralEntryOffset, forwardEntryProjection, "atomicRollingAdmission", directHandoff: true);
+             BeginLearningV32NativeExecutionEpoch(
+                 probe, "Jump", "learningV429AtomicRollingAdmission");
+             WriteEvent("learningV429AtomicJumpAdmissionConsumed", bot, new
+@@ -2487,7 +2492,7 @@
+                 persistentLearningChanged = false,
+                 action = "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+             });
+-            TriggerNativeJump(probe);
++            TriggerNativeJump(probe, atomicAdmission: true);
+             // Reservation is a one-shot execution proof. Once consumed by the exact native
+             // consumer, never let a later retry inherit stale admission from this body epoch.
+             step.LearningV429JumpAdmissionReserved = false;
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteRetryHost.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteRetryHost.cs
+@@ -286,6 +286,15 @@
+                     }
+                     if(TryDriveCapabilityReturnCorridor(bot,mission))return true;
+                     float remaining;bool currentPath=TryObserveCapabilityReturnRemaining(bot,plan,out remaining);
++                    if(Retry.ReturnDiverging(currentPath,mission.ApproachDeferredLastEntryDistance,remaining,
++                        GetPlanarDistance(player.Position,mission.LastProgressPosition)))
++                    {
++                        HoldCapabilityRouteRetry(bot);
++                        WriteEvent("capabilityReturnPathDiverged",bot,new{missionId=mission.MissionId,
++                            body=Vec(player.Position),target=Vec(plan.Stage),bestRemaining=mission.ApproachDeferredLastEntryDistance,
++                            remaining,noProgressAge=Time.time-mission.LastProgressAt,nativeSuccessRecorded=false});
++                        return true; // Rebuild under the existing retry cadence; allocation is not measured progress.
++                    }
+                     if(currentPath&&Retry.PathProgress(mission.ApproachDeferredLastEntryDistance,remaining,
+                         GetPlanarDistance(player.Position,mission.LastProgressPosition)))
+                     {mission.ApproachDeferredLastEntryDistance=remaining;mission.LastProgressAt=Time.time;mission.LastProgressPosition=player.Position;}
+@@ -321,7 +330,7 @@
+                             plan.ReturnPath=bot.Mover.ActualPathController?.CurPath;
+                             plan.ReturnGeneration=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out _);plan.HoldGeneration=0;
+                             if(TryObserveCapabilityReturnRemaining(bot,plan,out remaining))
+-                            {mission.ApproachDeferredLastEntryDistance=remaining;mission.LastProgressAt=Time.time;mission.LastProgressPosition=player.Position;}
++                            {mission.ApproachDeferredLastEntryDistance=remaining;mission.LastProgressPosition=player.Position;}
+                             else {epochReady=false;HoldCapabilityRouteRetry(bot);}
+                         }
+                         else HoldCapabilityRouteRetry(bot);
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteRetryPolicy.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteRetryPolicy.cs
+@@ -23,6 +23,8 @@
+         }
+         internal static bool PathWithinBudget(float pathLength,float frozenBudget)=>
+             Finite(pathLength)&&Finite(frozenBudget)&&pathLength>=0f&&frozenBudget>0f&&pathLength<=frozenBudget;
++        internal static bool ReturnDiverging(bool current,float best,float remaining,float displacement)=>current&&
++            Finite(best)&&best>=0f&&Finite(remaining)&&remaining>best+.35f&&Finite(displacement)&&displacement>=.10f;
+         internal static bool PathProgress(float previousRemaining,float remaining,float bodyDistance)=>
+             Finite(previousRemaining)&&Finite(remaining)&&Finite(bodyDistance)&&remaining>=0f&&remaining+.05f<previousRemaining&&bodyDistance>.02f;
+         internal static ReturnAction ReturnDecision(bool currentPath,float noProgressAge,bool attemptDue)=>
+--- RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -29556,6 +29556,9 @@
+             probe.LearningV354JumpActuatorLeadTriggered = true;
+             probe.LearningV354JumpActuatorLeadSecondsAtTrigger = leadSeconds;
+             probe.LearningV354JumpActuatorLeadDistanceAtTrigger = leadDistance;
++            MarkLearningV32NativeEntryAcquired(probe, rawEntry, rawExit,
++                Vector3.Distance(probe.Player.Position, rawEntry), alignmentAngle,
++                lateralEntryOffset, forwardEntryProjection, "rollingActuatorLead", directHandoff: true);
+             BeginLearningV32NativeExecutionEpoch(probe, "Jump", "learningV354RollingActuatorLead");
+             WriteEvent("learningV354JumpRollingActuatorLeadTriggered", probe.Bot, new
+             {
+@@ -45444,7 +45447,7 @@
+                    LearnedJumpTakeoffStableSeconds;
+         }
+ 
+-        private static void TriggerNativeJump(ProbeRuntime probe)
++        private static void TriggerNativeJump(ProbeRuntime probe, bool atomicAdmission = false)
+         {
+             if (probe == null || !IsActiveProbe(probe))
+             {
+@@ -45458,7 +45461,7 @@
+             }
+ 
+             // RC116: all consumers, including legacy rolling fallback, share the last live guard.
+-            if (!IsCapabilityJumpTriggerReady(probe,out string rc116Refusal))
++            if (!IsCapabilityJumpTriggerReady(probe,out string rc116Refusal,atomicAdmission))
+             {
+                 WriteEvent("capabilityJumpFinalConsumerRejected",probe.Bot,new{edgeId=probe.LearnedEdgeId,
+                     reason=rc116Refusal,state=probe.Player.CurrentStateName.ToString(),speed=GetLearningV329PlanarSpeed(probe.Player),nativeJumpTriggered=false});
+--- RC144/QA\CorridorIntegrity\Replay\Program.cs
++++ RC145/QA\CorridorIntegrity\Replay\Program.cs
+@@ -583,5 +583,27 @@
+ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.GroundAim(true,true,.451,true,false),"bounded local aim cannot authorize abrupt vertical step");
+ foreach(double v in new[]{double.NaN,double.PositiveInfinity,-1,0})Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.LocalAimFraction(v)==0,"invalid aim length cannot produce a move "+v);
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.LocalAimFraction(.30)==1,"near aim retains exact target");
++// RC145: all 17 refused attempts were accepted atomic admissions, not shared acquisition.
++for(int mask=0;mask<64;mask++)Check(BotTraversal.Core.FollowerCapabilityActuationPolicy.AtomicJumpReceipt(
++    (mask&1)!=0,(mask&2)!=0,(mask&4)!=0,(mask&8)!=0,(mask&16)!=0,(mask&32)!=0)==(mask==63),"atomic receipt identity "+mask);
++for(int mask=0;mask<16;mask++)Check(BotTraversal.Core.FollowerCapabilityActuationPolicy.JumpTriggerWindow(
++    (mask&1)!=0,(mask&2)!=0,(mask&4)!=0,(mask&8)!=0)==((mask&3)!=0||(mask&12)==12),"one-frame forecast restricted to atomic caller "+mask);
++foreach(bool forecast in new[]{false,true})foreach(string sample in new[]{"Ada238.879","Chris243.947","Knight687.533","Ghost704.696"}){
++ bool atomic=BotTraversal.Core.FollowerCapabilityActuationPolicy.AtomicJumpReceipt(true,true,true,true,true,true);
++ Check(BotTraversal.Core.FollowerCapabilityActuationPolicy.JumpTriggerWindow(!forecast,false,atomic,forecast),sample+" current admitted horizon survives final consumer");
++ Check(BotTraversal.Core.FollowerCapabilityActuationPolicy.LiveJumpAttempt(true,true,true,true,true,true,true,true,true,true,true),sample+" published shared entry witness enables live final gate");
++ Check(!BotTraversal.Core.FollowerCapabilityActuationPolicy.LiveJumpAttempt(true,false,false,true,true,true,true,true,true,true,true),sample+" cannot bypass missing entry acquisition");
++}
++foreach(float side in new[]{.13658f,.53781f,.30524f})Check(BotTraversal.Core.FollowerCapabilityApproachPolicy.MissedJumpWindow(true,.464f,side,.06f),"stationary beyond-plane queue head fails bounded current attempt "+side);
++foreach(float f in new[]{float.NaN,float.PositiveInfinity,-.5f,.16f,.751f})Check(!BotTraversal.Core.FollowerCapabilityApproachPolicy.MissedJumpWindow(true,f,.1f,.06f),"not a proven local missed plane "+f);
++Check(!BotTraversal.Core.FollowerCapabilityApproachPolicy.MissedJumpWindow(false,.464f,.1f,.06f),"foreign historical step cannot trigger missed-window failure");
++Check(!BotTraversal.Core.FollowerCapabilityApproachPolicy.MissedJumpWindow(true,.464f,.721f,.06f),"distant lateral observer does not fail local attempt");
++foreach(float duration in new[]{float.NaN,.039f,.121f})Check(!BotTraversal.Core.FollowerCapabilityApproachPolicy.MissedJumpWindow(true,.464f,.1f,duration),"stale or insufficient body observation "+duration);
++foreach(var fixture in new[]{new[]{.8f,1.832f,1.5f},new[]{.8f,3.354f,3f},new[]{.72f,1.2f,.6f}})Check(BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,fixture[0],fixture[1],fixture[2]),"observed return path moves away despite native resource "+fixture[1]);
++Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(false,.8f,2f,1f),"foreign replaced native path cannot produce divergence receipt");
++Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,.8f,1f,.2f),"small terrain/path distance jitter preserves native return");
++Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,.8f,2f,.09f),"path metadata change alone is not measured body divergence");
++Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,float.MaxValue,2f,1f),"initial native allocation cannot count as lost distance");
++Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,float.NaN,2f,1f),"invalid best distance cannot order path recovery");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta7 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta8 production decision and recorded-order replay checks");
+--- RC144/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC145/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,14 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('TickCapabilityFullRouteRetry','ReturnDiverging'),
++ @('TryConsumeLearningV429AtomicJumpAdmission','MarkLearningV32NativeEntryAcquired'),
++ @('TryTriggerLearningV354RollingJumpActuatorLead','MarkLearningV32NativeEntryAcquired'),
++ @('IsCapabilityJumpTriggerReady','AtomicJumpReceipt'),
++ @('IsCapabilityJumpTriggerReady','JumpTriggerWindow'),
++ @('IsCapabilityJumpTriggerReady','IsCf60LegalOneFrameJumpTriggerForecast'),
++ @('HasCapabilityMeasuredMissedJumpWindow','MissedJumpWindow'),
++ @('TryRecoverCapabilityStalledJumpPreparation','HasCapabilityMeasuredMissedJumpWindow'),
+  @('IsCapabilityJumpTriggerReady','TryGetLearningV459ReservedJumpExactSuccessorContinuity'),
+  @('IsCapabilityJumpTriggerReady','IsLearningV450LiveEftJumpAttemptLegal'),
+  @('IsLearningV450LiveEftJumpAttemptLegal','LiveJumpAttempt'),
+--- RC144/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC145/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.7+RC144') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.8+RC145') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -413,8 +413,34 @@
+ $f=M 'TickCapabilityPortalWait';Check ((C $f 'IsCapabilityCurrentPassageInFlight').Count -eq 1 -and (C $f 'IsCapabilityCurrentPassageInFlight')[0].Offset -lt (C $f 'LeftAdmittedIngress')[0].Offset) 'finite in-flight passage protects distance cancellation and false failure'
+ $live=@($m.GetTypes()|ForEach-Object {$_.Methods}|Where-Object {$_.Name -like '*TickCapabilityPortalWait*Live*'})
+ Check ($live.Count -eq 1 -and (C $live[0] 'IsCapabilityCurrentPassageInFlight').Count -eq 1) 'other bots cannot evict an in-flight ticket as a distant observer'
+-$f=M 'IsCapabilityJumpTriggerReady';Check ((C $f 'TryGetLearningV459ReservedJumpExactSuccessorContinuity').Count -eq 1 -and (C $f 'IsCf60LegalOneFrameJumpTriggerForecast').Count -eq 0) 'final consumer honours exact current successor reservation but cannot trigger from forecast alone'
++$f=M 'IsCapabilityJumpTriggerReady';Check ((C $f 'TryGetLearningV459ReservedJumpExactSuccessorContinuity').Count -eq 1 -and (C $f 'IsCf60LegalOneFrameJumpTriggerForecast').Count -eq 1 -and (C $f 'AtomicJumpReceipt').Count -eq 1) 'final consumer requires scoped atomic receipt for one-frame forecast; exact successor reservation retained'
++# RC145 integration: protect every real admission-to-trigger path, not just scalar policy.
++foreach($method in @('TryConsumeLearningV429AtomicJumpAdmission','TryTriggerLearningV354RollingJumpActuatorLead')){
++ $f=M $method;$mark=@(C $f 'MarkLearningV32NativeEntryAcquired');$epoch=@(C $f 'BeginLearningV32NativeExecutionEpoch');$trigger=@(C $f 'TriggerNativeJump')
++ Check ($mark.Count -eq 1 -and $epoch.Count -eq 1 -and $trigger.Count -eq 1) ($method+' publishes shared entry witness')
++ Check ($mark[0].Offset -lt $epoch[0].Offset -and $epoch[0].Offset -lt $trigger[0].Offset) ($method+' entry publication precedes epoch and actual trigger')
++}
++$f=M 'MarkLearningV32NativeEntryAcquired';Check ((C $f 'CaptureCapabilityNativeJumpEntry').Count -eq 1) 'atomic publication also captures same Jump entry witness'
++$f=M 'TriggerNativeJump';Check ((C $f 'IsCapabilityJumpTriggerReady').Count -eq 1) 'all real native dispatches still consume final gate'
++Check ($f.Parameters.Count -eq 2 -and $f.Parameters[1].ParamDef.HasConstant -and !$f.Parameters[1].ParamDef.Constant.Value) 'ordinary trigger callers default to no atomic receipt'
++$f=M 'IsCapabilityJumpTriggerReady';foreach($n in @('AtomicJumpReceipt','JumpTriggerWindow','PeekExactGeneration','IsCf60LegalOneFrameJumpTriggerForecast')){Check ((C $f $n).Count -eq 1) ('same-frame forecast revalidates '+$n)}
++$f=M 'HasCapabilityMeasuredMissedJumpWindow';Check ((C $f 'TryObserveCapabilityJumpBodyVelocity').Count -eq 1 -and (C $f 'MissedJumpWindow').Count -eq 1) 'missed queue window requires current measured body sample'
++$f=M 'TryRecoverCapabilityStalledJumpPreparation';Check ((C $f 'HasCapabilityMeasuredMissedJumpWindow')[0].Offset -lt (C $f 'HorizontalProgress')[0].Offset) 'missed frontier fails before further forward preparation or watchdog refresh'
++$f=M 'TryCaptureCapabilityJumpPreparation';Check ((C $f 'TryValidateV2CurrentTypedStep').Count -eq 1) 'queue waiter cannot consume pre-native preparation'
++$f=M 'TryValidateV2CurrentTypedStep';Check ((C $f 'IsCapabilityPortalWaiting').Count -eq 1) 'same typed-step guard retains queue exclusivity'
++$f=M 'TryConsumeLearningV429AtomicJumpAdmission';$call=@(C $f 'TriggerNativeJump')[0];$ix=$f.Body.Instructions.IndexOf($call)
++Check ($f.Body.Instructions[$ix-1].OpCode.Name -eq 'ldc.i4.1') 'only successful atomic reservation supplies stack receipt'
++$callers=@($r.Methods|Where-Object {(C $_ 'TriggerNativeJump').Count -gt 0});$trueCount=0;$falseCount=0
++foreach($caller in $callers){foreach($call in @(C $caller 'TriggerNativeJump')){$ix=$caller.Body.Instructions.IndexOf($call);$arg=$caller.Body.Instructions[$ix-1].OpCode.Name;if($arg -eq 'ldc.i4.1'){$trueCount++}elseif($arg -eq 'ldc.i4.0'){$falseCount++}else{throw 'unknown atomic receipt producer'}}}
++Check ($trueCount -eq 1 -and $falseCount -eq 6) 'all seven actual trigger call sites have explicit receipt provenance'
++$f=M 'TickCapabilityFullRouteRetry';Check ((C $f 'ReturnDiverging').Count -eq 1 -and (C $f 'ReturnDiverging')[0].Offset -lt (C $f 'ReturnDecision')[0].Offset) 'measured return divergence retires stale native motor before KeepPath'
++$observe=@(C $f 'TryObserveCapabilityReturnRemaining')[-1];$ix=$f.Body.Instructions.IndexOf($observe);$writes=@($f.Body.Instructions|Where-Object {$_.Offset -gt $observe.Offset -and $_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'LastProgressAt'})
++Check ($writes.Count -eq 0) 'native return allocation cannot renew measured progress deadline'
++$f=M 'TickCapabilityFullRouteRetry';$observe=@(C $f 'TryObserveCapabilityReturnRemaining')[-1]
++$baseline=@($f.Body.Instructions|Where-Object {$_.Offset -gt $observe.Offset -and $_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'LastProgressPosition'})
++Check ($baseline.Count -eq 1) 'replacement return path starts a fresh body-distance baseline without refreshing progress time'
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta7 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta8 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}
++

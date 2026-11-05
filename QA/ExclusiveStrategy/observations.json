@@ -1,0 +1,362 @@
+{
+  "events": 36569,
+  "truth": {
+    "NativePhysical": 70,
+    "Unproven": 41,
+    "NonNativeCompletion": 3
+  },
+  "selectedDispatches": [
+    {
+      "selectedSequence": 11616,
+      "time": 246.7365,
+      "bot": "Ada_Wong",
+      "mission": 269,
+      "selectedKind": "Climb",
+      "selectedTemplate": 11,
+      "dispatchSequence": 11642,
+      "dispatchKind": "Jump",
+      "dispatchTemplate": 111,
+      "matches": false
+    },
+    {
+      "selectedSequence": 11681,
+      "time": 246.824753,
+      "bot": "Ghost",
+      "mission": 268,
+      "selectedKind": "Climb",
+      "selectedTemplate": 11,
+      "dispatchSequence": 11706,
+      "dispatchKind": "Jump",
+      "dispatchTemplate": 111,
+      "matches": false
+    },
+    {
+      "selectedSequence": 11860,
+      "time": 247.5184,
+      "bot": "Chris_Redfield",
+      "mission": 267,
+      "selectedKind": "Climb",
+      "selectedTemplate": 11,
+      "dispatchSequence": 11880,
+      "dispatchKind": "Climb",
+      "dispatchTemplate": 11,
+      "matches": true
+    },
+    {
+      "selectedSequence": 17671,
+      "time": 304.051178,
+      "bot": "Ada_Wong",
+      "mission": 452,
+      "selectedKind": "Vault",
+      "selectedTemplate": 138,
+      "dispatchSequence": 17695,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 138,
+      "matches": true
+    },
+    {
+      "selectedSequence": 17718,
+      "time": 304.076782,
+      "bot": "Ghost",
+      "mission": 451,
+      "selectedKind": "Climb",
+      "selectedTemplate": 11,
+      "dispatchSequence": 17741,
+      "dispatchKind": "Climb",
+      "dispatchTemplate": 11,
+      "matches": true
+    },
+    {
+      "selectedSequence": 17775,
+      "time": 304.1299,
+      "bot": "Knight",
+      "mission": 453,
+      "selectedKind": "Vault",
+      "selectedTemplate": 138,
+      "dispatchSequence": 17798,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 138,
+      "matches": true
+    },
+    {
+      "selectedSequence": 17976,
+      "time": 305.161926,
+      "bot": "Ada_Wong",
+      "mission": 452,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 17996,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 18039,
+      "time": 305.232941,
+      "bot": "Knight",
+      "mission": 453,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 18058,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 20292,
+      "time": 322.962646,
+      "bot": "Ghost",
+      "mission": 477,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 20314,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 20373,
+      "time": 323.1073,
+      "bot": "Ada_Wong",
+      "mission": 478,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 20396,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 20441,
+      "time": 323.214752,
+      "bot": "Knight",
+      "mission": 479,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 20463,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 23043,
+      "time": 362.679138,
+      "bot": "Knight",
+      "mission": 609,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 23071,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 23616,
+      "time": 364.800934,
+      "bot": "Ada_Wong",
+      "mission": 608,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 23640,
+      "dispatchKind": "Jump",
+      "dispatchTemplate": 111,
+      "matches": false
+    },
+    {
+      "selectedSequence": 23663,
+      "time": 364.836945,
+      "bot": "Ghost",
+      "mission": 607,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 23688,
+      "dispatchKind": "Jump",
+      "dispatchTemplate": 111,
+      "matches": false
+    },
+    {
+      "selectedSequence": 26453,
+      "time": 382.364929,
+      "bot": "Knight",
+      "mission": 645,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 26474,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 26512,
+      "time": 382.508057,
+      "bot": "Ada_Wong",
+      "mission": 644,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 26536,
+      "dispatchKind": "Jump",
+      "dispatchTemplate": 111,
+      "matches": false
+    },
+    {
+      "selectedSequence": 26682,
+      "time": 383.246033,
+      "bot": "Ghost",
+      "mission": 643,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 26703,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 26843,
+      "time": 383.738739,
+      "bot": "Chris_Redfield",
+      "mission": 642,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 26863,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 30222,
+      "time": 404.285919,
+      "bot": "Ghost",
+      "mission": 690,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 30243,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 30277,
+      "time": 404.374542,
+      "bot": "Knight",
+      "mission": 692,
+      "selectedKind": "Vault",
+      "selectedTemplate": 138,
+      "dispatchSequence": 30300,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 138,
+      "matches": true
+    },
+    {
+      "selectedSequence": 30336,
+      "time": 404.409668,
+      "bot": "Ada_Wong",
+      "mission": 691,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 30358,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    },
+    {
+      "selectedSequence": 30516,
+      "time": 405.48703,
+      "bot": "Knight",
+      "mission": 692,
+      "selectedKind": "Vault",
+      "selectedTemplate": 146,
+      "dispatchSequence": 30537,
+      "dispatchKind": "Vault",
+      "dispatchTemplate": 146,
+      "matches": true
+    }
+  ],
+  "mismatches": 5,
+  "recovery": [
+    {
+      "returnSequence": 12216,
+      "completedSequence": 12224,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 12235,
+      "completedSequence": 12243,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 12247,
+      "completedSequence": 12255,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 18344,
+      "completedSequence": 18352,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 18369,
+      "completedSequence": 18377,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 18379,
+      "completedSequence": 18387,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 23948,
+      "completedSequence": 23956,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 23990,
+      "completedSequence": 23998,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 24008,
+      "completedSequence": 24016,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 27130,
+      "completedSequence": 27138,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 27146,
+      "completedSequence": 27154,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    },
+    {
+      "returnSequence": 30856,
+      "completedSequence": 30864,
+      "sameFrame": true,
+      "oldRouteRepublished": 0,
+      "locomotionRecovered": true
+    }
+  ],
+  "normalLandingFailureCount": 19
+}

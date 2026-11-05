@@ -1,0 +1,22 @@
+[
+  {
+    "bot": "Knight",
+    "time": 922.233765,
+    "dt": 0.01996499999995649,
+    "d": 0.47718432390275467,
+    "speed": 23.901043020475562,
+    "previousEvent": "learningV347TraversalOpportunityNoStart",
+    "event": "followerSnapshot",
+    "fromPosition": {
+      "x": -40.34857,
+      "y": -7.37033224,
+      "z": -16.242239
+    },
+    "to": {
+      "x": -40.3954468,
+      "y": -7.62202454,
+      "z": -16.644928
+    },
+    "sequence": 67787
+  }
+]

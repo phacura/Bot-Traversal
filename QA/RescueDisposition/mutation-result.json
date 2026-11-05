@@ -1,0 +1,41 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "terminal_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "strategy_cleanup_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "lifecycle_guard_bypassed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "verified_gate_bypassed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "retry_never_admitted",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

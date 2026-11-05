@@ -1,0 +1,31 @@
+SUM 242 Counter({'NativePhysical': 183, 'Unproven': 35, 'NonNativeCompletion': 24})
+FAILGROUPS
+7 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:Fence_concrete_01_BALLISTIC_concrete')
+4 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+3 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughEntryTooFar')
+3 (175, 'Jump', 'implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:learningV450JumpTakeoffFrontierMissedBeforeAttempt')
+2 (182, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+2 (181, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+1 (151, 'Vault', 'implicitUnregister:forceRelease:sequenceAttemptFailed:learningV32EntryAcquisitionFailed:kind=Vault:distance=0.38:angle=0.0:lateral=0.37:projection=0.04')
+1 (116, 'DropDown', 'implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:egressTimeout:routeNoDirectionalProgress:3.94s:speed=0.01')
+1 (116, 'Climb', 'implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeStateDidNotBegin')
+1 (116, 'Jump', 'implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:learnedJumpTakeoffReadyTimeout')
+1 (234, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughEntryTooFar')
+1 (234, 'Jump', 'implicitUnregister:forceRelease:sequenceAttemptFailed:learningV32EntryAcquisitionFailed:kind=Jump:distance=0.01:angle=0.0:lateral=0.01:projection=0.00')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:heap_junk_1_BALLISTIC_metal_thin')
+1 (175, 'Jump', 'implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:verifyTimeout')
+1 (175, 'Jump', 'implicitUnregister:forceRelease:sequenceAttemptFailed:learningV331NativeJumpForwardContinuationFailed')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughHardValidationFailed:polyline segment 1 failed: solid world geometry blocks both normal and step-assist WalkThrough corridors at 0.07m')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughHardValidationFailed:polyline segment 0 failed: solid world geometry blocks both normal and step-assist WalkThrough corridors at 0.00m')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughHardValidationFailed:polyline segment 0 failed: solid world geometry blocks both normal and step-assist WalkThrough corridors at 0.14m')
+1 (182, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughEntryTooFar')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:Fence_concrete_01_BALLISTIC_metalthin')
+automaticRecoveryTeleportCompleted 15
+[(2001.208, 'Chris_Redfield', 'capabilityFailureSequenceExhausted'), (2055.238, 'Chris_Redfield', 'capabilityFailureSequenceExhausted'), (2057.324, 'Ada_Wong', 'capabilityFailureSequenceExhausted'), (2063.789, 'Ghost', 'capabilityFailureSequenceExhausted'), (2106.349, 'Ghost', 'capabilityFailureSequenceExhausted'), (2107.728, 'Knight', 'capabilityFailureSequenceExhausted'), (2151.008, 'Knight', 'capabilityFailureSequenceExhausted'), (2190.606, 'Ada_Wong', 'capabilityFailureSequenceExhausted'), (2191.468, 'Chris_Redfield', 'capabilityFailureSequenceExhausted'), (2191.979, 'Knight', 'capabilityFailureSequenceExhausted'), (2222.26, 'Ghost', 'capabilityFailureSequenceExhausted'), (2246.554, 'Knight', 'capabilityFailureSequenceExhausted'), (2248.509, 'Ada_Wong', 'capabilityFailureSequenceExhausted'), (2475.975, 'Ada_Wong', 'capabilityFailureSequenceExhausted'), (2481.017, 'Chris_Redfield', 'capabilityFailureSequenceExhausted')]
+capabilityFailureSequenceAdvanced 42
+capabilitySequenceReturnFailed 11
+capabilityPortalQueueStaleGeometryReleased 1
+capabilityPortalQueueActiveConflict 0
+capabilityPortalQueueAdmitted 36
+capabilityPortalQueueWaiting 165
+capabilityDropDownEgressNativeLocomotionPublished 47

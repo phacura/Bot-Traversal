@@ -1,0 +1,318 @@
+--- Beta3/src/AssemblyVersion.cs
++++ Beta4/src/AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.3+RC140")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.4+RC141")]
+--- Beta3/src/BotTraversalPlugin.cs
++++ Beta4/src/BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 3 loaded: V2-RC140-Beta3");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 4 loaded: V2-RC141-Beta4");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- Beta3/src/Core/FollowerCapabilityCoordinationHost.cs
++++ Beta4/src/Core/FollowerCapabilityCoordinationHost.cs
+@@ -2,6 +2,7 @@
+ using System.Linq;
+ using EFT;
+ using UnityEngine;
++using UnityEngine.AI;
+ using S=BotTraversal.Core.FollowerCapabilityFailureSequence.Stage;
+ 
+ namespace BotTraversal.Core
+@@ -27,7 +28,9 @@
+         }
+         internal static bool OwnsCapabilityLocalMotion(BotOwner bot)
+         {
+-            if(!IsCapabilityPrioritySafe(bot)||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||m.Lifecycle.Retired||
++            if(!IsCapabilityPrioritySafe(bot))return false;
++            if(HasCapabilityLivePassageProducer(bot))return true;
++            if(!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||m.Lifecycle.Retired||
+                 m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count)return false;
+             var step=m.Steps[m.CurrentStepIndex];
+             if(step==null||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId))return false;
+@@ -151,11 +154,89 @@
+         {
+             watch=null;leader=FollowerEnvironment.LocalPlayer;
+             if(bot?.GetPlayer?.MovementContext==null||!IsLivePlayer(leader)||!IsCapabilityRouteRetrySafe(bot)||
+-                HasActiveTraversalProbe(bot)||HasCapabilityUnresolvedRouteWork(bot)||HasCapabilityNewRecordedWork(bot)||HasCurrentCapabilityNativeWay(bot,out _)||
++                HasActiveTraversalProbe(bot)||HasCapabilityUnresolvedRouteWork(bot)||HasCapabilityNewRecordedWork(bot)||HasCapabilityLivePassageProducer(bot)||HasCurrentCapabilityNativeWay(bot,out _)||
+                 !bot.GetPlayer.MovementContext.IsGrounded||!PostTraversalIntegrityWatches.TryGetValue(bot.ProfileId,out watch)||watch==null||
+                 watch.CompletionMode!=TraversalCompletionMode.Native||!watch.FreshConsumerPathProven||watch.ExpiresAt<Time.time||Time.time-watch.ArmedAt>6)return false;
+             long generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
+             return generation>0&&owner==FollowerMovementWriterAuthority.WriterDomain.Follow&&generation==watch.MovementGeneration;
++        }
++        private static bool RefreshCapabilityCurrentPhysicalCorridor(BotOwner bot,FollowerRouteMission mission,FollowerRouteMissionStep step)
++        {
++            if(bot==null||mission==null||step==null||mission.Lifecycle.Retired||mission.FailureSequence!=null||
++                IsCapabilityFullRouteReplay(mission)||HasActiveTraversalProbe(bot)||!IsLearningV369PhysicalCorridorStep(step)||
++                !step.Lifecycle.DebtOutstanding||step.EpisodeId<=0)return false;
++            var episode=TraversalEpisodeStream.LastOrDefault(e=>e!=null&&e.EpisodeId==step.EpisodeId&&e.EdgeId==step.EdgeId&&
++                e.ChainId==step.ChainId&&e.Kind=="PhysicalCorridor"&&e.StartBreadcrumbSequence==step.StartBreadcrumbSequence);
++            if(episode==null||!IsFinite(episode.RawStart)||!IsFinite(episode.RawEnd)||!IsFinite(step.RawEntry)||!IsFinite(step.RawExit))return false;
++            var axis=GetFlatDirection(step.RawExit-step.RawEntry);var delta=GetFlatDelta(step.RawEntry,episode.RawEnd);
++            float forward=Vector3.Dot(delta,axis);
++            if(!FollowerCapabilityPassagePolicy.CorridorExtension(step.EndBreadcrumbSequence,episode.EndBreadcrumbSequence,
++                Vector3.Distance(episode.RawStart,step.RawEntry),GetPlanarDistance(step.RawEntry,step.RawExit),forward,
++                (delta-axis*forward).magnitude,episode.RawEnd.y-step.RawExit.y))return false;
++            int previousEnd=step.EndBreadcrumbSequence;var previousExit=step.RawExit;
++            step.RawExit=episode.RawEnd;step.Exit=episode.RawEnd;step.EndBreadcrumbSequence=episode.EndBreadcrumbSequence;
++            mission.TargetBreadcrumbSequence=Math.Max(mission.TargetBreadcrumbSequence,step.EndBreadcrumbSequence);
++            if(LearnedTraversalCommitments.TryGetValue(bot.ProfileId,out var commitment)&&commitment!=null&&
++                commitment.RouteMissionId==mission.MissionId&&commitment.RouteMissionStepIndex==mission.CurrentStepIndex&&commitment.EpisodeId==step.EpisodeId)
++            {commitment.RawExit=step.RawExit;commitment.Exit=step.Exit;}
++            WriteEvent("capabilityRecordedCorridorExtended",bot,new{missionId=mission.MissionId,step.EpisodeId,step.EdgeId,
++                previousEnd,currentEnd=step.EndBreadcrumbSequence,previousExit=Vec(previousExit),currentExit=Vec(step.RawExit),
++                progressClockReset=false,completedPrefixChanged=false,nativeSuccessRecorded=false});
++            return true;
++        }
++        private static bool HasCapabilityLivePassageProducer(BotOwner bot)
++        {
++            if(bot==null||!LearningV365ContinuousRouteProducerStates.TryGetValue(bot.ProfileId,out var p)||p==null)return false;
++            bool recovery=FollowerMovementRecoveryStates.TryGetValue(bot.ProfileId,out var state)&&state!=null;
++            return FollowerCapabilityPassagePolicy.PassageLease(p.Generic,recovery,state?.LearningV350TerminalRecoveryEligible??false,
++                p.TargetSequence,CapabilityGenericResumeFloor(bot),state?.LearningV349GenericPassageLeaseUntil??-1,Time.time);
++        }
++        private static bool CanConsumeCapabilityCursorFloor(BotOwner bot,FollowerRouteMissionStep step)
++        {
++            bool movement=step!=null&&(step.Kind=="WalkThrough"||IsLearningV369PhysicalCorridorStep(step)||
++                GetLearningV354ActionProfile(step.Kind)?.RequiresActuator==true);
++            return FollowerCapabilityPassagePolicy.CursorFloor(true,movement,
++                movement&&IsFollowerRouteMissionStepPhysicallyPassed(bot,step,out _,out _));
++        }
++        internal static long PrepareCapabilityOriginalFollowPath(BotOwner bot,Vector3? target)
++        {
++            if(!target.HasValue||!IsFinite(target.Value)||
++                FollowerMovementWriterAuthority.CanCommitScopedPhysicalMotion(bot,out _)||
++                !global::BotTraversal.LegacyPITCompatibility.SupportsOriginalFollowBridge||
++                !global::BotTraversal.LegacyOriginalPITFollowBridge.IsOriginalPITFollowCall()||
++                !TryGetCapabilityLiveResolvedFollow(bot,out _,out var generation)||
++                !PhysicalNavigationEpochHandoffs.TryGetValue(bot.ProfileId,out var handoff)||handoff==null||
++                handoff.Generation!=raidGeneration||handoff.NativeBookkeepingSynchronized||handoff.SourceMovementGeneration>generation)return 0;
++            if(!TryRetireNativeMoverPathPreserveLocomotion(bot,"originalFollowPendingEpoch",out _)||
++                !TryScrubLearningV364NativeMoverEpochAnchor(bot,bot.GetPlayer.Position,"originalFollowPendingEpoch",out _))return 0;
++            return generation;
++        }
++        internal static void CompleteCapabilityOriginalFollowPath(BotOwner bot,Vector3? target,NavMeshPathStatus status,long issued)
++        {
++            if(issued<=0||!target.HasValue||bot?.Mover==null)return;
++            bool clean=TryGetCapabilityLiveResolvedFollow(bot,out _,out var live);
++            var endpoint=bot.Mover.ActualPathController?.CurPath?.TargetPoint?.Position;
++            if(!FollowerCapabilityPassagePolicy.NativeFollowReceipt(issued,live,clean,status==NavMeshPathStatus.PathComplete,
++                bot.Mover.ActualPathController?.HavePath==true,endpoint.HasValue?Vector3.Distance(endpoint.Value,target.Value):float.PositiveInfinity)||
++                !FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,FollowerMovementWriterAuthority.WriterDomain.Follow,issued,out var scope,out _))return;
++            using(scope)RecordFollowPathResult(bot,target.Value,"authority-reacquire",status);
++            WriteEvent("capabilityOriginalFollowEpochReceipt",bot,new{generation=issued,target=Vec(target.Value),
++                nativePathAccepted=true,bookkeepingSynchronized=PhysicalNavigationEpochHandoffs.TryGetValue(bot.ProfileId,out var h)&&h.NativeBookkeepingSynchronized,
++                nativeSuccessRecorded=false,bodyRelocated=false});
++        }
++        internal static void QuiesceCapabilityOriginalFollowIdle(BotOwner bot)
++        {
++            if(bot?.GetPlayer?.MovementContext==null||bot.Mover==null)return;
++            var player=bot.GetPlayer;var context=player.MovementContext;
++            bool clean=TryGetCapabilityLiveResolvedFollow(bot,out _,out var generation);
++            bool nativeActor=IsProbeTraversalState(player.CurrentStateName)||context.OverridenState!=null||context.OverridenControlsState!=null;
++            if(!FollowerCapabilityPassagePolicy.NativeFollowIdle(clean,context.IsGrounded,bot.Mover.HasPathAndNoComplete,
++                bot.Mover.IsMoving,nativeActor,player.InputDirection.sqrMagnitude>.001f)||
++                !FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,FollowerMovementWriterAuthority.WriterDomain.Follow,generation,out var scope,out _))return;
++            using(scope)CommitCapabilityRouteRetryZeroInput(bot,player);
++            if(ShouldEmitDiagnostic("capabilityOriginalFollowIdleInputClosed",bot,.5f))
++                WriteEvent("capabilityOriginalFollowIdleInputClosed",bot,new{generation,nativeFollowRequestedStop=true,
++                    nativeSuccessRecorded=false,bodyRelocated=false});
+         }
+         internal static bool TryYieldCapabilityCompletedFollow(BotOwner bot)
+         {
+@@ -1039,7 +1120,7 @@
+             if(bot?.GetPlayer?.MovementContext==null||!IsLivePlayer(leader))return false;
+             generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
+             return FollowerCapabilityPassagePolicy.LiveFollow(IsCapabilityRouteRetrySafe(bot),bot.GetPlayer.MovementContext.IsGrounded,
+-                HasActiveTraversalProbe(bot),HasCapabilityUnresolvedRouteWork(bot),HasCapabilityNewRecordedWork(bot),HasCurrentCapabilityNativeWay(bot,out _),
++                HasActiveTraversalProbe(bot),HasCapabilityUnresolvedRouteWork(bot),HasCapabilityNewRecordedWork(bot),HasCurrentCapabilityNativeWay(bot,out _)||HasCapabilityLivePassageProducer(bot),
+                 CapabilityGenericResumeFloor(bot),generation,owner==FollowerMovementWriterAuthority.WriterDomain.Follow);
+         }
+         private static bool TryDispatchCapabilityCurrentJump(BotOwner bot,FollowerRouteMission m)
+--- Beta3/src/Core/FollowerCapabilityFollowGaitHost.cs
++++ Beta4/src/Core/FollowerCapabilityFollowGaitHost.cs
+@@ -52,6 +52,13 @@
+             if(method==null||FollowDistance==null||FollowDistance.ReturnType!=typeof(float))
+                 throw new MissingMethodException("PIT FollowAction gait/config contract changed");
+             harmony.Patch(method,prefix:new HarmonyMethod(AccessTools.Method(typeof(FollowerCapabilityFollowGaitPatch),nameof(Prefix))){priority=Priority.Last});
++            var follow=AccessTools.DeclaredMethod(type,"Follow",new[]{typeof(bool),typeof(float)});
++            if(follow==null)throw new MissingMethodException("PIT ordinary Follow boundary changed");
++            harmony.Patch(follow,postfix:new HarmonyMethod(AccessTools.Method(typeof(FollowerCapabilityFollowGaitPatch),nameof(FollowPostfix))){priority=Priority.Last});
++        }
++        private static void FollowPostfix(CustomLogic __instance)
++        {
++            if(__instance!=null)FollowerTraversalTestRuntime.QuiesceCapabilityOriginalFollowIdle(__instance.BotOwner);
+         }
+         private static void Prefix(CustomLogic __instance,ref bool __0)
+         {
+--- Beta3/src/Core/FollowerCapabilityPassagePolicy.cs
++++ Beta4/src/Core/FollowerCapabilityPassagePolicy.cs
+@@ -80,6 +80,19 @@
+         internal static bool ObstacleNear(double distance)=>Finite(distance)&&distance>=0&&distance<.4;
+         internal static double ObstacleEntrySpeed(double distance,double desired)
+             => Finite(distance)&&distance>=0&&distance<.4?Math.Min(desired,.35):desired;
++        internal static bool PassageLease(bool generic,bool recovery,bool terminal,int target,int floor,double until,double now)
++            => generic&&recovery&&!terminal&&target>Math.Max(0,floor)&&Finite(until)&&Finite(now)&&now<=until;
++        internal static bool CorridorExtension(int oldEnd,int currentEnd,double entryGap,double previousSpan,double forward,double side,double height)
++            => currentEnd>oldEnd&&Finite(entryGap)&&entryGap>=0&&entryGap<=.02&&Finite(previousSpan)&&previousSpan>=.05&&
++                Finite(forward)&&forward>=previousSpan&&forward<=8&&Finite(side)&&side>=0&&side<=.35&&Finite(height)&&Math.Abs(height)<=.65;
++        internal static bool CursorFloor(bool chronological,bool movement,bool physical)=>!chronological||!movement||physical;
++        internal static bool CorridorExit(bool grounded,double length,double projection,double local,double lateralLimit,double height)
++            => grounded&&Finite(length)&&length>=.05&&Finite(projection)&&projection>=length&&Finite(local)&&local>=0&&
++                Finite(lateralLimit)&&lateralLimit>0&&local<=lateralLimit&&Finite(height)&&Math.Abs(height)<=.65;
++        internal static bool NativeFollowReceipt(long issued,long live,bool clean,bool complete,bool path,double gap)
++            => issued>0&&issued==live&&clean&&complete&&path&&Finite(gap)&&gap>=0&&gap<=.35;
++        internal static bool NativeFollowIdle(bool clean,bool grounded,bool path,bool moving,bool actor,bool input)
++            => clean&&grounded&&!path&&!moving&&!actor&&input;
+         internal static bool WalkSeam(bool current,bool safe,bool grounded,bool active,bool nativeActor,double stalled,double speed)
+             => current&&safe&&!nativeActor&&(active||grounded&&Finite(stalled)&&stalled>=.28&&Finite(speed)&&speed>=0&&speed<=.20);
+         internal static bool WalkSeamSupport(double height)=>Finite(height)&&height>=-.15&&height<=.20;
+--- Beta3/src/Core/FollowerCapabilityPreparationHost.cs
++++ Beta4/src/Core/FollowerCapabilityPreparationHost.cs
+@@ -423,12 +423,22 @@
+                 WalkThroughStepAssistForwardProbeDistance,LayerMaskClass.HighPolyWithTerrainMask,out raisedHit);
+             return true;
+         }
++        private static bool IsCapabilityLowStepProducerCurrent(BotOwner bot,LearningV365ContinuousRouteProducerState producer)
++        {
++            if(producer==null)return false;
++            if(producer.Generic)return true;
++            if(!TryGetActiveFollowerRouteMission(bot,out var m)||m.Lifecycle.Retired||m.MissionId!=producer.MissionId||
++                m.CurrentStepIndex!=producer.StepIndex||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||
++                HasCapabilityFailureStrategy(bot)||IsCapabilityReturnInProgress(bot))return false;
++            var step=m.Steps[m.CurrentStepIndex];
++            return step!=null&&step.EdgeId==producer.EdgeId&&IsLearningV369PhysicalCorridorStep(step)&&step.Lifecycle.DebtOutstanding;
++        }
+         private static bool TryDriveCapabilityGenericLowStep(BotOwner bot,Player player,FollowerMovementRecoveryState recovery,
+             LearningV365ContinuousRouteProducerState producer,Vector3 direction,long generation,float dt)
+         {
+             var context=player.MovementContext;
+             if(!FollowerCapabilityPassagePolicy.TargetAfterFloor(producer.Generic,producer.TargetSequence,CapabilityGenericResumeFloor(bot))||
+-                !producer.Generic||HasActiveTraversalProbe(bot)||!IsCapabilityRouteRetrySafe(bot)||generation<=0||
++                !IsCapabilityLowStepProducerCurrent(bot,producer)||HasActiveTraversalProbe(bot)||!IsCapabilityRouteRetrySafe(bot)||generation<=0||
+                 !FollowerCapabilityApproachPolicy.StepSupport(context.IsGrounded,recovery.LowStepActive,
+                     recovery.LowStepActive?Time.time-recovery.LowStepStartedAt:0f,
+                     recovery.LowStepActive?player.Position.y-recovery.LowStepStart.y:0f)||
+--- Beta3/src/Core/FollowerMovementWriterAuthorityPatch.cs
++++ Beta4/src/Core/FollowerMovementWriterAuthorityPatch.cs
+@@ -138,7 +138,9 @@
+                 {
+                     return 0;
+                 }
+-                harmony.Patch(target, prefix: new HarmonyMethod(prefix) { priority = Priority.First });
++                var postfix=prefixName==nameof(PatchBotOwnerGoToPointStatus)
++                    ?new HarmonyMethod(AccessTools.Method(typeof(FollowerMovementWriterAuthorityPatch),nameof(ObserveNativeFollowPathResult))){priority=Priority.Last}:null;
++                harmony.Patch(target, prefix: new HarmonyMethod(prefix) { priority = Priority.First },postfix:postfix);
+                 return 1;
+             }
+             catch (Exception ex)
+@@ -159,14 +161,22 @@
+             }
+             return null;
+         }
+-        private static bool PatchBotOwnerGoToPointStatus(BotOwner __instance, ref NavMeshPathStatus __result,object[] __args)
+-        {
+-            if (Allow(__instance, "BotOwner.GoToPoint",ReadCapabilityDestination(__args)))
+-            {
++        private static bool PatchBotOwnerGoToPointStatus(BotOwner __instance, ref NavMeshPathStatus __result,object[] __args,out long __state)
++        {
++            __state=0;
++            var target=ReadCapabilityDestination(__args);
++            if (Allow(__instance, "BotOwner.GoToPoint",target))
++            {
++                __state=FollowerTraversalTestRuntime.PrepareCapabilityOriginalFollowPath(__instance,target);
+                 return true;
+             }
+             __result = NavMeshPathStatus.PathInvalid;
+             return false;
++        }
++        private static void ObserveNativeFollowPathResult(BotOwner __instance,NavMeshPathStatus __result,object[] __args,long __state,bool __runOriginal)
++        {
++            if(__runOriginal&&__state>0)
++                FollowerTraversalTestRuntime.CompleteCapabilityOriginalFollowPath(__instance,ReadCapabilityDestination(__args),__result,__state);
+         }
+ 
+         private static bool PatchBotOwnerGoToPointVoid(BotOwner __instance,object[] __args)
+--- Beta3/src/Core/FollowerTraversalLifecycleCommit.cs
++++ Beta4/src/Core/FollowerTraversalLifecycleCommit.cs
+@@ -71,8 +71,9 @@
+                 var action=GetLearningV354ActionProfile(step.Kind);
+                 bool actuator=action!=null && action.RequiresActuator;
+                 // Chronological floor is never an actuator landing certificate.
+-                bool qualified=evidence!=RouteDebtEvidence.CursorFloor || !actuator ||
+-                    IsFollowerRouteMissionStepPhysicallyPassed(bot,step,out _,out _);
++                bool qualified=evidence!=RouteDebtEvidence.CursorFloor||CanConsumeCapabilityCursorFloor(bot,step);
++                if(evidence==RouteDebtEvidence.PhysicalPass&&IsLearningV369PhysicalCorridorStep(step))
++                    qualified=IsFollowerRouteMissionStepPhysicallyPassed(bot,step,out _,out _);
+                 Life.Resolution resolution=evidence==RouteDebtEvidence.PolicySuppression ? Life.Resolution.Suppressed :
+                     evidence==RouteDebtEvidence.TeleportRecovery ? Life.Resolution.TeleportBypass :
+                     evidence==RouteDebtEvidence.RouteSuperseded ? Life.Resolution.Cancelled : Life.Resolution.Subsumed;
+--- Beta3/src/Core/FollowerTraversalPhysicalContinuum.cs
++++ Beta4/src/Core/FollowerTraversalPhysicalContinuum.cs
+@@ -170,7 +170,10 @@
+                     float learningV381PhysicalDriveSpeed = GetLearningV381PhysicalCorridorDriveSpeed(step);
+                     bool learningV381PhysicalSprintIntent = GetLearningV381PhysicalCorridorSprintIntent(step);
+                     if(TryPrepareCapabilityAdjacentJumpRunup(bot,player,mission,step,direction))learningV381PhysicalSprintIntent=true;
+-                    ApplyCollisionActivePhysicalRouteMotion(
++                    bool stepMotion=IsLearningV369PhysicalCorridorStep(step)&&
++                        FollowerMovementRecoveryStates.TryGetValue(profileId,out var recovery)&&
++                        TryDriveCapabilityGenericLowStep(bot,player,recovery,producer,direction,generation,dt);
++                    if(!stepMotion)ApplyCollisionActivePhysicalRouteMotion(
+                         bot, player, direction,
+                         motionDirection * Mathf.Min(distance, learningV381PhysicalDriveSpeed * dt),
+                         dt, producer.Pose,
+--- Beta3/src/Core/FollowerTraversalRouteMissionLifecycle.cs
++++ Beta4/src/Core/FollowerTraversalRouteMissionLifecycle.cs
+@@ -533,6 +533,7 @@
+                     continue;
+                 }
+ 
++                RefreshCapabilityCurrentPhysicalCorridor(bot,mission,step);
+                 if(!IsCapabilityFullRouteReplay(mission))RefreshLearningV424CurrentEpisodeWalkThroughAdmissionGeometry(
+                     bot, mission, step, "ensureRouteMissionCommitment");
+                 r2DebtObservation3 = CaptureRouteDebtObservation(bot, mission, step);
+@@ -594,7 +595,7 @@
+                 int routeFloor = Math.Max(
+                     Math.Max(GetFollowerRouteResumeFloor(profileId), GetFollowerRouteExecutionFloor(profileId)),
+                     mission.ResumeFloorBreadcrumbSequence);
+-                if (step.EndBreadcrumbSequence <= routeFloor)
++                if (step.EndBreadcrumbSequence <= routeFloor && CanConsumeCapabilityCursorFloor(bot,step))
+                 {
+                     if (!TryAdvanceRouteMission(bot, mission, mission.CurrentStepIndex + 1, RouteDebtEvidence.CursorFloor, "EnsureFollowerRouteMissionCommitment:2", r2DebtObservation3)) return true;
+                     mission.ApproachBreadcrumbSequence = Math.Max(mission.ApproachBreadcrumbSequence, step.EndBreadcrumbSequence);
+@@ -2072,6 +2073,15 @@
+             Vector3 axis = rawExit - rawEntry;
+             axis.y = 0f;
+             float length = axis.magnitude;
++            if(IsLearningV369PhysicalCorridorStep(step))
++            {
++                var finiteAxis=GetFlatDirection(rawExit-rawEntry);
++                projection=Vector3.Dot(GetFlatDelta(rawEntry,bot.Position),finiteAxis);
++                requiredProjection=length;
++                return FollowerCapabilityPassagePolicy.CorridorExit(bot.GetPlayer?.MovementContext?.IsGrounded==true,
++                    length,projection,GetPlanarDistanceToSegment(bot.Position,rawEntry,rawExit),
++                    RouteMissionDirectionalWalkThroughMaxLateral,bot.Position.y-rawExit.y);
++            }
+             if (length < 0.25f)
+             {
+                 return exitDistance <= 1.20f && exitDistance + 0.25f < entryDistance;
+--- Beta3/src/LegacyOriginalPITFollowBridge.cs
++++ Beta4/src/LegacyOriginalPITFollowBridge.cs
+@@ -65,7 +65,7 @@
+         private const float ApproachMaxSeconds = 30.0f;
+         private const float ApproachArrivalMeters = 1.35f;
+ 
+-        private static bool IsOriginalPITFollowCall()
++        internal static bool IsOriginalPITFollowCall()
+         {
+             // Check the source assembly as well as the precise original action.
+             // Other PIT combat/medical/command writers must remain untouched.

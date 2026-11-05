@@ -1,0 +1,331 @@
+{
+  "passed": true,
+  "rules": 53,
+  "retiredParameters": 60,
+  "comparisons": 6591,
+  "booleanCases": 2310,
+  "boundaryCases": 4281,
+  "baselineDllSha256": "6C627EC249EA0FB5FB56CC9E2498ECCB04AE7DFC39CA6150C17F36C1A0D4ACA6",
+  "dllSha256": "0F7BA4A62AF736312B349869FDC97B4B0AB7F9EEBD67324B890CE28AD13D2C32",
+  "cases": [
+    {
+      "method": "TryStartProbeForBot_deferWalkThroughTraversalAuthority_1",
+      "compared": 8,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "UpdateWalkThroughEntryConvergence_headingSolved_8",
+      "compared": 88,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TryBeginLearnedNativeJump_learningV352InstantTakeoffCorridorReady_1",
+      "compared": 128,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryBeginLearnedNativeJump_rollingHandoffSemanticAuthority_2",
+      "compared": 11,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryBeginLearnedNativeJump_takeoffPhysicalHeadingReady_4",
+      "compared": 44,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "UpdateLearnedJumpTakeoffPriming_physicalHeadingReady_1",
+      "compared": 44,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "UpdateLearnedJumpTakeoffPriming_learningV352TakeoffCorridorReady_2",
+      "compared": 170,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "UpdateLearnedJumpTakeoffPriming_learningV350TakeoffHorizonReady_5",
+      "compared": 176,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "UpdateNativeDropDown_executionEvidenceEligible_2",
+      "compared": 44,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "UpdateExitAuthorityCommit_rejectedPathRelease_16",
+      "compared": 172,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "UpdateExitAuthorityCommit_routePlannerReleaseEligible_19",
+      "compared": 1432,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 9
+    },
+    {
+      "method": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ApplyV403SuccessorGate_AB0256DE_1",
+      "compared": 4,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ReleasedV403GateWithoutLivePersistentMovement_AB0256DE_2",
+      "compared": 4,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV376UnattemptedCurrentRouteSameEpisodeRecovery_AB0256DE_3",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV373TypedSameEpisodeSupersedesGenericRecovery_AB0256DE_4",
+      "compared": 16,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 3
+    },
+    {
+      "method": "TryGetLearningV353JumpRouteFunnelTarget_learningV387MeasuredMomentumAlive_C2A50036_1",
+      "compared": 86,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionMomentumLease_C2A50036_3",
+      "compared": 40,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TryGetLearningV353JumpRouteFunnelTarget_learningV439ReservationAdmissionReady_C2A50036_8",
+      "compared": 512,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 8
+    },
+    {
+      "method": "TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionActuatorStateReady_C2A50036_9",
+      "compared": 40,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TryGetLearningV363ActuatorRouteEntryLaneTarget_insideLongitudinalLane_3A7F067E_2",
+      "compared": 107,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryDriveLearningV347EmpiricalRouteCorridor_learningV355MeasuredRouteProgress_3A6819C4_1",
+      "compared": 86,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryContinueLearningV365ContinuousGenericPhysicalRoute_measured_66D92C3C_1",
+      "compared": 86,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryDriveLearningV349GenericEmpiricalPassageCorridor_learningV419SuspiciousFollowYield_12FDB6E0_1",
+      "compared": 65,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryDriveLearningV349GenericEmpiricalPassageCorridor_measuredPhysicalProgress_12FDB6E0_2",
+      "compared": 86,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "IsLearningV31WalkThroughNativeLocomotionEvidence_recovery_92879F18_1",
+      "compared": 232,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 5
+    },
+    {
+      "method": "IsLearningV3RetainableNativeSuccess_recovery_5170C182_2",
+      "compared": 232,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 5
+    },
+    {
+      "method": "ShouldPreferAssistedExecutor_adaptiveKind_EBB76326_1",
+      "compared": 38,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "ShouldPreferAssistedExecutor_freshSingleSampleCorrection_EBB76326_2",
+      "compared": 11,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "UpdateLearningV349GenericPhysicalProgressWatchdog_movementCountsAsProgress_958583D5_6",
+      "compared": 64,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 5
+    },
+    {
+      "method": "TryConsumeLearningV311InheritedDropDownEntryAuthority_inheritedHeadingReady_21A9CFD6_2",
+      "compared": 44,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "UpdateRollingTraversalApproach_learningV380RouteActuatorReady_9C18CECF_2",
+      "compared": 8,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "UpdateRollingTraversalApproach_traversalGeometryReady_9C18CECF_6",
+      "compared": 620,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 4
+    },
+    {
+      "method": "UpdateRollingTraversalApproach_learningV339JumpControlledEntry_9C18CECF_17",
+      "compared": 16,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 3
+    },
+    {
+      "method": "UpdateRollingTraversalApproach_learningV339DropDownControlledEntry_9C18CECF_19",
+      "compared": 176,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "UpdateRollingTraversalApproach_mustWaitInPlace_9C18CECF_21",
+      "compared": 296,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 6
+    },
+    {
+      "method": "UpdateRollingTraversalApproach_cf21StagingLeaseEligible_9C18CECF_24",
+      "compared": 32,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 4
+    },
+    {
+      "method": "TryGetLearningV419WalkThroughTerminalFrontierContinuation_terminalPlaneActuallyCrossed_8EB2E7E8_1",
+      "compared": 65,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "ShouldSuppressLearningV322PersistentEvidence_toxic_BE16881B_2",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_learningV461EquivalentDropDownChronology_395C3253_1",
+      "compared": 76,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_transferredClimbAlreadyRejoinedFarSideNavMesh_395C3253_2",
+      "compared": 22,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TryGetLearningV331CurrentGroundContinuationProof_monotonicFarSide_9749B9C6_3",
+      "compared": 176,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryBeginNativeTraversalRunOut_learningV331ForwardContinuationSafe_3BD486C4_3",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryInstallLearningV327NativeJumpLandingMoverRebase_learningV332LandingAnchorMonotonic_AE4D664F_1",
+      "compared": 172,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 1
+    },
+    {
+      "method": "TryGetLearningV377ActuatorPhysicalFrontierDecision_learningV437MissedTakeoffFrontier_B3712084_2",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryConsumeLearningV429AtomicJumpAdmission_learningV474NativeSprintFloorReady_04291716_5",
+      "compared": 74,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 0
+    },
+    {
+      "method": "TryConsumeLearningV429AtomicJumpAdmission_learningV449InsidePhysicalTakeoffHorizon_04291716_7",
+      "compared": 184,
+      "retiredParameters": 2,
+      "retainedBooleanParameters": 3
+    },
+    {
+      "method": "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction_learningV378ActuatorPhysicalStaging_CC9769FF_3",
+      "compared": 16,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 3
+    },
+    {
+      "method": "TryFinalizeTraversalChainIntermediate_learningV376SameExecutableMission_776B9C09_2",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryFinalizeTraversalChainIntermediate_learningV389CanonicalMissionMovementContinuation_776B9C09_3",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryFinalizeTraversalChainIntermediate_learningV379SamePhysicalTransactionChain_776B9C09_4",
+      "compared": 8,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 2
+    },
+    {
+      "method": "TryFinalizeTraversalChainIntermediate_learningV332RouteGroundSuccessorCandidate_776B9C09_5",
+      "compared": 220,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 3
+    },
+    {
+      "method": "TryFinalizeTraversalChainIntermediate_learningV357RouteGroundSuccessorCandidate_776B9C09_6",
+      "compared": 184,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 3
+    },
+    {
+      "method": "TryFinalizeTraversalChainIntermediate_learningV375PersistentRouteGroundSuccessorCandidate_776B9C09_7",
+      "compared": 128,
+      "retiredParameters": 1,
+      "retainedBooleanParameters": 6
+    }
+  ],
+  "physicsSimulated": false
+}

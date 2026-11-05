@@ -1,0 +1,38 @@
+{
+  "bigmap.json": {
+    "length": 672592,
+    "lastWriteLocal": "2026-09-06T20:37:16.157793",
+    "counts": {
+      "Links": 193
+    }
+  },
+  "bigmap.experience.json": {
+    "length": 395275,
+    "lastWriteLocal": "2026-09-06T20:37:19.319350",
+    "counts": {
+      "Edges": 149
+    }
+  },
+  "bigmap.nativeproven.json": {
+    "length": 971470,
+    "lastWriteLocal": "2026-11-05T21:40:15.202036",
+    "counts": {
+      "Links": 256
+    }
+  },
+  "bigmap.skillevidence.json": {
+    "length": 710339,
+    "lastWriteLocal": "2026-11-05T21:40:15.246922",
+    "counts": {
+      "Records": 367
+    }
+  },
+  "global.traversalprofiles.json": {
+    "length": 12209,
+    "lastWriteLocal": "2026-11-05T21:40:15.259667",
+    "counts": {
+      "Actions": 7,
+      "Transitions": 19
+    }
+  }
+}

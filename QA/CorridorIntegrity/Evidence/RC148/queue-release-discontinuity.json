@@ -1,0 +1,834 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6545,
+    "utc": "2026-11-04T05:04:41.0668256Z",
+    "raidTime": 206.2469,
+    "frame": 10313,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerSnapshot",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "breadcrumbSequence": 311,
+      "botPosition": {
+        "x": 476.195068,
+        "y": 4.21953,
+        "z": -143.542709
+      },
+      "leaderPosition": {
+        "x": 453.195953,
+        "y": 4.219531,
+        "z": -140.478058
+      },
+      "leaderDistance": 23.2024,
+      "displacement": 0.0,
+      "distanceProgress": 0.0,
+      "noProgressSeconds": 4.022522,
+      "playerState": "Idle",
+      "grounded": true,
+      "inputDirection": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "activeCommand": "None",
+      "combat": false,
+      "strict": {
+        "rawStart": {
+          "x": 476.195068,
+          "y": 4.21953,
+          "z": -143.542709
+        },
+        "rawTarget": {
+          "x": 453.195953,
+          "y": 4.219531,
+          "z": -140.478058
+        },
+        "startSampled": true,
+        "targetSampled": true,
+        "sampledStart": {
+          "x": 476.195068,
+          "y": 4.300003,
+          "z": -143.542709
+        },
+        "sampledTarget": {
+          "x": 453.195953,
+          "y": 4.300003,
+          "z": -140.478058
+        },
+        "startSampleOffset": 0.0804729462,
+        "targetSampleOffset": 0.08047199,
+        "targetVerticalSampleOffset": 0.08047199,
+        "calculateReturned": true,
+        "status": "PathComplete",
+        "cornerCount": 17,
+        "corners": [
+          {
+            "x": 476.195068,
+            "y": 4.300003,
+            "z": -143.542709
+          },
+          {
+            "x": 486.400024,
+            "y": 3.449997,
+            "z": -128.0
+          },
+          {
+            "x": 494.7,
+            "y": 1.15000153,
+            "z": -104.0
+          },
+          {
+            "x": 498.100037,
+            "y": 1.15000153,
+            "z": -83.3
+          },
+          {
+            "x": 504.600037,
+            "y": 1.09999847,
+            "z": -41.4
+          },
+          {
+            "x": 505.000031,
+            "y": 1.09999847,
+            "z": -38.8
+          },
+          {
+            "x": 505.800018,
+            "y": 1.09999847,
+            "z": -33.0
+          },
+          {
+            "x": 503.600037,
+            "y": 1.09999847,
+            "z": -31.2
+          },
+          {
+            "x": 503.300018,
+            "y": 1.09999847,
+            "z": -31.2
+          },
+          {
+            "x": 503.000031,
+            "y": 1.09999847,
+            "z": -31.5
+          },
+          {
+            "x": 498.400024,
+            "y": 1.09999847,
+            "z": -38.1
+          },
+          {
+            "x": 494.500031,
+            "y": 1.15000153,
+            "z": -92.1
+          },
+          {
+            "x": 494.300018,
+            "y": 1.15000153,
+            "z": -92.7000046
+          },
+          {
+            "x": 476.400024,
+            "y": 1.09999847,
+            "z": -120.0
+          },
+          {
+            "x": 471.6,
+            "y": 1.449997,
+            "z": -125.0
+          },
+          {
+            "x": 467.400024,
+            "y": 2.34999847,
+            "z": -128.4
+          },
+          {
+            "x": 453.195953,
+            "y": 4.300003,
+            "z": -140.478058
+          }
+        ],
+        "pathLength": 246.170212,
+        "directDistance": 23.2024,
+        "detourRatio": 10.6096878,
+        "terminalToSampledTarget": 0.0,
+        "terminalToRawTarget": 0.08047199,
+        "strictComplete": true
+      },
+      "mover": {
+        "hasPath": true,
+        "hasPathAndNoComplete": true,
+        "blocked": false,
+        "isMoving": false,
+        "pause": false,
+        "sprinting": false,
+        "realDestination": {
+          "x": 475.592224,
+          "y": 4.300003,
+          "z": -143.27124
+        },
+        "currentCorner": {
+          "x": 483.9509,
+          "y": 4.14297676,
+          "z": -142.413071
+        },
+        "target": {
+          "x": 476.195068,
+          "y": 4.300003,
+          "z": -143.542709
+        },
+        "remainingDistance": 0.0804729462,
+        "waypoints": [
+          {
+            "x": 476.195068,
+            "y": 4.300003,
+            "z": -143.542709
+          }
+        ]
+      },
+      "door": {
+        "interacting": false,
+        "haveDoorToOpen": false,
+        "linkId": null,
+        "state": null
+      }
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6566,
+    "utc": "2026-11-04T05:04:41.5077131Z",
+    "raidTime": 206.6905,
+    "frame": 10342,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityPortalQueueWaiting",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stepIndex": 0,
+      "edgeId": 229,
+      "distance": 4.24280357,
+      "nearest": true,
+      "entry": {
+        "x": 472.013672,
+        "y": 4.22051525,
+        "z": -142.823471
+      },
+      "head": null,
+      "cooldownRemaining": 0.193908691,
+      "waitSeconds": 5.05805969,
+      "waitingMode": "holdCurrentBodyNoAlternatePath",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6568,
+    "utc": "2026-11-04T05:04:41.5624184Z",
+    "raidTime": 206.743942,
+    "frame": 10345,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "movementWriterObservedUnscoped",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "writeKind": "BotMover.Sprint",
+      "inferredWriter": "Follow",
+      "owner": "Traversal",
+      "generation": 9,
+      "hardRejected": false,
+      "reason": "stackClassificationDiagnosticOnly"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6575,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityPortalQueueApproachReleased",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stepIndex": 0,
+      "EdgeId": 229,
+      "claim": 14,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6576,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityPortalQueueAdmitted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stepIndex": 0,
+      "edgeId": 229,
+      "distance": 4.24280357,
+      "nearest": true,
+      "sameBotContinuation": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6577,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeMoverPathRetiredWithoutBrake",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "queueGroundEntryManualConsumer",
+      "owner": "Traversal",
+      "generation": 9,
+      "anchor": {
+        "x": 476.195068,
+        "y": 4.21953,
+        "z": -143.542709
+      },
+      "inputPreserved": true,
+      "stopMoveCalled": false,
+      "persistentLearningChanged": false,
+      "bodyRelocated": false,
+      "action": "retireStalePathTopologyWithoutBreakingNativeLocomotionState"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6578,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "v2rc52WorldLockedIngressInput",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "direction": {
+        "x": -0.985526145,
+        "y": 0.0,
+        "z": 0.169523686
+      },
+      "playerFacing": {
+        "x": -0.9961405,
+        "y": 0.0,
+        "z": -0.08777284
+      },
+      "moverNativeInput": {
+        "x": 0.255371839,
+        "y": 0.9668429
+      },
+      "projectedPlayerInput": {
+        "x": 0.255371839,
+        "y": 0.9668429
+      },
+      "requestedMotionMagnitude": 0.0167011,
+      "nativeState": "Idle",
+      "pathStatusIsProof": false,
+      "action": "existingFollowProducerProjectsExactWorldGoalOntoPlayerInputFrame"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6579,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 9,
+      "state": "Idle",
+      "direction": {
+        "x": -0.985526145,
+        "y": 0.0,
+        "z": 0.169523686
+      },
+      "input": {
+        "x": 0.255371839,
+        "y": 0.9668429
+      },
+      "requestedMotionMagnitude": 0.0167011,
+      "deltaTime": 0.0167011,
+      "sprint": false,
+      "targetMoveSpeed": 0.85,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "retiredPathPreservedLocomotion:Traversal:generation=9",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6580,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityGroundEntryLead",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stepIndex": 0,
+      "EdgeId": 229,
+      "retry": false,
+      "distance": 4.24280357,
+      "height": 0.0009851456,
+      "heading": 0.96684283,
+      "turnHold": false,
+      "body": {
+        "x": 476.195068,
+        "y": 4.21953,
+        "z": -143.542709
+      },
+      "target": {
+        "x": 475.209534,
+        "y": 4.21976233,
+        "z": -143.373184
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false,
+      "physicalEntryGranted": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6581,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "movementWriterGenerationAdvanced",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousOwner": "Traversal",
+      "owner": "Follow",
+      "previousGeneration": 9,
+      "generation": 10,
+      "reason": "portalApproachOwnerHandoff",
+      "leaseSeconds": 1.5
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6582,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityPortalApproachOwnerYielded",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "generation": 9,
+      "owner": "Traversal",
+      "target": {
+        "x": 472.013672,
+        "y": 4.22051525,
+        "z": -142.823471
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6583,
+    "utc": "2026-11-04T05:04:41.7172530Z",
+    "raidTime": 206.898987,
+    "frame": 10354,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "cf12BTRouteLeaseCommitted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "target": "(472.01, 4.22, -142.82)",
+      "reason": "portalApproach:229",
+      "path": "PathComplete",
+      "leaseSeconds": 2.5,
+      "action": "lockNativeFollowApproachAgainstOriginalPITFollowOnly"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6585,
+    "utc": "2026-11-04T05:04:41.7334210Z",
+    "raidTime": 206.915878,
+    "frame": 10355,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityPortalQueueAdmittedIngressLost",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stepIndex": 0,
+      "EdgeId": 229,
+      "distance": 9.424618,
+      "body": {
+        "x": 481.438049,
+        "y": 4.09544373,
+        "z": -142.756149
+      },
+      "entry": {
+        "x": 472.013672,
+        "y": 4.22051525,
+        "z": -142.823471
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6586,
+    "utc": "2026-11-04T05:04:41.7370272Z",
+    "raidTime": 206.915878,
+    "frame": 10355,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "movementPhysicalInputIssued",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Follow",
+      "generation": 10,
+      "inputKind": "EFT.Player.Move",
+      "bodyProgressObserved": false,
+      "traversalSuccessRecorded": false,
+      "action": "recordOriginOfActualInputNotPhysicalProgressOrCompletion"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6587,
+    "utc": "2026-11-04T05:04:41.7390448Z",
+    "raidTime": 206.915878,
+    "frame": 10355,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilitySequenceSelectionFailed",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stage": "Alternate",
+      "reason": "noExecutableTemplate",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6588,
+    "utc": "2026-11-04T05:04:41.7405568Z",
+    "raidTime": 206.915878,
+    "frame": 10355,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilitySequenceSelectionFailed",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stage": "SelfRescue",
+      "reason": "noExecutableTemplate",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6589,
+    "utc": "2026-11-04T05:04:41.7405568Z",
+    "raidTime": 206.915878,
+    "frame": 10355,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFailureSequenceAdvanced",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "stepIndex": 0,
+      "edgeId": 229,
+      "episodeId": 8,
+      "stage": "ReturnToEntry",
+      "reason": "portalQueueHeadLeftUnfinishedIngressWindow",
+      "selectedTemplate": 0,
+      "completedPrefixRetained": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6590,
+    "utc": "2026-11-04T05:04:41.7405568Z",
+    "raidTime": 206.915878,
+    "frame": 10355,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "failedStep": 0,
+      "failedEdge": 229,
+      "rootEdge": 229,
+      "entry": {
+        "x": 472.013672,
+        "y": 4.22051525,
+        "z": -142.823471
+      },
+      "stage": {
+        "x": 473.204285,
+        "y": 4.22051525,
+        "z": -142.973267
+      },
+      "reason": "portalQueueHeadLeftUnfinishedIngressWindow",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6592,
+    "utc": "2026-11-04T05:04:41.7554630Z",
+    "raidTime": 206.935028,
+    "frame": 10356,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV364PhysicalNavigationEpochHandoffArmed",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 0,
+      "episodeId": 0,
+      "chainId": 0,
+      "entry": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "exit": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "physicalAnchor": {
+        "x": 481.434082,
+        "y": 4.09544373,
+        "z": -142.752716
+      },
+      "movementOwner": "Follow",
+      "movementGeneration": 10,
+      "source": "fullRouteRetry",
+      "initialAnchorScrubbed": true,
+      "scrubDetail": "scrubbed:Follow:generation=10:source=arm:fullRouteRetry",
+      "action": "physicalBodyEpochRemainsAuthoritativeUntilFreshConsumerPathAndNativeMoverBookkeepingAgree"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6593,
+    "utc": "2026-11-04T05:04:41.7569715Z",
+    "raidTime": 206.935028,
+    "frame": 10356,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV364PhysicalNavigationEpochSynchronized",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 0,
+      "episodeId": 0,
+      "chainId": 0,
+      "source": "fullRouteRetry",
+      "physicalAnchor": {
+        "x": 481.434082,
+        "y": 4.09544373,
+        "z": -142.752716
+      },
+      "body": {
+        "x": 481.434082,
+        "y": 4.09544373,
+        "z": -142.752716
+      },
+      "navSample": {
+        "x": 481.434082,
+        "y": 4.15000153,
+        "z": -142.752716
+      },
+      "tightPlanar": 0.0,
+      "tightVertical": 0.0545578,
+      "currentCorner": {
+        "x": 476.195068,
+        "y": 4.300003,
+        "z": -143.542709
+      },
+      "preCommitPositionOnWay": {
+        "x": 481.434082,
+        "y": 4.09544373,
+        "z": -142.752716
+      },
+      "positionOnWayDistance": 0.0,
+      "preCommitPrevLinked": {
+        "x": 481.434082,
+        "y": 4.09544373,
+        "z": -142.752716
+      },
+      "prevLinkedDistance": 0.0,
+      "movementOwner": "Follow",
+      "movementGeneration": 10,
+      "action": "freshConsumerPathAndNativeMoverBookkeepingNowSharePhysicalBodyEpoch"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 6594,
+    "utc": "2026-11-04T05:04:41.7569715Z",
+    "raidTime": 206.935028,
+    "frame": 10356,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "rootEdge": 229,
+      "body": {
+        "x": 481.434082,
+        "y": 4.09544373,
+        "z": -142.752716
+      },
+      "target": {
+        "x": 473.204285,
+        "y": 4.300003,
+        "z": -142.973267
+      },
+      "behindEntryMeters": 1.199999,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 8.234118,
+      "fixedBudget": 28.70988,
+      "writer": 10,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  }
+]

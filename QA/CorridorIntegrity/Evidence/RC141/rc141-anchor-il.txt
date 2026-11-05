@@ -1,0 +1,15 @@
+PROPERTY UnityEngine.Vector3 BotMover::PrevSuccessLinkedFrom()
+METHOD UnityEngine.Vector3 BotMover::get_PrevSuccessLinkedFrom()
+IL_0000: ldarg.0
+IL_0001: ldfld UnityEngine.Vector3 BotMover::PrevSuccessLinkedFrom_1
+IL_0006: ret
+PROPERTY UnityEngine.Vector3 BotMover::PositionOnWayInner()
+METHOD UnityEngine.Vector3 BotMover::get_PositionOnWayInner()
+IL_0000: ldarg.0
+IL_0001: ldfld UnityEngine.Vector3 BotMover::PositionOnWay_1
+IL_0006: ret
+METHOD System.Void BotMover::set_PositionOnWayInner(UnityEngine.Vector3)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: stfld UnityEngine.Vector3 BotMover::PositionOnWay_1
+IL_0007: ret

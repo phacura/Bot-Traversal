@@ -1,0 +1,299 @@
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.11+RC148")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.12+RC149")]
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 11 loaded: V2-RC148-Beta11");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 12 loaded: V2-RC149-Beta12");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -1463,6 +1463,16 @@
+                     WriteEvent("capabilityPortalQueueAdmitted",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,edgeId=step.EdgeId,distance,nearest,sameBotContinuation=ticket?.LastAdmissionContinued??false});
+                 }
+                 if(progressDistance<m.PortalQueueHeadBestDistance-.04f){m.PortalQueueHeadBestDistance=progressDistance;m.PortalQueueHeadProgressAt=Time.time;}
++                var velocity=bot.GetPlayer.Velocity;velocity.y=0;
++                if(FollowerCapabilityIngressMotionPolicy.QueueMovingAway(active,m.FailureSequence!=null,passageInFlight,
++                    m.PortalQueueHeadBestDistance,progressDistance,velocity.magnitude,
++                    Vector3.Dot(GetFlatDirection(velocity),GetFlatDirection(entry-bot.GetPlayer.Position))))
++                {
++                    WriteEvent("capabilityQueueApproachMovingAway",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,
++                        body=Vec(bot.GetPlayer.Position),entry=Vec(entry),best=m.PortalQueueHeadBestDistance,progressDistance,
++                        velocity=Vec(velocity),nativeSuccessRecorded=false});
++                    TryRequestCapabilityFullRouteRetry(bot,m,"portalQueueHeadMeasuredMovingAway");return true;
++                }
+                 if(FollowerPortalAdmission.HeadStalled(Time.time,m.PortalQueueAdmittedAt,m.PortalQueueHeadProgressAt,active,m.FailureSequence!=null,corridor))
+                 {TryRequestCapabilityFullRouteRetry(bot,m,"portalQueueHeadNoMeasuredProgress");return true;}
+                 return false;
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityIngressMotionPolicy.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityIngressMotionPolicy.cs
+@@ -26,6 +26,13 @@
+         internal static bool ExecutionGaitPhase(bool egress,bool verify,bool commit)=>!egress&&!verify&&!commit;
+         internal static bool OwnedIngress(bool live,bool current,bool admitted,bool owns,bool debt)
+             => live&&current&&admitted&&owns&&debt;
++        internal static bool QueueMovingAway(bool active,bool strategy,bool inFlight,double best,double distance,double speed,double heading)
++            => !active&&!strategy&&!inFlight&&Finite(best)&&best>=0&&Finite(distance)&&distance>best+.75&&
++                Finite(speed)&&speed>.5&&Finite(heading)&&heading<-.15;
++        internal static bool VerifyExitCorrection(bool drop,bool moving,bool teleport,bool grounded,bool supported,bool nav,bool exitSide,
++            double distance,double forward,double height,double belowEntry)
++            => drop&&!moving&&!teleport&&grounded&&supported&&nav&&!exitSide&&Finite(distance)&&distance>0&&distance<=.85&&
++                Finite(forward)&&forward>.28&&forward<=.85&&Finite(height)&&Math.Abs(height)<=.35&&Finite(belowEntry)&&belowEntry>.20;
+         internal static bool WallBlocks(bool hit,double normalY,double opposition,double distance)
+             => hit&&Finite(normalY)&&normalY<.65&&Finite(opposition)&&opposition>.10&&Finite(distance)&&distance>=0;
+         internal static bool KeepNativeMove(bool boundBefore,bool boundAfter)=>!boundBefore||boundAfter;
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityNativeObstacleHost.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityNativeObstacleHost.cs
+@@ -1458,6 +1458,8 @@
+                 var motion=stationary?Vector3.zero:direction*dt;
+                 // Once centered, axis owns both steering and forward input; the old point target cannot oppose it.
+                 ApplyCollisionActivePhysicalRouteMotion(probe.Bot,player,direction,motion,dt,1f,sprint,speed,!precise,true);
++                if(hold||centerTurn||probe.PoseExclusiveOrientationAuthority)
++                    DriveTraversalPoseAcquisition(probe,direction,centerAngle,"obstacleEntryCenterTurn",true);
+                 if(ShouldEmitDiagnostic("capabilityObstacleEntryResource",probe.Bot,.25f))WriteEvent("capabilityObstacleEntryResource",probe.Bot,new{
+                     edgeId=c.EdgeId,kind=c.Kind,hold,sideOnly,centerTurn,centerAngle,safeHeight,distance,side,maximum,forward,angle,body=Vec(player.Position),entry=Vec(entry),nativeSuccessRecorded=false});
+                 return true;
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityVerificationHost.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityVerificationHost.cs
+@@ -0,0 +1,27 @@
++using EFT;
++using UnityEngine;
++namespace BotTraversal.Core
++{
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        private static bool TryCorrectCapabilityDropVerify(ProbeRuntime probe,LearnedTraversalCommitment c,bool exitSide,bool supported,bool nav)
++        {
++            if(!IsProbeLifecycleCurrent(probe)||probe.Stage!=ProbeStage.Verify||c==null||
++                !IsCapabilityRouteRetrySafe(probe.Bot))return false;
++            var player=probe.Player;var body=player.Position;var target=probe.TraversalVerifyTarget;
++            var axis=GetFlatDirection(c.RawExit-c.RawEntry);var offset=GetFlatDelta(body,target);
++            if(!IsFinite(target)||axis.sqrMagnitude<.5f||!FollowerCapabilityIngressMotionPolicy.VerifyExitCorrection(c.Kind=="DropDown",
++                probe.TraversalVerifyMoving,probe.TraversalTeleportAttempted,player.MovementContext.IsGrounded,supported,nav,exitSide,
++                offset.magnitude,Vector3.Dot(offset,axis),target.y-body.y,c.RawEntry.y-body.y)||
++                !TryGetCapabilitySupportedLocalAim(player,target,out var aim))return false;
++            var direction=GetFlatDirection(aim-body);if(direction.sqrMagnitude<.5f)return false;
++            float dt=Mathf.Max(.001f,Time.deltaTime);
++            bool accepted=TryCommitV2ProbePhysicalMotion(probe,direction,direction*dt,dt,1f,false,.45f,
++                preserveSprintMode:false,exactWorldDirectionInput:true);
++            if(accepted&&ShouldEmitDiagnostic("capabilityDropVerifyExitCorrection",probe.Bot,.20f))
++                WriteEvent("capabilityDropVerifyExitCorrection",probe.Bot,new{edgeId=c.EdgeId,body=Vec(body),target=Vec(target),aim=Vec(aim),
++                    nativeSuccessRecorded=false,bodyRelocated=false,verifyDeadlineExtended=false});
++            return accepted; // Only later real observations can satisfy the original Verify proof and deadline.
++        }
++    }
++}
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerControlSiteCatalog.Generated.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerControlSiteCatalog.Generated.cs
+@@ -704,11 +704,9 @@
+ case "R1-D7D9EBD9073A": return new ControlSite("BotGoToPointDataSetPoint", ControlSiteMode.ReviewedLegacy);
+ case "R1-868DA6CE2689": return new ControlSite("BotGoToPointDataUpdateToGo", ControlSiteMode.ReviewedLegacy);
+ case "R1-0362E60CA539": return new ControlSite("SetBotMoverPause", ControlSiteMode.ReviewedLegacy);
+-case "R1-EFB80A0B501C": return new ControlSite("BotMoverTeleport", ControlSiteMode.ReviewedLegacy);
+ case "R1-DEFF15A71F0B": return new ControlSite("BotOwnerSetTargetMoveSpeed", ControlSiteMode.ReviewedLegacy);
+ case "R1-AF63739DE96B": return new ControlSite("BotMoverSetTargetMoveSpeed", ControlSiteMode.ReviewedLegacy);
+ case "R1-4055A8C59B8D": return new ControlSite("BotMoverSprint", ControlSiteMode.ReviewedLegacy);
+-case "R1-F154F5DE1591": return new ControlSite("PlayerTeleport", ControlSiteMode.ReviewedLegacy);
+ case "R1-56F5210E5D9A": return new ControlSite("SetBotMoverLinkedToNavmeshInitially", ControlSiteMode.ExactScope);
+ case "R1-2F11F045A62F": return new ControlSite("SetBotMoverPrevSuccessLinkedFrom_1", ControlSiteMode.ExactScope);
+ case "R1-52DF55C12911": return new ControlSite("SetBotMoverPrevPosLinkedTime_1", ControlSiteMode.ExactScope);
+--- RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC149/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -56357,6 +56357,8 @@
+                 return;
+             }
+ 
++            TryCorrectCapabilityDropVerify(probe,commitment,exitSide,supported,navStable);
++
+             bool fullEgressSatisfied = FollowerCapabilityHelperRules.UpdateUnifiedTraversalVerify_fullEgressSatisfied_D5B9932F_6(probe.TraversalEgressAttempted,probe.TraversalEgressCompleted,probe.TraversalTeleportAttempted);
+             bool playerValidatedWalkThrough =
+                 !IsLearningV319TransientSkillTransfer(commitment) &&
+@@ -57344,8 +57346,8 @@
+                 RestoreAssistedTraversalAnimation(probe);
+ 
+                 // CompileFix26: clear only traversal animator triggers. Do not zero locomotion input
+-                // or Stop/StopMove the follower on every successful exit. The zero-distance mover
+-                // rebase is still retained because it is the proven snapback fix, but ordinary
++                // or Stop/StopMove the follower on every successful exit. The bookkeeping scrub
++                // retains the current physical origin while ordinary
+                 // locomotion intent stays live across the authority transfer.
+                 probe.Player.MovementContext.MovementContextPlayerAnimatorSetDoVault("R1-59FCF5ABCB03",@probe?.Bot,false);
+                 probe.Player.MovementContext.MovementContextPlayerAnimatorSetDoClimb("R1-5C6875843015",@probe?.Bot,false);
+@@ -57355,7 +57357,7 @@
+                 {
+                     // Retire a stale pre-traversal destination without stopping the character; a
+                     // fresh Follow target is prewarmed below.
+-                    probe.Bot.GoToSomePointData.BotGoToPointDataSetPoint("R1-D7D9EBD9073A",@probe?.Bot,anchor);
++                    probe.Bot.GoToSomePointData.BotGoToPointDataSetPoint("R1-D7D9EBD9073A",@probe?.Bot,probe.Player.Position);
+                     probe.Bot.GoToSomePointData.BotGoToPointDataUpdateToGo("R1-868DA6CE2689",@probe?.Bot,false);
+                 }
+ 
+@@ -57363,24 +57365,23 @@
+                 {
+                     probe.Bot.Mover.SetBotMoverPause("R1-0362E60CA539",@probe?.Bot,false);
+ 
+-                    // This is intentionally a zero-distance relocation. SafeTeleport already uses
+-                    // BotMover.Teleport because EFT updates PositionOnWayInner/AllowTeleport there;
+-                    // the purpose here is to rebase mover authority to the physical far-side body,
+-                    // not to visually move the follower.
+-                    probe.Bot.Mover.BotMoverTeleport("R1-EFB80A0B501C",@probe?.Bot,anchor);
+-                    if (probe.PreviousSprinting || probe.PreviousRunning)
++                    // Synchronize bookkeeping at the actual body; a cached exit anchor is never a relocation target.
++                    if(!TryRetireNativeMoverPathPreserveLocomotion(probe.Bot,"exitAuthorityBookkeepingOnly",out _)||
++                        !TryScrubLearningV364NativeMoverEpochAnchor(probe.Bot,probe.Player.Position,"exitAuthorityBookkeepingOnly",out _))
++                    {FinalizeOrEscalateTraversalFailure(probe,"exitAuthorityBookkeepingUnavailable");return;}
++                    if (ShouldPreserveCapabilityProbeGait(probe) && (probe.PreviousSprinting || probe.PreviousRunning))
+                     {
+                         probe.Bot.BotOwnerSetTargetMoveSpeed("R1-DEFF15A71F0B",@probe?.Bot,ProbeMomentumFullMoveSpeed);
+                         probe.Bot.Mover.BotMoverSetTargetMoveSpeed("R1-AF63739DE96B",@probe?.Bot,ProbeMomentumFullMoveSpeed);
+                     }
+-                    if (probe.PreviousSprinting && !probe.Bot.Mover.Sprinting)
++                    if (ShouldPreserveCapabilityProbeGait(probe) && probe.PreviousSprinting && !probe.Bot.Mover.Sprinting)
+                     {
+                         probe.Bot.Mover.BotMoverSprint("R1-4055A8C59B8D",@probe?.Bot,true,false);
+                     }
+                 }
+                 else
+                 {
+-                    probe.Player.PlayerTeleport("R1-F154F5DE1591",@probe?.Bot,anchor);
++                    FinalizeOrEscalateTraversalFailure(probe,"exitAuthorityMoverUnavailable");return;
+                 }
+             }
+             catch (Exception ex)
+@@ -57403,10 +57404,11 @@
+                 attempt = probe.ExitAuthorityRebaseAttempts,
+                 anchor = Vec(anchor),
+                 state = probe.Player.CurrentStateName.ToString(),
++                body=Vec(probe.Player.Position),bodyRelocated=false,bookkeepingOnly=true,
+                 moverValidationDeferred = ExitAuthorityRebaseHoldSeconds
+             });
+ 
+-            // V3.36: the zero-distance anti-snapback rebase stays proven and unchanged, but the
++            // The physical body remains untouched; the
+             // next movement producer is now the actual downstream consumer. Do not install a short
+             // authored-forward path merely to replace it with Follow a few frames later. V3.33/V3.35
+             // finite producers remain exact fallback when no safe consumer path exists.
+@@ -57900,12 +57902,7 @@
+                     return;
+                 }
+ 
+-                if (probe.ExitAuthorityRebaseAttempts < ExitAuthorityMaxRebaseAttempts)
+-                {
+-                    ArmExitAuthorityRebase(probe, "rollbackRetry");
+-                    return;
+-                }
+-
++                // A physical regression is a failed handoff, not permission to restore an old pose.
+                 FinalizeOrEscalateTraversalFailure(probe, "exitAuthorityCommitRollback");
+                 return;
+             }
+--- RC148/QA\CorridorIntegrity\Replay\Program.cs
++++ RC149/QA\CorridorIntegrity\Replay\Program.cs
+@@ -662,5 +662,15 @@
+ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.ChordInside(.25,.22)&&BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(.25,.22,.55,0),"recorded off-lane body can pursue forward instead of perpendicular Sprint reversal");
+ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(.25,.22,.55,1),"terminal join never inherits initial lane allowance");
+ foreach(double bad in new[]{double.NaN,double.PositiveInfinity,-1})Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(bad,.22,.2,.5),"invalid rejoin deviation "+bad);
++// RC149 measured approach regression and local stationary DropDown exit correction.
++for(int mask=0;mask<8;mask++)Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.QueueMovingAway((mask&1)!=0,(mask&2)!=0,(mask&4)!=0,2,3,1,-1)==(mask==0),"queue never interrupts actor strategy or live passage "+mask);
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.QueueMovingAway(false,false,false,2,2.75,1,-1),"ordinary local distance noise cannot fail queue head");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.QueueMovingAway(false,false,false,2,3,0,-1),"stopped queue is original no-progress watchdog responsibility");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.QueueMovingAway(false,false,false,2,3,1,1),"actual entryward velocity cannot count as moving away");
++for(int mask=0;mask<128;mask++)Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.VerifyExitCorrection((mask&1)!=0,(mask&2)!=0,(mask&4)!=0,(mask&8)!=0,(mask&16)!=0,(mask&32)!=0,(mask&64)!=0,.659,.657,.02,1.65)==(mask==57),"Ada dropped-back grounded exit correction identity "+mask);
++foreach(double gap in new[]{double.NaN,double.PositiveInfinity,-1,0,.851})Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.VerifyExitCorrection(true,false,false,true,true,true,false,gap,.657,.02,1.65),"local Verify cannot chase distant or invalid exit "+gap);
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.VerifyExitCorrection(true,false,false,true,true,true,false,.659,-.657,.02,1.65),"Verify never publishes a backward target");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.VerifyExitCorrection(true,false,false,true,true,true,false,.659,.657,.351,1.65),"Verify cannot jump to another floor");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.VerifyExitCorrection(true,false,false,true,true,true,false,.659,.657,.02,.1),"near-entry body is not a lower landing correction");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta11 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta12 production decision and recorded-order replay checks");
+--- RC148/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC149/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,16 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('ArmExitAuthorityRebase','TryRetireNativeMoverPathPreserveLocomotion'),
++ @('ArmExitAuthorityRebase','TryScrubLearningV364NativeMoverEpochAnchor'),
++ @('ArmExitAuthorityRebase','ShouldPreserveCapabilityProbeGait'),
++ @('TryDriveCapabilityObstacleEntry','DriveTraversalPoseAcquisition'),
++ @('TickCapabilityPortalWait','QueueMovingAway'),
++ @('UpdateUnifiedTraversalVerify','TryCorrectCapabilityDropVerify'),
++ @('TryCorrectCapabilityDropVerify','IsProbeLifecycleCurrent'),
++ @('TryCorrectCapabilityDropVerify','VerifyExitCorrection'),
++ @('TryCorrectCapabilityDropVerify','TryGetCapabilitySupportedLocalAim'),
++ @('TryCorrectCapabilityDropVerify','TryCommitV2ProbePhysicalMotion'),
+  @('ProtectCapabilityLocalBodyProjection','OwnsCapabilityAdmittedIngress'),
+  @('OwnsCapabilityAdmittedIngress','OwnedIngress'),
+  @('OwnsCapabilityAdmittedIngress','Owns'),
+@@ -458,6 +468,19 @@
+  catch { $detected=$true; $_|Out-String|Set-Content (Join-Path $d ($case[1]+'.log')) }
+  if(!$detected){throw "undetected IL fault $case"};$results+=@{method=$case[0];removedCall=$case[1];detected=$true}
+ }
++# Restore each forbidden historical exit operation; mutants are inspected, never executed.
++foreach($forbidden in @('BotMoverTeleport','PlayerTeleport','ArmExitAuthorityRebase')) {
++ $m=[dnlib.DotNet.ModuleDefMD]::Load((Resolve-Path $Dll).Path);$runtime=$m.GetTypes()|Where-Object Name -eq 'FollowerTraversalTestRuntime'
++ $exitHostName=if($forbidden -eq 'ArmExitAuthorityRebase'){'UpdateExitAuthorityCommit'}else{'ArmExitAuthorityRebase'}
++ $f=$runtime.Methods|Where-Object Name -eq $exitHostName|Select-Object -First 1
++ $operand=$null;foreach($type in $m.GetTypes()){foreach($method in $type.Methods){if($method.HasBody){$call=$method.Body.Instructions|Where-Object{$_.OpCode.Name -in @('call','callvirt') -and $_.Operand.Name -eq $forbidden}|Select-Object -First 1;if($call){$operand=$call.Operand;break}}};if($operand){break}}
++ if(!$operand){throw "forbidden exit mutation operand absent $forbidden"}
++ $f.Body.Instructions.Insert(0,[dnlib.DotNet.Emit.Instruction]::Create([dnlib.DotNet.Emit.OpCodes]::Call,$operand));$f.Body.KeepOldMaxStack=$true
++ $file=Join-Path $d ('ForbiddenExit-'+$forbidden+'.dll');$m.Write($file);$m.Dispose();$detected=$false
++ try { & (Join-Path $PSScriptRoot 'Test-Ingress.ps1') -Dll $file -Output (Join-Path $d 'exit-result.json') *> (Join-Path $d ('exit-'+$forbidden+'.log')) } catch {$detected=$true}
++ if(!$detected){throw "historical exit relocation not detected $forbidden"}
++ $results+=@{method=$exitHostName;removedCall='forbidden exit operation restored: '+$forbidden;detected=$true}
++}
+ # Reintroducing the forbidden near-successor terminal must fail even though no call was removed.
+ $m=[dnlib.DotNet.ModuleDefMD]::Load((Resolve-Path $Dll).Path)
+ $r=$m.GetTypes()|Where-Object Name -eq 'FollowerTraversalTestRuntime';$f=$r.Methods|Where-Object Name -eq 'UpdateWalkThroughProbe'|Select-Object -First 1
+--- RC148/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC149/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.11+RC148') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.12+RC149') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -399,7 +399,7 @@
+ $f=$gait.Methods|Where-Object Name -eq 'FollowFinalizer'|Select-Object -First 1;Check ((C $f 'CompleteCapabilityGenericFollowHandoff').Count -eq 1) 'native exception rolls back same bounded producer'
+ $f=$gait.Methods|Where-Object Name -eq 'Apply'|Select-Object -First 1;foreach($n in @('FollowPrefix','FollowFinalizer')){Check (@($f.Body.Instructions|Where-Object {$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq $n}).Count -eq 1) ('reviewed PIT build installs '+$n)}
+ $f=M 'TickCapabilityPortalWait';Check ((C $f 'LeftAdmittedIngress').Count -eq 1 -and (C $f 'LeftAdmittedIngress')[0].Offset -lt (C $f 'InWindow')[0].Offset) 'admitted ingress escape cannot silently cancel before failure arbitration'
+-Check ((C $f 'TryRequestCapabilityFullRouteRetry').Count -eq 2) 'queue head escape and measured stall share the existing failure ladder'
++Check ((C $f 'TryRequestCapabilityFullRouteRetry').Count -eq 3) 'queue head escape measured wrong-way motion and stall share existing failure ladder'
+ $f=M 'IsCapabilityJumpTriggerReady';foreach($n in @('IsProbeLifecycleCurrent','TryGetLearnedCommitmentForProbe','UnsafeJumpSpeed','IsLearningV450LiveEftJumpAttemptLegal','IsLearningV449JumpInsidePhysicalTriggerHorizon')){Check ((C $f $n).Count -eq 1) ('last Jump consumer shares actual live physical contract '+$n)}
+ foreach($n in @('IsLearningV411JumpTakeoffModeReady','IsLearningV329JumpTakeoffMomentumReady','SprintFloor')){Check ((C $f $n).Count -eq 0) ('historical preparation cannot veto actual legal Jump '+$n)}
+ $f=M 'IsLearningV450LiveEftJumpAttemptLegal';Check ((C $f 'LiveJumpAttempt').Count -eq 1) 'all existing Jump admission consumers use same tested live policy'
+@@ -487,8 +487,20 @@
+ $f=M 'ShouldSuppressNativeNavMeshBodyRelink';Check ((C $f 'OwnsCapabilityAdmittedIngress').Count -eq 1) 'projection rejection logs exact queue-head scope'
+ $f=M 'ApplyProbeLocomotionIntent';Check ((C $f 'TryGetCapabilityRouteSprint').Count -eq 1 -and (C $f 'TryGetCapabilityRouteSprint')[0].Offset -lt (C $f 'BotMoverSprint')[0].Offset) 'legacy locomotion setter shares physical-input gait decision'
+ $f=M 'TryGetCapabilityRouteSprint';Check ((C $f 'ExecutionGaitPhase').Count -eq 1) 'entry/execution planner never rearms Sprint in egress verify or exit commit'
++# RC149 exit handoff is bookkeeping, never a body relocation or rollback replay.
++$f=M 'ArmExitAuthorityRebase';foreach($n in @('BotMoverTeleport','PlayerTeleport')){Check ((C $f $n).Count -eq 0) ('exit body cannot be restored to historical anchor '+$n)}
++foreach($n in @('TryRetireNativeMoverPathPreserveLocomotion','TryScrubLearningV364NativeMoverEpochAnchor')){Check ((C $f $n).Count -eq 1) ('body-preserving exit bookkeeping '+$n)}
++Check ((C $f 'ShouldPreserveCapabilityProbeGait').Count -eq 2) 'legacy exit speed writes require real qualified gait'
++$f=M 'UpdateExitAuthorityCommit';Check ((C $f 'ArmExitAuthorityRebase').Count -eq 0) 'physical regression fails original handoff instead of retrying historical pose'
++$f=($m.GetTypes()|Where-Object Name -eq 'FollowerControlBackend').Methods|Where-Object Name -eq 'FindSite';foreach($uid in @('R1-EFB80A0B501C','R1-F154F5DE1591')){Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq $uid}).Count -eq 0) ('retired exit body writer absent from catalog '+$uid)}
++$f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'DriveTraversalPoseAcquisition').Count -eq 1 -and (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset -lt (C $f 'DriveTraversalPoseAcquisition')[0].Offset) 'entry turn hold has matching bounded pose consumer after physical input'
++Check (@($f.Body.Instructions|Where-Object{$_.Operand.Name -eq 'PoseExclusiveOrientationAuthority'}).Count -eq 1) 'entry turn completion retains pose consumer until existing orientation authority releases'
++$f=M 'TickCapabilityPortalWait';Check ((C $f 'QueueMovingAway').Count -eq 1) 'owned queue head detects measured wrong-way approach without new watchdog'
++$f=M 'UpdateUnifiedTraversalVerify';Check ((C $f 'TryCorrectCapabilityDropVerify').Count -eq 1) 'stationary dropped-back Verify can request bounded local forward correction'
++$f=M 'TryCorrectCapabilityDropVerify';foreach($n in @('IsProbeLifecycleCurrent','VerifyExitCorrection','TryGetCapabilitySupportedLocalAim','TryCommitV2ProbePhysicalMotion')){Check ((C $f $n).Count -eq 1) ('Verify correction reuses existing current physical input '+$n)}
++foreach($n in @('TraversalVerifyStableSince','StageStartedAt','TraversalVerifyStartedAt','OwnershipLeaseExpiresAt')){Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq $n}).Count -eq 0) ('correction never grants progress or extends proof '+$n)}
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta11 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta12 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}
+ 

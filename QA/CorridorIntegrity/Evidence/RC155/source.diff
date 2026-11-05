@@ -1,0 +1,292 @@
+--- RC154/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC155/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.17+RC154")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.18+RC155")]
+--- RC154/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC155/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 17 loaded: V2-RC154-Beta17");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 18 loaded: V2-RC155-Beta18");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC155/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -783,11 +783,7 @@
+                     // Every returned corner must stay ahead of the current completed physical prefix.
+                     if(path.Corners.Any(c=>Vector3.Dot(GetFlatDelta(body,c),axis)<-.14f))continue;
+                 }
+-                TraversalExperienceRecord record=null;
+-                if(!string.IsNullOrEmpty(e.ExperienceKey))TraversalExperiences.TryGetValue(e.ExperienceKey,out record);
+-                int successes=Math.Max(e.NativeSuccessCount,GetTraversalPhysicalSuccessCount(e));
+-                double score=FollowerCapabilityFailureSequence.Rank(successes,e.FailedExecutions,
+-                    GetTraversalExperienceEffectiveScore(record),GetPlanarDistance(body,a));
++                double score=RankCapabilityLearnedRecovery(e,GetPlanarDistance(body,a));
+                 if(generalized)
+                 {
+                     float height=e.NativeVaultParameters?.VaultingHeight??Mathf.Max(.4f,e.RawEnd.y-e.RawStart.y);
+--- RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityLearningHost.cs
++++ RC155/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityLearningHost.cs
+@@ -0,0 +1,60 @@
++using System;
++using UnityEngine;
++namespace BotTraversal.Core
++{
++    internal static class FollowerCapabilityLearningPolicy
++    {
++        private static bool Finite(double v)=>!double.IsNaN(v)&&!double.IsInfinity(v);
++        internal static double RecoveryRank(int successes,int failures,double legacyScore,bool hasEvidence,int attempts,
++            int persistedSuccesses,int persistedFailures,double recentScore,double distance)
++            => FollowerCapabilityFailureSequence.Rank(hasEvidence?Math.Max(successes,Math.Max(0,persistedSuccesses)):successes,
++                hasEvidence?Math.Max(failures,Math.Max(0,persistedFailures)):failures,
++                hasEvidence&&attempts>0?recentScore:legacyScore,distance);
++        internal static bool FreshDemonstration(bool validated,bool proven,double age,double lifetime)
++            => validated&&!proven&&Finite(age)&&age>=0&&Finite(lifetime)&&lifetime>0&&age<=lifetime;
++        internal static bool CanDiscard(bool historical,int physicalSuccesses,bool referenced,bool fresh)
++            => !historical&&physicalSuccesses==0&&!referenced&&!fresh;
++    }
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        private static double RankCapabilityLearnedRecovery(LearnedTraversalEdge edge,float distance)
++        {
++            TraversalExperienceRecord legacy=null;LearningV322PersistentSkillEvidenceRecord evidence=null;
++            if(!string.IsNullOrWhiteSpace(edge.ExperienceKey))
++            {TraversalExperiences.TryGetValue(edge.ExperienceKey,out legacy);LearningV322SkillEvidence.TryGetValue(edge.ExperienceKey,out evidence);}
++            bool current=evidence!=null&&string.Equals(evidence.Kind,edge.Kind,StringComparison.OrdinalIgnoreCase);
++            return FollowerCapabilityLearningPolicy.RecoveryRank(Math.Max(edge.NativeSuccessCount,GetTraversalPhysicalSuccessCount(edge)),
++                edge.FailedExecutions,GetTraversalExperienceEffectiveScore(legacy),current,evidence?.NativeAttempts??0,
++                evidence?.NativeSuccesses??0,evidence?.NativeFailures??0,evidence?.RecentNativeSuccessScore??.5f,distance);
++        }
++        // Lifetime only. A newly observed route is not cache garbage while the recorder is publishing it.
++        private static bool HasCapabilityFreshTraversalDefinition(LearnedTraversalEdge edge)
++            => edge!=null&&FollowerCapabilityLearningPolicy.FreshDemonstration(edge.PlayerValidated,
++                IsLearningV3NativeProvenEdge(edge),Time.time-edge.CreatedAt,LearningV3UnprovenCandidateTtlSeconds);
++        private static bool CanDiscardCapabilityTraversalEdge(LearnedTraversalEdge edge)
++            => edge!=null&&FollowerCapabilityLearningPolicy.CanDiscard(
++                IsLearningV345ProtectedHistoricalWalkThroughSemantic(edge),GetTraversalPhysicalSuccessCount(edge),
++                false,HasCapabilityFreshTraversalDefinition(edge))&&IsTraversalEdgeActivelyReferenced(edge.Id)==false;
++        private static bool HasCapabilityRecordedEdgeReference(int edgeId)
++        {
++            // A canonical mission can execute a proven parent while still consuming its authored child episode.
++            foreach(var probe in ActiveProbes.Values)
++                if(probe!=null&&probe.FrozenTraversalCommitment?.SkillTemplateEdgeId==edgeId)return true;
++            foreach(var commitment in LearnedTraversalCommitments.Values)
++                if(commitment!=null&&commitment.SkillTemplateEdgeId==edgeId)return true;
++            foreach(var m in FollowerRouteMissions.Values)
++            {
++                if(m==null||m.Lifecycle.Retired||m.LifecycleRaid!=raidGeneration||m.Steps==null)continue;
++                if(m.FailureSequence?.Selected?.SkillTemplateEdgeId==edgeId)return true;
++                for(int i=Math.Max(0,m.CurrentStepIndex);i<m.Steps.Count;i++)
++                {
++                    var step=m.Steps[i];
++                    if(step==null||!step.Lifecycle.DebtOutstanding)continue;
++                    foreach(var episode in TraversalEpisodeStream)
++                        if(episode!=null&&episode.EpisodeId==step.EpisodeId&&episode.ChainId==step.ChainId&&episode.EdgeId==edgeId)return true;
++                }
++            }
++            return false;
++        }
++    }
++}
+--- RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityNativeObstacleHost.cs
++++ RC155/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityNativeObstacleHost.cs
+@@ -1347,7 +1347,7 @@
+ 
+             float elapsed = Time.time - probe.StageStartedAt;
+             float noProgress = Time.time - probe.LearningV32NativeEntryLastProgressAt;
+-            float acquisitionBudget=kindDropDown?FollowerCapabilityFailureSequence.EntryBudget(
++            float acquisitionBudget=(kindDropDown||kindVault||kindClimb)?FollowerCapabilityFailureSequence.EntryBudget(
+                 GetPlanarDistance(probe.LearningV32NativeEntryStartPosition,rawEntry),LearningV32EntryAcquisitionTimeout,.55f,4.25f):LearningV32EntryAcquisitionTimeout;
+             bool acquisitionExpired = FollowerCapabilityDecisionRules.UpdateSharedNativeEntryAcquisition_acquisitionExpired_5(elapsed,acquisitionBudget,noProgress,LearningV32EntryAcquisitionNoProgressTimeout);
+             if (acquisitionExpired)
+--- RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC155/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -14408,6 +14408,10 @@
+                 candidate != null && candidate.Id == episode.EdgeId);
+             if (edge == null)
+             {
++                if(ShouldEmitDiagnostic("capabilityMissingDefinition:"+episode.EpisodeId,null,1f))
++                    WriteEvent("capabilityEpisodeDefinitionUnavailable",null,new{edgeId=episode.EdgeId,episodeId=episode.EpisodeId,
++                        kind=episode.Kind,stage="createMissionStep",reason="recordedEpisodeDefinitionMissing",
++                        age=Time.time-episode.CreatedAt,nativeSuccessRecorded=false});
+                 return null;
+             }
+ 
+@@ -28115,7 +28119,7 @@
+                 }
+             }
+ 
+-            return false;
++            return HasCapabilityRecordedEdgeReference(edgeId);
+         }
+ 
+         private static bool IsLearningV345ProtectedHistoricalWalkThroughSemantic(LearnedTraversalEdge edge)
+@@ -28190,10 +28194,7 @@
+             while (LearnedTraversalEdges.Count > LearnedTraversalEdgeLimit)
+             {
+                 LearnedTraversalEdge candidate = LearnedTraversalEdges
+-                    .Where(edge => edge != null &&
+-                                   !IsLearningV345ProtectedHistoricalWalkThroughSemantic(edge) &&
+-                                   GetTraversalPhysicalSuccessCount(edge) == 0 &&
+-                                   !IsTraversalEdgeActivelyReferenced(edge.Id))
++                    .Where(CanDiscardCapabilityTraversalEdge)
+                     .OrderBy(GetTraversalPruneTier)
+                     .ThenBy(edge =>
+                     {
+@@ -28209,8 +28210,11 @@
+ 
+                 if (candidate == null)
+                 {
+-                    // Every remaining edge is physically proven or currently in use. Allow the
+-                    // database to exceed the soft limit rather than deleting learned knowledge.
++                    // Proven, freshly demonstrated and live-referenced definitions share one soft-limit contract.
++                    if(ShouldEmitDiagnostic("capabilityLearningCapacityDeferred",null,5f))
++                        WriteEvent("capabilityLearningCapacityDeferred",null,new{edges=LearnedTraversalEdges.Count,
++                            softLimit=LearnedTraversalEdgeLimit,reason="allRemainingDefinitionsProtected",
++                            persistentLearningChanged=false,nativeSuccessRecorded=false});
+                     break;
+                 }
+ 
+@@ -28230,7 +28234,7 @@
+                 bool legacyExpiredTransient = !edge.PlayerValidated && !edge.Verified &&
+                     Time.time - edge.CreatedAt > LearnedTraversalEdgeTtlSeconds;
+                 if ((learningV3ExpiredCandidate || legacyExpiredTransient) &&
+-                    GetTraversalPhysicalSuccessCount(edge) == 0 && !IsTraversalEdgeActivelyReferenced(edge.Id))
++                    CanDiscardCapabilityTraversalEdge(edge))
+                 {
+                     RemoveLowValueTraversalEdge(edge, learningV3ExpiredCandidate
+                         ? "learningV3UnprovenCandidateTtl"
+@@ -67749,6 +67753,14 @@
+             }
+ 
+             LearnedTraversalEdge edge = LearnedTraversalEdges.FirstOrDefault(candidate => candidate != null && candidate.Id == edgeId);
++            if(edge==null)
++            {
++                WriteEvent("capabilityEpisodeDefinitionUnavailable",null,new{edgeId,kind,
++                    startBreadcrumbSequence,endBreadcrumbSequence,stage="recordEpisode",reason="edgeMissingBeforeEpisodePublication",
++                    nativeSuccessRecorded=false});
++                return null;
++            }
++
+             int episodeId = preferredEpisodeId > 0 ? preferredEpisodeId : ++traversalEpisodeSequence;
+             traversalEpisodeSequence = Math.Max(traversalEpisodeSequence, episodeId);
+             int chainId = ++traversalChainSequence;
+--- RC154/QA\CorridorIntegrity\Replay\Program.cs
++++ RC155/QA\CorridorIntegrity\Replay\Program.cs
+@@ -789,5 +789,40 @@
+ Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(.40,true)==.40,"bend precision never speeds up a tighter existing envelope");
+ Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(1,false)==1,"straight path retains full requested speed");
+ Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(double.NaN,true).Equals(double.NaN),"invalid speed is not laundered into an executable command");
++// RC155 source lifetime: the 256 proven database may not delete a new demonstration before episode publication.
++foreach(double age in new[]{0d,.001,19.131,43.2,88.21,120})
++{
++ bool fresh=BotTraversal.Core.FollowerCapabilityLearningPolicy.FreshDemonstration(true,false,age,120);
++ Check(fresh,"current observed route retains its existing 120s candidate lifetime "+age);
++ Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(false,0,false,fresh),"soft capacity may not destroy a fresh unbound candidate "+age);
++}
++foreach(double age in new[]{-.001,120.001,double.NaN,double.PositiveInfinity})
++ Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.FreshDemonstration(true,false,age,120),"invalid or expired candidate does not retain capacity "+age);
++Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.FreshDemonstration(false,false,0,120),"unvalidated cache entry gains no player demonstration lease");
++Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.FreshDemonstration(true,true,0,120),"native proof uses original proof protection rather than a candidate lease");
++Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(true,0,false,false),"historical semantics survive capacity");
++Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(false,1,false,false),"physical proof survives capacity");
++Check(!BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(false,0,true,false),"queued authored child or selected template survives TTL while consumed");
++Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(false,0,false,false),"expired unused zero-value cache is still reclaimable");
++foreach(int provenCount in new[]{255,256,257,512})
++{
++ var entries=Enumerable.Repeat((proof:1,fresh:false),provenCount).Append((proof:0,fresh:true)).ToList();
++ var removable=entries.FindIndex(x=>BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(false,x.proof,false,x.fresh));
++ Check(removable==-1,"all-protected soft-limit pool retains just-recorded action even above 256 "+provenCount);
++ entries.Add((0,false));removable=entries.FindIndex(x=>BotTraversal.Core.FollowerCapabilityLearningPolicy.CanDiscard(false,x.proof,false,x.fresh));
++ Check(removable==provenCount+1,"old unbound cache removed instead of recorder's new action "+provenCount);
++}
++Check(BotTraversal.Core.FollowerCapabilityFailureSequence.EntryBudget(2.23444366f,1.1f,.55f,4.25f)==4.25f,"Chris Vault entry keeps finite approach budget instead of two 1.1s expiries");
++Check(BotTraversal.Core.FollowerCapabilityFailureSequence.EntryBudget(0,1.1f,.55f,4.25f)==1.1f,"zero-distance entry gains no blanket timeout extension");
++foreach(float d in new[]{.1f,.55f,1f,10f,100f})
++ Check(BotTraversal.Core.FollowerCapabilityFailureSequence.EntryBudget(d,1.1f,.55f,4.25f)<=4.25f,"finite obstacle ingress maximum retained "+d);
++var learnedGood=BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(2,0,.5,true,119,111,8,.9999999,1);
++var learnedBad=BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(2,0,.5,true,119,2,117,.05,1);
++Check(learnedGood>learnedBad,"current persisted skill evidence affects recovery ordering after reload");
++Check(!double.IsInfinity(learnedBad)&&!double.IsNaN(learnedBad),"historically poor self-rescue stays ranked and executable");
++Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,false,100,0,100,0,1)==BotTraversal.Core.FollowerCapabilityFailureSequence.Rank(3,2,.7,1),"wrong-kind or missing evidence keeps existing local ranking");
++Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,true,5,3,2,.7,1)==BotTraversal.Core.FollowerCapabilityFailureSequence.Rank(3,2,.7,1),"persisted current counters are not added twice");
++Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,true,0,0,0,0,1)==BotTraversal.Core.FollowerCapabilityFailureSequence.Rank(3,2,.7,1),"empty persisted evidence cannot supply an artificial zero evaluation");
++Check(!double.IsNaN(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,true,5,3,2,double.NaN,1)),"corrupt persisted score follows original finite ranking fallback");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta17 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta18 production decision and recorded-order replay checks");
+--- RC154/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC155/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,15 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('PruneLearnedTraversalEdges','CanDiscardCapabilityTraversalEdge'),
++ @('CanDiscardCapabilityTraversalEdge','CanDiscard'),
++ @('CanDiscardCapabilityTraversalEdge','IsTraversalEdgeActivelyReferenced'),
++ @('CanDiscardCapabilityTraversalEdge','HasCapabilityFreshTraversalDefinition'),
++ @('HasCapabilityFreshTraversalDefinition','FreshDemonstration'),
++ @('IsTraversalEdgeActivelyReferenced','HasCapabilityRecordedEdgeReference'),
++ @('TrySelectCapabilitySequenceStrategy','RankCapabilityLearnedRecovery'),
++ @('RankCapabilityLearnedRecovery','RecoveryRank'),
++
+  @('ApplyCollisionActivePhysicalRouteMotion','WalkingTurnSpeed'),
+  @('ApplyCollisionActivePhysicalRouteMotion','NeedsCapabilityWalkThroughPrecision'),
+ 
+--- RC154/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC155/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.17+RC154') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.18+RC155') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -372,7 +372,7 @@
+ $f=M 'CaptureCapabilityNativeJumpEntry';Check ((C $f 'CaptureJumpEntry').Count -eq 1 -and (C $f 'IsProbeLifecycleCurrent').Count -eq 1) 'Jump witness belongs to exact current native Jump'
+ Check (@($f.Body.Instructions|Where-Object {$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'JumpEntryCaptured'}).Count -eq 1) 'accepted shared entry writes actual Jump capture field'
+ $f=M 'TryAdmitCapabilitySequenceProbe';Check ((C $f 'UnownedSequenceProbe').Count -eq 1 -and (C $f 'CanAllocateStrategy').Count -eq 1) 'reserved dispatch requires live transaction and exact selected HOW'
+-$f=M 'TrySelectCapabilitySequenceStrategy';Check ((C $f 'TryObserveCapabilityRescueObstacle').Count -eq 1 -and (C $f 'TryObserveCapabilityRescueObstacle')[0].Offset -lt (C $f 'Rank')[0].Offset) 'live obstacle evidence precedes historical generalized ranking'
++$f=M 'TrySelectCapabilitySequenceStrategy';Check ((C $f 'TryObserveCapabilityRescueObstacle').Count -eq 1 -and (C $f 'TryObserveCapabilityRescueObstacle')[0].Offset -lt (C $f 'RankCapabilityLearnedRecovery')[0].Offset) 'live obstacle evidence precedes historical generalized ranking'
+ $f=M 'TryBeginInjectedNativeVault';Check ((C $f 'TryObserveCapabilityRescueObstacle').Count -eq 1 -and (C $f 'TryObserveCapabilityRescueObstacle')[0].Offset -lt (C $f 'MovementContextPlayerAnimatorSetDoVault')[0].Offset) 'transient obstacle injection revalidates current physical obstacle at final actuator'
+ $f=M 'TryObserveCapabilityRescueObstacle';foreach($n in @('TryGetFirstNonSelfCapsuleCastHit','RescueObstacle')){Check ((C $f $n).Count -eq 1) ('live physical rescue evidence '+$n)}
+ foreach($n in @('TryDriveCapabilityGroundEntryLead','TryAdmitCapabilityHeadWalkThroughEntry','TryDriveCapabilityRecordedEntryConnector')){Check ((C (M $n) 'CanApproachCapabilityUnfinishedWalkEntry').Count -eq 1) ('queue entry cannot rewind current corridor '+$n)}
+@@ -551,12 +551,27 @@
+ $f=M 'TickCapabilityPortalWait';foreach($n in @('portalOwnedByOtherBot','oneSecondCompletionCooldown','nearerEligibleBot','admissionNotGranted')){Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq $n}).Count -eq 1) ('queue diagnostics distinguish actual admission wait '+$n)}
+ $f=M 'FinalizeActiveWalkThroughEpisode';Check ((C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry').Count -eq 2) 'both finalized recorded WT branches publish current physical lane before alias selects old parent geometry'
+ Check ((C $f 'RegisterTraversalEpisodeForEdge')[0].Offset -lt (C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry')[0].Offset -and (C $f 'RegisterTraversalEpisodeForEdge')[-1].Offset -lt (C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry')[-1].Offset) 'current lane binding consumes the actual registered episode identity'
+-$f=($m.GetTypes()|Where-Object Name -eq 'BotTraversalPlugin').Methods|Where-Object Name -eq 'Awake';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'Bot Traversal 0.9.0 Beta 17 loaded: V2-RC154-Beta17'}).Count -eq 1) 'startup human Beta label matches release marker'
++$f=($m.GetTypes()|Where-Object Name -eq 'BotTraversalPlugin').Methods|Where-Object Name -eq 'Awake';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'Bot Traversal 0.9.0 Beta 18 loaded: V2-RC155-Beta18'}).Count -eq 1) 'startup human Beta label matches release marker'
+ $f=M 'TryGetCapabilityRouteSprint';Check ((C $f 'WalkingGaitCorrection').Count -eq 1) 'only entry precision can force Run; in-passage Sprint intent survives bends'
+ $f=M 'TryPublishLearningV414PathlessNativeInputLease';foreach($n in @('WalkingTurnSpeed','NeedsCapabilityWalkThroughPrecision')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -lt (C $f 'TryCommitV2ProbePhysicalMotion')[-1].Offset) ('predictive bend tapers existing native Sprint speed before same bound writer '+$n)}
+ $f=M 'ApplyCollisionActivePhysicalRouteMotion';foreach($n in @('WalkingTurnSpeed','NeedsCapabilityWalkThroughPrecision')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -gt (C $f 'TryGetCapabilityRouteSprint')[0].Offset -and (C $f $n)[0].Offset -lt (C $f 'BotOwnerSetTargetMoveSpeed')[0].Offset) ('central Sprint full-speed restoration cannot overwrite finite WT envelope '+$n)}
++# RC155 live definition / learning ranking / bounded queue-head ingress.
++$f=M 'TrimLearnedTraversalEdgesToLimit';Check (@($f.Body.Instructions|Where-Object{$_.Operand.Name -eq 'CanDiscardCapabilityTraversalEdge'}).Count -eq 1) 'capacity consumes common eligibility including fresh recorder lease'
++$f=M 'PruneLearnedTraversalEdges';Check ((C $f 'CanDiscardCapabilityTraversalEdge').Count -eq 1) 'TTL cannot discard a live alias or recovery template'
++$f=M 'CanDiscardCapabilityTraversalEdge';foreach($n in @('CanDiscard','IsTraversalEdgeActivelyReferenced','HasCapabilityFreshTraversalDefinition')){Check ((C $f $n).Count -eq 1) ('one shared deletion contract '+$n)}
++$f=M 'HasCapabilityFreshTraversalDefinition';foreach($n in @('FreshDemonstration','IsLearningV3NativeProvenEdge')){Check ((C $f $n).Count -eq 1) ('fresh publication retains existing proof semantics '+$n)}
++$f=M 'IsTraversalEdgeActivelyReferenced';Check ((C $f 'HasCapabilityRecordedEdgeReference').Count -eq 1) 'reference lookup includes authored aliases and selected templates'
++$f=M 'HasCapabilityRecordedEdgeReference';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld'}).Count -eq 0) 'alias retention is read-only; creates no registry cursor or ownership clock'
++$f=M 'UpdateSharedNativeEntryAcquisition';Check ((C $f 'EntryBudget').Count -eq 1) 'obstacle entry shares existing bounded distance budget'
++$f=M 'TrySelectCapabilitySequenceStrategy';Check ((C $f 'RankCapabilityLearnedRecovery').Count -eq 1) 'recovery selector consumes current evidence ranking'
++$f=M 'RankCapabilityLearnedRecovery';foreach($n in @('RecoveryRank','GetTraversalPhysicalSuccessCount','GetTraversalExperienceEffectiveScore')){Check ((C $f $n).Count -eq 1) ('existing ranking uses compatible current evidence '+$n)}
++Check (@($f.Body.Instructions|Where-Object{$_.Operand.Name -eq 'LearningV322SkillEvidence'}).Count -eq 1) 'ranking reads current persistent skills rather than only retired experience'
++foreach($n in @('SaveLearningV31NativeProvenStore','SaveLearningV322PersistentSkillEvidenceStore','ShouldSuppressLearningV322PersistentEvidence')){Check ((C $f $n).Count -eq 0) ('selection cannot write proof or silently veto self-rescue '+$n)}
++$f=M 'RegisterTraversalEpisodeForEdge';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'edgeMissingBeforeEpisodePublication'}).Count -eq 1) 'publication rejects orphan definition with explicit reason'
++$f=M 'CreateFollowerRouteMissionStep';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'recordedEpisodeDefinitionMissing'}).Count -eq 1) 'failed mission construction reports actual missing definition'
++$f=M 'CanDiscardCapabilityTraversalEdge';Check ((C $f 'CanDiscard')[0].Offset -lt (C $f 'IsTraversalEdgeActivelyReferenced')[0].Offset) 'protected native and fresh definitions short-circuit before live mission graph lookup'
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta17 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta18 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}
+ 

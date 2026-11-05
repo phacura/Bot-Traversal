@@ -1,0 +1,88 @@
+
+ Ada_Wong 645
+[('capabilityNativeConsumerInputNotPublished', 13), ('learningV377ActiveMoverPhysicalEpochRejected', 10), ('learningV409MeasuredNativeLocomotionProgress', 9), ('learningV430ActiveActuatorDebtRetained', 9), ('learningV419CurrentProbePostActuatorFrontierOwnsRouteProducer', 9), ('learningV377PhysicalRouteRegressionInvalidatedProducer', 6), ('followerSnapshot', 2), ('capabilitySequenceSelectionFailed', 2), ('learningV420CanonicalPhysicalRouteNavMeshRelinkSuppressed', 1), ('learningV453SameChainSuccessorPhysicalProducer', 1)]
+645.105 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -278.9241, 'y': 0.755815744, 'z': -51.30352}}
+645.318 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -278.905823, 'y': 0.523450255, 'z': -51.8776245}}
+645.426 vaultProbeState {'position': {'x': -278.806152, 'y': 0.5293661, 'z': -52.1805725}, 'stage': 'Egress', 'next': 'Sprint'}
+645.533 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -278.560547, 'y': 0.529366, 'z': -52.3534966}}
+645.702 followerSnapshot {'botPosition': {'x': -278.015259, 'y': 0.4727544, 'z': -52.4873924}}
+645.748 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -277.856964, 'y': 0.424965769, 'z': -52.50934}}
+645.962 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -277.0883, 'y': 0.06861895, 'z': -52.57712}}
+646.175 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -276.29715, 'y': -0.120060205, 'z': -52.621418}}
+646.389 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -275.875458, 'y': -0.7332535, 'z': -52.63278}}
+646.592 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -275.2199, 'y': -0.848307848, 'z': -52.66366}}
+646.716 followerSnapshot {'botPosition': {'x': -274.755157, 'y': -0.860386133, 'z': -52.68835}}
+646.793 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -274.461945, 'y': -0.837084055, 'z': -52.70442}}
+
+ Chris_Redfield 319
+[('v2rc52WorldLockedIngressInput', 37), ('learningV409NativeLocomotionIntentPublished', 28), ('capabilityWalkThroughEntryResource', 23), ('learningV409NativeMoverPathRetiredWithoutBrake', 17), ('capabilityNativeInputMaintained', 11), ('v2rc77WTEntryOrientationDeferred', 9), ('vaultProbeState', 7), ('followerSnapshot', 6), ('capabilityNativeConsumerInputNotPublished', 4), ('movementWriterObservedUnscoped', 4)]
+319.002 vaultProbeState {'position': {'x': 472.513336, 'y': 4.219531, 'z': -142.68895}, 'stage': 'Aligning', 'next': 'Run'}
+319.192 capabilityWalkThroughEntryResource {'body': {'x': 472.4246, 'y': 4.219531, 'z': -142.720444}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.5729276, 'safeHeight': True, 'published': True}
+319.444 capabilityWalkThroughEntryResource {'body': {'x': 472.1685, 'y': 4.219531, 'z': -142.769577}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.336627573, 'safeHeight': True, 'published': True}
+319.697 capabilityWalkThroughEntryResource {'body': {'x': 471.917572, 'y': 4.219531, 'z': -142.913422}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.09065504, 'safeHeight': True, 'published': True}
+319.8 followerSnapshot {'botPosition': {'x': 471.8431, 'y': 4.219531, 'z': -143.056946}}
+319.917 vaultProbeState {'position': {'x': 471.744843, 'y': 4.219531, 'z': -143.1655}, 'stage': 'Aligning', 'next': 'Idle'}
+319.947 capabilityWalkThroughEntryResource {'body': {'x': 471.725555, 'y': 4.219531, 'z': -143.194489}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.277169347, 'safeHeight': True, 'published': True}
+320.094 vaultProbeState {'position': {'x': 471.668732, 'y': 4.219531, 'z': -143.289017}, 'stage': 'Aligning', 'next': 'Run'}
+320.198 capabilityWalkThroughEntryResource {'body': {'x': 471.706024, 'y': 4.219531, 'z': -143.2753}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.3499033, 'safeHeight': True, 'published': True}
+320.45 capabilityWalkThroughEntryResource {'body': {'x': 472.08, 'y': 4.219531, 'z': -143.066055}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.165654108, 'safeHeight': True, 'published': True}
+320.701 capabilityWalkThroughEntryResource {'body': {'x': 471.87973, 'y': 4.219531, 'z': -142.8413}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.168953419, 'safeHeight': True, 'published': True}
+320.804 followerSnapshot {'botPosition': {'x': 471.8016, 'y': 4.219531, 'z': -142.9444}}
+320.951 capabilityWalkThroughEntryResource {'body': {'x': 471.904755, 'y': 4.219531, 'z': -143.157532}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.155435, 'safeHeight': True, 'published': True}
+321.202 capabilityWalkThroughEntryResource {'body': {'x': 471.920258, 'y': 4.219531, 'z': -142.883}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.120799683, 'safeHeight': True, 'published': True}
+321.466 capabilityWalkThroughEntryResource {'body': {'x': 471.8115, 'y': 4.219531, 'z': -143.088867}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.143184856, 'safeHeight': True, 'published': True}
+321.717 capabilityWalkThroughEntryResource {'body': {'x': 472.093964, 'y': 4.219531, 'z': -142.936035}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.180550665, 'safeHeight': True, 'published': True}
+321.805 followerSnapshot {'botPosition': {'x': 471.949066, 'y': 4.219531, 'z': -142.917572}}
+321.981 capabilityWalkThroughEntryResource {'body': {'x': 471.744965, 'y': 4.219531, 'z': -143.097183}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.204262227, 'safeHeight': True, 'published': True}
+322.245 capabilityWalkThroughEntryResource {'body': {'x': 472.067474, 'y': 4.219531, 'z': -143.0649}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.153670415, 'safeHeight': True, 'published': True}
+322.508 capabilityWalkThroughEntryResource {'body': {'x': 471.8616, 'y': 4.219531, 'z': -142.907608}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.115922004, 'safeHeight': True, 'published': True}
+322.772 capabilityWalkThroughEntryResource {'body': {'x': 472.041962, 'y': 4.219531, 'z': -143.024933}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.117366686, 'safeHeight': True, 'published': True}
+322.816 followerSnapshot {'botPosition': {'x': 471.9968, 'y': 4.219531, 'z': -142.954376}}
+323.035 capabilityWalkThroughEntryResource {'body': {'x': 471.7109, 'y': 4.219531, 'z': -142.994858}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.215815634, 'safeHeight': True, 'published': True}
+323.3 capabilityWalkThroughEntryResource {'body': {'x': 472.113739, 'y': 4.219531, 'z': -143.0179}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.187737718, 'safeHeight': True, 'published': True}
+323.549 vaultProbeState {'position': {'x': 471.908661, 'y': 4.219531, 'z': -142.88414}, 'stage': 'Aligning', 'next': 'Idle'}
+323.564 capabilityWalkThroughEntryResource {'body': {'x': 471.881744, 'y': 4.219531, 'z': -142.862213}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.148344874, 'safeHeight': True, 'published': True}
+323.725 vaultProbeState {'position': {'x': 471.6771, 'y': 4.219531, 'z': -142.694672}, 'stage': 'Aligning', 'next': 'Run'}
+323.827 capabilityWalkThroughEntryResource {'body': {'x': 471.730621, 'y': 4.219531, 'z': -142.757751}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.314392745, 'safeHeight': True, 'published': True}
+323.827 followerSnapshot {'botPosition': {'x': 471.730621, 'y': 4.219531, 'z': -142.757751}}
+324.091 capabilityWalkThroughEntryResource {'body': {'x': 472.03537, 'y': 4.219531, 'z': -143.187225}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.213423744, 'safeHeight': True, 'published': True}
+324.354 capabilityWalkThroughEntryResource {'body': {'x': 471.870941, 'y': 4.219531, 'z': -142.91983}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.10057012, 'safeHeight': True, 'published': True}
+324.471 vaultProbeState {'position': {'x': 471.678253, 'y': 4.219531, 'z': -142.861237}, 'stage': 'Aligning', 'next': 'Idle'}
+324.618 capabilityWalkThroughEntryResource {'body': {'x': 471.514984, 'y': 4.219531, 'z': -142.809937}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.454862028, 'safeHeight': True, 'published': True}
+324.648 vaultProbeState {'position': {'x': 471.5007, 'y': 4.219531, 'z': -142.805267}, 'stage': 'Aligning', 'next': 'Run'}
+324.839 followerSnapshot {'botPosition': {'x': 471.617157, 'y': 4.219531, 'z': -142.94838}}
+324.868 capabilityWalkThroughEntryResource {'body': {'x': 471.658478, 'y': 4.219531, 'z': -142.990372}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.268394142, 'safeHeight': True, 'published': True}
+
+ Ada_Wong 327
+[('v2rc52WorldLockedIngressInput', 34), ('learningV409NativeLocomotionIntentPublished', 26), ('capabilityWalkThroughEntryResource', 20), ('learningV409NativeMoverPathRetiredWithoutBrake', 15), ('capabilityNativeInputMaintained', 10), ('v2rc77WTEntryOrientationDeferred', 8), ('vaultProbeState', 6), ('followerSnapshot', 5), ('movementWriterObservedUnscoped', 4), ('capabilityNativeConsumerInputNotPublished', 2)]
+327.258 capabilityWalkThroughEntryResource {'body': {'x': 472.0145, 'y': 4.22021055, 'z': -142.845413}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.181020856, 'safeHeight': True, 'published': True}
+327.521 capabilityWalkThroughEntryResource {'body': {'x': 471.78183, 'y': 4.22021055, 'z': -143.181091}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.228985146, 'safeHeight': True, 'published': True}
+327.55 vaultProbeState {'position': {'x': 471.7534, 'y': 4.22021055, 'z': -143.207489}, 'stage': 'Aligning', 'next': 'Idle'}
+327.724 vaultProbeState {'position': {'x': 471.637543, 'y': 4.22021055, 'z': -143.318954}, 'stage': 'Aligning', 'next': 'Run'}
+327.784 capabilityWalkThroughEntryResource {'body': {'x': 471.650116, 'y': 4.22021055, 'z': -143.318161}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.418737769, 'safeHeight': True, 'published': True}
+327.856 followerSnapshot {'botPosition': {'x': 471.713226, 'y': 4.22021055, 'z': -143.3013}}
+328.046 capabilityWalkThroughEntryResource {'body': {'x': 472.020721, 'y': 4.22021055, 'z': -143.105911}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.1390341, 'safeHeight': True, 'published': True}
+328.309 capabilityWalkThroughEntryResource {'body': {'x': 471.929, 'y': 4.22021055, 'z': -142.865158}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.138495028, 'safeHeight': True, 'published': True}
+328.572 capabilityWalkThroughEntryResource {'body': {'x': 471.948822, 'y': 4.22021055, 'z': -143.176422}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.174220741, 'safeHeight': True, 'published': True}
+328.836 capabilityWalkThroughEntryResource {'body': {'x': 471.8586, 'y': 4.22021055, 'z': -142.786484}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.227525726, 'safeHeight': True, 'published': True}
+328.865 followerSnapshot {'botPosition': {'x': 471.8259, 'y': 4.22021055, 'z': -142.802246}}
+329.088 capabilityWalkThroughEntryResource {'body': {'x': 471.914948, 'y': 4.22021055, 'z': -143.173935}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.170697719, 'safeHeight': True, 'published': True}
+329.351 capabilityWalkThroughEntryResource {'body': {'x': 471.931854, 'y': 4.22021055, 'z': -142.903488}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.100284114, 'safeHeight': True, 'published': True}
+329.613 capabilityWalkThroughEntryResource {'body': {'x': 471.972382, 'y': 4.22021055, 'z': -143.100357}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.107036829, 'safeHeight': True, 'published': True}
+329.877 capabilityWalkThroughEntryResource {'body': {'x': 471.972626, 'y': 4.22021055, 'z': -142.781189}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.227165639, 'safeHeight': True, 'published': True}
+329.877 followerSnapshot {'botPosition': {'x': 471.972626, 'y': 4.22021055, 'z': -142.781189}}
+330.139 capabilityWalkThroughEntryResource {'body': {'x': 471.8638, 'y': 4.22021055, 'z': -143.209656}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.215366632, 'safeHeight': True, 'published': True}
+330.402 capabilityWalkThroughEntryResource {'body': {'x': 472.0085, 'y': 4.22021055, 'z': -142.865662}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.1604831, 'safeHeight': True, 'published': True}
+330.664 capabilityWalkThroughEntryResource {'body': {'x': 471.888458, 'y': 4.22021055, 'z': -143.125412}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.127597034, 'safeHeight': True, 'published': True}
+330.882 followerSnapshot {'botPosition': {'x': 472.089142, 'y': 4.22021055, 'z': -143.039047}}
+330.925 capabilityWalkThroughEntryResource {'body': {'x': 472.058563, 'y': 4.22021055, 'z': -142.969238}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.13642554, 'safeHeight': True, 'published': True}
+331.085 vaultProbeState {'position': {'x': 471.868256, 'y': 4.22021055, 'z': -142.844162}, 'stage': 'Aligning', 'next': 'Idle'}
+331.187 capabilityWalkThroughEntryResource {'body': {'x': 471.753265, 'y': 4.22021055, 'z': -142.924316}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.190568745, 'safeHeight': True, 'published': True}
+331.259 vaultProbeState {'position': {'x': 471.713165, 'y': 4.22021055, 'z': -142.975952}, 'stage': 'Aligning', 'next': 'Run'}
+331.449 capabilityWalkThroughEntryResource {'body': {'x': 471.9404, 'y': 4.22021055, 'z': -143.037582}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.03666903, 'safeHeight': True, 'published': False}
+331.594 vaultProbeState {'position': {'x': 472.250824, 'y': 4.22021055, 'z': -143.106277}, 'stage': 'Aligning', 'next': 'Idle'}
+331.71 capabilityWalkThroughEntryResource {'body': {'x': 472.438141, 'y': 4.22021055, 'z': -143.192734}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.545427144, 'safeHeight': True, 'published': True}
+331.768 vaultProbeState {'position': {'x': 472.480927, 'y': 4.22021055, 'z': -143.219467}, 'stage': 'Aligning', 'next': 'Run'}
+331.884 followerSnapshot {'botPosition': {'x': 472.404633, 'y': 4.22021055, 'z': -143.141815}}
+331.972 capabilityWalkThroughEntryResource {'body': {'x': 472.285126, 'y': 4.22021055, 'z': -143.0082}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.35861057, 'safeHeight': True, 'published': True}
+332.234 capabilityWalkThroughEntryResource {'body': {'x': 471.8353, 'y': 4.22021055, 'z': -142.875763}, 'entry': {'x': 471.926544, 'y': 4.21953535, 'z': -143.003632}, 'distance': 0.157087579, 'safeHeight': True, 'published': True}

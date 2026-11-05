@@ -1,0 +1,29 @@
+capabilityFailureSequenceAdvanced 38 {'ReturnToEntry': 16, 'Alternate': 9, 'RecoveryTeleport': 13}
+capabilityTeleportRouteWorkCleared 68 {'manualRegroup': 40, 'capabilityFailureSequenceExhausted': 28}
+learningV347TraversalOpportunityNoStart 752 {'stepCreationRejected': 42, 'redundantWithEquivalentRouteStep': 710}
+capabilitySequenceReturnFailed 1 {'returnNoProgress': 1}
+capabilityFullRouteReplayStarted 15 {'': 15}
+capabilitySequenceRecoveryTeleportBlocked 0 {}
+attempts 110 summaries 110
+all fails
+194.019 Ghost Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+194.184 Ghost Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+200.614 Chris_Redfield Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+200.786 Chris_Redfield Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+207.309 Ada_Wong Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+207.48 Ada_Wong Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+213.724 Knight Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+213.883 Knight Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+233.715 Knight Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+233.832 Knight Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+239.75 Ada_Wong Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+239.838 Ada_Wong Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+246.14 Chris_Redfield Jump 0 121 implicitUnregister:forceRelease:sequenceAttemptFailed:jumpFinalConsumer:nativeStateOrMomentum
+246.296 Chris_Redfield Vault 155 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+253.0 Ghost Vault 147 121 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+557.231 Chris_Redfield WalkThrough 0 180 implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:ownershipLeaseExpired:moving:0.50mps
+562.522 Knight WalkThrough 0 180 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+565.682 Chris_Redfield WalkThrough 0 180 implicitUnregister:forceRelease:sequenceAttemptFailed:exitRecoveryRequested:ownershipLeaseHardStuck:routeNoDirectionalProgress:5.72s:speed=1.19
+629.358 Ghost Climb 18 117 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+633.126 Chris_Redfield Climb 18 117 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+636.226 Knight Climb 18 117 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle

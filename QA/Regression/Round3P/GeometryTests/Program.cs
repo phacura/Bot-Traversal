@@ -1,0 +1,42 @@
+using System.Text.Json;
+using P=BotTraversal.Core.FollowerCapabilityIngressGeometryPolicy;
+var checks=new List<string>();void Check(bool ok,string label){if(!ok)throw new Exception("FAIL "+label);checks.Add(label);}
+Check(P.KeepPublished(true,true,true,2.334f),"recorded M36 published WT keeps first full approach instead of a late .59m tail");
+Check(!P.KeepPublished(false,true,true,2.334f),"first valid observed geometry can initialize a published unbound episode");
+Check(!P.KeepPublished(true,false,true,2.334f),"unpublished observations still enrich before route publication");
+Check(!P.KeepPublished(true,true,false,2.334f),"invalid old geometry cannot block a valid observation");
+Check(!P.KeepPublished(true,true,true,.05f),"degenerate old geometry is not locked");
+bool Refresh(float span=2.334f,float start=0,float end=2.334f,float alignment=1,float side=0,float height=0)=>P.AcceptRefresh(true,span,start,end,alignment,side,.55f,height,.65f,.02f);
+Check(!Refresh(start:1.745f,end:2.334f),"recorded first WT tail cannot advance original entry by1.74m");
+Check(!Refresh(start:2.334f,end:2.720f),"recorded first WT second tail cannot translate the whole action forward");
+Check(Refresh(),"same full envelope can be refreshed without drift");
+Check(Refresh(start:-.20f,end:2.334f),"earlier measured prefix may extend a complete published envelope");
+Check(Refresh(start:0,end:2.50f),"complete forward extension retains the original entry");
+Check(!Refresh(end:2.20f),"a shorter exit cannot contract the old crossing");
+Check(!Refresh(alignment:-1),"reverse traversal cannot replace same directed geometry");
+Check(!Refresh(alignment:.849f),"incompatible observation direction is rejected");
+Check(!Refresh(side:.551f),"remote parallel corridor cannot replace published geometry");
+Check(!Refresh(height:.651f),"other vertical layer cannot replace published geometry");
+Check(P.AcceptRefresh(false,0,0,1,1,0,.55f,0,.65f,.02f),"uninitialized Step may bind resolved current episode geometry");
+bool Target(bool current=true,float distance=.7984591f,float forward=.046671968f,float side=.797093868f,float stop=.275f)=>P.PhysicalTarget(current,distance,2.5f,forward,.1f,side,stop);
+Check(Target(),"recorded first Climb permits a bounded physical corridor query at .798m and .797m lateral");
+Check(!Target(current:false),"missing current-raid authority cannot request physical fallback");
+Check(!Target(distance:2.501f),"remote Climb cannot bypass far route planning");
+Check(!Target(forward:.101f),"past-frontier body cannot borrow physical fallback to rewind");
+Check(!Target(side:-.01f),"invalid lateral observation is rejected");
+Check(!Target(distance:.30f),"already near target cannot publish another redundant correction");
+Check(!Target(stop:0),"invalid native margin cannot manufacture a physical target");
+Check(Target(distance:1.528392f,forward:.09582584f,side:1.525385f),"recorded initial Climb stays within original early-walk envelope");
+foreach(float bad in new[]{float.NaN,float.PositiveInfinity,float.NegativeInfinity}){
+ Check(!P.KeepPublished(true,true,true,bad),"invalid published span "+bad);
+ Check(!Refresh(start:bad),"invalid replacement start "+bad);
+ Check(!Refresh(end:bad),"invalid replacement end "+bad);
+ Check(!Refresh(alignment:bad),"invalid replacement alignment "+bad);
+ Check(!Refresh(side:bad),"invalid replacement lateral "+bad);
+ Check(!Refresh(height:bad),"invalid replacement height "+bad);
+ Check(!Target(distance:bad),"invalid physical body distance "+bad);
+ Check(!Target(forward:bad),"invalid physical body projection "+bad);
+ Check(!Target(side:bad),"invalid physical lateral "+bad);
+ Check(!Target(stop:bad),"invalid physical margin "+bad);
+}
+File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=checks.Count,cases=checks,physicsSimulated=false},new JsonSerializerOptions{WriteIndented=true}));Console.WriteLine($"PASS {checks.Count} compiled published geometry and physical ingress checks");

@@ -1,0 +1,48 @@
+using System.Text.Json;
+using P=BotTraversal.Core.FollowerCapabilityClimbIngressPolicy;
+var checks=new List<string>();void Check(bool ok,string label){if(!ok)throw new Exception("FAIL "+label);checks.Add(label);}
+bool Capture(bool current=true,bool grounded=true,float height=0,float distance=.52f,float maximumDistance=5.5f,float forward=-.208f,float maximumForward=.1f,float lateral=.478f,float maximumLateral=2.25f)=>P.Capture(current,grounded,height,distance,maximumDistance,forward,maximumForward,lateral,maximumLateral);
+Check(Capture(),"recorded first Climb is a bounded current ingress, not a native success");
+Check(Capture(distance:3.16f,forward:-2.8f,lateral:1.4f),"fresh reverse Climb can select current local ingress instead of old prefix");
+Check(!Capture(current:false),"stale mission cannot acquire Climb consumer");
+Check(!Capture(grounded:false),"airborne actor cannot acquire pre-native Climb");
+Check(!Capture(height:.401f),"other vertical level cannot borrow Climb ingress");
+Check(!Capture(distance:5.501f),"remote actor retains existing far route");
+Check(!Capture(forward:.101f),"past-entry actor cannot be rewound by ingress");
+Check(!Capture(lateral:2.251f),"lateral range remains bounded by existing early walk envelope");
+Check(P.Pose(true,true,true,true,97.7667f,12,true,false,false,.52f),"first recorded Sprint and severe heading must settle before motion");
+Check(P.Pose(false,false,false,true,70.6458f,12,false,false,false,.88f),"owned Climb cannot resume staging-facing translation outside old narrow window");
+Check(P.Pose(false,false,false,true,12.001f,12,false,false,false,.8f),"owned axis heading uses original admission angle");
+Check(!P.Pose(false,false,false,true,12,12,false,false,false,.8f),"aligned owned Climb can walk at exact heading boundary");
+Check(P.Pose(false,false,false,true,0,12,false,true,false,.8f),"actual Transition continues original pose neutralization");
+Check(P.Pose(false,false,false,true,0,12,false,false,true,.8f),"measured reverse input still requests pose");
+Check(P.Pose(false,false,false,true,0,12,false,false,false,0),"blocked/no-target choice clears intent rather than silently retaining old input");
+Check(!P.Pose(false,false,false,false,20,12,false,false,false,.8f),"unowned legacy staging retains its original permissive branch");
+Check(P.Target(true,true,.5f,.6f,.1f,0,.1f),"same-side short strict target may supply current Climb input");
+Check(!P.Target(false,true,.5f,.5f,0,0,.1f),"wall raycast blocks direct correction");
+Check(!P.Target(true,false,.5f,.5f,0,0,.1f),"partial NavMesh path cannot authorize correction");
+Check(!P.Target(true,true,.5f,.726f,0,0,.1f),"winding route cannot become direct actor input");
+Check(!P.Target(true,true,.5f,.5f,.401f,0,.1f),"upper/lower navigation projection cannot borrow Climb target");
+Check(!P.Target(true,true,.5f,.5f,0,.101f,.1f),"target cannot push beyond original admission plane");
+Check(P.Resume(true,true,true,false,false,0,12),"owned aligned Idle Climb can request existing native Run consumer");
+Check(!P.Resume(false,true,true,false,false,0,12),"stale Climb cannot request native Run");
+Check(!P.Resume(true,false,true,false,false,0,12),"ordinary unowned route cannot borrow Climb resume");
+Check(!P.Resume(true,true,false,false,false,0,12),"Transition cannot be forced into Run by Climb resume");
+Check(!P.Resume(true,true,true,true,false,0,12),"native Sprint must settle before Climb resume");
+Check(!P.Resume(true,true,true,false,true,0,12),"admissible actor yields to original Native Climb instead of extra walking");
+Check(!P.Resume(true,true,true,false,false,70,12),"wrong-facing Climb cannot resume translation");
+Check(P.KeepInput(true,true,true,.015f,.016f),"fresh manual input survives Idle cleanup while native Run is pending");
+Check(!P.KeepInput(true,true,true,.329f,.016f),"recorded old .329s input is not preserved indefinitely");
+Check(!P.KeepInput(false,true,true,.015f,.016f),"stale step cannot suppress idle cleanup");
+Check(!P.KeepInput(true,false,true,.015f,.016f),"unowned input cannot suppress idle cleanup");
+Check(!P.KeepInput(true,true,false,.015f,.016f),"pose-only zero input cannot suppress idle cleanup");
+Check(!P.KeepInput(true,true,true,-.01f,.016f),"future timestamp cannot manufacture fresh input");
+foreach(float bad in new[]{float.NaN,float.PositiveInfinity,float.NegativeInfinity}){
+ Check(!Capture(distance:bad),"invalid body distance rejected "+bad);
+ Check(!Capture(forward:bad),"invalid body projection rejected "+bad);
+ Check(!Capture(lateral:bad),"invalid lateral observation rejected "+bad);
+ Check(!P.Target(true,true,.5f,bad,0,0,.1f),"invalid strict path length rejected "+bad);
+ Check(!P.Resume(true,true,true,false,false,bad,12),"invalid heading cannot resume native motion "+bad);
+ Check(!P.KeepInput(true,true,true,bad,.016f),"invalid clock sample cannot preserve input "+bad);
+}
+File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=checks.Count,cases=checks,physicsSimulated=false},new JsonSerializerOptions{WriteIndented=true}));Console.WriteLine($"PASS {checks.Count} compiled Climb ingress and input ownership checks");

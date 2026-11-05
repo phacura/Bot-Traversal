@@ -1,0 +1,122 @@
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  BotTraversal -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\BotTraversal-0.9.0-BETA-SOURCE\bin\Release\net472\BotTraversal.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:00.80
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  LifecycleTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round2\LifecycleTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  CapabilityTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3\CapabilityTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  PhaseTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3C\PhaseTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  MotionTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3D\MotionTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ActuationTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3E\ActuationTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  HelperTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3F\HelperTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  FrameTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3H\FrameTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  AdjacentTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3I\AdjacentTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  FrontierTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3J\FrontierTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  PreparationTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3K\PreparationTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  DropDownTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3L\DropDownTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  CapabilityTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3M\CapabilityTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  RecoveryTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3N\RecoveryTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ClimbTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3O\ClimbTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  GeometryTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3P\GeometryTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ContinuityTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3Q\ContinuityTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  HandoffTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Regression\Round3R\HandoffTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Continuity\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\RouteRegression\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round3Y\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round3Z\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Oracle -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round4B\Oracle\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ScopeAudit -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round4B\ScopeAudit\bin\Release\net10.0\ScopeAudit.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Fingerprint -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round4B\Fingerprint\bin\Release\net10.0\Fingerprint.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round4C\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Compatibility -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\Round4C\Compatibility\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+PASS 124 compiled lifecycle state-transition checks; 3 permanent chain fixtures
+PASS 99 compiled capability/retry/chain checks
+PASS 63 compiled phase/rule/covered-successor checks
+PASS 48 compiled motion delivery/lifetime/typed-ack checks
+PASS 72 compiled actuation/heading/native-probe checks
+PASS 67 compiled seven-capability helper regression checks
+PASS 79 compiled probe-frame order/preemption/reentry checks
+PASS 47 compiled adjacent landing envelope checks
+PASS 51 compiled native frontier and preparation-frame checks
+PASS 32 compiled preparation and epoch-continuity checks
+PASS 47 compiled dropdown transition checks
+PASS 63 compiled capability failure and approach checks
+PASS 55 compiled native recovery decision and sequence checks
+PASS 53 compiled Climb ingress and input ownership checks
+PASS 54 compiled published geometry and physical ingress checks
+PASS 110 compiled chain continuity and boundary checks
+PASS 109 compiled planar and terminal handoff checks
+PASS 63 candidate DLL native-consumer and Follow gait checks
+PASS 162 candidate route continuation checks
+PASS 68 candidate Follow/recovery checks (1024 ownership combinations)
+PASS 405 cross-capability checks
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Replay -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc154-beta17\QA\CorridorIntegrity\Replay\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:00.82
+PASS 6966 0.9.0 Beta17 production decision and recorded-order replay checks
+PASS 763 0.9.0 Beta17 actual DLL sequence checks
+PASS actual SPT4.0.13 avoidance IL transformed by actual plugin; six invariants; no game method executed
+PASS 503 IL omission faults detected
+Fingerprint 25732 methods 19756 fields 921 catalog sites

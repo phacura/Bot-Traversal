@@ -1,0 +1,61 @@
+
+FILE 20261105-205817-730-bigmap-g2.jsonl
+FIRST [('diagnosticStart', "{'reason': 'raidAuto', 'sessionId': '20261105-205817-730-bigmap-g2', 'locationId': 'bigmap', 'raidGeneration': 2, 'snapshotInterval': 1.0}"), ('playerBreadcrumb', "{'breadcrumbSequence': 1, 'profileId': '6a56228fc9282a1efce19538', 'position': {'x': 569.159546, 'y': -0.320549, 'z': -14.0379057}, 'direction': {'x': -0.999992669, 'y': 0.0, 'z': 0.00381606771}, 'state': 'Idle', 'sprinting': False, 'grounded': True, 'pose': 1.0, 'navMesh': {'sampled': True, 'radius': 0.5, 'position': {'x': 569.159546, 'y': -0.21313931, 'z': -14.0379057}, 'offset': 0.1074097, 'verticalOffset': 0.1074097}}")]
+capabilityAutomaticProbeAdmissionBlocked 0 []
+followTraversalProbeStartRejected 0 []
+learningV347TraversalOpportunityNoStart 164 [(None, 164)]
+sample {'missionId': 0, 'stepIndex': -1, 'episodeId': 32, 'edgeId': 272, 'chainId': 31, 'kind': 'DropDown', 'startBreadcrumbSequence': 1545, 'endBreadcrumbSequence': 1547, 'approachBreadcrumbSequence': 0, 'chainLocalExecutable': False, 'currentRaidRouteAuthority': True, 'body': {'x': 0.7628174, 'y': -1.81027079, 'z': 5.883011}, 'entry': {'x': -5.803662, 'y': 0.6911007, 'z': 10.2216063}, 'exit': {'x': -4.994681, 'y': -0.495188355, 'z': 9.711852}, 'entryDistance': 7.870328, 'exitDistance': 6.91439152, 'lastValidStage': 'routeMissionArm', 'rejectionReason': 'stepCreationRejected', 'missingEvent': 'TraversalAttemptStarted'}
+capabilityNativeConsumerInputNotPublished 417 [(None, 417)]
+sample {'edgeId': 27, 'phase': 'Landing', 'state': 'Run', 'grounded': False, 'input': {'x': -0.9452265, 'y': 0.326415151}, 'nativeDirection': {'x': 0.0, 'y': 0.0}, 'nativeSuccessRecorded': False}
+capabilityCompletedFollowYielded 563 [(None, 563)]
+sample {'nativeFormationOwnsTarget': True, 'newPathIssued': False, 'nativeSuccessRecorded': False}
+
+FILE 20261105-211341-278-bigmap-g5.jsonl
+FIRST [('diagnosticStart', "{'reason': 'raidAuto', 'sessionId': '20261105-211341-278-bigmap-g5', 'locationId': 'bigmap', 'raidGeneration': 5, 'snapshotInterval': 1.0}"), ('playerBreadcrumb', "{'breadcrumbSequence': 1, 'profileId': '6a56228fc9282a1efce19538', 'position': {'x': -133.622467, 'y': 0.449957639, 'z': 15.902998}, 'direction': {'x': 0.9968664, 'y': 0.0, 'z': 0.0791037157}, 'state': 'Idle', 'sprinting': False, 'grounded': True, 'pose': 1.0, 'navMesh': {'sampled': True, 'radius': 0.5, 'position': {'x': -133.622467, 'y': 0.536013067, 'z': 15.902998}, 'offset': 0.08605543, 'verticalOffset': 0.08605543}}")]
+capabilityAutomaticProbeAdmissionBlocked 41 [(None, 41)]
+sample {'requestSource': 'learnedTraversalCommitment', 'learnedEdgeId': 14, 'requestedTraversalKind': 'Climb', 'message': 'automaticProbeRequiresRecordedCommitment', 'nativeSuccessRecorded': False}
+followTraversalProbeStartRejected 41 [('automaticProbeRequiresRecordedCommitment', 41)]
+sample {'edgeId': 14, 'episodeId': 0, 'chainId': 0, 'kind': 'Climb', 'entryDistance': 1.61972141, 'exitDistance': 2.42500186, 'reason': 'automaticProbeRequiresRecordedCommitment', 'routeMissionId': 0, 'routeMissionStepIndex': 0, 'state': 'Run', 'haveEnemy': False, 'underFire': False, 'activeCommand': 'None', 'nearEntryWatchdog': False}
+learningV347TraversalOpportunityNoStart 454 [(None, 454)]
+sample {'missionId': 0, 'stepIndex': -1, 'episodeId': 16, 'edgeId': 269, 'chainId': 15, 'kind': 'DropDown', 'startBreadcrumbSequence': 688, 'endBreadcrumbSequence': 690, 'approachBreadcrumbSequence': 0, 'chainLocalExecutable': False, 'currentRaidRouteAuthority': True, 'body': {'x': -1.05371094, 'y': -1.43984222, 'z': 8.161133}, 'entry': {'x': -6.50702858, 'y': 0.6829623, 'z': 9.169545}, 'exit': {'x': -7.448366, 'y': -0.4244409, 'z': 9.773494}, 'entryDistance': 5.54577, 'exitDistance': 6.594795, 'lastValidStage': 'routeMissionArm', 'rejectionReason': 'stepCreationRejected', 'missingEvent': 'TraversalAttemptStarted'}
+capabilityNativeConsumerInputNotPublished 30 [(None, 30)]
+sample {'edgeId': 256, 'phase': 'ExitCommit', 'state': 'Run', 'grounded': True, 'input': {'x': 0.90963763, 'y': 0.415402681}, 'nativeDirection': {'x': 0.90963763, 'y': 0.415402681}, 'nativeSuccessRecorded': False}
+capabilityCompletedFollowYielded 72 [(None, 72)]
+sample {'nativeFormationOwnsTarget': True, 'newPathIssued': False, 'nativeSuccessRecorded': False}
+
+FILE 20261105-211709-270-bigmap-g8.jsonl
+FIRST [('diagnosticStart', "{'reason': 'raidAuto', 'sessionId': '20261105-211709-270-bigmap-g8', 'locationId': 'bigmap', 'raidGeneration': 8, 'snapshotInterval': 1.0}"), ('playerBreadcrumb', "{'breadcrumbSequence': 1, 'profileId': '6a56228fc9282a1efce19538', 'position': {'x': -14.3272514, 'y': -0.216112375, 'z': 16.3734684}, 'direction': {'x': 0.5602562, 'y': 0.0, 'z': -0.82831943}, 'state': 'Idle', 'sprinting': False, 'grounded': True, 'pose': 1.0, 'navMesh': {'sampled': True, 'radius': 0.5, 'position': {'x': -14.3272514, 'y': -0.189207718, 'z': 16.3734684}, 'offset': 0.0269046575, 'verticalOffset': 0.0269046575}}")]
+capabilityAutomaticProbeAdmissionBlocked 53 [(None, 53)]
+sample {'requestSource': 'learnedTraversalCommitment', 'learnedEdgeId': 14, 'requestedTraversalKind': 'Climb', 'message': 'automaticProbeRequiresRecordedCommitment', 'nativeSuccessRecorded': False}
+followTraversalProbeStartRejected 53 [('automaticProbeRequiresRecordedCommitment', 53)]
+sample {'edgeId': 14, 'episodeId': 0, 'chainId': 0, 'kind': 'Climb', 'entryDistance': 1.25984013, 'exitDistance': 1.67135286, 'reason': 'automaticProbeRequiresRecordedCommitment', 'routeMissionId': 0, 'routeMissionStepIndex': 0, 'state': 'Idle', 'haveEnemy': False, 'underFire': False, 'activeCommand': 'None', 'nearEntryWatchdog': False}
+learningV347TraversalOpportunityNoStart 29 [(None, 29)]
+sample {'missionId': 0, 'stepIndex': -1, 'episodeId': 2, 'edgeId': 258, 'chainId': 1, 'kind': 'DropDown', 'startBreadcrumbSequence': 40, 'endBreadcrumbSequence': 43, 'approachBreadcrumbSequence': 0, 'chainLocalExecutable': False, 'currentRaidRouteAuthority': True, 'body': {'x': 2.65240479, 'y': -0.603775, 'z': 22.3304138}, 'entry': {'x': -6.54086637, 'y': 0.710202932, 'z': 9.22317}, 'exit': {'x': -5.51073, 'y': -0.498785019, 'z': 8.479775}, 'entryDistance': 16.0098743, 'exitDistance': 16.077219, 'lastValidStage': 'routeMissionArm', 'rejectionReason': 'stepCreationRejected', 'missingEvent': 'TraversalAttemptStarted'}
+capabilityNativeConsumerInputNotPublished 0 []
+capabilityCompletedFollowYielded 0 []
+
+FILE 20261105-212519-858-bigmap-g2.jsonl
+FIRST [('diagnosticStart', "{'reason': 'raidAuto', 'sessionId': '20261105-212519-858-bigmap-g2', 'locationId': 'bigmap', 'raidGeneration': 2, 'snapshotInterval': 1.0}"), ('playerBreadcrumb', "{'breadcrumbSequence': 1, 'profileId': '6a56228fc9282a1efce19538', 'position': {'x': 569.077148, 'y': -0.7200068, 'z': -5.313258}, 'direction': {'x': -0.999992669, 'y': 0.0, 'z': 0.00381606771}, 'state': 'Idle', 'sprinting': False, 'grounded': True, 'pose': 1.0, 'navMesh': {'sampled': True, 'radius': 0.5, 'position': {'x': 569.077148, 'y': -0.627985239, 'z': -5.313258}, 'offset': 0.0920215845, 'verticalOffset': 0.0920215845}}")]
+capabilityAutomaticProbeAdmissionBlocked 104 [(None, 104)]
+sample {'requestSource': 'learnedTraversalCommitment', 'learnedEdgeId': 173, 'requestedTraversalKind': 'Vault', 'message': 'automaticProbeRequiresRecordedCommitment', 'nativeSuccessRecorded': False}
+followTraversalProbeStartRejected 104 [('automaticProbeRequiresRecordedCommitment', 104)]
+sample {'edgeId': 173, 'episodeId': 0, 'chainId': 0, 'kind': 'Vault', 'entryDistance': 0.163747162, 'exitDistance': 1.45603406, 'reason': 'automaticProbeRequiresRecordedCommitment', 'routeMissionId': 0, 'routeMissionStepIndex': 0, 'state': 'Idle', 'haveEnemy': False, 'underFire': False, 'activeCommand': 'None', 'nearEntryWatchdog': False}
+learningV347TraversalOpportunityNoStart 526 [(None, 526)]
+sample {'missionId': 0, 'stepIndex': -1, 'episodeId': 11, 'edgeId': 262, 'chainId': 7, 'kind': 'Vault', 'startBreadcrumbSequence': 397, 'endBreadcrumbSequence': 405, 'approachBreadcrumbSequence': 0, 'chainLocalExecutable': False, 'currentRaidRouteAuthority': True, 'body': {'x': 465.987122, 'y': 6.23242664, 'z': -141.473953}, 'entry': {'x': 466.264374, 'y': 5.947106, 'z': -142.191589}, 'exit': {'x': 463.6587, 'y': 4.21953154, 'z': -141.779755}, 'entryDistance': 0.7693311, 'exitDistance': 2.34842539, 'lastValidStage': 'routeMissionArm', 'rejectionReason': 'stepCreationRejected', 'missingEvent': 'TraversalAttemptStarted'}
+capabilityNativeConsumerInputNotPublished 3 [(None, 3)]
+sample {'edgeId': 242, 'phase': 'Aligning', 'state': 'Sprint', 'grounded': True, 'input': {'x': 0.000295932, 'y': 1.0}, 'nativeDirection': {'x': 0.0, 'y': 0.0}, 'nativeSuccessRecorded': False}
+capabilityCompletedFollowYielded 36 [(None, 36)]
+sample {'nativeFormationOwnsTarget': True, 'newPathIssued': False, 'nativeSuccessRecorded': False}
+
+FILE 20261105-213706-085-bigmap-g2.jsonl
+FIRST [('diagnosticStart', "{'reason': 'raidAuto', 'sessionId': '20261105-213706-085-bigmap-g2', 'locationId': 'bigmap', 'raidGeneration': 2, 'snapshotInterval': 1.0}"), ('playerBreadcrumb', "{'breadcrumbSequence': 1, 'profileId': '6a56228fc9282a1efce19538', 'position': {'x': 101.567215, 'y': 1.18800008, 'z': 18.6283417}, 'direction': {'x': 0.224768251, 'y': 0.0, 'z': -0.9744122}, 'state': 'Idle', 'sprinting': False, 'grounded': True, 'pose': 1.0, 'navMesh': {'sampled': True, 'radius': 0.5, 'position': {'x': 101.567215, 'y': 1.16192842, 'z': 18.6283417}, 'offset': 0.0260716677, 'verticalOffset': 0.0260716677}}")]
+capabilityAutomaticProbeAdmissionBlocked 89 [(None, 89)]
+sample {'requestSource': 'learnedTraversalCommitment', 'learnedEdgeId': 182, 'requestedTraversalKind': 'Vault', 'message': 'automaticProbeRequiresRecordedCommitment', 'nativeSuccessRecorded': False}
+followTraversalProbeStartRejected 88 [('automaticProbeRequiresRecordedCommitment', 82), ('nativeJumpAwaitExistingPhysicalDispatchWindow', 6)]
+sample {'edgeId': 182, 'episodeId': 0, 'chainId': 0, 'kind': 'Vault', 'entryDistance': 0.5043149, 'exitDistance': 1.22700477, 'reason': 'automaticProbeRequiresRecordedCommitment', 'routeMissionId': 0, 'routeMissionStepIndex': 0, 'state': 'Idle', 'haveEnemy': False, 'underFire': False, 'activeCommand': 'None', 'nearEntryWatchdog': False}
+learningV347TraversalOpportunityNoStart 1091 [(None, 1091)]
+sample {'missionId': 0, 'stepIndex': -1, 'episodeId': 7, 'edgeId': 258, 'chainId': 7, 'kind': 'Vault', 'startBreadcrumbSequence': 336, 'endBreadcrumbSequence': 340, 'approachBreadcrumbSequence': 0, 'chainLocalExecutable': False, 'currentRaidRouteAuthority': True, 'body': {'x': 195.840866, 'y': -0.6777115, 'z': 29.4585571}, 'entry': {'x': 157.9929, 'y': -0.7341233, 'z': 31.354723}, 'exit': {'x': 158.1892, 'y': -0.653305054, 'z': 32.7952881}, 'entryDistance': 37.89543, 'exitDistance': 37.7992363, 'lastValidStage': 'routeMissionArm', 'rejectionReason': 'stepCreationRejected', 'missingEvent': 'TraversalAttemptStarted'}
+capabilityNativeConsumerInputNotPublished 10 [(None, 10)]
+sample {'edgeId': 132, 'phase': 'ExitCommit', 'state': 'Run', 'grounded': True, 'input': {'x': 0.9919296, 'y': 0.126789644}, 'nativeDirection': {'x': 0.9919296, 'y': 0.126789644}, 'nativeSuccessRecorded': False}
+capabilityCompletedFollowYielded 123 [(None, 123)]
+sample {'nativeFormationOwnsTarget': True, 'newPathIssued': False, 'nativeSuccessRecorded': False}

@@ -1,0 +1,1090 @@
+--- RC120/src/BotTraversalPlugin.cs
++++ RC121/src/BotTraversalPlugin.cs
+@@ -16,7 +16,7 @@
+         internal static ConfigEntry<bool> TraversalEnabled;
+         internal static ConfigEntry<bool> PassThroughEnabled;
+         internal static ConfigEntry<bool> DebugLogEnabled;
+-        internal static ConfigEntry<bool> LegacyPITCompatibilityEnabled;
++        internal static bool LegacyPITCompatibilityEnabled => true;
+         internal static string DataRoot;
+         private GenericSoftCollision collisions;
+         private string map;
+@@ -30,15 +30,14 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal loaded: V2-RC120-RescueDisposition");
++            Logger.LogInfo("Bot Traversal loaded: V2-RC121-CoordinatedTraversal");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+-                F12("Allow registered friendly bots to pass through the player and one another. Stationary overlaps gently push the player away.", "02 Friendly Pass-Through", -2));
++                F12("Allow registered friendly bots to pass through the player and one another. Friendly mover repulsion is disabled; when off, shared traversal entries are queued.", "02 Friendly Pass-Through", -2));
+             DebugLogEnabled = Config.Bind("Bot Traversal", "03 Debug Log寫入", false,
+                 F12("Write detailed JSONL Traversal diagnostics. This can generate large log files.", "03 Debug Logging", -3));
+-            LegacyPITCompatibilityEnabled = Config.Bind("Bot Traversal", "04 Legacy PIT Compatibility", true,
+-                F12("Enable verified original PIT compatibility: V475 exclusive runtime handoff or beta 0.9.1 learned-route Follow integration. Requires a game restart when changed.", "04 Legacy PIT Compatibility", -4));
++            Config.Remove(new ConfigDefinition("Bot Traversal", "04 Legacy PIT Compatibility"));
+             DataRoot=Path.Combine(BepInEx.Paths.PluginPath,"BotTraversal","Data");
+             Directory.CreateDirectory(Path.Combine(DataRoot,"Learning"));
+             Directory.CreateDirectory(Path.Combine(DataRoot,"Logs"));
+@@ -52,20 +51,18 @@
+                 new FollowerTraversalTestSetPlayerToNavMeshPatch().Enable();
+                 new FollowerTraversalTestBotMoverBodyRelinkPatch().Enable();
+                 FollowerMovementWriterAuthorityPatch.Apply(new HarmonyLib.Harmony("bottraversal.authority"));
++                FollowerFriendlyAvoidancePatch.Apply(new HarmonyLib.Harmony("bottraversal.friendlyAvoidance"));
+                 FollowerTraversalTestRuntime.Initialize();
+             }
+             catch(Exception e) { Logger.LogError("BotTraversal patches failed: "+e); }
+             TraversalEnabled.SettingChanged+=SettingsChanged;
+             DebugLogEnabled.SettingChanged+=SettingsChanged;
+             PassThroughEnabled.SettingChanged+=SettingsChanged;
+-            LegacyPITCompatibilityEnabled.SettingChanged+=SettingsChanged;
+             WriteOptions();
+         }
+         private void SettingsChanged(object sender,EventArgs e)
+         {
+             WriteOptions();
+-            if (ReferenceEquals(sender, LegacyPITCompatibilityEnabled))
+-                Logger.LogWarning("Changing Legacy PIT Compatibility requires a game restart to avoid a mid-raid ownership change.");
+             if(!TraversalEnabled.Value && active) { FollowerTraversalTestRuntime.EndRaid("toggleOff");active=false; }
+             // Runtime diagnostic logging must be independently gated by the migrated diagnostics code.
+         }
+@@ -90,7 +87,7 @@
+             {
+                 // Attach only to the source-verified V475 legacy runtime. Unknown versions
+                 // remain untouched, avoiding two simultaneous movement producers.
+-                if (TraversalEnabled.Value && LegacyPITCompatibilityEnabled.Value)
++                if (TraversalEnabled.Value && LegacyPITCompatibilityEnabled)
+                     LegacyPITCompatibility.TryAttach();
+                 LegacyPITCompatibility.DiagnosePhysicalF4();
+                 var world=Singleton<GameWorld>.Instance;
+@@ -139,7 +136,7 @@
+                     if(FollowerEnvironment.Owns(bot))
+                     {
+                         BotOwnerUpdateHub.Invoke(bot);
+-                        if (LegacyPITCompatibilityEnabled.Value)
++                        if (LegacyPITCompatibilityEnabled)
+                             LegacyOriginalPITFollowBridge.Tick(bot);
+                     }
+             }
+@@ -152,7 +149,7 @@
+         {
+             try
+             {
+-                if (LegacyPITCompatibilityEnabled?.Value == true)
++                if (LegacyPITCompatibilityEnabled)
+                     LegacyPITCompatibility.DeliverMissingOriginalF4OnRelease();
+             }
+             catch (Exception e) { Logger.LogError("Original PIT F4 release bridge: " + e); }
+--- RC120/src/Core/FollowerCapabilityCoordinationHost.cs
++++ RC121/src/Core/FollowerCapabilityCoordinationHost.cs
+@@ -0,0 +1,357 @@
++using System;
++using System.Linq;
++using EFT;
++using UnityEngine;
++using S=BotTraversal.Core.FollowerCapabilityFailureSequence.Stage;
++
++namespace BotTraversal.Core
++{
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        private static readonly FollowerPortalAdmission CapabilityPortalQueue=new FollowerPortalAdmission();
++        private sealed class CapabilityFailureTransaction
++        {
++            internal S Stage;internal int Episode,Edge,Step,LastFailureFrame=-1;
++            internal LearnedTraversalCommitment Original,Selected;
++            internal bool Pending;internal float PendingAt;
++            internal ProbeRuntime DeferredProbe;internal string DeferredReason;
++        }
++        private static bool HasCapabilityFailureStrategy(BotOwner bot)
++            => bot!=null&&FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)&&m.FailureSequence!=null&&
++                m.FailureSequence.Stage!=S.Native&&m.FailureSequence.Stage!=S.ReturnToEntry&&
++                m.FailureSequence.Stage!=S.RecoveryTeleport;
++        internal static bool IsCapabilityRetryWalking(BotOwner bot)
++            => bot!=null&&FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)&&m.FailureSequence!=null&&
++                FollowerCapabilityFailureSequence.WalkingOnly(m.FailureSequence.Stage)&&IsCapabilityRouteRetrySafe(bot);
++
++        private static bool IsCapabilityForwardFailurePhase(BotOwner bot)
++            => bot!=null&&FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)&&m.FailureSequence!=null&&
++                (m.FailureSequence.Stage==S.Alternate||m.FailureSequence.Stage==S.SelfRescue);
++
++        private static LearnedTraversalCommitment CapabilitySemanticCommitment(FollowerRouteMission mission,FollowerRouteMissionStep step)
++            => new LearnedTraversalCommitment { EdgeId=step.EdgeId,EpisodeId=step.EpisodeId,ChainId=step.ChainId,
++                Entry=step.Entry,Exit=step.Exit,RawEntry=step.RawEntry,RawExit=step.RawExit,Kind=step.Kind,
++                RouteMissionId=mission.MissionId,RouteMissionStepIndex=mission.CurrentStepIndex,
++                ChainLocalExecutable=step.ChainLocalExecutable,HasSettledEntry=true,SettledEntry=step.Entry,HasSettledExit=true,SettledExit=step.Exit,ExpiresAt=Time.time+30 };
++
++        private static bool DeferCapabilitySequenceFailure(BotOwner bot,FollowerRouteMission m,ProbeRuntime probe,string reason)
++        {
++            if(m==null||m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count)return false;
++            var step=m.Steps[m.CurrentStepIndex];if(step==null)return false;
++            if(m.FailureSequence==null)m.FailureSequence=new CapabilityFailureTransaction {
++                Stage=S.Native,Episode=step.EpisodeId,Edge=step.EdgeId,Step=m.CurrentStepIndex,Original=CapabilitySemanticCommitment(m,step)};
++            var state=m.FailureSequence;
++            if(state.DeferredReason==null){state.DeferredProbe=probe;state.DeferredReason=reason;}
++            if(ShouldEmitDiagnostic("capabilitySequenceFailureDeferred",bot,.5f))
++                WriteEvent("capabilitySequenceFailureDeferred",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,reason,
++                    nativeSuccessRecorded=false,oldFallbackAllowed=false});
++            return true; // Remember failure without entering a competing writer or old Assist branch.
++        }
++
++        private static bool TryAdvanceCapabilityFailureSequence(BotOwner bot,FollowerRouteMission mission,string reason)
++        {
++            var step=mission.Steps[mission.CurrentStepIndex];if(step==null)return false;
++            var state=mission.FailureSequence;
++            if(state==null||state.Episode!=step.EpisodeId||state.Edge!=step.EdgeId)
++                mission.FailureSequence=state=new CapabilityFailureTransaction {Stage=S.Native,Episode=step.EpisodeId,
++                    Edge=step.EdgeId,Step=mission.CurrentStepIndex,Original=CapabilitySemanticCommitment(mission,step)};
++            bool hasProbe=TryGetActiveProbe(bot,out var active);
++            if(!hasProbe&&state.Pending&&reason!="sequenceStrategyDispatchTimeout")return true;
++            if(!hasProbe&&state.LastFailureFrame==Time.frameCount)return true;
++            state.LastFailureFrame=Time.frameCount;
++            if(hasProbe)
++            {
++                // Semantic birth identity does not change to the selected template edge.
++                if(!IsProbeLifecycleCurrent(active)||!ReferenceEquals(active.LifecycleMission,mission))return true;
++                TryCommitLearningV433FailedPhysicalActuatorEpoch(active,reason);
++                ForceReleaseTraversalProbe(active,"sequenceAttemptFailed:"+reason);
++            }
++            ClearCapabilityStrategyTargets(bot);
++            state.Stage=FollowerCapabilityFailureSequence.AfterFailure(state.Stage);
++            state.Pending=false;state.Selected=null;
++            // A missing local alternate is one recorded failed selection, not a return to an old entry.
++            for(int i=0;i<2&&(state.Stage==S.Alternate||state.Stage==S.SelfRescue);i++)
++            {
++                if(TrySelectCapabilitySequenceStrategy(bot,mission,state,state.Stage==S.SelfRescue))
++                {state.Pending=true;state.PendingAt=Time.time;break;}
++                WriteEvent("capabilitySequenceSelectionFailed",bot,new{missionId=mission.MissionId,stage=state.Stage.ToString(),reason="noExecutableTemplate",nativeSuccessRecorded=false});
++                state.Stage=FollowerCapabilityFailureSequence.AfterFailure(state.Stage);
++            }
++            WriteEvent("capabilityFailureSequenceAdvanced",bot,new{missionId=mission.MissionId,stepIndex=mission.CurrentStepIndex,
++                edgeId=step.EdgeId,episodeId=step.EpisodeId,stage=state.Stage.ToString(),reason,
++                selectedTemplate=state.Selected?.SkillTemplateEdgeId??0,completedPrefixRetained=true,nativeSuccessRecorded=false});
++            if(state.Stage==S.ReturnToEntry)
++            {
++                // Rebuild from the current unresolved step. Completed WT/Climb is never replay debt.
++                mission.RouteRetry=null;
++                return false; // Existing, scoped return driver takes over after this admission.
++            }
++            return true;
++        }
++
++        private static bool TrySelectCapabilitySequenceStrategy(BotOwner bot,FollowerRouteMission mission,CapabilityFailureTransaction state,bool generalized)
++        {
++            var body=bot.GetPlayer.Position;var original=state.Original;
++            var axis=GetFlatDirection(original.RawExit-original.RawEntry);
++            LearnedTraversalEdge best=null;Vector3 entry=default,exit=default;double rank=double.NegativeInfinity;
++            var originalEdge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==state.Edge);
++            float requestedSpan=Mathf.Clamp(GetPlanarDistance(body,original.RawExit),.4f,2.5f);
++            float requestedHeight=originalEdge?.NativeVaultParameters?.VaultingHeight??Mathf.Max(.4f,original.RawExit.y-body.y);
++            foreach(var e in LearnedTraversalEdges)
++            {
++                if(e==null||(!generalized&&e.Id==state.Edge))continue;
++                if(e.Kind!="WalkThrough"&&e.Kind!="Jump"&&e.Kind!="DropDown"&&e.Kind!="Vault"&&e.Kind!="Climb")continue;
++                // Learning quality ranks, never suppresses, the requested self-rescue attempt.
++                if(generalized&&!IsLearningV433ObstacleClearanceActuatorKind(e.Kind))continue;
++                if(!generalized&&e.Disabled)continue;
++                if((e.Kind=="Vault"||e.Kind=="Climb")&&e.NativeVaultParameters==null)continue;
++                var a=e.RawStart;var b=e.RawEnd;if(!IsFinite(a)||!IsFinite(b))continue;
++                var direction=GetFlatDirection(b-a);float span=GetPlanarDistance(a,b);
++                if(span<.20f)continue;
++                if(generalized)
++                {
++                    // Rebase learned relative native parameters on the current physical frontier.
++                    a=body;b=body+axis*Mathf.Clamp(span,.40f,2.5f);
++                    b.y=body.y+Mathf.Clamp(e.RawEnd.y-e.RawStart.y,-1.2f,1.2f);
++                }
++                else
++                {
++                    if(Vector3.Dot(direction,axis)<.85f||GetPlanarDistance(body,a)>2.5f||
++                        GetPlanarDistance(b,original.RawExit)>1.5f||Mathf.Abs(a.y-body.y)>.65f)continue;
++                    float forward=Vector3.Dot(GetFlatDelta(body,a),axis),end=Vector3.Dot(GetFlatDelta(body,b),axis);
++                    if(!FollowerCapabilityFailureSequence.ForwardCandidate(forward,end,0,forward))continue;
++                    var path=CalculateStrictPath(body,a);
++                    if(path?.StrictComplete!=true||path.Corners==null||path.Corners.Length==0||
++                        path.PathLength>Mathf.Max(1f,GetPlanarDistance(body,a)*1.8f+.5f))continue;
++                    // Every returned corner must stay ahead of the current completed physical prefix.
++                    if(path.Corners.Any(c=>Vector3.Dot(GetFlatDelta(body,c),axis)<-.14f))continue;
++                }
++                TraversalExperienceRecord record=null;
++                if(!string.IsNullOrEmpty(e.ExperienceKey))TraversalExperiences.TryGetValue(e.ExperienceKey,out record);
++                int successes=Math.Max(e.NativeSuccessCount,GetTraversalPhysicalSuccessCount(e));
++                double score=FollowerCapabilityFailureSequence.Rank(successes,e.FailedExecutions,
++                    GetTraversalExperienceEffectiveScore(record),GetPlanarDistance(body,a));
++                if(generalized)
++                {
++                    float height=e.NativeVaultParameters?.VaultingHeight??Mathf.Max(.4f,e.RawEnd.y-e.RawStart.y);
++                    score-=1.5*Math.Abs(height-requestedHeight)+.2*Math.Abs(span-requestedSpan);
++                    if(e.ObstacleFingerprint!=null&&originalEdge?.ObstacleFingerprint!=null)
++                        score-=.25*Math.Abs(e.ObstacleFingerprint.BoundsSize.y-originalEdge.ObstacleFingerprint.BoundsSize.y);
++                }
++                if(score>rank||(score==rank&&best!=null&&e.Id<best.Id)){best=e;entry=a;exit=b;rank=score;}
++            }
++            if(best==null)
++            {
++                if(!generalized)return false;
++                var scan=CapabilitySemanticCommitment(mission,mission.Steps[mission.CurrentStepIndex]);
++                scan.Kind="Vault";scan.Entry=scan.RawEntry=scan.SettledEntry=body;
++                scan.Exit=scan.RawExit=scan.SettledExit=body+axis;
++                scan.SkillTransferTransient=true;scan.LearningV382RouteBoundTransientNativeSkill=true;
++                scan.SkillTransferNearFrontier=scan.RawEntry;scan.SkillTransferFarFrontier=scan.RawExit;
++                scan.SkillTransferSource="learningV433EquivalentPhysicalActuatorFrontier:RC121:LiveScanner";state.Selected=scan;
++                WriteEvent("capabilitySequenceLiveScannerSelected",bot,new{missionId=mission.MissionId,nativeSuccessRecorded=false});
++                return true;
++            }
++            // Same semantic edge/episode/chain for binding; only the physical HOW/template changes.
++            var selected=CapabilitySemanticCommitment(mission,mission.Steps[mission.CurrentStepIndex]);
++            selected.Kind=best.Kind;selected.Entry=selected.RawEntry=selected.SettledEntry=entry;
++            selected.Exit=selected.RawExit=selected.SettledExit=exit;
++            selected.LearningV382RouteBoundTransientNativeSkill=true;selected.SkillTransferTransient=true;selected.SkillTemplateEdgeId=best.Id;
++            selected.SkillTransferSource="learningV433EquivalentPhysicalActuatorFrontier:RC121:"+state.Stage;
++            selected.SkillTransferNearFrontier=entry;selected.SkillTransferFarFrontier=exit;
++            selected.ExpiresAt=Time.time+30;selected.LastEntryDistance=GetPlanarDistance(body,entry);selected.LastEntryProgressAt=Time.time;
++            state.Selected=selected;
++            WriteEvent("capabilitySequenceStrategySelected",bot,new{missionId=mission.MissionId,stage=state.Stage.ToString(),
++                semanticEdge=state.Edge,templateEdge=best.Id,kind=best.Kind,rank,generalized,
++                entry=Vec(entry),exit=Vec(exit),nativeSuccessRecorded=false});
++            return true;
++        }
++
++        private static void ClearCapabilityStrategyTargets(BotOwner bot)
++        {
++            var id=bot.ProfileId;
++            global::BotTraversal.LegacyOriginalPITFollowBridge.CancelDelivery(id);
++            LearnedTraversalCommitments.Remove(id);NavigationRecoveryTraversalAnchors.Remove(id);
++            BreadcrumbFollowCommitments.Remove(id);FollowRejectLeases.Remove(id);
++            PostTraversalChaseLeases.Remove(id);LearningV430PendingPostTraversalFollowRollovers.Remove(id);
++            TraversalChainLocomotionIntents.Remove(id);LearningV444TransitionMomentumEpochs.Remove(id);
++            FollowReacquireWatches.Remove(id);CF63DormantFollowWatches.Remove(id);CF64FollowPhysicalWatches.Remove(id);
++            LearningV365ContinuousRouteProducerStates.Remove(id);ChainHandoffAuthorityGuards.Remove(id);
++            ProvisionalWalkThroughReservations.Remove(id);PhysicalNavigationEpochHandoffs.Remove(id);
++            if(FollowerTraversalRouteCursors.TryGetValue(id,out var cursor))
++            {cursor.LearningV375TransactionActive=false;cursor.LearningV375RouteMissionId=0;}
++        }
++
++        private static void PrepareCapabilityAlternateReplay(FollowerRouteMission fresh)
++        {
++            if(fresh.FailureSequence==null)return;
++            var state=fresh.FailureSequence;state.Stage=S.RetryAlternate;state.Step=0;state.Pending=true;state.PendingAt=Time.time;
++            state.Selected=null;
++        }
++
++        private static bool TickCapabilityFailureSequence(BotOwner bot)
++        {
++            if(bot==null||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||m.Lifecycle.Retired||
++                m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count)return false;
++            var state=m.FailureSequence;if(state==null)return false;
++            if(state.DeferredReason!=null)
++            {
++                if(state.DeferredProbe!=null&&!IsProbeLifecycleCurrent(state.DeferredProbe))
++                {state.DeferredProbe=null;state.DeferredReason=null;return false;}
++                if(!IsCapabilityRouteRetrySafe(bot))return true;
++                string deferred=state.DeferredReason;state.DeferredProbe=null;state.DeferredReason=null;
++                TryRequestCapabilityFullRouteRetry(bot,m,deferred);return true;
++            }
++            if(state.Stage==S.RecoveryTeleport)
++            {
++                if(!IsCapabilityRouteRetrySafe(bot))return true;
++                var leader=FollowerEnvironment.LocalPlayer;
++                if(Time.time<m.NextMoveAttemptAt)return true;m.NextMoveAttemptAt=Time.time+1;
++                if(leader!=null&&FollowerSafeTeleport.TryFindSafeSpotNearDestination(bot,leader.Position,out var spot))
++                {
++                    long origin=PrepareForAutomaticRecoveryTeleport(bot,"capabilityFailureSequenceExhausted");
++                    if(origin>0&&FollowerSafeTeleport.TryTeleport(bot,spot,"capabilityFailureSequenceExhausted",out _,issuedTeleportGeneration:origin))
++                        NotifyAutomaticRecoveryTeleportCompleted(bot,"capabilityFailureSequenceExhausted");
++                }
++                else if(ShouldEmitDiagnostic("sequenceTeleportNoSafeSpot",bot,1))
++                    WriteEvent("capabilitySequenceRecoveryTeleportBlocked",bot,new{missionId=m.MissionId,nativeSuccessRecorded=false});
++                return true;
++            }
++            if(state.Stage==S.ReturnToEntry && IsCapabilityRouteRetryReturning(m) &&
++                !HasActiveTraversalProbe(bot) && IsCapabilityRouteRetrySafe(bot) && Time.time-m.LastProgressAt>4f)
++            {
++                m.Lifecycle.CancelFullRetry();state.Stage=S.RecoveryTeleport;
++                ClearCapabilityStrategyTargets(bot);
++                WriteEvent("capabilitySequenceReturnFailed",bot,new{missionId=m.MissionId,reason="returnNoProgress",nativeSuccessRecorded=false});
++                return true;
++            }
++            if(!state.Pending)return false;
++            if(HasActiveTraversalProbe(bot)){state.Pending=false;return false;}
++            if(!IsCapabilityRouteRetrySafe(bot))return true;
++            if(state.Selected==null)
++            {
++                if(!TrySelectCapabilitySequenceStrategy(bot,m,state,false))state.Selected=CloneTraversalCommitment(state.Original);
++                state.Selected.RouteMissionId=m.MissionId;state.Selected.RouteMissionStepIndex=m.CurrentStepIndex;
++            }
++            if(Time.time-state.PendingAt>4f){TryRequestCapabilityFullRouteRetry(bot,m,"sequenceStrategyDispatchTimeout");return true;}
++            LearnedTraversalCommitments[bot.ProfileId]=state.Selected;
++            if(IsCapabilityRetryWalking(bot))ApplyCapabilitySequenceWalking(bot);
++            return false; // Existing producer approaches this exact physical strategy.
++        }
++
++        private static bool TryDispatchCapabilitySequenceNative(ProbeRuntime probe,out string failure)
++        {
++            failure=string.Empty;
++            if(!IsProbeLifecycleCurrent(probe))return false;
++            var c=probe.FrozenTraversalCommitment;if(c==null)return false;
++            if(!FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(probe.Bot,
++                FollowerMovementWriterAuthority.WriterDomain.Traversal,probe.MovementWriterGeneration,out var nativeScope,out failure))
++                return DeferCapabilitySequenceFailure(probe.Bot,probe.LifecycleMission,probe,"nativeDispatchOriginUnavailable");
++            using(nativeScope)
++            {
++            probe.NativeStrategySelected=true;probe.AssistedStrategySelected=false;
++            var edge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==(c.SkillTransferTransient?c.SkillTemplateEdgeId:c.EdgeId));
++            bool began=false;
++            if(c.Kind=="Jump")
++            {
++                // Preserve RC119's same-frame physical opportunity at the original Jump boundary.
++                if(!c.SkillTransferTransient&&TryCommitCapabilityJumpAtDispatch(probe,c))began=true;
++                else if(IsActiveProbe(probe))began=TryBeginLearnedNativeJump(probe,c,"sequenceNative",out failure);
++                else return true; // A final-consumer refusal already advanced this exact attempt.
++            }
++            else if(c.Kind=="Vault"||c.Kind=="Climb")
++            {
++                if(edge?.NativeVaultParameters!=null)
++                    began=TryBeginInjectedNativeVault(probe,c,edge.NativeVaultParameters,"sequenceNative",out failure);
++                else if(EnsureVaultingComponent(probe.Player,out failure) &&
++                    FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(probe.Bot,
++                        FollowerMovementWriterAuthority.WriterDomain.Traversal,probe.MovementWriterGeneration,out var scanScope,out failure))
++                {
++                    using(scanScope)TriggerNativeVaultScan(probe,0,true);
++                    began=IsActiveProbe(probe); // Scanner refusal already went through the shared failure sequence.
++                }
++            }
++            else if(c.Kind=="DropDown")began=TryBeginNativeDropDown(probe,c,"sequenceNative",out failure);
++            else return false;
++            if(!began)TryRequestCapabilityFullRouteRetry(probe,"sequenceNativeAdmission:"+failure,true);
++            WriteEvent("capabilitySequenceNativeDispatched",probe.Bot,new{missionId=probe.LifecycleMission?.MissionId??0,
++                edgeId=probe.LearnedEdgeId,kind=c.Kind,began,failure,nativeSuccessRecorded=false});
++            return true;
++            }
++        }
++
++        private static void ApplyCapabilitySequenceWalking(BotOwner bot)
++        {
++            long gen=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
++            if(gen>0&&(owner==FollowerMovementWriterAuthority.WriterDomain.Follow||owner==FollowerMovementWriterAuthority.WriterDomain.Traversal)&&
++                FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,owner,gen,out var scope,out _))
++                using(scope)ApplyCapabilityReturnWalking(bot,bot.GetPlayer,0);
++        }
++
++        private static bool TickCapabilityPortalWait(BotOwner bot)
++        {
++            if(BotTraversalPlugin.PassThroughEnabled?.Value!=false){CapabilityPortalQueue.Clear();return false;}
++            if(bot==null||!IsLiveBot(bot)||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||m.Lifecycle.Retired||
++                m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||IsCapabilityRouteRetryReturning(m)||
++                m.FailureSequence?.Stage==S.RecoveryTeleport)return false;
++            var step=m.Steps[m.CurrentStepIndex];if(step==null)return false;
++            var entry=step.RawEntry;var axis=GetFlatDirection(step.RawExit-entry);
++            float distance=GetPlanarDistance(bot.Position,entry);if(distance>5||axis.sqrMagnitude<.5f)return false;
++            bool nearest=true;
++            // Include registered followers whose Follow callback has not built its mission yet.
++            // Callback ordering must not let a farther bot acquire the first portal ticket.
++            foreach(var otherBot in FollowerEnvironment.RegisteredFollowers)
++            {
++                if(otherBot==null||otherBot.ProfileId==bot.ProfileId||!IsLiveBot(otherBot)||
++                    FollowerRouteMissions.ContainsKey(otherBot.ProfileId)||!IsCapabilityRouteRetrySafe(otherBot))continue;
++                var offset=GetFlatDelta(entry,otherBot.Position);
++                float projection=Vector3.Dot(offset,axis),od=offset.magnitude;
++                if(projection>.14f||Mathf.Abs(otherBot.Position.y-entry.y)>.65f)continue;
++                if(step.EndBreadcrumbSequence>0&&GetFollowerRouteResumeFloor(otherBot.ProfileId)>=step.EndBreadcrumbSequence)continue;
++                if(FollowerPortalAdmission.Closer(od,otherBot.ProfileId,distance,bot.ProfileId))nearest=false;
++            }
++            foreach(var other in FollowerRouteMissions)
++            {
++                if(other.Key==bot.ProfileId||other.Value.Lifecycle.Retired)continue;
++                var om=other.Value;if(om.CurrentStepIndex<0||om.CurrentStepIndex>=om.Steps.Count)continue;
++                var os=om.Steps[om.CurrentStepIndex];var ob=BossPlayers.GetFollowerByProfileId(other.Key)?.GetBot();
++                if(os==null||!IsLiveBot(ob)||GetPlanarDistance(os.RawEntry,entry)>1||Mathf.Abs(os.RawEntry.y-entry.y)>.65f||
++                    Vector3.Dot(GetFlatDirection(os.RawExit-os.RawEntry),axis)<.85f)continue;
++                float od=GetPlanarDistance(ob.Position,entry);
++                if(FollowerPortalAdmission.Closer(od,other.Key,distance,bot.ProfileId))nearest=false;
++            }
++            bool Live(string id,int mission,int index)=>FollowerRouteMissions.TryGetValue(id,out var live)&&!live.Lifecycle.Retired&&
++                live.MissionId==mission&&live.CurrentStepIndex==index&&IsLiveBot(BossPlayers.GetFollowerByProfileId(id)?.GetBot());
++            bool allowed=CapabilityPortalQueue.Admit(bot.ProfileId,m.MissionId,m.CurrentStepIndex,entry.x,entry.y,entry.z,
++                axis.x,axis.z,Time.time,nearest,Live);
++            if(allowed||HasActiveTraversalProbe(bot)){m.PortalQueueHoldGeneration=0;m.PortalQueueHoldPath=null;return false;}
++            if(!IsCapabilityRouteRetrySafe(bot))return true;
++            long gen=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
++            if(gen<=0)
++            {
++                if(FollowerMovementWriterAuthority.TryEnterFollowPhysicalMotion(bot,"portalQueueHold",out var freshScope,out _))
++                    using(freshScope)CommitCapabilityPortalHold(bot,m);
++            }
++            else if((owner==FollowerMovementWriterAuthority.WriterDomain.Follow||owner==FollowerMovementWriterAuthority.WriterDomain.Traversal)&&
++                FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,owner,gen,out var scope,out _))
++                using(scope)CommitCapabilityPortalHold(bot,m);
++            if(ShouldEmitDiagnostic("capabilityPortalQueueWaiting",bot,.5f))
++                WriteEvent("capabilityPortalQueueWaiting",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,edgeId=step.EdgeId,
++                    distance,nearest,entry=Vec(entry),nativeSuccessRecorded=false});
++            return true;
++        }
++        private static void CommitCapabilityPortalHold(BotOwner bot,FollowerRouteMission m)
++        {
++                long gen=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out _);
++                bot.Mover.BotMoverSprint("R121-121A00000001",bot,false,false);
++                var path=bot.Mover.ActualPathController?.CurPath;
++                if(m.PortalQueueHoldGeneration!=gen||!ReferenceEquals(m.PortalQueueHoldPath,path))
++                {
++                    bot.Mover.BotMoverStop("R121-121A00000002",bot);
++                    bot.BotOwnerStopMove("R121-121A00000003",bot);
++                    m.PortalQueueHoldGeneration=gen;m.PortalQueueHoldPath=bot.Mover.ActualPathController?.CurPath;
++                }
++                CommitCapabilityRouteRetryZeroInput(bot,bot.GetPlayer);
++        }
++    }
++}
+--- RC120/src/Core/FollowerCapabilityFailureSequence.cs
++++ RC121/src/Core/FollowerCapabilityFailureSequence.cs
+@@ -0,0 +1,24 @@
++using System;
++namespace BotTraversal.Core
++{
++    // One transaction per unresolved semantic step. Engine failures advance exactly once;
++    // unavailable learned routes are explicit failed selections, never silent rejection loops.
++    internal static class FollowerCapabilityFailureSequence
++    {
++        internal enum Stage { Native, Alternate, SelfRescue, ReturnToEntry, RetryAlternate, RecoveryTeleport }
++        internal static Stage AfterFailure(Stage s) => s>=Stage.Native&&s<Stage.RecoveryTeleport?(Stage)((int)s+1):Stage.RecoveryTeleport;
++        internal static bool WalkingOnly(Stage s)=>s==Stage.ReturnToEntry||s==Stage.RetryAlternate;
++        internal static double Rank(int successes,int failures,double evaluation,double distance)
++        {
++            if(double.IsNaN(evaluation)||double.IsInfinity(evaluation))evaluation=.5;
++            if(double.IsNaN(distance)||double.IsInfinity(distance)||distance<0)return double.NegativeInfinity;
++            double rate=(Math.Max(0,successes)+1.0)/(Math.Max(0,successes)+Math.Max(0,failures)+2.0);
++            return 4*rate+2*Math.Max(0,Math.Min(1,evaluation))-.05*distance;
++        }
++        internal static bool ForwardCandidate(double entryFromBody,double exitFromBody,double prefixFloor,double entryArc)
++            => !double.IsNaN(entryFromBody)&&!double.IsNaN(exitFromBody)&&!double.IsNaN(prefixFloor)&&
++                !double.IsNaN(entryArc)&&!double.IsInfinity(entryFromBody)&&!double.IsInfinity(exitFromBody)&&
++                !double.IsInfinity(prefixFloor)&&!double.IsInfinity(entryArc)&&
++                entryFromBody>=-.14&&exitFromBody>.20&&entryArc>=prefixFloor-.14;
++    }
++}
+--- RC120/src/Core/FollowerCapabilityNativeObstacleHost.cs
++++ RC121/src/Core/FollowerCapabilityNativeObstacleHost.cs
+@@ -1474,6 +1474,12 @@
+             }
+ 
+             Vector3 stagingTarget = rawEntry - direction * LearningV3NativeEntryCorrectionStagingDistance;
++            if(IsCapabilityForwardFailurePhase(probe.Bot)&&Vector3.Dot(GetFlatDelta(probe.Player.Position,stagingTarget),direction)<-.14f)
++            {
++                WriteEvent("capabilitySequenceUpstreamStagingSuppressed",probe.Bot,new{edgeId=probe.LearnedEdgeId,
++                    body=Vec(probe.Player.Position),staging=Vec(stagingTarget),nativeSuccessRecorded=false});
++                return false; // Use the existing in-place/forward entry convergence, never an earlier segment.
++            }
+             bool sampled = NavMesh.SamplePosition(
+                 stagingTarget, out NavMeshHit stagingHit,
+                 LearningV3NativeEntryCorrectionSampleRadius, NavMesh.AllAreas);
+--- RC120/src/Core/FollowerCapabilityRecoveryHost.cs
++++ RC121/src/Core/FollowerCapabilityRecoveryHost.cs
+@@ -436,6 +436,7 @@
+ 
+         private static bool TryRecoverPlayerValidatedTraversal(ProbeRuntime probe, string source)
+         {
++            if(probe?.LifecycleMission!=null&&TryRequestCapabilityFullRouteRetry(probe,"nativeRecovery:"+source,true))return true;
+             if (probe == null || !IsLiveBot(probe.Bot) || !IsPlayerValidatedTraversalProbe(probe) ||
+                 !TryGetLearnedCommitmentForProbe(probe, out LearnedTraversalCommitment commitment) || commitment == null)
+             {
+--- RC120/src/Core/FollowerCapabilityRouteRetryHost.cs
++++ RC121/src/Core/FollowerCapabilityRouteRetryHost.cs
+@@ -71,7 +71,7 @@
+         private static void CaptureCapabilityRouteRetryPlan(FollowerRouteMission mission)
+         {
+             if(mission?.Steps==null||mission.Lifecycle.Retired||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return;
+-            var actual=mission.Steps.Where(x=>x!=null&&!string.Equals(x.Kind,"PhysicalCorridor",StringComparison.OrdinalIgnoreCase)).ToList();
++            var actual=mission.Steps.Skip(mission.CurrentStepIndex).Where(x=>x!=null&&!string.Equals(x.Kind,"PhysicalCorridor",StringComparison.OrdinalIgnoreCase)).ToList();
+             if(actual.Count==0)return;
+             if(mission.RouteRetry==null)
+             {
+@@ -96,18 +96,21 @@
+         private static bool TryRequestCapabilityFullRouteRetry(ProbeRuntime probe,string reason,bool executionFailed)
+         {
+             if(probe?.Bot==null||probe.LifecycleMission==null||string.IsNullOrEmpty(reason)||
+-                !Retry.FailureAdmission(executionFailed,IsProbeLifecycleCurrent(probe),probe.Lifecycle?.CompletionPublished==true,
+-                    IsCapabilityRouteRetrySafe(probe.Bot)))return false;
++                !executionFailed||!IsProbeLifecycleCurrent(probe)||probe.Lifecycle?.CompletionPublished==true)return false;
+             string r=reason.ToLowerInvariant();
+             if(r.Contains("manual")||r.Contains("consoleabort")||r.Contains("teleport")||r.Contains("unavailable")||r.Contains("raidover"))return false;
++            if(!Retry.FailureAdmission(executionFailed,true,false,IsCapabilityRouteRetrySafe(probe.Bot)))
++                return DeferCapabilitySequenceFailure(probe.Bot,probe.LifecycleMission,probe,reason);
+             return TryRequestCapabilityFullRouteRetry(probe.Bot,probe.LifecycleMission,reason);
+         }
+         private static bool TryRequestCapabilityFullRouteRetry(BotOwner bot,FollowerRouteMission mission,string reason)
+         {
+-            if(!IsCapabilityRouteRetrySafe(bot)||mission==null||mission.Lifecycle.Retired||mission.LifecycleRaid!=raidGeneration||
++            if(bot==null||!IsLiveBot(bot)||!BossPlayers.IsFollower(bot)||mission==null||mission.Lifecycle.Retired||mission.LifecycleRaid!=raidGeneration||
+                 mission.LifecycleBotId!=bot.ProfileId||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var live)||!ReferenceEquals(live,mission)||
+                 mission.CurrentStepIndex<0||mission.CurrentStepIndex>=mission.Steps.Count)return false;
++            if(!IsCapabilityRouteRetrySafe(bot))return DeferCapabilitySequenceFailure(bot,mission,null,reason);
+             if(IsCapabilityRouteRetryReturning(mission))return true;
++            if (TryAdvanceCapabilityFailureSequence(bot,mission,reason)) return true;
+             CaptureCapabilityRouteRetryPlan(mission);if(mission.RouteRetry==null)return false;
+             mission.Lifecycle.RequestFullRetry();
+             RetireCapabilityRescueCommitmentForRetry(bot,mission,reason);
+@@ -198,6 +201,8 @@
+             if(bot==null||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var mission)||mission==null||mission.Lifecycle.Retired)return false;
+             if(!IsLiveBot(bot)||!BossPlayers.IsFollower(bot))
+             {mission.Lifecycle.Retire();RemoveLifecycleMission(bot.ProfileId,"lifecycleUnavailable",mission);return false;}
++            // One update entry arbitrates queue, staged failure and the existing return driver.
++            if(TickCapabilityPortalWait(bot)||TickCapabilityFailureSequence(bot))return true;
+             if(!IsCapabilityRouteRetryReturning(mission))
+             {
+                 if(IsCapabilityFullRouteReplay(mission)&&Time.time>mission.ExpiresAt)
+@@ -232,7 +237,7 @@
+                     HoldCapabilityRouteRetry(bot);bot.Steering.BotSteeringLookToDirection("R112-112A00000004",bot,plan.Axis);
+                     if(Retry.StageReached(forward,side,vertical,v.magnitude,facing,true))
+                     {
+-                        if(plan.Restarts>=3)
++                        if(plan.Restarts>=1)
+                         {
+                             if(ShouldEmitDiagnostic("fullRouteRetryExhausted:"+mission.MissionId,bot,2f))
+                                 WriteEvent("capabilityFullRouteRetryExhausted",bot,new{missionId=mission.MissionId,restarts=plan.Restarts,
+@@ -240,12 +245,13 @@
+                             return true;
+                         }
+                         var fresh=new FollowerRouteMission { MissionId=++followerRouteMissionSequence,LifecycleBotId=bot.ProfileId,LifecycleRaid=raidGeneration,
+-                            Source="fullRouteReplay",CreatedAt=Time.time,ExpiresAt=Time.time+RouteMissionLifetimeSeconds,LastProgressAt=Time.time,
++                            Source="fullRouteReplay", FailureSequence=mission.FailureSequence, CreatedAt=Time.time,ExpiresAt=Time.time+RouteMissionLifetimeSeconds,LastProgressAt=Time.time,
+                             LastProgressPosition=player.Position,StartBreadcrumbSequence=plan.Steps[0].StartBreadcrumbSequence,
+                             TargetBreadcrumbSequence=mission.TargetBreadcrumbSequence,ResumeFloorBreadcrumbSequence=plan.Steps[0].StartBreadcrumbSequence-1,
+                             LastPlayerEpisodeId=mission.LastPlayerEpisodeId,ApproachBreadcrumbSequence=plan.Steps[0].StartBreadcrumbSequence,
+                             PhysicalApproachBreadcrumbSequence=plan.Steps[0].StartBreadcrumbSequence,RouteRetry=plan,
+                             Steps=plan.Steps.Select(CloneCapabilityReplayStep).ToList(),RouteBreadcrumbs=plan.Breadcrumbs.Select(CloneRouteMissionBreadcrumb).ToList()};
++                        PrepareCapabilityAlternateReplay(fresh);
+                         plan.Restarts++;plan.ProgressFloor=Math.Max(0,plan.Steps[0].StartBreadcrumbSequence-1);
+                         mission.Lifecycle.Retire();FollowerRouteMissions[bot.ProfileId]=fresh;
+                         FollowerTraversalRouteCursors[bot.ProfileId]=new FollowerTraversalRouteCursor {ConsumedBreadcrumbSequence=plan.ProgressFloor,
+@@ -261,7 +267,7 @@
+                     // This is the existing failure-owned Follow scope, never a normal entry writer.
+                     // Near the root staging point use measured walking input so Sprint cannot orbit it.
+                     float stageDistance=GetPlanarDistance(player.Position,plan.Stage);
+-                    plan.PrecisionWalking=Retry.PrecisionReturn(plan.PrecisionWalking,stageDistance);
++                    plan.PrecisionWalking=true;
+                     if(plan.PrecisionWalking)ApplyCapabilityReturnWalking(bot,player,stageDistance);
+                     if(!plan.PrecisionLocalAttempted&&plan.ReturnCorridor==null&&stageDistance<=2.2f&&vertical<=.30f&&
+                         !NavMesh.Raycast(player.Position,plan.Stage,out _,NavMesh.AllAreas)&&
+@@ -300,7 +306,7 @@
+                         TryScrubLearningV364NativeMoverEpochAnchor(bot,player.Position,"fullRouteRetry",out _);
+                         ArmLearningV364PhysicalNavigationEpochHandoff(bot,0,0,0,Vector3.zero,Vector3.zero,player.Position,"fullRouteRetry");
+                         bot.Mover.SetBotMoverPause("R112-112A00000005",bot,false);
+-                        bot.BotOwnerSetTargetMoveSpeed("R112-112A00000006",bot,ProbeMomentumNormalMoveSpeed);
++                        bot.BotOwnerSetTargetMoveSpeed("R112-112A00000006",bot,Retry.ReturnSpeed(GetPlanarDistance(player.Position,plan.Stage)));
+                         var status=bot.BotOwnerGoToPoint("R112-112A00000007",bot,hit.position,true,.05f,false,false);
+                         bool epochReady=status==NavMeshPathStatus.PathComplete&&TryProveLearningV364PhysicalNavigationEpochFromAcceptedPath(bot,"fullRouteRetry",out _);
+                         if(epochReady)
+--- RC120/src/Core/FollowerCapabilityTeleportResetHost.cs
++++ RC121/src/Core/FollowerCapabilityTeleportResetHost.cs
+@@ -0,0 +1,41 @@
++using System;
++using System.Linq;
++using EFT;
++using UnityEngine;
++namespace BotTraversal.Core
++{
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        internal static void ClearCapabilityRouteWorkForTeleport(BotOwner bot,string reason)
++        {
++            if(bot==null||string.IsNullOrEmpty(bot.ProfileId))return;
++            string id=bot.ProfileId;
++            // Retire asynchronous receipts before removing targets. Teleport owns physical
++            // quiescence; no stale Traversal input restoration is allowed in this transaction.
++            if(TryGetActiveProbe(bot,out var probe))
++            {DetachProbeStateHandler(probe);RetireLifecycleProbe(probe);EnsureLearningV328AttemptTerminalizedBeforeUnregister(probe,"teleportRouteReset");UninstallLifecycleProbe(probe);}
++            if(FollowerRouteMissions.TryGetValue(id,out var m))
++            {m.Lifecycle.Retire();m.FailureSequence=null;m.RouteRetry=null;FollowerRouteMissions.Remove(id);}
++            ClearCapabilityStrategyTargets(bot);
++            CapabilityPortalQueue.Cancel(id,Time.time);
++            FollowerTraversalRouteCursors.Remove(id);
++            FollowerMovementRecoveryStates.Remove(id);
++            FollowerWorldSafetyStates.Remove(id);LearningV322PendingParentAttemptByProfile.Remove(id);
++            ProvisionalWalkThroughReservations.Remove(id);
++            BreadcrumbGapQuarantines.Remove(id);BreadcrumbBarrierDetourUntil.Remove(id);
++            PostTraversalEntryQuarantines.Remove(id);RecentTraversalCompletions.Remove(id);
++            FollowPathBaselines.Remove(id);FollowPathSanitySamples.Remove(id);
++            PostTraversalIntegrityWatches.Remove(id);CF75FollowPhysicalWatches.Remove(id);
++            LearningV365ContinuousRouteLastDriveFrame.Remove(id);LearningV374NearSideForwardReapproachUntil.Remove(id);
++            LearningV344ReleasedWalkThroughEpisodeByFollower.Remove(id);
++            foreach(var key in LearnedTraversalRetryAfter.Keys.Where(k=>k==id||k.StartsWith(id+":",StringComparison.Ordinal)).ToArray())LearnedTraversalRetryAfter.Remove(key);
++            foreach(var key in LearningV319ZeroShotTemplateRetryAfter.Keys.Where(k=>k.StartsWith(id+":",StringComparison.Ordinal)).ToArray())LearningV319ZeroShotTemplateRetryAfter.Remove(key);
++            // A resume floor is a cancellation boundary, never Native completion evidence.
++            FollowerRouteResumeFloors[id]=Math.Max(GetFollowerRouteResumeFloor(id),breadcrumbSequence);
++            FollowerRouteExecutionFloors[id]=Math.Max(FollowerRouteExecutionFloors.TryGetValue(id,out int floor)?floor:0,breadcrumbSequence);
++            FollowerRouteMissionRearmBlockedUntil[id]=Time.time+.25f;
++            WriteEvent("capabilityTeleportRouteWorkCleared",bot,new{reason=reason??string.Empty,
++                resumeFloor=breadcrumbSequence,routeDebtRemaining=false,oldTargetsRemaining=false,nativeSuccessRecorded=false});
++        }
++    }
++}
+--- RC120/src/Core/FollowerControlBackend.Generated.cs
++++ RC121/src/Core/FollowerControlBackend.Generated.cs
+@@ -63,6 +63,7 @@
+ 
+         internal static bool SetBotMoverSprinting(this global::BotMover controlTarget, string site, global::EFT.BotOwner bot, bool value)
+         {
++            if (FollowerTraversalTestRuntime.IsCapabilityRetryWalking(bot)) value=false;
+             if (!Authorize(bot, controlTarget, site, "SetBotMoverSprinting", "BotMover.Sprinting"))
+             {
+                 return value;
+@@ -74,6 +75,7 @@
+ 
+         internal static void PlayerEnableSprint(this global::EFT.Player controlTarget, string site, global::EFT.BotOwner bot, bool @enable)
+         {
++            if (FollowerTraversalTestRuntime.IsCapabilityRetryWalking(bot)) @enable=false;
+             if (!Authorize(bot, controlTarget, site, "PlayerEnableSprint", "Player.EnableSprint"))
+             {
+                 return;
+@@ -195,6 +197,7 @@
+ 
+         internal static void BotMoverSprint(this global::BotMover controlTarget, string site, global::EFT.BotOwner bot, bool @val, bool @withDebugCallback = true)
+         {
++            if (FollowerTraversalTestRuntime.IsCapabilityRetryWalking(bot)) @val=false;
+             if (!Authorize(bot, controlTarget, site, "BotMoverSprint", "BotMover.Sprint"))
+             {
+                 return;
+--- RC120/src/Core/FollowerControlSiteCatalog.Generated.cs
++++ RC121/src/Core/FollowerControlSiteCatalog.Generated.cs
+@@ -1,4 +1,7 @@
+ namespace BotTraversal.Core { internal static partial class FollowerControlBackend { private static ControlSite? FindSite(string site) { switch(site) {
++case "R121-121A00000001": return new ControlSite("BotMoverSprint", ControlSiteMode.ExactScope);
++case "R121-121A00000002": return new ControlSite("BotMoverStop", ControlSiteMode.ExactScope);
++case "R121-121A00000003": return new ControlSite("BotOwnerStopMove", ControlSiteMode.ExactScope);
+ case "R116-116A00000001": return new ControlSite("BotMoverSprint", ControlSiteMode.ExactScope);
+ case "R116-116A00000002": return new ControlSite("PlayerEnableSprint", ControlSiteMode.ExactScope);
+ case "R116-116A00000003": return new ControlSite("BotOwnerSetTargetMoveSpeed", ControlSiteMode.ExactScope);
+@@ -889,14 +892,11 @@
+ case "R1-EB8EF1686AD4": return new ControlSite("BotMoverSetReachDist", ControlSiteMode.ReviewedLegacy);
+ case "R1-5C974F062F72": return new ControlSite("SetBotMoverPause", ControlSiteMode.ReviewedLegacy);
+ case "R1-4C71D8C16DD2": return new ControlSite("BotMoverStop", ControlSiteMode.ReviewedLegacy);
+-case "R1-EF91BF071517": return new ControlSite("TryICharacterControllerMove", ControlSiteMode.Infrastructure);
+ case "R1-2B9F76BB391C": return new ControlSite("PhysicsIgnoreCollision", ControlSiteMode.Infrastructure);
+ case "R1-4A348AA4ECFA": return new ControlSite("EFTPhysicsClassIgnoreCollision", ControlSiteMode.Infrastructure);
+ case "R1-75D5E1ADA4B7": return new ControlSite("PhysicsIgnoreCollision", ControlSiteMode.Infrastructure);
+ case "R1-82E6EB85D12D": return new ControlSite("PhysicsIgnoreCollision", ControlSiteMode.Infrastructure);
+ case "R1-4A4845E8CA67": return new ControlSite("ColliderExtrusionAddIgnoredCollider", ControlSiteMode.Infrastructure);
+-case "R1-60EFAC5090BC": return new ControlSite("GClass492DropOffset", ControlSiteMode.Infrastructure);
+-case "R1-961B2CF06069": return new ControlSite("GClass492DropOffset", ControlSiteMode.Infrastructure);
+ case "R1-BDBA47A67FF6": return new ControlSite("PhysicsIgnoreCollision", ControlSiteMode.Infrastructure);
+ case "R1-9B8B8C7C38A0": return new ControlSite("EFTPhysicsClasssmethod_0", ControlSiteMode.Infrastructure);
+ case "R1-7C2F4E289C08": return new ControlSite("EFTPhysicsClasssmethod_0", ControlSiteMode.Infrastructure);
+--- RC120/src/Core/FollowerMovementWriterAuthorityPatch.cs
++++ RC121/src/Core/FollowerMovementWriterAuthorityPatch.cs
+@@ -174,6 +174,11 @@
+                 return true;
+             }
+ 
++            // The same return/retry policy applies to native/PIT callbacks too.
++            // Deny re-arm, but a disable still requires the existing authority check.
++            if (FollowerTraversalTestRuntime.IsCapabilityRetryWalking(__instance))
++                return !__0 && Allow(__instance, "BotOwner.Sprint");
++
+             // Climb-specific deny is scoped to the current, existing Follow-owned
+             // pre-Native RouteStep. Combat, medical, expired and other kinds fail open.
+             if (__0 && FollowerTraversalTestRuntime.IsV2ClimbEntryWalkPoseOwned(__instance))
+@@ -235,6 +240,11 @@
+             {
+                 return true;
+             }
++
++            // The same return/retry policy applies to native/PIT callbacks too.
++            // Deny re-arm, but a disable still requires the existing authority check.
++            if (FollowerTraversalTestRuntime.IsCapabilityRetryWalking(bot))
++                return !__0 && Allow(bot, "BotMover.Sprint");
+ 
+             if (__0 && FollowerTraversalTestRuntime.IsV2ClimbEntryWalkPoseOwned(bot))
+             {
+@@ -281,6 +291,11 @@
+                 return true;
+             }
+ 
++            // The same return/retry policy applies to native/PIT callbacks too.
++            // Deny re-arm, but a disable still requires the existing authority check.
++            if (FollowerTraversalTestRuntime.IsCapabilityRetryWalking(bot))
++                return !__0 && Allow(bot, "Player.EnableSprint");
++
+             if (__0 && FollowerTraversalTestRuntime.IsV2ClimbEntryWalkPoseOwned(bot))
+             {
+                 FollowerTraversalTestRuntime.ReportV2RC67ClimbSprintRearmRejected(
+--- RC120/src/Core/FollowerPortalAdmission.cs
++++ RC121/src/Core/FollowerPortalAdmission.cs
+@@ -0,0 +1,40 @@
++using System;
++using System.Collections.Generic;
++namespace BotTraversal.Core
++{
++    // Admission only: no movement writer, native success or route-debt mutation.
++    // An exact bot/mission/step ticket is released by semantic completion/cancellation.
++    internal sealed class FollowerPortalAdmission
++    {
++        internal sealed class Ticket
++        {
++            internal string Bot;internal int Mission,Step;
++            internal double X,Y,Z,DX,DZ,ReadyAt;
++            internal bool SamePortal(double x,double y,double z,double dx,double dz)
++                => (X-x)*(X-x)+(Z-z)*(Z-z)<=1.0&&Math.Abs(Y-y)<=.65&&DX*dx+DZ*dz>=.85;
++        }
++        private readonly List<Ticket> portals=new List<Ticket>();
++        private static bool Finite(double n)=>!double.IsNaN(n)&&!double.IsInfinity(n);
++        internal static bool Closer(double candidate,string candidateId,double own,string ownId)
++            => Finite(candidate)&&Finite(own)&&candidate>=0&&own>=0&&
++                (candidate<own-.02||Math.Abs(candidate-own)<=.02&&string.CompareOrdinal(candidateId,ownId)<0);
++        internal bool Admit(string bot,int mission,int step,double x,double y,double z,double dx,double dz,
++            double now,bool nearest,Func<string,int,int,bool> live)
++        {
++            if(string.IsNullOrEmpty(bot)||mission<=0||step<0||!Finite(now)||now<0||!Finite(x)||!Finite(y)||!Finite(z)||
++                !Finite(dx)||!Finite(dz)||dx*dx+dz*dz<.5||live==null||!live(bot,mission,step))return false;
++            portals.RemoveAll(p=>p.Bot==null&&now>=p.ReadyAt+2);
++            var p=portals.Find(t=>t.SamePortal(x,y,z,dx,dz));
++            if(p!=null&&p.Bot!=null&&!live(p.Bot,p.Mission,p.Step)){p.Bot=null;p.ReadyAt=now+1;}
++            if(p!=null&&p.Bot!=null)return p.Bot==bot&&p.Mission==mission&&p.Step==step;
++            if(!nearest||(p!=null&&now<p.ReadyAt))return false;
++            if(p==null){p=new Ticket{X=x,Y=y,Z=z,DX=dx,DZ=dz};portals.Add(p);}
++            p.Bot=bot;p.Mission=mission;p.Step=step;return true;
++        }
++        internal void Complete(string bot,int mission,int step,double now)
++        {foreach(var p in portals)if(p.Bot==bot&&p.Mission==mission&&p.Step==step){p.Bot=null;p.ReadyAt=now+1;}}
++        internal void Cancel(string bot,double now)
++        {foreach(var p in portals)if(p.Bot==bot){p.Bot=null;p.ReadyAt=now+1;}}
++        internal void Clear()=>portals.Clear();
++    }
++}
+--- RC120/src/Core/FollowerSafeTeleport.cs
++++ RC121/src/Core/FollowerSafeTeleport.cs
+@@ -59,6 +59,7 @@
+                 return false;
+             }
+ 
++            FollowerTraversalTestRuntime.ClearCapabilityRouteWorkForTeleport(bot,reason);
+             // Already prepared by Runtime? Use that exact birth generation. Otherwise
+             // this standalone teleport issues its own origin precisely once.
+             long teleportGeneration = issuedTeleportGeneration > 0
+--- RC120/src/Core/FollowerTraversalLifecycleCommit.cs
++++ RC121/src/Core/FollowerTraversalLifecycleCommit.cs
+@@ -97,6 +97,8 @@
+                             nativeSuccessRecorded=false,routeStepAdvanced=false });
+                     return false;
+                 }
++                CapabilityPortalQueue.Complete(bot.ProfileId,mission.MissionId,index,UnityEngine.Time.time);
++                if(mission.FailureSequence!=null)mission.FailureSequence=null;
+                 if(IsCapabilityFullRouteReplay(mission))mission.RouteRetry.ProgressFloor=Math.Max(mission.RouteRetry.ProgressFloor,step.EndBreadcrumbSequence);
+                 WriteEvent("routeLifecycleStepResolved",bot,new { source,missionId=mission.MissionId,
+                     stepIndex=index,episodeId=step.EpisodeId,edgeId=step.EdgeId,chainId=step.ChainId,
+@@ -226,6 +228,7 @@
+         {
+             if (string.IsNullOrEmpty(profileId) || !FollowerRouteMissions.TryGetValue(profileId,out var mission) ||
+                 (expected!=null && !ReferenceEquals(expected,mission))) return false;
++            if(!mission.Lifecycle.Retired&&mission.FailureSequence!=null&&source!="manualAbort")return false;
+             if(!mission.Lifecycle.Retired&&IsCapabilityRouteRetryReturning(mission)&&source!="manualAbort")return false;
+             if(!mission.Lifecycle.Retired&&IsCapabilityFullRouteReplay(mission)&&!CanFinalizeLifecycleMission(mission)&&source!="manualAbort")return false;
+             mission.Lifecycle.Retire(mission.CurrentStepIndex==mission.Steps.Count && !mission.Steps.Any(s=>s?.Lifecycle.DebtOutstanding==true));
+@@ -236,11 +239,12 @@
+         {
+             foreach(var mission in FollowerRouteMissions.Values) mission?.Lifecycle.Retire();
+             FollowerRouteMissions.Clear();
++            CapabilityPortalQueue.Clear();
+         }
+ 
+         private static bool RemoveLifecycleMissionStep(FollowerRouteMission mission,int index,string source)
+         {
+-            if(IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
++            if(mission?.FailureSequence!=null||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
+             if (mission?.Steps==null || index<0 || index>=mission.Steps.Count || mission.Lifecycle.Retired) return false;
+             var step=mission.Steps[index];
+             if ((index<=mission.CurrentStepIndex && HasExecutingLifecycleProbe(mission)) ||
+@@ -251,7 +255,7 @@
+         }
+         private static bool ReplaceLifecycleMissionStep(FollowerRouteMission mission,int index,FollowerRouteMissionStep value)
+         {
+-            if(IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
++            if(mission?.FailureSequence!=null||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
+             if (mission?.Steps==null || value==null || index<mission.CurrentStepIndex || index>=mission.Steps.Count ||
+                 mission.Lifecycle.Retired || mission.Steps[index]?.Lifecycle.Probe!=null) return false;
+             mission.Steps[index]=value;return true;
+@@ -261,14 +265,14 @@
+                 !s.Lifecycle.Probe.Retired && !s.Lifecycle.Probe.CompletionPublished);
+         private static bool SetLifecycleMissionSteps(FollowerRouteMission mission,System.Collections.Generic.List<FollowerRouteMissionStep> steps)
+         {
+-            if(IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
++            if(mission?.FailureSequence!=null||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
+             if (mission==null || steps==null || mission.Lifecycle.Retired || HasExecutingLifecycleProbe(mission)) return false;
+             var prefix=mission.Steps.Take(mission.CurrentStepIndex).ToList();
+             mission.Steps=prefix.Concat(steps.Where(s=>!prefix.Contains(s))).ToList();return true;
+         }
+         private static bool AddLifecycleMissionStep(FollowerRouteMission mission,FollowerRouteMissionStep step)
+         {
+-            if(IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
++            if(mission?.FailureSequence!=null||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
+             if (mission?.Steps==null || step==null || mission.Lifecycle.Retired || HasExecutingLifecycleProbe(mission)) return false;
+             var pending=mission.Steps.Skip(mission.CurrentStepIndex).ToList();
+             return TryAddCanonicalRouteMissionStep(pending,step) &&
+@@ -276,14 +280,14 @@
+         }
+         private static bool InsertLifecycleMissionStep(FollowerRouteMission mission,int index,FollowerRouteMissionStep step)
+         {
+-            if(IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
++            if(mission?.FailureSequence!=null||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
+             if (mission?.Steps==null || step==null || index<mission.CurrentStepIndex || index>mission.Steps.Count ||
+                 mission.Lifecycle.Retired || HasExecutingLifecycleProbe(mission)) return false;
+             mission.Steps.Insert(index,step);return true;
+         }
+         private static bool SwapLifecycleMissionSteps(FollowerRouteMission mission,int first,int second)
+         {
+-            if(IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
++            if(mission?.FailureSequence!=null||IsCapabilityFullRouteReplay(mission)||IsCapabilityRouteRetryReturning(mission))return false;
+             if (mission?.Steps==null || first<mission.CurrentStepIndex || second<mission.CurrentStepIndex ||
+                 first>=mission.Steps.Count || second>=mission.Steps.Count || mission.Lifecycle.Retired || HasExecutingLifecycleProbe(mission)) return false;
+             var old=mission.Steps[first];mission.Steps[first]=mission.Steps[second];mission.Steps[second]=old;return true;
+--- RC120/src/Core/FollowerTraversalTestRuntime.cs
++++ RC121/src/Core/FollowerTraversalTestRuntime.cs
+@@ -2911,6 +2911,7 @@
+                 return false;
+             }
+ 
++            if (TickCapabilityPortalWait(bot)) { message="sharedPortalQueueWaiting"; return false; }
+             if (!ValidateProbePreconditions(bot, out string preconditionFailure))
+             {
+                 message = $"Vault probe refused for {GetBotName(bot)}: {preconditionFailure}";
+@@ -2919,7 +2920,7 @@
+ 
+             bool requestedJump = string.Equals(requestedTraversalKind, "Jump", StringComparison.OrdinalIgnoreCase);
+             bool requestedWalkThrough = string.Equals(requestedTraversalKind, "WalkThrough", StringComparison.OrdinalIgnoreCase);
+-            if(requestedJump&&ShouldDeferCapabilityJumpProbe(bot,learnedEdgeId,out message))return false;
++            if(requestedJump&&!HasCapabilityFailureStrategy(bot)&&ShouldDeferCapabilityJumpProbe(bot,learnedEdgeId,out message))return false;
+             Vector3 walkThroughEntry = default;
+             Vector3 walkThroughRawEntry = default;
+             Vector3 walkThroughTarget = default;
+@@ -3029,8 +3030,10 @@
+                     });
+                 }
+ 
++                int physicalTemplateId=probe.FrozenTraversalCommitment?.SkillTransferTransient==true
++                    ?probe.FrozenTraversalCommitment.SkillTemplateEdgeId:learnedEdgeId;
+                 LearnedTraversalEdge demonstratedEdge = LearnedTraversalEdges.FirstOrDefault(
+-                    edge => edge != null && edge.Id == learnedEdgeId);
++                    edge => edge != null && edge.Id == physicalTemplateId);
+                 if (demonstratedEdge != null)
+                 {
+                     probe.DemonstratedApproachSpeed = demonstratedEdge.ApproachSpeed;
+@@ -3039,6 +3042,7 @@
+                     if (requestedWalkThrough)
+                     {
+                         bool zeroShotWalkThrough = IsLearningV319TransientSkillTransfer(probe.FrozenTraversalCommitment);
++                        if(HasCapabilityFailureStrategy(bot)&&zeroShotWalkThrough)zeroShotWalkThrough=false;
+                         List<Vector3> currentEpisodeCorridor = null;
+                         bool learningV372EpisodeCorridor = !zeroShotWalkThrough &&
+                             TryBuildLearningV372CurrentEpisodeWalkThroughCorridor(
+@@ -3236,6 +3240,7 @@
+             // Schema-8 Vault/Climb dispatches into Injected EFT Vault, while older schema data and
+             // non-native learned kinds retain their bounded compatibility executor. Manual console
+             // probes (edgeId=0) still use the native scanner path for research/debugging.
++            if (!requestedWalkThrough && probe.LifecycleMission!=null && TryDispatchCapabilitySequenceNative(probe,out message)) return true;
+             if (!requestedWalkThrough && learnedEdgeId > 0 && IsPlayerValidatedTraversalProbe(probe))
+             {
+                 LearnedTraversalEdge selectedEdge = LearnedTraversalEdges.FirstOrDefault(candidate =>
+@@ -3711,6 +3716,8 @@
+                 return 0;
+             }
+ 
++            ClearCapabilityRouteWorkForTeleport(bot,reason);
++            preserveRouteMission=false;preserveActiveCommitment=false;
+             long teleportGeneration = FollowerMovementWriterAuthority.BeginTeleport(
+                 bot,
+                 "teleportReset:" + (string.IsNullOrWhiteSpace(reason) ? "unspecified" : reason));
+@@ -19786,6 +19793,7 @@
+             string profileId = bot.ProfileId ?? string.Empty;
+             if(FollowerRouteMissions.TryGetValue(profileId,out var retryMission)&&IsCapabilityRouteRetryReturning(retryMission))
+             { TickCapabilityFullRouteRetry(bot);handledInternally=true;return true; }
++            if(TickCapabilityFailureSequence(bot)||TickCapabilityPortalWait(bot)){handledInternally=true;return true;}
+             bool force = TryGetFollowRejectLease(bot, out _);
+             TryArmOrRefreshFollowerRouteMission(bot, leaderPosition, force ? "followReject" : "followCatchUp", force);
+             if (!FollowerRouteMissions.TryGetValue(profileId, out FollowerRouteMission mission) || mission == null)
+@@ -53743,6 +53751,7 @@
+             float projection,
+             float requiredProjection)
+         {
++            if(probe?.LifecycleMission!=null&&TryRequestCapabilityFullRouteRetry(probe,"nativeVaultClimbNearSide:"+source,true))return true;
+             if (probe == null || commitment == null ||
+                 probe.VaultClimbCrossingRecoveryAttempts >= VaultClimbCrossingRecoveryMaxAttempts)
+             {
+@@ -74849,6 +74858,9 @@
+         {
+             internal readonly FollowerTraversalLifecycle.MissionState Lifecycle = new FollowerTraversalLifecycle.MissionState();
+             internal CapabilityRouteRetryPlan RouteRetry;
++            internal CapabilityFailureTransaction FailureSequence;
++            internal long PortalQueueHoldGeneration;
++            internal object PortalQueueHoldPath;
+             internal string LifecycleBotId;
+             internal int LifecycleRaid;
+             public int MissionId;
+--- RC120/src/Core/StandaloneContracts.cs
++++ RC121/src/Core/StandaloneContracts.cs
+@@ -110,6 +110,7 @@
+             try { return (!IsOwnedByLegacyPIT(bot) || LegacyPITCompatibility.Attached) && bot.BotFollower.BossToFollow.IsMe(local); }
+             catch { return false; }
+         }
++        internal static System.Collections.Generic.IEnumerable<BotOwner> RegisteredFollowers => Members.Values.Select(x=>x.GetBot());
+         internal static List<BotOwner> FindFollowers()
+         {
+             var bots = new List<BotOwner>();
+--- RC120/src/FollowerFriendlyAvoidancePatch.cs
++++ RC121/src/FollowerFriendlyAvoidancePatch.cs
+@@ -0,0 +1,49 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Reflection;
++using System.Reflection.Emit;
++using HarmonyLib;
++using EFT;
++using BotTraversal.Core;
++
++namespace BotTraversal
++{
++    internal static class FollowerFriendlyAvoidancePatch
++    {
++        private static readonly FieldInfo Owner=AccessTools.Field(typeof(GClass492),"BotOwner_0");
++        internal static void Apply(Harmony harmony)
++        {
++            harmony.Patch(AccessTools.Method(typeof(GClass492),"ManualUpdate"),
++                transpiler:new HarmonyMethod(typeof(FollowerFriendlyAvoidancePatch),nameof(FilterFriendlyPairs)));
++        }
++        private static bool SkipFriendlyPair(GClass492 context,BotOwner other)
++        {
++            if(BotTraversalPlugin.PassThroughEnabled?.Value!=true||context==null||other==null)return false;
++            var bot=Owner?.GetValue(context) as BotOwner;
++            return bot!=null&&FollowerEnvironment.Owns(bot)&&FollowerEnvironment.Owns(other)&&
++                FollowerEnvironment.PassThroughPermitted(bot)&&FollowerEnvironment.PassThroughPermitted(other);
++        }
++        // Verified SPT4.0.13 loop compares local2.Id with this.BotOwner_0.Id and skips self.
++        // Branch to that same loop continuation for a registered friendly pair *before*
++        // method_1 adds reciprocal offsets. Enemy and world collision code stays intact.
++        internal static IEnumerable<CodeInstruction> FilterFriendlyPairs(IEnumerable<CodeInstruction> input)
++        {
++            var code=input.ToList();int start=-1,branch=-1;
++            for(int i=0;i+7<code.Count;i++)
++                if(code[i].opcode==OpCodes.Ldloc_2&&code[i+1].operand is MethodInfo id&&id.Name=="get_Id"&&
++                    code[i+2].opcode==OpCodes.Ldarg_0)
++                {
++                    for(int j=i+3;j<Math.Min(i+9,code.Count);j++)
++                        if(code[j].opcode==OpCodes.Beq||code[j].opcode==OpCodes.Beq_S){start=i;branch=j;break;}
++                    if(start>=0)break;
++                }
++            if(start<0||Owner==null)throw new InvalidOperationException("SPT4.0.13 friendly avoidance loop contract unavailable");
++            var first=new CodeInstruction(OpCodes.Ldarg_0);first.labels.AddRange(code[start].labels);code[start].labels.Clear();
++            code.InsertRange(start,new[]{first,new CodeInstruction(OpCodes.Ldloc_2),
++                new CodeInstruction(OpCodes.Call,AccessTools.Method(typeof(FollowerFriendlyAvoidancePatch),nameof(SkipFriendlyPair))),
++                new CodeInstruction(OpCodes.Brtrue,code[branch].operand)});
++            return code;
++        }
++    }
++}
+--- RC120/src/GenericSoftCollision.cs
++++ RC121/src/GenericSoftCollision.cs
+@@ -12,11 +12,6 @@
+     /// Captures prior ignore state and restores only changes owned by this component.</summary>
+     public sealed class GenericSoftCollision : MonoBehaviour
+     {
+-        // Original PIT V475 stationary overlap release: player-only physical movement writer.
+-        // Follower locomotion remains exclusively owned by Traversal / EFT.
+-        private const float PushStrength = 2f;
+-        private const float MaximumPushSpeed = 1.5f;
+-        private const float StationarySpeedThresholdSqr = 0.15f * 0.15f;
+         private Player localPlayer;
+         private readonly Dictionary<string, Pair> active = new Dictionary<string, Pair>();
+         private readonly HashSet<string> expected = new HashSet<string>();
+@@ -70,48 +65,6 @@
+                 if (!expected.Contains(pair.Key)) remove.Add(pair.Key);
+             foreach (string key in remove) { Restore(active[key]); active.Remove(key); }
+         }
+-        private void FixedUpdate()
+-        {
+-            // Exactly the V475 contract: push ONLY the locally controlled player when both
+-            // characters are almost stationary and their real controllers overlap. IgnoreCollision
+-            // is kept for friendlies; world/door/terrain collision stays active via EFT Move().
+-            Player player = localPlayer;
+-            if (player == null || !BotTraversalPlugin.PassThroughEnabled.Value ||
+-                !ReferenceEquals(Singleton<GameWorld>.Instance?.MainPlayer, player) ||
+-                !Healthy(player)) return;
+-            Vector3 velocity = player.Velocity;
+-            velocity.y = 0f;
+-            if (velocity.sqrMagnitude > StationarySpeedThresholdSqr) return;
+-
+-            Vector3 correction = Vector3.zero;
+-            foreach (Pair pair in active.Values)
+-            {
+-                if (!ReferenceEquals(pair.First, player) || !Healthy(pair.Second) ||
+-                    pair.A == null || pair.B == null || !pair.A.enabled || !pair.B.enabled ||
+-                    !pair.A.gameObject.activeInHierarchy || !pair.B.gameObject.activeInHierarchy)
+-                    continue;
+-                Vector3 otherVelocity = pair.Second.Velocity;
+-                otherVelocity.y = 0f;
+-                if (otherVelocity.sqrMagnitude > StationarySpeedThresholdSqr) continue;
+-                try
+-                {
+-                    if (!Physics.ComputePenetration(
+-                        pair.A, pair.A.transform.position, pair.A.transform.rotation,
+-                        pair.B, pair.B.transform.position, pair.B.transform.rotation,
+-                        out Vector3 direction, out float distance) || distance <= 0f) continue;
+-                    Vector3 horizontal = Vector3.ProjectOnPlane(direction.normalized * distance, Vector3.up);
+-                    if (horizontal.sqrMagnitude > 0.000001f) correction += horizontal;
+-                }
+-                catch { /* Disabled/disposed collider while Fika despawns. */ }
+-            }
+-            if (correction.sqrMagnitude <= 0.000001f) return;
+-            Vector3 pushVelocity = Vector3.ClampMagnitude(correction * PushStrength, MaximumPushSpeed);
+-            Vector3 motion = pushVelocity * Time.fixedDeltaTime;
+-            if (motion.sqrMagnitude <= 0.000001f) return;
+-            try { player.CharacterController.TryICharacterControllerMove("R1-EF91BF071517",null,motion,Time.fixedDeltaTime); }
+-            catch { /* Fail closed; never write Transform.position. */ }
+-        }
+-
+         private void Connect(Player a, Player b)
+         {
+             if (string.IsNullOrEmpty(a.ProfileId) || string.IsNullOrEmpty(b.ProfileId)) return;
+@@ -157,7 +110,6 @@
+                     if (record.Extrusion != null && record.Other != null &&
+                         !record.Extrusion.method_1(record.Other))
+                         record.Extrusion.ColliderExtrusionAddIgnoredCollider("R1-4A4845E8CA67",null,record.Other);
+-                DropCloseAvoidance(p);
+             }
+             catch { /* Respawn and disposal races fail closed. */ }
+         }
+@@ -174,20 +126,6 @@
+                 }
+                 catch { }
+             }
+-        }
+-        private static void DropCloseAvoidance(Pair p)
+-        {
+-            try
+-            {
+-                Bounds a = p.A.bounds, b = p.B.bounds;
+-                Vector3 delta = a.center - b.center; delta.y = 0f;
+-                float distance = Mathf.Max(a.extents.x, a.extents.z) +
+-                    Mathf.Max(b.extents.x, b.extents.z) + 0.35f;
+-                if (delta.sqrMagnitude > distance * distance) return;
+-                p.First?.AIData?.BotOwner?.Mover?.LocalAvoidance?.GClass492DropOffset("R1-60EFAC5090BC",null);
+-                p.Second?.AIData?.BotOwner?.Mover?.LocalAvoidance?.GClass492DropOffset("R1-961B2CF06069",null);
+-            }
+-            catch { }
+         }
+         private static void Restore(Pair p)
+         {
+--- RC120/src/LegacyOriginalPITFollowBridge.cs
++++ RC121/src/LegacyOriginalPITFollowBridge.cs
+@@ -51,6 +51,11 @@
+         {
+             NextEvaluation.Clear(); NextTrace.Clear(); NextDecisionTrace.Clear();
+             LastDelivery.Clear();
++        }
++        internal static void CancelDelivery(string id)
++        {
++            if(string.IsNullOrEmpty(id))return;
++            LastDelivery.Remove(id);NextEvaluation.Remove(id);NextTrace.Remove(id);NextDecisionTrace.Remove(id);
+         }
+         private const float ApproachLeaseSeconds = 2.50f;
+         private const float ApproachNoProgressSeconds = 2.75f;

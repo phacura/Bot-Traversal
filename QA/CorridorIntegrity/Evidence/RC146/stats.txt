@@ -1,0 +1,8 @@
+truth {'NativePhysical': 75, 'Unproven': 10, 'NonNativeCompletion': 2}
+kind {('WalkThrough', 'NativePhysical'): 46, ('Vault', 'NativePhysical'): 4, ('Jump', 'NativePhysical'): 6, ('WalkThrough', 'Unproven'): 6, ('DropDown', 'NativePhysical'): 15, ('Climb', 'NativePhysical'): 4, ('Climb', 'Unproven'): 1, ('Vault', 'Unproven'): 3, ('Jump', 'NonNativeCompletion'): 2}
+walkingProof b057fe4062fa4c488021832e0050e8ef PlayerValidated True NativeSuccessCount 57
+walkingProof b45c94dddcb849e29f9e2673024c08bb PlayerValidated True NativeSuccessCount 34
+capabilityPortalQueueAdmitted 104
+capabilityPortalQueueActiveConflict 0
+capabilityJumpFinalConsumerRejected 0
+capabilityReturnPathDiverged 1

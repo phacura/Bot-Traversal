@@ -1,0 +1,108 @@
+[
+  {
+    "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+    "method": "TryNeutralizeLearningV432StationaryVisualLocomotionResidue",
+    "sites": [
+      "R1-EBE17FF14744",
+      "R1-3B3CDE84D808",
+      "R1-C0A0D51AEABF"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+    "method": "TryRepairStuckJumpLanding",
+    "sites": [
+      "R1-CB99080FED0C",
+      "R1-8AEB5AD5D6D2",
+      "R1-F5978F7CE58B",
+      "R1-D7A05D6C1E7F",
+      "R1-D8CEC91293F7"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+    "method": "TryRecoverBoundFollowerLocomotion",
+    "sites": [
+      "R1-A383EB5B4D3E",
+      "R1-BE1C874A3EDE",
+      "R1-A77E5B3BC8D4",
+      "R1-2E22814EFA94",
+      "R1-6B6578F44A82",
+      "R1-D1A645FAD3B0",
+      "R1-96A46E72346C",
+      "R1-34D56F7022BD"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+    "method": "TryQuiesceFollowerLocomotionForTeleport",
+    "sites": [
+      "R1-F525BA0156B1",
+      "R1-3F4BADE7245E",
+      "R1-A7137C31FE3E",
+      "R1-4E109A9B81C3",
+      "R1-D9669581366D",
+      "R1-6ECFBB861D02",
+      "R1-55F62D22D47B",
+      "R1-A92A0295DC38",
+      "R1-1C8161D3C103",
+      "R1-F964C3463DEB",
+      "R1-EC3B66C94776",
+      "R1-DE2BA7468C87",
+      "R1-FE6D963B2953",
+      "R1-0DF52F0F5FBC",
+      "R1-4A15DEEB41BF",
+      "R1-D7A124BB8E27"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+    "method": "TryHardRecoverStuckJumpLanding",
+    "sites": [
+      "R1-3424EA5378BB",
+      "R1-39A4372CF9AC",
+      "R1-7958E0FAF8B7",
+      "R1-CD0D9C677D62",
+      "R1-21551EDB1FFC",
+      "R1-BBCC30D63358",
+      "R1-939CC8726B1A",
+      "R1-260B55DBCBB8",
+      "R1-CF65F358D496",
+      "R1-86B56C20B0DD",
+      "R1-445FD427155D",
+      "R1-65D521CD82EB",
+      "R1-B612694BD7D8"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+    "method": "TryApplyLearningV407CollisionActiveLocomotionPresentation",
+    "sites": [
+      "R1-639AED053723",
+      "R1-08C21697978B"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityFollowControlHost.cs",
+    "method": "TryCF38ReprimeLostFollowConsumerPath",
+    "sites": [
+      "R1-C0B954C2E849",
+      "R1-1BE0D9D05106"
+    ]
+  },
+  {
+    "file": "src/Core/FollowerCapabilityFollowControlHost.cs",
+    "method": "TryCF45RepairStaleTerminalFollowConsumer",
+    "sites": [
+      "R1-8C421A090980",
+      "R1-0C348788B96B",
+      "R1-E44DEE3B8710",
+      "R1-EA8B46A28FB3",
+      "R1-7F26B1772A6D",
+      "R1-6A4D9C6F48C6",
+      "R1-DD5ACCA04DAA",
+      "R1-FA43A835941C",
+      "R1-C59CA02F7FB5"
+    ]
+  }
+]

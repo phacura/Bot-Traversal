@@ -1,0 +1,648 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15433,
+    "utc": "2026-11-04T05:57:56.3437548Z",
+    "raidTime": 345.618958,
+    "frame": 19009,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV342WalkThroughPhysicalPassRejectedNonLocal",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "episodeId": 23,
+      "entryDistance": 4.179953,
+      "exitDistance": 3.54342747,
+      "projection": 2.76984167,
+      "requiredProjection": 0.859753251,
+      "localCorridorDistance": 3.54342747,
+      "maxLocalCorridorDistance": 1.25,
+      "action": "retainRouteStepDoNotConsumeFromInfiniteAxisProjection"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15434,
+    "utc": "2026-11-04T05:57:56.3437548Z",
+    "raidTime": 345.618958,
+    "frame": 19009,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV410ExactActiveProbeOwnsPhysicalProducer",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 167,
+      "stepIndex": 0,
+      "edgeId": 184,
+      "episodeId": 23,
+      "stage": "ExitCommit",
+      "movementGeneration": 26,
+      "moverHasPath": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "exactActiveWalkThroughProbeOwnsPhysicalProducerForFullLifecycleNoParallelRouteWriter"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15435,
+    "utc": "2026-11-04T05:57:56.3594111Z",
+    "raidTime": 345.634644,
+    "frame": 19010,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV411ExactWalkThroughFullLifecycleProducerOwnership",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 167,
+      "stepIndex": 0,
+      "edgeId": 184,
+      "episodeId": 23,
+      "stage": "ExitCommit",
+      "movementGeneration": 26,
+      "moverHasPath": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "repairV410AligningOnlyOuterGateExactWalkThroughOwnsPhysicalProducerUntilTerminalization"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15436,
+    "utc": "2026-11-04T05:57:56.3609180Z",
+    "raidTime": 345.634644,
+    "frame": 19010,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV420CanonicalPhysicalRouteNavMeshRelinkSuppressed",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "movementOwner": "Traversal",
+      "movementGeneration": 26,
+      "producer": "V411ExactWalkThroughProbe",
+      "missionId": 167,
+      "body": {
+        "x": -41.787674,
+        "y": -4.32139254,
+        "z": -9.753794
+      },
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "canonicalPhysicalRouteOwnsBodySuppressOnlyStaleNavMeshProjectionKeepManualFixedUpdateAlive"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15437,
+    "utc": "2026-11-04T05:57:56.3750716Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "exitAuthorityRollbackDetected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "attempt": 1,
+      "anchor": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "current": {
+        "x": -41.81758,
+        "y": -4.358592,
+        "z": -9.749985
+      },
+      "anchorDisplacement": 2.55997634,
+      "anchorVerticalDisplacement": 0.5530548,
+      "anchorThreeDimensionalDisplacement": 2.61903572,
+      "entryDistance": 4.22342253,
+      "exitDistance": 3.10321,
+      "rollbackType": "verticalMoverCorrection",
+      "moverValidationActive": true
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15438,
+    "utc": "2026-11-04T05:57:56.3775929Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "exitAuthorityRebaseStarted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "source": "rollbackRetry",
+      "attempt": 2,
+      "anchor": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "state": "Transition",
+      "moverValidationDeferred": 0.03
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15439,
+    "utc": "2026-11-04T05:57:56.3775929Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV336ExitConsumerContinuityRejected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "source": "exitAuthorityRebase:rollbackRetry",
+      "targetSource": "downstream:playerRouteBreadcrumb",
+      "target": {
+        "x": -38.32438,
+        "y": -1.77972567,
+        "z": -9.04645
+      },
+      "pathLength": 0.0,
+      "detourRatio": 0.0,
+      "action": "retainV333V335FiniteProducerFallback"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15440,
+    "utc": "2026-11-04T05:57:56.3790996Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV338BodyAttributionBoundary",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "chainId": 20,
+      "kind": "WalkThrough",
+      "stage": "ExitCommit",
+      "playerState": "Transition",
+      "source": "UpdateProbeExit",
+      "previousSource": "UpdateProbeEntry",
+      "previousWasKnownWriter": false,
+      "from": {
+        "x": -41.81758,
+        "y": -4.358592,
+        "z": -9.749985
+      },
+      "to": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "planarDelta": 2.55997634,
+      "verticalDelta": 0.5530548,
+      "elapsedSeconds": 0.0,
+      "movementOwner": "Traversal",
+      "movementGeneration": 26,
+      "probeGeneration": 26,
+      "exclusiveMoverGate": true,
+      "grounded": false,
+      "inputDirection": {
+        "x": 0.0,
+        "y": 1.0
+      }
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15441,
+    "utc": "2026-11-04T05:57:56.3790996Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409MeasuredNativeLocomotionProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 167,
+      "chainId": 20,
+      "generation": 26,
+      "producer": "V411ExactWalkThroughProbe",
+      "position": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "bodyDelta": {
+        "x": 2.13766479,
+        "y": 0.0,
+        "z": -1.35821533
+      },
+      "bodySampleDistance": 2.53265858,
+      "physicalSpeed": 161.459442,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "consumeNextFrameMeasuredBodyDeltaAsOnlyNativeLocomotionProgressTruth"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15442,
+    "utc": "2026-11-04T05:57:56.3790996Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV377PhysicalRouteRegressionInvalidatedProducer",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "chainId": 20,
+      "missionId": 167,
+      "routeArc": 4.787172,
+      "bestRouteArc": 4.869725,
+      "position": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "projectedPoint": {
+        "x": -38.94906,
+        "y": -3.49534559,
+        "z": -11.3056374
+      },
+      "producer": "V411ExactWalkThroughProbe",
+      "bodySampleDistance": 2.53265858,
+      "physicalMovementDot": -0.292182177,
+      "producerInvalidated": true,
+      "action": "physicalBodyRegressionInvalidatesNavigationProducerNeverRepairByMovingBodyBackward"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15443,
+    "utc": "2026-11-04T05:57:56.3821187Z",
+    "raidTime": 345.65033,
+    "frame": 19011,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "movementWriterObservedUnscoped",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "writeKind": "BotMover.Sprint",
+      "inferredWriter": "Follow",
+      "owner": "Traversal",
+      "generation": 26,
+      "hardRejected": false,
+      "reason": "stackClassificationDiagnosticOnly"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15444,
+    "utc": "2026-11-04T05:57:56.3947017Z",
+    "raidTime": 345.6695,
+    "frame": 19012,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV372WalkThroughPhysicalPassageProofRejected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "episodeId": 23,
+      "source": "learningV414WalkThroughPhysicalPassBeforeRecovery",
+      "entryFrontier": true,
+      "witnessed": true,
+      "projectedS": 1.10975349,
+      "totalLength": 1.10975349,
+      "remaining": 0.0,
+      "lateralDistance": 1.20866227,
+      "verticalDeviation": 0.450688362,
+      "allowedLateral": 0.22,
+      "allowedVertical": 0.35,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "doNotConvertProjectionOrFarSideIntoPhysicalCrossing"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15445,
+    "utc": "2026-11-04T05:57:56.3947017Z",
+    "raidTime": 345.6695,
+    "frame": 19012,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerSnapshot",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "breadcrumbSequence": 1080,
+      "botPosition": {
+        "x": -39.6703339,
+        "y": -3.821725,
+        "z": -11.10948
+      },
+      "leaderPosition": {
+        "x": -17.87192,
+        "y": -1.249236,
+        "z": -8.412444
+      },
+      "leaderDistance": 22.11476,
+      "displacement": 2.03118634,
+      "distanceProgress": -1.58063126,
+      "noProgressSeconds": 0.0,
+      "playerState": "Transition",
+      "grounded": false,
+      "inputDirection": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "activeCommand": "None",
+      "combat": false,
+      "strict": {
+        "rawStart": {
+          "x": -39.6703339,
+          "y": -3.821725,
+          "z": -11.10948
+        },
+        "rawTarget": {
+          "x": -17.87192,
+          "y": -1.249236,
+          "z": -8.412444
+        },
+        "startSampled": false,
+        "targetSampled": true,
+        "sampledStart": null,
+        "sampledTarget": {
+          "x": -17.87192,
+          "y": -1.22051907,
+          "z": -8.412444
+        },
+        "startSampleOffset": 0.0,
+        "targetSampleOffset": 0.0287169218,
+        "targetVerticalSampleOffset": 0.0287169218,
+        "calculateReturned": false,
+        "status": "PathInvalid",
+        "cornerCount": 0,
+        "corners": [],
+        "pathLength": 0.0,
+        "directDistance": 22.11476,
+        "detourRatio": 0.0,
+        "terminalToSampledTarget": 0.0,
+        "terminalToRawTarget": 0.0,
+        "strictComplete": false
+      },
+      "mover": {
+        "hasPath": false,
+        "hasPathAndNoComplete": false,
+        "blocked": false,
+        "isMoving": false,
+        "pause": false,
+        "sprinting": true,
+        "realDestination": {
+          "x": -39.5167351,
+          "y": -5.256853,
+          "z": -13.2916517
+        },
+        "currentCorner": null,
+        "target": null,
+        "remainingDistance": 0.0,
+        "waypoints": []
+      },
+      "door": {
+        "interacting": false,
+        "haveDoorToOpen": false,
+        "linkId": null,
+        "state": null
+      }
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15451,
+    "utc": "2026-11-04T05:57:56.4093769Z",
+    "raidTime": 345.6854,
+    "frame": 19013,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "exitAuthorityMoverValidationStarted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "anchor": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "rebaseAttempts": 2
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15452,
+    "utc": "2026-11-04T05:57:56.4249909Z",
+    "raidTime": 345.7012,
+    "frame": 19014,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "exitAuthorityTopologyRejoinRequested",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "position": {
+        "x": -39.6991119,
+        "y": -3.84122753,
+        "z": -11.1059914
+      },
+      "tightSampled": false,
+      "tightSample": null,
+      "tightVertical": 3.40282347e+38,
+      "nativeResult": "fail",
+      "nativeBookkeepingCommitted": false,
+      "after": {
+        "x": -39.6991119,
+        "y": -3.84122753,
+        "z": -11.1059914
+      },
+      "linked": {
+        "x": -40.9406662,
+        "y": -8.083809,
+        "z": -17.8918571
+      },
+      "linkedDistance": 6.8985095,
+      "confirmed": false,
+      "fallbackTeleportUsed": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15453,
+    "utc": "2026-11-04T05:57:56.4249909Z",
+    "raidTime": 345.7012,
+    "frame": 19014,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "exitAuthorityActionableTopologyRejected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "position": {
+        "x": -39.6991119,
+        "y": -3.84122753,
+        "z": -11.1059914
+      },
+      "leader": {
+        "x": -17.8718853,
+        "y": -1.2492429,
+        "z": -8.412448
+      },
+      "directDistance": 22.1450081,
+      "pathLength": 0.0,
+      "detourRatio": 0.0,
+      "navStable": true,
+      "supported": true,
+      "nativeResult": "fail",
+      "policy": "existingFollowDetourSanity"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-135352-824-bigmap-g2",
+    "sequence": 15454,
+    "utc": "2026-11-04T05:57:56.4249909Z",
+    "raidTime": 345.7012,
+    "frame": 19014,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "exitAuthorityCommitProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 184,
+      "kind": "WalkThrough",
+      "anchor": {
+        "x": -39.65001,
+        "y": -3.80553722,
+        "z": -11.112009
+      },
+      "position": {
+        "x": -39.6991119,
+        "y": -3.84122753,
+        "z": -11.1059914
+      },
+      "anchorDisplacement": 0.0494701527,
+      "anchorVerticalDisplacement": 0.0356903076,
+      "anchorThreeDimensionalDisplacement": 0.0610007681,
+      "entryDistance": 2.19325614,
+      "exitDistance": 0.615760446,
+      "navSampled": true,
+      "navVertical": 0.284660339,
+      "topologyRejoinReady": false,
+      "topologyRejoinRequested": true,
+      "topologyRejoinConfirmed": false,
+      "topologyLinkedDistance": 6.8985095,
+      "topologyRejoinResult": "fail",
+      "offNavMeshWalkThroughAuthoritySafe": false,
+      "walkThroughCurrentDownstreamAuthoritySafe": false,
+      "walkThroughAuthorityProjection": 0.0,
+      "walkThroughAuthorityLateral": 3.40282347e+38,
+      "exitAuthorityBodySafe": false,
+      "exitAuthorityMovementBodySafe": true,
+      "transitionMovementState": true,
+      "state": "Transition",
+      "stateHealthy": false,
+      "stableSamples": 0,
+      "validationElapsed": 0.0158081055
+    }
+  }
+]

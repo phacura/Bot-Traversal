@@ -1,0 +1,37 @@
+using System.Text.Json;
+using System.Security.Cryptography;
+using BotTraversal.Core;
+using P=BotTraversal.Core.FollowerCapabilityApproachPolicy;
+using R=BotTraversal.Core.FollowerCapabilityRouteRetryPolicy;
+var cases=new List<string>();void Check(bool v,string n){if(!v)throw new Exception(n);cases.Add(n);}
+foreach(float speed in new[]{0f,.681907f,1.96829355f,2.726295f,2.77940321f,2.79291487f,2.887841f,3.58064842f,5.268522f,20.0248146f})
+ Check(P.BodyVelocityObservation(true,speed,.09373474f,.0154266357f),"fresh world displacement is an observation independent of state/raw spike "+speed);
+foreach(float speed in new[]{-1f,float.NaN,float.PositiveInfinity})Check(!P.BodyVelocityObservation(true,speed,.09f,.01f),"invalid speed refused "+speed);
+foreach(float duration in new[]{0f,.03999f,.12001f,float.NaN})Check(!P.BodyVelocityObservation(true,3,duration,.01f),"invalid duration refused "+duration);
+foreach(float age in new[]{-.01f,.12001f,float.NaN})Check(!P.BodyVelocityObservation(true,3,.09f,age),"stale/future observer refused "+age);
+Check(!P.BodyVelocityObservation(false,3,.09f,.01f),"foreign mission or writer cannot borrow physical evidence");
+Check(P.BodyVelocityObservation(true,20,.09f,.01f)&&R.UnsafeJumpSpeed(20,5.45298f),"real body overspeed remains unsafe despite valid observation");
+Check(P.BodyVelocityObservation(true,2.86f,.09f,.01f)&&!R.UnsafeJumpSpeed(2.86f,5.45298f),"raw19 does not override measured healthy Run");
+bool Carry(bool same=true,bool exact=true,bool traversal=true,long old=9,long next=10,float age=.015777f,float planar=.0787f,float vertical=.06185f)=>P.CarryBodyObservation(same,exact,traversal,old,next,age,planar,vertical);
+Check(Carry(),"recorded mission24 generation9 to10 keeps body sample without retaining writer");
+Check(!Carry(same:false)&&!Carry(exact:false)&&!Carry(traversal:false),"no cross mission identity or owner transfer");
+foreach(long next in new long[]{0,8,9})Check(!Carry(next:next),"new generation must advance "+next);
+Check(!Carry(old:0)&&!Carry(age:.121f)&&!Carry(planar:.651f)&&!Carry(vertical:.651f),"invalid age displacement or generation cannot transfer");
+Check(Carry(age:.12f,planar:.65f,vertical:.65f),"bounded carry inclusive limits");
+bool Prefix(bool current=true,bool chain=true,float dot=.99f,float entry=6.2f,float span=6.35f,float overlap=.15f,float body=5.9f,float side=.03f,float jumpSide=.12f,float height=.25f)=>P.WalkPrefixJump(current,chain,dot,entry,span,overlap,body,side,jumpSide,height);
+Check(Prefix(),"recorded overlapping WT prefix can hand to native Jump before full WT endpoint");
+Check(!Prefix(current:false)&&!Prefix(chain:false),"old or foreign demonstration cannot truncate WT debt");
+Check(!Prefix(dot:.939f)&&!Prefix(entry:6.6f)&&!Prefix(overlap:-.161f)&&!Prefix(overlap:1.501f),"unrelated or nonoverlapping passage refused");
+Check(!Prefix(body:5.24f)&&!Prefix(body:6.37f),"prefix must be physically reached and still before native frontier");
+Check(!Prefix(side:.651f)&&!Prefix(jumpSide:.361f)&&!Prefix(height:.651f),"wrong surface or sideways prefix refused");
+foreach(float v in new[]{float.NaN,float.PositiveInfinity,-1f})Check(!Prefix(span:v),"invalid prefix span "+v);
+Check(P.CrossedJumpWindow(true,-.10f,.203292221f,.09f,.0984696f),"recorded missed forward plane from actual prior body sample is execution failure");
+Check(P.CrossedJumpWindow(true,.10f,.465f,.09f,.1143f),"continued overshoot is classified within bounded physical interval");
+Check(!P.CrossedJumpWindow(false,-.1f,.203f,.09f,.1f),"current origin mandatory for failure");
+Check(!P.CrossedJumpWindow(true,.2f,.465f,.09f,.1f),"geometry alone already beyond plane is not crossing evidence");
+Check(!P.CrossedJumpWindow(true,.15f,.17f,.09f,.1f),"tiny position jitter not failed movement");
+Check(!P.CrossedJumpWindow(true,-.1f,.203f,.121f,.1f),"stale crossing cannot request replay");
+Check(!P.CrossedJumpWindow(true,-1f,.8f,.09f,.1f)&&!P.CrossedJumpWindow(true,-.1f,.2f,.09f,.4f),"distant or outside lane is not this native window");
+foreach(float d in new[]{.063559f,.069397f,.074342f,.09373474f})Check(P.BodyVelocityObservation(true,2.86f,d,.0156f),"recorded physical interval retained "+d);
+File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,dllSha256=Convert.ToHexString(SHA256.HashData(File.ReadAllBytes(typeof(P).Assembly.Location))),physicsSimulated=false},new JsonSerializerOptions{WriteIndented=true}));
+Console.WriteLine($"PASS {cases.Count} RC119 actual DLL observation/handoff/prefix/missed-window checks");

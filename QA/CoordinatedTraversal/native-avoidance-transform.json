@@ -1,0 +1,11 @@
+﻿{
+    "checks":  6,
+    "gameLaunched":  false,
+    "nativeCodeExecuted":  false,
+    "passed":  true,
+    "filteredInstructions":  139,
+    "originalInstructions":  135,
+    "nativeGameSha256":  "FAEF6F0B9F142F9D047495EC3DCCFD5D6974AC048368DC7045955CF54B117982",
+    "physicsSimulated":  false,
+    "dllSha256":  "0F7BA4A62AF736312B349869FDC97B4B0AB7F9EEBD67324B890CE28AD13D2C32"
+}

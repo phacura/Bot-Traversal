@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checks": 5,
+  "methods": [
+    "System.Boolean BotTraversal.Core.FollowerTraversalTestRuntime::TryGetLearningV425OrientationOnlyActuatorAdmission(EFT.BotOwner,BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,UnityEngine.Vector3&,System.String&)",
+    "System.Boolean BotTraversal.Core.FollowerTraversalTestRuntime/CapabilityFrontierPort::TryObserve(BotTraversal.Core.CapabilityFrontierSnapshot&)",
+    "System.Void BotTraversal.Core.FollowerTraversalTestRuntime::ForceReleaseTraversalProbe(BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime,System.String)",
+    "System.Void BotTraversal.Core.FollowerTraversalTestRuntime/CapabilityFrontierPort::RestrictForward(System.Single)",
+    "UnityEngine.Vector3 BotTraversal.Core.FollowerTraversalTestRuntime::ConstrainCapabilityMotionFrontier(EFT.MovementContext,EFT.Player,UnityEngine.Vector3)"
+  ],
+  "baselineDllSha256": "46A33C4141A6F873E4122F5F1EF2DBE31CE4C3B4744952A583BE59CE935E30A4",
+  "dllSha256": "0F7BA4A62AF736312B349869FDC97B4B0AB7F9EEBD67324B890CE28AD13D2C32",
+  "physicsSimulated": false,
+  "appliesToFirstEntryAndPostRetryEntry": true
+}

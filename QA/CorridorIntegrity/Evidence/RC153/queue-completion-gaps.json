@@ -1,0 +1,212 @@
+[
+  {
+    "edge": 121,
+    "bot": "Chris_Redfield",
+    "previous": "Knight",
+    "admitted": 2385.72559,
+    "gap": 147.19858999999997
+  },
+  {
+    "edge": 235,
+    "bot": "Ghost",
+    "previous": "Chris_Redfield",
+    "admitted": 2386.742,
+    "gap": 1.0164100000001781
+  },
+  {
+    "edge": 121,
+    "bot": "Ghost",
+    "previous": "Chris_Redfield",
+    "admitted": 2389.35571,
+    "gap": 2.035399999999754
+  },
+  {
+    "edge": 235,
+    "bot": "Ada_Wong",
+    "previous": "Ghost",
+    "admitted": 2390.365,
+    "gap": 1.0092899999999645
+  },
+  {
+    "edge": 121,
+    "bot": "Ada_Wong",
+    "previous": "Ghost",
+    "admitted": 2393.83,
+    "gap": 2.770669999999882
+  },
+  {
+    "edge": 235,
+    "bot": "Knight",
+    "previous": "Ada_Wong",
+    "admitted": 2394.83643,
+    "gap": 1.0064299999999093
+  },
+  {
+    "edge": 121,
+    "bot": "Knight",
+    "previous": "Ada_Wong",
+    "admitted": 2398.99878,
+    "gap": 3.475590000000011
+  },
+  {
+    "edge": 237,
+    "bot": "Knight",
+    "previous": "Ada_Wong",
+    "admitted": 2422.2356,
+    "gap": 1.0021999999999025
+  },
+  {
+    "edge": 237,
+    "bot": "Ghost",
+    "previous": "Knight",
+    "admitted": 2425.588,
+    "gap": 1.0010000000002037
+  },
+  {
+    "edge": 237,
+    "bot": "Chris_Redfield",
+    "previous": "Ghost",
+    "admitted": 2428.92065,
+    "gap": 1.006829999999809
+  },
+  {
+    "edge": 236,
+    "bot": "Knight",
+    "previous": "Ghost",
+    "admitted": 2437.68872,
+    "gap": 643.9657200000001
+  },
+  {
+    "edge": 236,
+    "bot": "Chris_Redfield",
+    "previous": "Knight",
+    "admitted": 2441.59155,
+    "gap": 0.03393000000005486
+  },
+  {
+    "edge": 236,
+    "bot": "Ada_Wong",
+    "previous": "Knight",
+    "admitted": 2442.55981,
+    "gap": 1.0021900000001551
+  },
+  {
+    "edge": 229,
+    "bot": "Ghost",
+    "previous": "Ada_Wong",
+    "admitted": 2454.71045,
+    "gap": 650.4317599999999
+  },
+  {
+    "edge": 110,
+    "bot": "Ghost",
+    "previous": "Ada_Wong",
+    "admitted": 2457.32617,
+    "gap": 650.7471699999999
+  },
+  {
+    "edge": 229,
+    "bot": "Knight",
+    "previous": "Ghost",
+    "admitted": 2458.342,
+    "gap": 1.0158300000002782
+  },
+  {
+    "edge": 110,
+    "bot": "Knight",
+    "previous": "Ghost",
+    "admitted": 2461.42261,
+    "gap": 2.7602600000000166
+  },
+  {
+    "edge": 110,
+    "bot": "Ada_Wong",
+    "previous": "Knight",
+    "admitted": 2463.812,
+    "gap": 1.0126799999998184
+  },
+  {
+    "edge": 229,
+    "bot": "Chris_Redfield",
+    "previous": "Knight",
+    "admitted": 2464.57837,
+    "gap": 3.1557600000001003
+  },
+  {
+    "edge": 110,
+    "bot": "Chris_Redfield",
+    "previous": "Knight",
+    "admitted": 2472.9917,
+    "gap": 10.192379999999957
+  },
+  {
+    "edge": 81,
+    "bot": "Ada_Wong",
+    "previous": "Knight",
+    "admitted": 2510.9585,
+    "gap": 183.89450000000033
+  },
+  {
+    "edge": 117,
+    "bot": "Chris_Redfield",
+    "previous": "Ada_Wong",
+    "admitted": 2511.25928,
+    "gap": 1.006840000000011
+  },
+  {
+    "edge": 48,
+    "bot": "Chris_Redfield",
+    "previous": "Ada_Wong",
+    "admitted": 2513.66577,
+    "gap": 2.7072699999998804
+  },
+  {
+    "edge": 81,
+    "bot": "Chris_Redfield",
+    "previous": "Ada_Wong",
+    "admitted": 2514.30225,
+    "gap": 2.1201200000000426
+  },
+  {
+    "edge": 117,
+    "bot": "Knight",
+    "previous": "Chris_Redfield",
+    "admitted": 2514.67065,
+    "gap": 1.0048799999999574
+  },
+  {
+    "edge": 48,
+    "bot": "Knight",
+    "previous": "Chris_Redfield",
+    "admitted": 2517.39819,
+    "gap": 3.0959399999997004
+  },
+  {
+    "edge": 81,
+    "bot": "Knight",
+    "previous": "Chris_Redfield",
+    "admitted": 2518.23315,
+    "gap": 2.718989999999849
+  },
+  {
+    "edge": 117,
+    "bot": "Ghost",
+    "previous": "Knight",
+    "admitted": 2518.40356,
+    "gap": 1.0053700000003118
+  },
+  {
+    "edge": 48,
+    "bot": "Ghost",
+    "previous": "Knight",
+    "admitted": 2520.95337,
+    "gap": 2.720220000000154
+  },
+  {
+    "edge": 81,
+    "bot": "Ghost",
+    "previous": "Knight",
+    "admitted": 2521.76172,
+    "gap": 2.0783700000001772
+  }
+]

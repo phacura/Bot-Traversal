@@ -1,0 +1,44 @@
+Failure groups:
+1 (173, 'Vault', 'implicitUnregister:forceRelease:sequenceAttemptFailed:learningV32EntryAcquisitionFailed:kind=Vault:distance=0.23:angle=76.2:lateral=0.12:projection=-0.20')
+1 (236, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:safetyHold:WalkThrough vertical corridor deviation became unsafe (1.32m)')
+1 (236, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:safetyHold:WalkThrough vertical corridor deviation became unsafe (1.31m)')
+19 (185, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+7 (225, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+1 (16, 'Climb', 'implicitUnregister:forceRelease:sequenceAttemptFailed:learningV32EntryAcquisitionFailed:kind=Climb:distance=0.39:angle=48.5:lateral=0.36:projection=-0.15')
+1 (230, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughHardValidationFailed:polyline segment 9 failed: WalkThrough corridor is too short')
+3 (155, 'Vault', 'implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle')
+4 (228, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+1 (234, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:verifyDropBack')
+1 (234, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:')
+2 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:')
+1 (175, 'WalkThrough', 'implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:heap_junk_1_BALLISTIC_metal_thin')
+Native groups [((4, 'Climb'), 1), ((11, 'Climb'), 2), ((12, 'Climb'), 4), ((16, 'Climb'), 4), ((48, 'DropDown'), 8), ((60, 'DropDown'), 2), ((81, 'DropDown'), 8), ((110, 'DropDown'), 8), ((111, 'DropDown'), 8), ((116, 'DropDown'), 4), ((117, 'Jump'), 8), ((118, 'Jump'), 6), ((155, 'Vault'), 17), ((175, 'WalkThrough'), 1), ((178, 'WalkThrough'), 8), ((180, 'WalkThrough'), 8), ((182, 'WalkThrough'), 1), ((185, 'WalkThrough'), 8), ((188, 'WalkThrough'), 7), ((193, 'WalkThrough'), 1), ((195, 'WalkThrough'), 4), ((197, 'WalkThrough'), 7), ((198, 'WalkThrough'), 1), ((225, 'WalkThrough'), 3), ((228, 'WalkThrough'), 4), ((229, 'WalkThrough'), 8), ((230, 'WalkThrough'), 30), ((234, 'WalkThrough'), 1), ((236, 'WalkThrough'), 8), ((237, 'WalkThrough'), 8), ((238, 'WalkThrough'), 5), ((239, 'WalkThrough'), 4), ((254, 'WalkThrough'), 4)]
+Selected failures Counter({'SelfRescue': 34, 'Alternate': 32})
+capabilityPortalQueueActiveConflict 0
+capabilityQueueApproachMovingAway 4
+156.745 Chris_Redfield {'missionId': 38, 'stepIndex': 0, 'body': {'x': 575.346741, 'y': 1.20890164, 'z': -35.1303177}, 'entry': {'x': 574.0328, 'y': 0.6974205, 'z': -31.5586433}, 'best': 1.01770353, 'progressDistance': 1.78771377, 'velocity': {'x': 1.64076853, 'y': 0.0, 'z': -0.229330614}, 'nativeSuccessRecorded': False}
+426.056 Knight {'missionId': 121, 'stepIndex': 0, 'body': {'x': -10.375, 'y': -1.15557885, 'z': -0.7469816}, 'entry': {'x': -10.6511841, 'y': -0.8668239, 'z': 0.158093065}, 'best': 1.97904146, 'progressDistance': 2.75070834, 'velocity': {'x': 2.394104, 'y': 0.0, 'z': -0.440335274}, 'nativeSuccessRecorded': False}
+429.224 Ada_Wong {'missionId': 120, 'stepIndex': 0, 'body': {'x': -10.18512, 'y': -1.21395266, 'z': -0.8042593}, 'entry': {'x': -10.6511841, 'y': -0.8668239, 'z': 0.158093065}, 'best': 2.15337253, 'progressDistance': 2.91987133, 'velocity': {'x': 2.74091935, 'y': 0.0, 'z': -0.2711825}, 'nativeSuccessRecorded': False}
+432.757 Ghost {'missionId': 122, 'stepIndex': 0, 'body': {'x': -10.5547485, 'y': -1.12799859, 'z': -0.857757568}, 'entry': {'x': -10.6511841, 'y': -0.8668239, 'z': 0.158093065}, 'best': 1.959131, 'progressDistance': 2.72552538, 'velocity': {'x': 2.90598178, 'y': 0.0, 'z': -0.628062665}, 'nativeSuccessRecorded': False}
+capabilityPortalQueueAdmittedIngressLost 1
+593.546 Ada_Wong {'missionId': 171, 'stepIndex': 0, 'EdgeId': 230, 'distance': 7.04194927, 'body': {'x': 478.8196, 'y': 4.219531, 'z': -143.83551}, 'entry': {'x': 471.854, 'y': 4.21953249, 'z': -142.8014}, 'nativeSuccessRecorded': False}
+capabilitySequenceReturnFailed 7
+691.119 Chris_Redfield {'missionId': 393, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+935.772 Chris_Redfield {'missionId': 513, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+936.332 Ghost {'missionId': 511, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+936.55 Ada_Wong {'missionId': 510, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+936.65 Knight {'missionId': 512, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+990.748 Knight {'missionId': 537, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+992.348 Chris_Redfield {'missionId': 536, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+capabilityRescueObstacleEvidence 30
+144.451 Ghost {'accepted': False, 'grounded': True, 'hit': False, 'normal': {'x': 0.0, 'y': 0.0, 'z': 0.0}, 'distance': 0.0, 'body': {'x': 570.6729, 'y': -1.649075, 'z': -25.8801117}, 'direction': {'x': -0.134146646, 'y': 0.0, 'z': -0.9909615}, 'nativeSuccessRecorded': False}
+148.81 Ghost {'accepted': True, 'grounded': True, 'hit': True, 'normal': {'x': 0.141053453, 'y': 0.0, 'z': 0.990002}, 'distance': 0.364323854, 'body': {'x': 573.6567, 'y': 1.327804, 'z': -34.8038063}, 'direction': {'x': -0.000148403735, 'y': 0.0, 'z': -1.0}, 'nativeSuccessRecorded': False}
+walkThroughHardValidationFailed 0
+exitAuthorityRollbackDetected 0
+exitAuthorityRebaseStarted 29
+200.266 Ghost {'edgeId': 118, 'kind': 'Jump', 'source': 'verifiedFarSide', 'attempt': 1, 'anchor': {'x': 458.0048, 'y': 4.25906372, 'z': -141.3116}, 'state': 'Sprint', 'body': {'x': 458.0048, 'y': 4.25906372, 'z': -141.3116}, 'bodyRelocated': False, 'bookkeepingOnly': True, 'moverValidationDeferred': 0.03}
+224.646 Knight {'edgeId': 155, 'kind': 'Vault', 'source': 'verifiedFarSide', 'attempt': 1, 'anchor': {'x': 463.3735, 'y': 4.21953154, 'z': -142.232086}, 'state': 'Run', 'body': {'x': 463.3735, 'y': 4.21953154, 'z': -142.232086}, 'bodyRelocated': False, 'bookkeepingOnly': True, 'moverValidationDeferred': 0.03}
+capabilityPortalApproachPathRejected 2
+249.367 Chris_Redfield {'target': {'x': 352.7826, 'y': 3.95896626, 'z': -110.039429}, 'body': {'x': 351.727631, 'y': 4.223358, 'z': -114.235855}, 'pathLength': 0.0, 'strictComplete': False, 'hasCompletedPrefix': False, 'bodyForward': 0.0, 'entryForward': 0.0, 'targetForward': 0.0, 'cornerForward': '-Infinity', 'reason': 'currentEntryRequiresLocalPathPreservingCompletedPrefix', 'nativeSuccessRecorded': False}
+280.702 Chris_Redfield {'target': {'x': 351.036133, 'y': 0.9819602, 'z': -105.00386}, 'body': {'x': 351.475769, 'y': 0.890274048, 'z': -100.642326}, 'pathLength': 0.0, 'strictComplete': False, 'hasCompletedPrefix': False, 'bodyForward': 0.0, 'entryForward': 0.0, 'targetForward': 0.0, 'cornerForward': '-Infinity', 'reason': 'currentEntryRequiresLocalPathPreservingCompletedPrefix', 'nativeSuccessRecorded': False}

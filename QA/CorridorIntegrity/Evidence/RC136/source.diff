@@ -1,0 +1,218 @@
+--- RC135/src\BotTraversalPlugin.cs
++++ RC136/src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal loaded: V2-RC135-EntryResources");
++            Logger.LogInfo("Bot Traversal loaded: V2-RC136-FrontierHandoff");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC135/src\LegacyOriginalPITFollowBridge.cs
++++ RC136/src\LegacyOriginalPITFollowBridge.cs
+@@ -286,7 +286,7 @@
+                 if (TryGetActiveLease(bot, out DeliveryLease lockedLease))
+                 {
+                     Vector3 change = target - lockedLease.Target;
+-                    bool directPriority = reason.StartsWith("portalApproach:",StringComparison.Ordinal) || reason.StartsWith("liveWalkThrough:", StringComparison.Ordinal) ||
++                    bool directPriority = reason=="completedFollowCurrentLeader" || reason.StartsWith("portalApproach:",StringComparison.Ordinal) || reason.StartsWith("liveWalkThrough:", StringComparison.Ordinal) ||
+                                           reason.StartsWith("priorityTraversal:", StringComparison.Ordinal);
+                     if (change.sqrMagnitude > 1.0f && !directPriority)
+                     {
+@@ -299,7 +299,11 @@
+                 // otherwise the original Follow writer and BT alternate commands,
+                 // causing approach hesitation and visual correction/snapback.
+                 float now = Time.time;
+-                bool movingHealthy = bot.Mover.HasPathAndNoComplete &&
++                bool completedFollow=reason=="completedFollowCurrentLeader";
++                Vector3? liveDestination=bot.Mover.ActualPathController?.CurPath?.TargetPoint?.Position;
++                bool destinationMatches=FollowerCapabilityPassagePolicy.DestinationMatches(bot.Mover.HasPathAndNoComplete,
++                    liveDestination.HasValue?Vector3.Distance(liveDestination.Value,target):float.PositiveInfinity);
++                bool movingHealthy = (!completedFollow||destinationMatches) && bot.Mover.HasPathAndNoComplete &&
+                                      bot.Mover.IsMoving && !bot.Mover.Blocked;
+                 if (LastDelivery.TryGetValue(id, out DeliveryLease previous))
+                 {
+@@ -313,14 +317,14 @@
+                         // remains free to issue a different, proven entry.
+                         return;
+                     }
+-                    if (previousDelta.sqrMagnitude < 0.16f &&
++                    if (previousDelta.sqrMagnitude < 0.16f && (!completedFollow||destinationMatches) &&
+                         now - previous.LastIssuedAt < 0.65f)
+                         return;
+                     // A sudden reversal while still driving towards the previous
+                     // accepted route point is not evidence of a better path. Hold
+                     // just this bridge's transient command for one selector tick;
+                     // never reject an actual live traversal/priority entry.
+-                    bool priority = reason.StartsWith("portalApproach:",StringComparison.Ordinal) || reason.StartsWith("priorityTraversal:", StringComparison.Ordinal) ||
++                    bool priority = completedFollow || reason.StartsWith("portalApproach:",StringComparison.Ordinal) || reason.StartsWith("priorityTraversal:", StringComparison.Ordinal) ||
+                                     reason.StartsWith("liveWalkThrough:", StringComparison.Ordinal) ||
+                                     reason.StartsWith("knownWalkThrough:", StringComparison.Ordinal);
+                     Vector3 currentToOld = previous.Target - bot.Position;
+--- RC135/src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC136/src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -160,7 +160,8 @@
+         internal static bool TryGetCapabilityCompletedFollowTarget(BotOwner bot,out Vector3 target)
+         {
+             target=default;
+-            if(!TryGetCapabilityCleanCompletedFollow(bot,out _,out var leader)||GetPlanarDistance(bot.Position,leader.Position)>7)return false;
++            if(!TryGetCapabilityCleanCompletedFollow(bot,out var watch,out var leader)||
++                !FollowerCapabilityPassagePolicy.CompletedFollowRange(GetPlanarDistance(bot.Position,leader.Position),watch.InitialLeaderDistance))return false;
+             var path=CalculateStrictPath(bot.Position,leader.Position);
+             if(!FollowerCapabilityPortalPolicy.LocalApproachPath(path?.StrictComplete==true,path?.PathLength??float.PositiveInfinity,Vector3.Distance(bot.Position,leader.Position)))return false;
+             target=leader.Position;return true;
+@@ -983,6 +984,50 @@
+             => bot!=null&&FollowerCapabilityIngressMotionPolicy.ProtectLocalBody(IsCapabilityRouteRetrySafe(bot),
+                 IsCapabilityPortalWaiting(bot),IsCapabilityReturnInProgress(bot),HasCapabilityFailureStrategy(bot));
+ 
++        private static bool TryValidateCapabilitySemanticWalkingRamp(ProbeRuntime probe,Vector3 target)
++        {
++            if(probe?.Player==null||!IsProbeLifecycleCurrent(probe)||!IsFinite(target)||!IsCapabilityRouteRetrySafe(probe.Bot))return false;
++            var body=probe.Player.Position;float distance=GetPlanarDistance(body,target),height=target.y-body.y;
++            if(!FollowerCapabilityPassagePolicy.RampEnvelope(height,distance))return false;
++            int count=Math.Max(2,(int)Math.Ceiling(Vector3.Distance(body,target)));if(count>16)return false;
++            var previous=body;bool supported=true;
++            for(int i=1;i<=count;i++)
++            {
++                var point=Vector3.Lerp(body,target,(float)i/count);
++                bool hit=TryGetFirstNonSelfRaycastHit(probe.Player,point+Vector3.up*.6f,Vector3.down,1f,
++                    LayerMaskClass.HighPolyWithTerrainMask,out var floor);
++                var delta=point-previous;
++                bool blocked=TryGetFirstNonSelfCapsuleCastHit(probe.Player,previous+Vector3.up*.4f,previous+Vector3.up*1.35f,
++                    .18f,delta.normalized,delta.magnitude,LayerMaskClass.HighPolyWithTerrainMask,out _);
++                if(!FollowerCapabilityPassagePolicy.RampSample(hit,hit?floor.point.y-point.y:float.PositiveInfinity,hit?floor.normal.y:0,blocked))
++                {supported=false;break;}
++                previous=point;
++            }
++            if(ShouldEmitDiagnostic("capabilitySemanticRampContinuation",probe.Bot,.25f))WriteEvent("capabilitySemanticRampContinuation",probe.Bot,new{
++                missionId=probe.LifecycleMission?.MissionId??0,edgeId=probe.LearnedEdgeId,body=Vec(body),target=Vec(target),height,distance,
++                supported,source="finiteDirectGroundAndClearanceSamples",nativeSuccessRecorded=false});
++            return supported;
++        }
++        private static bool TryAdmitCapabilityHeadWalkThroughEntry(BotOwner bot,FollowerRouteMission m)
++        {
++            if(bot?.GetPlayer?.MovementContext==null||m==null||m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||
++                BotTraversalPlugin.PassThroughEnabled?.Value!=false||!IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot)||
++                m.FailureSequence!=null||IsCapabilityReturnInProgress(bot))return false;
++            var step=m.Steps[m.CurrentStepIndex];
++            if(step==null||step.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId)||
++                !LearnedTraversalCommitments.TryGetValue(bot.ProfileId,out var commitment)||commitment==null||commitment.Kind!="WalkThrough"||
++                commitment.RouteMissionId!=m.MissionId||commitment.RouteMissionStepIndex!=m.CurrentStepIndex||
++                !IsLearningV376RouteStepEquivalentToEdgeId(step,commitment.EdgeId))return false;
++            float distance=GetPlanarDistance(bot.Position,step.RawEntry);
++            if(!FollowerCapabilityPassagePolicy.HeadEntry(true,CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex),
++                bot.GetPlayer.MovementContext.IsGrounded,distance,step.RawEntry.y-bot.Position.y))return false;
++            // Allocate only the existing Aligning probe. Physical lane/crossing proof remains mandatory.
++            bool started=TryStartEmpiricalLocalEntryBridge(bot,commitment,distance,out var message,nativeWalkThroughFrontierReady:true);
++            if(ShouldEmitDiagnostic("capabilityQueueHeadEntryHandoff",bot,.25f))WriteEvent("capabilityQueueHeadEntryHandoff",bot,new{
++                missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,distance,started,message,
++                physicalEntryGranted=false,nativeSuccessRecorded=false});
++            return started;
++        }
+         private static bool TryDriveCapabilityRecordedEntryConnector(BotOwner bot,FollowerRouteMission m)
+         {
+             if(bot?.GetPlayer?.MovementContext==null||m==null||m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||
+--- RC135/src\Core\FollowerCapabilityPassagePolicy.cs
++++ RC136/src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -54,6 +54,18 @@
+                 Finite(candidateLeader)&&candidateLeader>2.5&&Finite(bodyLeader)&&bodyLeader>=0&&bodyLeader<=4&&
+                 Finite(bodyForward)&&bodyForward>1.25&&Finite(candidateForward)&&candidateForward<bodyForward-1&&
+                 Finite(leaderForward)&&leaderForward>=bodyForward-.25;
++        internal static bool HeadEntry(bool current,bool owns,bool ground,double distance,double height)
++            => current&&owns&&ground&&Finite(distance)&&distance>.65&&distance<=2.25&&Finite(height)&&Math.Abs(height)<=.65;
++        internal static bool SemanticContinuation(bool supported,double height,bool supportedRamp=false)
++            => supported&&Finite(height)&&(Math.Abs(height)<=.65||height>.65&&supportedRamp);
++        internal static bool RampEnvelope(double height,double distance)
++            => Finite(height)&&height>.65&&Finite(distance)&&distance>0&&distance<=8;
++        internal static bool RampSample(bool hit,double height,double normal,bool blocked)
++            => hit&&Finite(height)&&Math.Abs(height)<=.35&&Finite(normal)&&normal>=.65&&normal<=1.001&&!blocked;
++        internal static bool CompletedFollowRange(double distance,double initial)
++            => Finite(distance)&&distance>=0&&Finite(initial)&&initial>=0&&distance<=Math.Max(7,Math.Min(25,initial+1));
++        internal static bool DestinationMatches(bool hasPath,double gap)
++            => hasPath&&Finite(gap)&&gap>=0&&gap<=.35;
+         internal static bool Lane(bool witnessed,double lateral,double vertical)
+             => witnessed&&Finite(lateral)&&Finite(vertical)&&lateral>=0&&lateral<=.22&&Math.Abs(vertical)<=.35;
+         internal static bool Center(bool walking,bool nativeActor,double lateral)
+--- RC135/src\Core\FollowerCapabilityRouteRetryHost.cs
++++ RC136/src\Core\FollowerCapabilityRouteRetryHost.cs
+@@ -205,6 +205,7 @@
+             if(mission.CurrentStepIndex>=mission.Steps.Count)return false;
+             // One update entry arbitrates queue, staged failure and the existing return driver.
+             if(TickCapabilityPortalWait(bot)||TickCapabilityUnstartedNative(bot,mission)||TickCapabilityFailureSequence(bot))return true;
++            if(TryAdmitCapabilityHeadWalkThroughEntry(bot,mission))return true;
+             if(TryDriveCapabilityRecordedEntryConnector(bot,mission))return true;
+             if(!IsCapabilityRouteRetryReturning(mission))
+             {
+@@ -306,6 +307,7 @@
+                     if(sampled&&behind>=1f&&Mathf.Abs(hit.position.y-plan.Stage.y)<=.30f&&GetPlanarDistance(hit.position,plan.Stage)<=.18f&&
+                         path?.StrictComplete==true&&Retry.PathWithinBudget(path.PathLength,plan.ReturnBudget))
+                     {
++                        if(TryArmCapabilityStrictReturnCorridor(bot,mission,path.Corners,path.PathLength))return true;
+                         TryScrubLearningV364NativeMoverEpochAnchor(bot,player.Position,"fullRouteRetry",out _);
+                         ArmLearningV364PhysicalNavigationEpochHandoff(bot,0,0,0,Vector3.zero,Vector3.zero,player.Position,"fullRouteRetry");
+                         bot.Mover.SetBotMoverPause("R112-112A00000005",bot,false);
+@@ -338,6 +340,41 @@
+             }
+         }
+ 
++        private static bool TryArmCapabilityStrictReturnCorridor(BotOwner bot,FollowerRouteMission mission,Vector3[] corners,float length)
++        {
++            var plan=mission.RouteRetry;var player=bot.GetPlayer;
++            if(plan==null||corners==null||corners.Length<2||!Retry.PathWithinBudget(length,plan.ReturnBudget)||
++                Vector3.Distance(corners[0],player.Position)>.45f||Vector3.Distance(corners[corners.Length-1],plan.Stage)>.35f)return false;
++            var points=new List<Vector3>();var previous=player.Position;
++            foreach(var corner in corners.Skip(1))
++            {
++                if(!IsFinite(corner))return false;
++                int count=Math.Max(1,(int)Math.Ceiling(Vector3.Distance(previous,corner)/1.25f));
++                if(count>64||points.Count+count>128)return false;
++                var start=previous;
++                for(int i=1;i<=count;i++)
++                {
++                    var point=Vector3.Lerp(start,corner,(float)i/count);
++                    if(!Retry.ReturnSegment(GetPlanarDistance(previous,point),Mathf.Abs(previous.y-point.y))||
++                        !TryGetFirstNonSelfRaycastHit(player,point+Vector3.up*.6f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var hit)||
++                        Mathf.Abs(hit.point.y-point.y)>.35f||hit.normal.y<.65f||
++                        TryGetFirstNonSelfCapsuleCastHit(player,previous+Vector3.up*.4f,previous+Vector3.up*1.35f,.18f,
++                            GetFlatDirection(point-previous),GetPlanarDistance(previous,point),LayerMaskClass.HighPolyWithTerrainMask,out _))return false;
++                    points.Add(point);previous=point;
++                }
++            }
++            var step=mission.Steps[mission.CurrentStepIndex];
++            if(TryGetCapabilityCompletedPrefixBoundary(bot,mission,step,out var boundary,out var axis)&&
++                !FollowerCapabilityIngressMotionPolicy.PrefixPath(true,Vector3.Dot(GetFlatDelta(boundary,player.Position),axis),
++                    Vector3.Dot(GetFlatDelta(boundary,plan.Entry),axis),Vector3.Dot(GetFlatDelta(boundary,plan.Stage),axis),
++                    points.Min(p=>Vector3.Dot(GetFlatDelta(boundary,p),axis))))return false;
++            HoldCapabilityRouteRetry(bot);plan.HoldGeneration=0;plan.ReturnPath=null;plan.ReturnGeneration=0;
++            plan.ReturnCorridor=points;plan.ReturnCorridorIndex=0;plan.ReturnCorridorMoving=false;
++            mission.LastProgressAt=Time.time;mission.LastProgressPosition=player.Position;mission.ApproachDeferredLastEntryDistance=length;
++            WriteEvent("capabilityFullRouteReturnCorridorArmed",bot,new{missionId=mission.MissionId,rootEdge=plan.Steps[0].EdgeId,
++                points=points.Count,arc=length,body=Vec(player.Position),target=Vec(plan.Stage),source="currentStrictSupportedGroundPath",nativeSuccessRecorded=false});
++            return true;
++        }
+         private static bool TryBuildCapabilityReturnCorridor(BotOwner bot,FollowerRouteMission mission)
+         {
+             var plan=mission.RouteRetry;
+--- RC135/src\Core\FollowerTraversalTestRuntime.cs
++++ RC136/src\Core\FollowerTraversalTestRuntime.cs
+@@ -54242,6 +54242,19 @@
+                     learningV452SemanticClosureTarget = IsFinite(learningV452SemanticStep.RawExit)
+                         ? learningV452SemanticStep.RawExit
+                         : learningV452SemanticStep.Exit;
++                    if(!FollowerCapabilityPassagePolicy.SemanticContinuation(IsEffectivelySupportedForProbe(probe.Bot,probe.Player),
++                        learningV452SemanticClosureTarget.y-probe.Player.Position.y,
++                        TryValidateCapabilitySemanticWalkingRamp(probe,learningV452SemanticClosureTarget)))
++                    {
++                        WriteEvent("capabilityLocalRescueSemanticHeightUnresolved",probe.Bot,new{
++                            missionId=commitment.RouteMissionId,stepIndex=commitment.RouteMissionStepIndex,
++                            semanticEdgeId=learningV452SemanticStep.EdgeId,physicalKind=commitment.Kind,
++                            body=Vec(probe.Player.Position),semanticTarget=Vec(learningV452SemanticClosureTarget),
++                            physicalHowFarSideProven=true,originalWhatConsumed=false,nativeSuccessRecorded=false,
++                            reason="localActuatorCannotWalkToDifferentFloorSemanticExit"});
++                        FinalizeOrEscalateTraversalFailure(probe,"localRescueSemanticHeightUnresolved");
++                        return;
++                    }
+                     WriteEvent("learningV452EquivalentStrategyFarSideKeptLiveUntilSemanticFrontier", probe.Bot, new
+                     {
+                         routeMissionId = commitment.RouteMissionId,

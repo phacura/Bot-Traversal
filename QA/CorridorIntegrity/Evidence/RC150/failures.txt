@@ -1,0 +1,55 @@
+
+ capabilityFailureSequenceAdvanced 9
+263.732 Chris_Redfield {'missionId': 169, 'stepIndex': 0, 'edgeId': 236, 'episodeId': 15, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadNoMeasuredProgress', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+272.55 Chris_Redfield {'missionId': 174, 'stepIndex': 0, 'edgeId': 236, 'episodeId': 15, 'stage': 'RecoveryTeleport', 'reason': 'sequenceStrategyApproachNoMeasuredProgress', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+292.157 Chris_Redfield {'missionId': 190, 'stepIndex': 1, 'edgeId': 85, 'episodeId': 19, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+295.653 Ada_Wong {'missionId': 191, 'stepIndex': 1, 'edgeId': 85, 'episodeId': 19, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+299.42 Ghost {'missionId': 188, 'stepIndex': 1, 'edgeId': 85, 'episodeId': 19, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+397.662 Chris_Redfield {'missionId': 206, 'stepIndex': 0, 'edgeId': 12, 'episodeId': 27, 'stage': 'SelfRescue', 'reason': 'nativeRecovery:nativeStateDidNotBegin', 'selectedTemplate': 12, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+406.706 Ada_Wong {'missionId': 205, 'stepIndex': 0, 'edgeId': 12, 'episodeId': 27, 'stage': 'ReturnToEntry', 'reason': 'routeContinuationNeedsRecovery:climbOffNavMeshUpperLanding', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+411.267 Knight {'missionId': 204, 'stepIndex': 0, 'edgeId': 12, 'episodeId': 27, 'stage': 'ReturnToEntry', 'reason': 'nativeRecovery:nativeLandingContinuation', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+441.36 Knight {'missionId': 213, 'stepIndex': 0, 'edgeId': 178, 'episodeId': 31, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+
+ capabilitySequenceSelectionFailed 15
+263.732 Chris_Redfield {'missionId': 169, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+263.732 Chris_Redfield {'missionId': 169, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+292.157 Chris_Redfield {'missionId': 190, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+292.157 Chris_Redfield {'missionId': 190, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+295.653 Ada_Wong {'missionId': 191, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+295.653 Ada_Wong {'missionId': 191, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+299.42 Ghost {'missionId': 188, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+299.42 Ghost {'missionId': 188, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+397.662 Chris_Redfield {'missionId': 206, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+406.706 Ada_Wong {'missionId': 205, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+406.706 Ada_Wong {'missionId': 205, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+411.267 Knight {'missionId': 204, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+411.267 Knight {'missionId': 204, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+441.36 Knight {'missionId': 213, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+441.36 Knight {'missionId': 213, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+
+ capabilitySequenceReturnFailed 4
+296.162 Chris_Redfield {'missionId': 190, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+299.663 Ada_Wong {'missionId': 191, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+303.426 Ghost {'missionId': 188, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+410.714 Ada_Wong {'missionId': 205, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+
+ capabilityPortalQueueAdmittedIngressLost 0
+
+ learningV426TraversalConsumerEpochSuccessorMismatch 0
+
+UNPROVEN
+397.662 Chris_Redfield Climb 12 implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeStateDidNotBegin
+406.706 Ada_Wong Climb 12 implicitUnregister:forceRelease:sequenceAttemptFailed:routeContinuationNeedsRecovery:climbOffNavMeshUpperLanding
+411.267 Knight Climb 12 implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeLandingContinuation
+
+SAMPLE projections
+learningV377ActiveMoverPhysicalEpochRejected 81
+{'missionId': 141, 'generation': 5, 'bestRouteArc': 22.1416264, 'currentRouteArc': 22.1416264, 'cornerArc': 21.9769688, 'cornerForwardDot': -0.99939996, 'reason': 'currentMoverCornerBackwardAndBehindPhysicalFrontier', 'traversalSuccessRecorded': False, 'persistentLearningChanged': False, 'action': 'staleBackwardMoverPathCannotCountAsPersistentPhysicalProducer'}
+learningV426TraversalConsumerEpochSynchronized 19
+{'missionId': 149, 'sourceEdgeId': 230, 'sourceEpisodeId': 8, 'successorEdgeId': 121, 'successorEpisodeId': 11, 'successorKind': 'Jump', 'chainId': 10, 'body': {'x': 466.808655, 'y': 5.498108, 'z': -142.441681}, 'movementOwner': 'Traversal', 'movementGeneration': 10, 'walkThroughFollowPreflight': False, 'scrubDetail': 'scrubbed:Traversal:generation=10:source=learningV426ExactSuccessorProbeAcquired', 'traversalSuccessRecordedForSuccessor': False, 'persistentLearningChangedForSuccessor': False, 'bodyRelocated': False, 'action': 'exactSuccessorProbeAtomicallyReplacesInterBoundaryV364GuardWithActiveTraversalPhysicalEpoch'}
+learningV426TraversalConsumerEpochSuccessorMismatch 0
+
+cf24FreshFollowPhysicalEpochPreflightDeferred 10
+{'reason': 'learningV423PhysicalContinuationFreshFollow', 'source': 'post-traversal-fresh-epoch', 'traversalGeneration': 16, 'body': {'x': 351.1084, 'y': 0.959734261, 'z': -104.954468}, 'tightSampled': False, 'tightPlanar': 3.40282347e+38, 'tightVertical': 3.40282347e+38, 'allowedPlanar': 0.2, 'allowedVertical': 0.2, 'movementOwner': 'Traversal', 'movementGeneration': 16, 'traversalSuccessRecorded': False, 'persistentLearningChanged': False, 'bodyRelocated': False, 'action': 'deferFreshFollowUntilV364TightBodyNavMeshAdmissionWithoutOwnershipChurn'}
+learningV364StaleNavigationEpochProjectionSuppressed 50
+{'edgeId': 142, 'episodeId': 0, 'chainId': 4, 'source': 'learningV425FreshFollowConsumerEpoch:learningV425SeamlessTerminalConsumerRebase', 'physicalAnchor': {'x': 164.414413, 'y': -0.6388109, 'z': 35.51874}, 'current': {'x': 164.487747, 'y': -0.6388109, 'z': 37.6318054}, 'candidate': {'x': 164.187424, 'y': -0.6388109, 'z': 37.54297}, 'movementOwner': 'Follow', 'movementGeneration': 9, 'freshConsumerPathObserved': False, 'freshConsumerPathSource': '', 'withExtra': False, 'action': 'rejectNativeBodyProjectionUntilPhysicalAndNavigationEpochsAreSynchronized'}

@@ -1,0 +1,62 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "body_observation_disabled",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "body_observation_unbounded",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "handoff_identity_bypassed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "prefix_identity_bypassed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "missed_window_geometry_only",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "carry_consumer_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "world_input_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "snapshot_raw_after_attempt",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

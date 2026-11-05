@@ -1,0 +1,74 @@
+Per edge/kind/truth
+(4, 'Climb', 'NativePhysical') 1
+(11, 'Climb', 'NativePhysical') 3
+(12, 'Climb', 'NativePhysical') 1
+(16, 'Climb', 'NativePhysical') 3
+(16, 'Climb', 'Unproven') 2
+(38, 'DropDown', 'NativePhysical') 4
+(43, 'DropDown', 'NativePhysical') 3
+(50, 'DropDown', 'NativePhysical') 4
+(62, 'DropDown', 'NativePhysical') 4
+(83, 'DropDown', 'NativePhysical') 4
+(84, 'DropDown', 'NativePhysical') 4
+(108, 'DropDown', 'NonNativeCompletion') 4
+(112, 'DropDown', 'NativePhysical') 12
+(112, 'Vault', 'Unproven') 1
+(113, 'DropDown', 'NativePhysical') 4
+(118, 'DropDown', 'NativePhysical') 2
+(118, 'DropDown', 'NonNativeCompletion') 2
+(120, 'Jump', 'NativePhysical') 4
+(120, 'Jump', 'NonNativeCompletion') 4
+(145, 'Vault', 'NativePhysical') 4
+(157, 'Vault', 'NativePhysical') 5
+(178, 'WalkThrough', 'NativePhysical') 7
+(178, 'WalkThrough', 'NonNativeCompletion') 1
+(178, 'WalkThrough', 'Unproven') 4
+(180, 'WalkThrough', 'NativePhysical') 5
+(181, 'WalkThrough', 'NativePhysical') 4
+(183, 'WalkThrough', 'NativePhysical') 15
+(184, 'WalkThrough', 'NativePhysical') 3
+(188, 'WalkThrough', 'NativePhysical') 4
+(191, 'WalkThrough', 'NativePhysical') 2
+(192, 'WalkThrough', 'NativePhysical') 3
+(194, 'WalkThrough', 'NativePhysical') 4
+(194, 'WalkThrough', 'Unproven') 4
+(200, 'WalkThrough', 'NativePhysical') 8
+(201, 'WalkThrough', 'NativePhysical') 2
+(204, 'WalkThrough', 'NativePhysical') 4
+(228, 'WalkThrough', 'NativePhysical') 4
+(232, 'WalkThrough', 'NativePhysical') 12
+(233, 'WalkThrough', 'NativePhysical') 4
+(237, 'WalkThrough', 'NativePhysical') 4
+(239, 'WalkThrough', 'NativePhysical') 4
+(240, 'WalkThrough', 'NativePhysical') 4
+(245, 'WalkThrough', 'NativePhysical') 2
+(245, 'WalkThrough', 'Unproven') 5
+(248, 'Jump', 'NativePhysical') 4
+(263, 'Vault', 'NativePhysical') 1
+(271, 'WalkThrough', 'NativePhysical') 1
+(271, 'WalkThrough', 'NonNativeCompletion') 1
+(283, 'WalkThrough', 'NativePhysical') 4
+(285, 'DropDown', 'NativePhysical') 4
+NonNative
+335.129 Ghost {'edgeId': 108, 'kind': 'DropDown', 'success': True, 'completionMode': 'Legacy', 'reason': 'verifiedStableExit', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+335.785 Ada_Wong {'edgeId': 108, 'kind': 'DropDown', 'success': True, 'completionMode': 'Legacy', 'reason': 'verifiedStableExit', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+337.373 Chris_Redfield {'edgeId': 108, 'kind': 'DropDown', 'success': True, 'completionMode': 'Legacy', 'reason': 'verifiedStableExit', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+340.488 Knight {'edgeId': 108, 'kind': 'DropDown', 'success': True, 'completionMode': 'Legacy', 'reason': 'verifiedStableExit', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+411.004 Chris_Redfield {'edgeId': 118, 'kind': 'DropDown', 'success': True, 'completionMode': 'Legacy', 'reason': 'verifiedStableExit', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+412.236 Knight {'edgeId': 118, 'kind': 'DropDown', 'success': True, 'completionMode': 'Legacy', 'reason': 'verifiedStableExit', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+464.919 Chris_Redfield {'edgeId': 178, 'kind': 'WalkThrough', 'success': True, 'completionMode': 'Legacy', 'reason': 'learningV357RouteGroundSuccessorContinuity', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+512.887 Chris_Redfield {'edgeId': 271, 'kind': 'WalkThrough', 'success': True, 'completionMode': 'Legacy', 'reason': 'learningV423StrictPhysicalPassRouteMissionRelease', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+696.397 Knight {'edgeId': 120, 'kind': 'Jump', 'success': True, 'completionMode': 'Legacy', 'reason': 'chainIntermediate', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+697.837 Chris_Redfield {'edgeId': 120, 'kind': 'Jump', 'success': True, 'completionMode': 'Legacy', 'reason': 'chainIntermediate', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+697.953 Ada_Wong {'edgeId': 120, 'kind': 'Jump', 'success': True, 'completionMode': 'Legacy', 'reason': 'chainIntermediate', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+698.136 Ghost {'edgeId': 120, 'kind': 'Jump', 'success': True, 'completionMode': 'Legacy', 'reason': 'chainIntermediate', 'teleportUsed': False, 'assistedAttempted': False, 'physicalCrossing': True}
+Skip reasons Counter({('Alternate', 'noExecutableTemplate'): 18, ('SelfRescue', 'noExecutableTemplate'): 13})
+ReturnFailures
+190.62 Ghost {'missionId': 49, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+310.486 Knight {'missionId': 156, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+362.587 Ada_Wong {'missionId': 183, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+485.398 Knight {'missionId': 230, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+513.236 Ghost {'missionId': 262, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+551.88 Knight {'missionId': 272, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+551.929 Ada_Wong {'missionId': 271, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+613.899 Chris_Redfield {'missionId': 291, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}

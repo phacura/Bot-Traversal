@@ -1,0 +1,28 @@
+
+ Ada_Wong
+[('capabilitySequenceOwnedDispatch', 196), ('followerSnapshot', 9), ('learningV385TerminalRecoverySameExecutionDebtRejectedAsFreshEpoch', 7), ('capabilityAutomaticProbeAdmissionBlocked', 7), ('v2rc52WorldLockedIngressInput', 5), ('capabilityPortalApproachPathRejected', 4), ('followerTraversalRecoveryWriterHandoffRejected', 4), ('learningV409NativeMoverPathRetiredWithoutBrake', 4)]
+2464.142 followerSnapshot {'botPosition': {'x': 354.0858, 'y': 4.21031857, 'z': -128.763123}}
+2464.56 capabilityPortalApproachPathRejected {'body': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}, 'target': {'x': 354.470123, 'y': 3.53829026, 'z': -132.318451}, 'reason': 'currentEntryRequiresLocalPathPreservingCompletedPrefix'}
+2465.143 followerSnapshot {'botPosition': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}}
+2465.575 capabilityPortalApproachPathRejected {'body': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}, 'target': {'x': 354.470123, 'y': 3.53829026, 'z': -132.318451}, 'reason': 'currentEntryRequiresLocalPathPreservingCompletedPrefix'}
+2466.143 followerSnapshot {'botPosition': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}}
+2466.591 capabilityPortalApproachPathRejected {'body': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}, 'target': {'x': 354.470123, 'y': 3.53829026, 'z': -132.318451}, 'reason': 'currentEntryRequiresLocalPathPreservingCompletedPrefix'}
+2467.157 followerSnapshot {'botPosition': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}}
+2467.592 capabilityPortalApproachPathRejected {'body': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}, 'target': {'x': 354.470123, 'y': 3.53829026, 'z': -132.318451}, 'reason': 'currentEntryRequiresLocalPathPreservingCompletedPrefix'}
+2467.893 capabilitySequenceStrategySelected {'entry': {'x': 354.379761, 'y': 4.114613, 'z': -130.562241}, 'exit': {'x': 354.557373, 'y': 3.535316, 'z': -132.51088}, 'body': {'x': 354.08667, 'y': 4.21031857, 'z': -128.763962}, 'missionId': 292}
+2468.172 followerSnapshot {'botPosition': {'x': 354.154358, 'y': 4.210466, 'z': -129.130356}}
+2469.177 followerSnapshot {'botPosition': {'x': 354.465942, 'y': 4.12317753, 'z': -130.258667}}
+2470.192 followerSnapshot {'botPosition': {'x': 354.465942, 'y': 4.12317753, 'z': -130.25946}}
+2471.192 followerSnapshot {'botPosition': {'x': 354.465942, 'y': 4.12317753, 'z': -130.25946}}
+2472.208 followerSnapshot {'botPosition': {'x': 354.465942, 'y': 4.12317753, 'z': -130.25946}}
+
+ Chris_Redfield
+[('followerSnapshot', 7), ('capabilityPortalQueueWaiting', 4), ('capabilitySequenceSelectionFailed', 2), ('capabilityPortalQueueApproachReleased', 1), ('capabilityPortalQueueAdmitted', 1), ('learningV349GenericPhysicalProgressWatchdogArmedPassage', 1), ('learningV409NativeMoverPathRetiredWithoutBrake', 1), ('capabilityRescueObstacleEvidence', 1)]
+2471.192 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}
+2472.208 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}
+2472.992 capabilityPortalQueueAdmitted {'edgeId': 110, 'missionId': 293}
+2473.224 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}
+2474.224 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}
+2475.233 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}
+2476.24 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}
+2477.243 followerSnapshot {'botPosition': {'x': 354.509521, 'y': 0.7530346, 'z': -133.098923}}

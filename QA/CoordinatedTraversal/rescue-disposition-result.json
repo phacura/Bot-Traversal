@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": 20,
+  "cases": [
+    "original Jump probe attaches to its immutable step",
+    "current original lifecycle remains valid during physical substitution",
+    "Vault strategy is not a replacement semantic receipt",
+    "unproven rescue cannot publish completion",
+    "existing full retry retains semantic cursor",
+    "retry does not turn rescue into Native Jump success",
+    "late geometry cannot consume debt while returning",
+    "failed rescue cannot release normal follow",
+    "existing retirement detaches failed probe",
+    "retirement retains unresolved original passage",
+    "late old callback cannot award success",
+    "duplicate full retry does not advance route",
+    "frozen actual raid has 6382 valid events",
+    "actual thirteen NativePhysical summaries retained as observations",
+    "one actual unproven terminal",
+    "original224 rejected rather than successful Jump",
+    "original Jump receipt ended with physical Vault",
+    "old raid never entered sanctioned full retry",
+    "six actual native takeoffs in RC119 trace",
+    "rescue case did not execute native Jump224"
+  ],
+  "dllSha256": "0F7BA4A62AF736312B349869FDC97B4B0AB7F9EEBD67324B890CE28AD13D2C32",
+  "traceSha256": "B084FE2B1D04F666FFC098267D4250C7FE8FC146BC8D8E9A03E0053B000E3169",
+  "physicsSimulated": false
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "bot": "Chris_Redfield",
+    "time": 345.65033,
+    "dt": 0.01568600000001652,
+    "d": 2.5846589860740448,
+    "speed": 164.77489392269047,
+    "previousEvent": "learningV420CanonicalPhysicalRouteNavMeshRelinkSuppressed",
+    "event": "learningV409MeasuredNativeLocomotionProgress",
+    "fromPosition": {
+      "x": -41.787674,
+      "y": -4.32139254,
+      "z": -9.753794
+    },
+    "to": {
+      "x": -39.65001,
+      "y": -3.80553722,
+      "z": -11.112009
+    },
+    "sequence": 15441
+  }
+]

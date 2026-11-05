@@ -1,0 +1,3217 @@
+{
+  "declarations": [
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryStartProbeForBot_deferWalkThroughTraversalAuthority_1(bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "TryStartProbeForBot_deferWalkThroughTraversalAuthority_1",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV330WalkThroughDeferredPreflightAuthority",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_LearningV365ExclusiveWalkThroughPreflightAuthority",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f2_learningV375PersistentWriterAvailable",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_requestedWalkThrough",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV330WalkThroughDeferredPreflightAuthority && (!f1_LearningV365ExclusiveWalkThroughPreflightAuthority)) && (!f2_learningV375PersistentWriterAvailable)) && f3_requestedWalkThrough)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateWalkThroughEntryConvergence_headingSolved_8(bool, float, bool, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateWalkThroughEntryConvergence_headingSolved_8",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_converged",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_corridorAlignmentAngle",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV312WalkThroughEntrySemanticAuthority",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f3_entryApproachAngle",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_converged ? (f1_corridorAlignmentAngle <= 12f) : ((f2_LearningV312WalkThroughEntrySemanticAuthority || (f3_entryApproachAngle <= 12f))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_learningV352InstantTakeoffCorridorReady_1(bool, float, float, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "TryBeginLearnedNativeJump_learningV352InstantTakeoffCorridorReady_1",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV352NativeJumpCenterlineCorridor",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_takeoffLateralOffset",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV352JumpTakeoffCorridorMaxLateral",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_takeoffEntryProjection",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV352JumpTakeoffCorridorMaxForwardOvershoot",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_takeoffFacingDot",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_LearningV352JumpTakeoffCorridorMinFacingDot",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV352NativeJumpCenterlineCorridor) || ((((f1_takeoffLateralOffset <= f2_LearningV352JumpTakeoffCorridorMaxLateral) && (f3_takeoffEntryProjection <= f4_LearningV352JumpTakeoffCorridorMaxForwardOvershoot)) && (f5_takeoffFacingDot >= f6_LearningV352JumpTakeoffCorridorMinFacingDot))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_rollingHandoffSemanticAuthority_2(bool, bool, string)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "TryBeginLearnedNativeJump_rollingHandoffSemanticAuthority_2",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV326NativeJumpPrimingTrajectoryContinuity",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_LearningV317NativeJumpSemanticTrajectoryAuthority",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f2_source",
+          "Ordinal": 2,
+          "type": "string",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV326NativeJumpPrimingTrajectoryContinuity && f1_LearningV317NativeJumpSemanticTrajectoryAuthority) && string.Equals(f2_source,\"rollingHandoff\",(System.StringComparison)5))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_takeoffPhysicalHeadingReady_4(bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "TryBeginLearnedNativeJump_takeoffPhysicalHeadingReady_4",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV343JumpPhysicalHeadingProof",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_takeoffMovementHeadingDot",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_takeoffHeadingThreshold",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV343JumpPhysicalHeadingProof) || (f1_takeoffMovementHeadingDot >= f2_takeoffHeadingThreshold))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_physicalHeadingReady_1(bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateLearnedJumpTakeoffPriming_physicalHeadingReady_1",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV343JumpPhysicalHeadingProof",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_movementHeadingDot",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearnedJumpTakeoffMinFacingDot",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV343JumpPhysicalHeadingProof) || (f1_movementHeadingDot >= f2_LearnedJumpTakeoffMinFacingDot))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_learningV352TakeoffCorridorReady_2(bool, float, float, float, float, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateLearnedJumpTakeoffPriming_learningV352TakeoffCorridorReady_2",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV352NativeJumpCenterlineCorridor",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_takeoffLateralOffset",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV352JumpTakeoffCorridorMaxLateral",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_takeoffEntryProjection",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV352JumpTakeoffCorridorMaxForwardOvershoot",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_facingDot",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_LearningV352JumpTakeoffCorridorMinFacingDot",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_movementHeadingDot",
+          "Ordinal": 7,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f8_LearningV352JumpTakeoffCorridorMinMovementHeadingDot",
+          "Ordinal": 8,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV352NativeJumpCenterlineCorridor) || (((((f1_takeoffLateralOffset <= f2_LearningV352JumpTakeoffCorridorMaxLateral) && (f3_takeoffEntryProjection <= f4_LearningV352JumpTakeoffCorridorMaxForwardOvershoot)) && (f5_facingDot >= f6_LearningV352JumpTakeoffCorridorMinFacingDot)) && (f7_movementHeadingDot >= f8_LearningV352JumpTakeoffCorridorMinMovementHeadingDot))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_learningV350TakeoffHorizonReady_5(bool, bool, bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateLearnedJumpTakeoffPriming_learningV350TakeoffHorizonReady_5",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV350NativeJumpTakeoffHorizon",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_ready",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV449PhysicalTriggerWindowReady",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_rawEntryProjection",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_takeoffHorizonDistance",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV350NativeJumpTakeoffHorizon && f1_ready) && f2_learningV449PhysicalTriggerWindowReady) && (f3_rawEntryProjection >= (-f4_takeoffHorizonDistance)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateNativeDropDown_executionEvidenceEligible_2(bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateNativeDropDown_executionEvidenceEligible_2",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV32SharedNativeEntryHandoff",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_forwardProjection",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV32DropDownAirborneEvidenceMinProjection",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV32SharedNativeEntryHandoff) || (f1_forwardProjection >= f2_LearningV32DropDownAirborneEvidenceMinProjection))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateExitAuthorityCommit_rejectedPathRelease_16(bool, float, bool, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateExitAuthorityCommit_rejectedPathRelease_16",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_probe_ExitAuthorityFollowPathRejected",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_probe_ExitAuthorityFollowPathRejectedAt",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV323ExitCommitMovementContinuity",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f3_Time_time",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_probe_ExitAuthorityFollowPathRejectedAt",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_ExitAuthorityRejectedPathRouteReleaseGraceSeconds",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_probe_ExitAuthorityFollowPathRejected && (f1_probe_ExitAuthorityFollowPathRejectedAt > 0f)) && ((f2_LearningV323ExitCommitMovementContinuity || ((f3_Time_time - f4_probe_ExitAuthorityFollowPathRejectedAt) >= f5_ExitAuthorityRejectedPathRouteReleaseGraceSeconds))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateExitAuthorityCommit_routePlannerReleaseEligible_19(bool, bool, bool, bool, bool, float, float, bool, float, float, bool, int, int, bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityDecisionRules",
+      "name": "UpdateExitAuthorityCommit_routePlannerReleaseEligible_19",
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_probe_ExitAuthorityTopologyRejoinConfirmed",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_followPhysicalProgressAck",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_rejectedPathRelease",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_LearningV323ExitCommitMovementContinuity",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f4_validationLongEnough",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_followHandoffAge",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_ExitAuthorityFollowNoCommandGraceSeconds",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_hasLeaderPosition",
+          "Ordinal": 7,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f8_leaderDistance",
+          "Ordinal": 8,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f9_ExitAuthorityNoCommandLeaderDistance",
+          "Ordinal": 9,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f10_exitAuthorityBodySafe",
+          "Ordinal": 10,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f11_probe_ExitAuthorityStableSamples",
+          "Ordinal": 11,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f12_ExitAuthorityStableSamplesRequired",
+          "Ordinal": 12,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f13_rejectedPathRelease",
+          "Ordinal": 13,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f14_LearningV412MotionCarryingSuccessorHandoff",
+          "Ordinal": 14,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f15_observedButStationaryRelease",
+          "Ordinal": 15,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f16_noDirectPathObservedRelease",
+          "Ordinal": 16,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((((((f0_probe_ExitAuthorityTopologyRejoinConfirmed && (!f1_followPhysicalProgressAck)) && (((f2_rejectedPathRelease && f3_LearningV323ExitCommitMovementContinuity) ? f4_validationLongEnough : (f5_followHandoffAge >= f6_ExitAuthorityFollowNoCommandGraceSeconds)))) && f7_hasLeaderPosition) && (f8_leaderDistance > f9_ExitAuthorityNoCommandLeaderDistance)) && f10_exitAuthorityBodySafe) && (f11_probe_ExitAuthorityStableSamples >= f12_ExitAuthorityStableSamplesRequired)) && (((f13_rejectedPathRelease || (((!f14_LearningV412MotionCarryingSuccessorHandoff) && f15_observedButStationaryRelease))) || f16_noDirectPathObservedRelease)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ApplyV403SuccessorGate_AB0256DE_1(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ApplyV403SuccessorGate_AB0256DE_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV403TerminalRecoveryPreTransactionAdmissionMonotonicity",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_LearningV404TerminalRecoverySuccessorGateLiveTransactionScope",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f2_learningV404LivePersistentMovementHandoff",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_LearningV403TerminalRecoveryPreTransactionAdmissionMonotonicity && (((!f1_LearningV404TerminalRecoverySuccessorGateLiveTransactionScope) || f2_learningV404LivePersistentMovementHandoff)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ReleasedV403GateWithoutLivePersistentMovement_AB0256DE_2(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ReleasedV403GateWithoutLivePersistentMovement_AB0256DE_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV404TerminalRecoverySuccessorGateLiveTransactionScope",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_LearningV403TerminalRecoveryPreTransactionAdmissionMonotonicity",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f2_learningV403CurrentExecutionStep",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV404TerminalRecoverySuccessorGateLiveTransactionScope && f1_LearningV403TerminalRecoveryPreTransactionAdmissionMonotonicity) && (!f2_learningV403CurrentExecutionStep))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV376UnattemptedCurrentRouteSameEpisodeRecovery_AB0256DE_3(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV376UnattemptedCurrentRouteSameEpisodeRecovery_AB0256DE_3",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV376CurrentRaidRouteSupersedesStaleRecoveryLease",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV404ApplyV403SuccessorGate",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV403CurrentExecutionStep",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_LearningV376CurrentRaidRouteSupersedesStaleRecoveryLease && (((!f1_learningV404ApplyV403SuccessorGate) || f2_learningV403CurrentExecutionStep)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV373TypedSameEpisodeSupersedesGenericRecovery_AB0256DE_4(bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV373TypedSameEpisodeSupersedesGenericRecovery_AB0256DE_4",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV373FreshTypedRouteSupersedesGenericRecovery",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV376UnattemptedCurrentRouteSameEpisodeRecovery",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV404ApplyV403SuccessorGate",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV403CurrentExecutionStep",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV373FreshTypedRouteSupersedesGenericRecovery || f1_learningV376UnattemptedCurrentRouteSameEpisodeRecovery)) && (((!f2_learningV404ApplyV403SuccessorGate) || f3_learningV403CurrentExecutionStep)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV387MeasuredMomentumAlive_C2A50036_1(bool, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV353JumpRouteFunnelTarget_learningV387MeasuredMomentumAlive_C2A50036_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV387JumpMeasuredMomentumHandoff",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_planarSpeed",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_RollingTraversalMinSpeed",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_movementHeadingDot",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV352JumpTakeoffCorridorMinMovementHeadingDot",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV387JumpMeasuredMomentumHandoff && (f1_planarSpeed >= f2_RollingTraversalMinSpeed)) && (f3_movementHeadingDot >= f4_LearningV352JumpTakeoffCorridorMinMovementHeadingDot))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionMomentumLease_C2A50036_3(bool, int, int, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionMomentumLease_C2A50036_3",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV457AtomicSuccessorAdmissionProducer",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_state",
+          "Ordinal": 1,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_EPlayerState_Transition",
+          "Ordinal": 2,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV387MeasuredMomentumAlive",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV457AtomicSuccessorAdmissionProducer && (f1_state == f2_EPlayerState_Transition)) && f3_learningV387MeasuredMomentumAlive)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV439ReservationAdmissionReady_C2A50036_8(bool, bool, bool, bool, bool, bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV353JumpRouteFunnelTarget_learningV439ReservationAdmissionReady_C2A50036_8",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV439JumpReservationBeforeCenterline",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_locomotionAlive",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_jumpCapabilityReady",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV415ModeReady",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_insideRollingWindow",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_facingReady",
+          "Ordinal": 5,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_headingReady",
+          "Ordinal": 6,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_learningV429ForwardProducerReady",
+          "Ordinal": 7,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f8_physicalReservationReady",
+          "Ordinal": 8,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_LearningV439JumpReservationBeforeCenterline ? ((((((f1_locomotionAlive && f2_jumpCapabilityReady) && f3_learningV415ModeReady) && f4_insideRollingWindow) && f5_facingReady) && f6_headingReady) && f7_learningV429ForwardProducerReady) : f8_physicalReservationReady)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionActuatorStateReady_C2A50036_9(bool, int, int, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionActuatorStateReady_C2A50036_9",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV457AtomicSuccessorAdmissionProducer",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_state",
+          "Ordinal": 1,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_EPlayerState_Transition",
+          "Ordinal": 2,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV387MeasuredMomentumAlive",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV457AtomicSuccessorAdmissionProducer && (f1_state == f2_EPlayerState_Transition)) && f3_learningV387MeasuredMomentumAlive)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV363ActuatorRouteEntryLaneTarget_insideLongitudinalLane_3A7F067E_2(bool, float, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV363ActuatorRouteEntryLaneTarget_insideLongitudinalLane_3A7F067E_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV391ActuatorEntryNumericEnvelope",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_forwardEntryProjection",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV32EntryProgressEpsilon",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_LearningV3NativeEntryCorrectionStagingDistance",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_forwardEntryProjection",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_CompatibilityTraversalEntryMaxForwardOvershoot",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((!f0_LearningV391ActuatorEntryNumericEnvelope) || ((f1_forwardEntryProjection + f2_LearningV32EntryProgressEpsilon) >= (-f3_LearningV3NativeEntryCorrectionStagingDistance)))) && (f4_forwardEntryProjection <= f5_CompatibilityTraversalEntryMaxForwardOvershoot))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryDriveLearningV347EmpiricalRouteCorridor_learningV355MeasuredRouteProgress_3A6819C4_1(bool, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryDriveLearningV347EmpiricalRouteCorridor_learningV355MeasuredRouteProgress_3A6819C4_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV355UnifiedRouteRelativeBodyProgress",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV355CumulativePhysicalDisplacement",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV350MeasuredPhysicalProgressDistance",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV355CumulativeRouteForwardProgress",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV350MeasuredTargetProgressDistance",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV355UnifiedRouteRelativeBodyProgress) || (((f1_learningV355CumulativePhysicalDisplacement >= f2_LearningV350MeasuredPhysicalProgressDistance) && (f3_learningV355CumulativeRouteForwardProgress >= f4_LearningV350MeasuredTargetProgressDistance))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryContinueLearningV365ContinuousGenericPhysicalRoute_measured_66D92C3C_1(bool, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryContinueLearningV365ContinuousGenericPhysicalRoute_measured_66D92C3C_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV350MeasuredProgressTerminalRecovery",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_cumulativeDisplacement",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV350MeasuredPhysicalProgressDistance",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_cumulativeForward",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV350MeasuredTargetProgressDistance",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV350MeasuredProgressTerminalRecovery) || (((f1_cumulativeDisplacement >= f2_LearningV350MeasuredPhysicalProgressDistance) && (f3_cumulativeForward >= f4_LearningV350MeasuredTargetProgressDistance))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryDriveLearningV349GenericEmpiricalPassageCorridor_learningV419SuspiciousFollowYield_12FDB6E0_1(bool, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryDriveLearningV349GenericEmpiricalPassageCorridor_learningV419SuspiciousFollowYield_12FDB6E0_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV419MonotonicExecutionDebtConsumerEpoch",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_rejoinDirectDistance",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_rejoinPathLength",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_rejoinSuspiciousThreshold",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV419MonotonicExecutionDebtConsumerEpoch && (f1_rejoinDirectDistance > 0.05f)) && (f2_rejoinPathLength >= f3_rejoinSuspiciousThreshold))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryDriveLearningV349GenericEmpiricalPassageCorridor_measuredPhysicalProgress_12FDB6E0_2(bool, float, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryDriveLearningV349GenericEmpiricalPassageCorridor_measuredPhysicalProgress_12FDB6E0_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV350MeasuredProgressTerminalRecovery",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_cumulativePhysicalDisplacement",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV350MeasuredPhysicalProgressDistance",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_cumulativeRouteForwardProgress",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV350MeasuredTargetProgressDistance",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV350MeasuredProgressTerminalRecovery) || (((f1_cumulativePhysicalDisplacement >= f2_LearningV350MeasuredPhysicalProgressDistance) && (f3_cumulativeRouteForwardProgress >= f4_LearningV350MeasuredTargetProgressDistance))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.IsLearningV31WalkThroughNativeLocomotionEvidence_recovery_92879F18_1(bool, bool, bool, bool, bool, float, float, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "IsLearningV31WalkThroughNativeLocomotionEvidence_recovery_92879F18_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_probe_TraversalTeleportAttempted",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_probe_TeleportFallbackUsed",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_probe_RecoveryExitAlreadySatisfied",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_LearningV341ForcedEgressClassification",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f4_probe_LearningV341ForcedEgressPhysicalWriterUsed",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_probe_UnifiedEgressForcedDistance",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_ForcedEgressRecoveryDistance",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_probe_IslandExitNominalClimbTopBridge",
+          "Ordinal": 7,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((f0_probe_TraversalTeleportAttempted || f1_probe_TeleportFallbackUsed) || f2_probe_RecoveryExitAlreadySatisfied) || ((f3_LearningV341ForcedEgressClassification && f4_probe_LearningV341ForcedEgressPhysicalWriterUsed))) || (((f5_probe_UnifiedEgressForcedDistance >= f6_ForcedEgressRecoveryDistance) && (!f7_probe_IslandExitNominalClimbTopBridge))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.IsLearningV3RetainableNativeSuccess_recovery_5170C182_2(bool, bool, bool, bool, bool, float, float, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "IsLearningV3RetainableNativeSuccess_recovery_5170C182_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_probe_TraversalTeleportAttempted",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_probe_TeleportFallbackUsed",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_probe_RecoveryExitAlreadySatisfied",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_LearningV341ForcedEgressClassification",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f4_probe_LearningV341ForcedEgressPhysicalWriterUsed",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_probe_UnifiedEgressForcedDistance",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_ForcedEgressRecoveryDistance",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_probe_IslandExitNominalClimbTopBridge",
+          "Ordinal": 7,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((f0_probe_TraversalTeleportAttempted || f1_probe_TeleportFallbackUsed) || f2_probe_RecoveryExitAlreadySatisfied) || ((f3_LearningV341ForcedEgressClassification && f4_probe_LearningV341ForcedEgressPhysicalWriterUsed))) || (((f5_probe_UnifiedEgressForcedDistance >= f6_ForcedEgressRecoveryDistance) && (!f7_probe_IslandExitNominalClimbTopBridge))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.ShouldPreferAssistedExecutor_adaptiveKind_EBB76326_1(string, string, bool, string, string)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "ShouldPreferAssistedExecutor_adaptiveKind_EBB76326_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_traversalKind",
+          "Ordinal": 0,
+          "type": "string",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_traversalKind",
+          "Ordinal": 1,
+          "type": "string",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV2FreshSessionOnly",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f3_traversalKind",
+          "Ordinal": 3,
+          "type": "string",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_traversalKind",
+          "Ordinal": 4,
+          "type": "string",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((string.Equals(f0_traversalKind,\"Vault\",(System.StringComparison)5) || string.Equals(f1_traversalKind,\"Climb\",(System.StringComparison)5)) || ((f2_LearningV2FreshSessionOnly && ((string.Equals(f3_traversalKind,\"Jump\",(System.StringComparison)5) || string.Equals(f4_traversalKind,\"DropDown\",(System.StringComparison)5))))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.ShouldPreferAssistedExecutor_freshSingleSampleCorrection_EBB76326_2(bool, int)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "ShouldPreferAssistedExecutor_freshSingleSampleCorrection_EBB76326_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV2FreshSessionOnly",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_nativeAttempts",
+          "Ordinal": 1,
+          "type": "int",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_LearningV2FreshSessionOnly && (f1_nativeAttempts >= 1))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateLearningV349GenericPhysicalProgressWatchdog_movementCountsAsProgress_958583D5_6(bool, bool, bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateLearningV349GenericPhysicalProgressWatchdog_movementCountsAsProgress_958583D5_6",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV355UnifiedRouteRelativeBodyProgress",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_haveMission",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_haveProbe",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV386LocalBreadcrumbForwardProgress",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_learningV355RouteRelativeProgress",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_worldMotionProgress",
+          "Ordinal": 5,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV355UnifiedRouteRelativeBodyProgress && f1_haveMission) && (!f2_haveProbe)) ? ((f3_learningV386LocalBreadcrumbForwardProgress || f4_learningV355RouteRelativeProgress)) : f5_worldMotionProgress)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryConsumeLearningV311InheritedDropDownEntryAuthority_inheritedHeadingReady_21A9CFD6_2(bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryConsumeLearningV311InheritedDropDownEntryAuthority_inheritedHeadingReady_21A9CFD6_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV371InheritedDropDownHeadingProof",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_alignmentAngle",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_NativeDropDownEntryMaxAlignmentAngle",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV371InheritedDropDownHeadingProof) || (f1_alignmentAngle <= f2_NativeDropDownEntryMaxAlignmentAngle))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV380RouteActuatorReady_9C18CECF_2(bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateRollingTraversalApproach_learningV380RouteActuatorReady_9C18CECF_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV380ActiveActuatorProbeAdoptsRouteReadiness",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_injectedNativeExecutor",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV387DropDownAdoptsRouteReadiness",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f3_nativeDropDownExecutor",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_LearningV380ActiveActuatorProbeAdoptsRouteReadiness && ((f1_injectedNativeExecutor || ((f2_LearningV387DropDownAdoptsRouteReadiness && f3_nativeDropDownExecutor)))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_traversalGeometryReady_9C18CECF_6(float, bool, bool, float, float, float, float, float, float, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateRollingTraversalApproach_traversalGeometryReady_9C18CECF_6",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_alignmentAngle",
+          "Ordinal": 0,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_LearningV335NativeVaultRollingTriggerParity",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f2_injectedNativeClimb",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_InjectedNativeVaultRollingMaxAlignmentAngle",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_InjectedNativeVaultEntryMaxAlignmentAngle",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_lateralEntryOffset",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_learningV357ActuatorEntryMaxLateral",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_forwardEntryProjection",
+          "Ordinal": 7,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f8_InjectedNativeVaultEntryMaxForwardOvershoot",
+          "Ordinal": 8,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f9_learningV374ActuatorTriggerFrontierReady",
+          "Ordinal": 9,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f10_climbSprintReleased",
+          "Ordinal": 10,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f11_transitionClear",
+          "Ordinal": 11,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((((f0_alignmentAngle <= (((f1_LearningV335NativeVaultRollingTriggerParity && (!f2_injectedNativeClimb)) ? f3_InjectedNativeVaultRollingMaxAlignmentAngle : f4_InjectedNativeVaultEntryMaxAlignmentAngle))) && (f5_lateralEntryOffset <= f6_learningV357ActuatorEntryMaxLateral)) && (f7_forwardEntryProjection <= f8_InjectedNativeVaultEntryMaxForwardOvershoot)) && f9_learningV374ActuatorTriggerFrontierReady) && f10_climbSprintReleased) && f11_transitionClear)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV339JumpControlledEntry_9C18CECF_17(bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateRollingTraversalApproach_learningV339JumpControlledEntry_9C18CECF_17",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV339EntryLaneHeadingAuthority",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_nativeJumpExecutor",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_traversalGeometryReady",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV458ProbeReservationLive",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV339EntryLaneHeadingAuthority && f1_nativeJumpExecutor) && (!f2_traversalGeometryReady)) && (!f3_learningV458ProbeReservationLive))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV339DropDownControlledEntry_9C18CECF_19(bool, bool, bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateRollingTraversalApproach_learningV339DropDownControlledEntry_9C18CECF_19",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV339EntryLaneHeadingAuthority",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_nativeDropDownExecutor",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_traversalGeometryReady",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_distance",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_handoffDistance",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV339EntryLaneHeadingAuthority && f1_nativeDropDownExecutor) && (!f2_traversalGeometryReady)) && (f3_distance <= f4_handoffDistance))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_mustWaitInPlace_9C18CECF_21(bool, bool, bool, bool, bool, float, float, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateRollingTraversalApproach_mustWaitInPlace_9C18CECF_21",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV357VelocityContinuousRouteEnvelope",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_needsEntryStaging",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_staged",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_insideHandoffEnvelope",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_needsEntryStaging",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_alignmentAngle",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_InjectedNativeVaultEntryMaxAlignmentAngle",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f7_climbSprintReleased",
+          "Ordinal": 7,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f8_transitionClear",
+          "Ordinal": 8,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV357VelocityContinuousRouteEnvelope) && ((((f1_needsEntryStaging && f2_staged)) || (((f3_insideHandoffEnvelope && (!f4_needsEntryStaging)) && ((((f5_alignmentAngle > f6_InjectedNativeVaultEntryMaxAlignmentAngle) || (!f7_climbSprintReleased)) || (!f8_transitionClear))))))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_cf21StagingLeaseEligible_9C18CECF_24(bool, bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateRollingTraversalApproach_cf21StagingLeaseEligible_9C18CECF_24",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_Cf21NativeEntryPrecisionProducerLease",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_needsLateralCorrection",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_needsEntryStaging",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_staged",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_mustWaitInPlace",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((f0_Cf21NativeEntryPrecisionProducerLease && f1_needsLateralCorrection) && f2_needsEntryStaging) && (!f3_staged)) && (!f4_mustWaitInPlace))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV419WalkThroughTerminalFrontierContinuation_terminalPlaneActuallyCrossed_8EB2E7E8_1(bool, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV419WalkThroughTerminalFrontierContinuation_terminalPlaneActuallyCrossed_8EB2E7E8_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV422MonotonicPhysicalConsumerOrdering",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_forwardProjection",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_forwardProjection",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_LearningV32EntryProgressEpsilon",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_LearningV422MonotonicPhysicalConsumerOrdering ? (f1_forwardProjection >= 0f) : ((f2_forwardProjection + f3_LearningV32EntryProgressEpsilon) >= 0f))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.ShouldSuppressLearningV322PersistentEvidence_toxic_BE16881B_2(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "ShouldSuppressLearningV322PersistentEvidence_toxic_BE16881B_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_nativeToxic",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_LearningV356SplitCrossingAndContinuationEvidence",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f2_followToxic",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(f0_nativeToxic || (((!f1_LearningV356SplitCrossingAndContinuationEvidence) && f2_followToxic)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_learningV461EquivalentDropDownChronology_395C3253_1(bool, bool, int, int, string, string)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_learningV461EquivalentDropDownChronology_395C3253_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV461CurrentBodySuccessorAdmissionClosure",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV452OriginalSemanticReached",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_completionMode",
+          "Ordinal": 2,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_TraversalCompletionMode_Native",
+          "Ordinal": 3,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_originalKind",
+          "Ordinal": 4,
+          "type": "string",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_transferredKind",
+          "Ordinal": 5,
+          "type": "string",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((f0_LearningV461CurrentBodySuccessorAdmissionClosure && (!f1_learningV452OriginalSemanticReached)) && (f2_completionMode == f3_TraversalCompletionMode_Native)) && string.Equals(f4_originalKind,\"DropDown\",(System.StringComparison)5)) && string.Equals(f5_transferredKind,\"DropDown\",(System.StringComparison)5))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_transferredClimbAlreadyRejoinedFarSideNavMesh_395C3253_2(bool, string, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_transferredClimbAlreadyRejoinedFarSideNavMesh_395C3253_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV450UnifiedActuatorTransactionLifecycle",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_transferredKind",
+          "Ordinal": 1,
+          "type": "string",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_downstreamStrictComplete",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((!f0_LearningV450UnifiedActuatorTransactionLifecycle) && string.Equals(f1_transferredKind,\"Climb\",(System.StringComparison)5)) && f2_downstreamStrictComplete)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV331CurrentGroundContinuationProof_monotonicFarSide_9749B9C6_3(bool, bool, bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV331CurrentGroundContinuationProof_monotonicFarSide_9749B9C6_3",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV430MonotonicPhysicalConsumerChronology",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_nativeJumpEpochObserved",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_supported",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_projection",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_span",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV430MonotonicPhysicalConsumerChronology && f1_nativeJumpEpochObserved) && f2_supported) && (f3_projection >= (f4_span - 0.20f)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryBeginNativeTraversalRunOut_learningV331ForwardContinuationSafe_3BD486C4_3(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryBeginNativeTraversalRunOut_learningV331ForwardContinuationSafe_3BD486C4_3",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV331NativeLandingForwardContinuation",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_meaningfulCrossing",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_supportedNativeLanding",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV331NativeLandingForwardContinuation && f1_meaningfulCrossing) && f2_supportedNativeLanding)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryInstallLearningV327NativeJumpLandingMoverRebase_learningV332LandingAnchorMonotonic_AE4D664F_1(bool, float, float, float, float, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryInstallLearningV327NativeJumpLandingMoverRebase_learningV332LandingAnchorMonotonic_AE4D664F_1",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV332MonotonicNativeGroundMoverAuthority",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_landingNavVerticalDelta",
+          "Ordinal": 1,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV332NativeGroundMoverStartMaxVerticalRebase",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_landingNavForwardDelta",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_LearningV332NativeGroundMoverStartMaxBackwardProjection",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_currentStartMonotonic",
+          "Ordinal": 5,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((!f0_LearningV332MonotonicNativeGroundMoverAuthority) || (((((f1_landingNavVerticalDelta >= (-f2_LearningV332NativeGroundMoverStartMaxVerticalRebase)) && (f3_landingNavForwardDelta >= (-f4_LearningV332NativeGroundMoverStartMaxBackwardProjection)))) && f5_currentStartMonotonic)))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV377ActuatorPhysicalFrontierDecision_learningV437MissedTakeoffFrontier_B3712084_2(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryGetLearningV377ActuatorPhysicalFrontierDecision_learningV437MissedTakeoffFrontier_B3712084_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV455JumpFirstPortalSemanticClosure",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV439LiveReservedTakeoffEnvelope",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV448OpportunityStillLive",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV455JumpFirstPortalSemanticClosure && f1_learningV439LiveReservedTakeoffEnvelope) && f2_learningV448OpportunityStillLive)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryConsumeLearningV429AtomicJumpAdmission_learningV474NativeSprintFloorReady_04291716_5(bool, int, float, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryConsumeLearningV429AtomicJumpAdmission_learningV474NativeSprintFloorReady_04291716_5",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV474JumpPhysicalTriggerAndProvenSpeedGate",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV474NativeSprintSamples",
+          "Ordinal": 1,
+          "type": "int",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV474NativeSprintFloor",
+          "Ordinal": 2,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV429MeasuredPlanarSpeed",
+          "Ordinal": 3,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_learningV474NativeSprintFloor",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((!f0_LearningV474JumpPhysicalTriggerAndProvenSpeedGate) || (f1_learningV474NativeSprintSamples <= 0)) || (f2_learningV474NativeSprintFloor <= 0f)) || (f3_learningV429MeasuredPlanarSpeed >= f4_learningV474NativeSprintFloor))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryConsumeLearningV429AtomicJumpAdmission_learningV449InsidePhysicalTakeoffHorizon_04291716_7(bool, bool, bool, bool, bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryConsumeLearningV429AtomicJumpAdmission_learningV449InsidePhysicalTakeoffHorizon_04291716_7",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_learningV449ActuallyInsidePhysicalTakeoffHorizon",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f1_cf60LegalOneFrameForecast",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_LearningV474JumpPhysicalTriggerAndProvenSpeedGate",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f3_LearningV455JumpFirstPortalSemanticClosure",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f4_reservationStillPhysical",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_forwardEntryProjection",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_maxReservedForwardProjection",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_learningV449ActuallyInsidePhysicalTakeoffHorizon || f1_cf60LegalOneFrameForecast) || (((((!f2_LearningV474JumpPhysicalTriggerAndProvenSpeedGate) && f3_LearningV455JumpFirstPortalSemanticClosure) && f4_reservationStillPhysical) && (f5_forwardEntryProjection <= f6_maxReservedForwardProjection))))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateLearningV375PersistentExecutablePhysicalRouteTransaction_learningV378ActuatorPhysicalStaging_CC9769FF_3(bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction_learningV378ActuatorPhysicalStaging_CC9769FF_3",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV378PhysicalActuatorPreEntryProducer",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV377ActuatorPhysicalFrontierOwnsCurrentStep",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV377ActuatorReady",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV377ActuatorProducerTargetAvailable",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((f0_LearningV378PhysicalActuatorPreEntryProducer && f1_learningV377ActuatorPhysicalFrontierOwnsCurrentStep) && (!f2_learningV377ActuatorReady)) && f3_learningV377ActuatorProducerTargetAvailable)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV376SameExecutableMission_776B9C09_2(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryFinalizeTraversalChainIntermediate_learningV376SameExecutableMission_776B9C09_2",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV376MissionScopedPersistentRouteTransaction",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV368UsedCanonicalMissionSuccessor",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_routeMissionPresent",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV376MissionScopedPersistentRouteTransaction && f1_learningV368UsedCanonicalMissionSuccessor) && f2_routeMissionPresent)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV389CanonicalMissionMovementContinuation_776B9C09_3(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryFinalizeTraversalChainIntermediate_learningV389CanonicalMissionMovementContinuation_776B9C09_3",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV389CanonicalMissionMovementContinuity",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_learningV376SameExecutableMission",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV368UsedCanonicalMissionSuccessor",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((f0_LearningV389CanonicalMissionMovementContinuity && f1_learningV376SameExecutableMission) && f2_learningV368UsedCanonicalMissionSuccessor)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV379SamePhysicalTransactionChain_776B9C09_4(bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryFinalizeTraversalChainIntermediate_learningV379SamePhysicalTransactionChain_776B9C09_4",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV379PersistentTransactionChainBoundary",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_sameAuthoredChain",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV389CanonicalMissionMovementContinuation",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((!f0_LearningV379PersistentTransactionChainBoundary) || f1_sameAuthoredChain) || f2_learningV389CanonicalMissionMovementContinuation)"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV332RouteGroundSuccessorCandidate_776B9C09_5(bool, string, bool, bool, bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryFinalizeTraversalChainIntermediate_learningV332RouteGroundSuccessorCandidate_776B9C09_5",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV332AdjacentSuccessorTopologyAuthority",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_reason",
+          "Ordinal": 1,
+          "type": "string",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_routeMissionPresent",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV376SameExecutableRoute",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_learningV379SamePhysicalTransactionChain",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_nextDistance",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_RouteMissionTraversalAdjacentBridgeMaxDistance",
+          "Ordinal": 6,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "(((((f0_LearningV332AdjacentSuccessorTopologyAuthority && string.Equals(f1_reason,\"learningV332AdjacentSuccessorTopologyAuthority\",(System.StringComparison)4)) && f2_routeMissionPresent) && f3_learningV376SameExecutableRoute) && f4_learningV379SamePhysicalTransactionChain) && (f5_nextDistance <= f6_RouteMissionTraversalAdjacentBridgeMaxDistance))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV357RouteGroundSuccessorCandidate_776B9C09_6(bool, bool, bool, bool, float, float)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryFinalizeTraversalChainIntermediate_learningV357RouteGroundSuccessorCandidate_776B9C09_6",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV357RouteGroundSuccessorContinuity",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_routeMissionPresent",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV376SameExecutableRoute",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV379SamePhysicalTransactionChain",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_nextDistance",
+          "Ordinal": 4,
+          "type": "float",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_RouteMissionTraversalAdjacentBridgeMaxDistance",
+          "Ordinal": 5,
+          "type": "float",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((f0_LearningV357RouteGroundSuccessorContinuity && f1_routeMissionPresent) && f2_learningV376SameExecutableRoute) && f3_learningV379SamePhysicalTransactionChain) && (f4_nextDistance <= f5_RouteMissionTraversalAdjacentBridgeMaxDistance))"
+    },
+    {
+      "method": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV375PersistentRouteGroundSuccessorCandidate_776B9C09_7(bool, bool, bool, bool, bool, bool, bool)",
+      "type": "BotTraversal.Core.FollowerCapabilityHelperRules",
+      "name": "TryFinalizeTraversalChainIntermediate_learningV375PersistentRouteGroundSuccessorCandidate_776B9C09_7",
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs",
+      "parameters": [
+        {
+          "Name": "f0_LearningV375PersistentExecutablePhysicalRouteTransaction",
+          "Ordinal": 0,
+          "type": "bool",
+          "retired": true,
+          "value": true
+        },
+        {
+          "Name": "f1_routeMissionPresent",
+          "Ordinal": 1,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f2_learningV376SameExecutableRoute",
+          "Ordinal": 2,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f3_learningV379SamePhysicalTransactionChain",
+          "Ordinal": 3,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f4_learningV368UsedCanonicalMissionSuccessor",
+          "Ordinal": 4,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f5_learningV354StableRouteReleaseProof",
+          "Ordinal": 5,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        },
+        {
+          "Name": "f6_routeSuccessorPhysicallyAhead",
+          "Ordinal": 6,
+          "type": "bool",
+          "retired": false,
+          "value": null
+        }
+      ],
+      "body": "((((((f0_LearningV375PersistentExecutablePhysicalRouteTransaction && f1_routeMissionPresent) && f2_learningV376SameExecutableRoute) && f3_learningV379SamePhysicalTransactionChain) && f4_learningV368UsedCanonicalMissionSuccessor) && f5_learningV354StableRouteReleaseProof) && f6_routeSuccessorPhysicallyAhead)"
+    }
+  ],
+  "calls": [
+    {
+      "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ApplyV403SuccessorGate_AB0256DE_1(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ApplyV403SuccessorGate_AB0256DE_1(true,true,learningV404LivePersistentMovementHandoff)",
+      "removed": [
+        0,
+        1
+      ],
+      "retainedArguments": [
+        "learningV404LivePersistentMovementHandoff"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ReleasedV403GateWithoutLivePersistentMovement_AB0256DE_2(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV404ReleasedV403GateWithoutLivePersistentMovement_AB0256DE_2(true,true,learningV403CurrentExecutionStep)",
+      "removed": [
+        0,
+        1
+      ],
+      "retainedArguments": [
+        "learningV403CurrentExecutionStep"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV376UnattemptedCurrentRouteSameEpisodeRecovery_AB0256DE_3(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV376UnattemptedCurrentRouteSameEpisodeRecovery_AB0256DE_3(true,learningV404ApplyV403SuccessorGate,learningV403CurrentExecutionStep)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV404ApplyV403SuccessorGate",
+        "learningV403CurrentExecutionStep"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV373TypedSameEpisodeSupersedesGenericRecovery_AB0256DE_4(bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch_learningV373TypedSameEpisodeSupersedesGenericRecovery_AB0256DE_4(true,learningV376UnattemptedCurrentRouteSameEpisodeRecovery,learningV404ApplyV403SuccessorGate,learningV403CurrentExecutionStep)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV376UnattemptedCurrentRouteSameEpisodeRecovery",
+        "learningV404ApplyV403SuccessorGate",
+        "learningV403CurrentExecutionStep"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateLearningV349GenericPhysicalProgressWatchdog(EFT.BotOwner, EFT.Player, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerMovementRecoveryState)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateLearningV349GenericPhysicalProgressWatchdog_movementCountsAsProgress_958583D5_6(bool, bool, bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateLearningV349GenericPhysicalProgressWatchdog_movementCountsAsProgress_958583D5_6(true,haveMission,haveProbe,learningV386LocalBreadcrumbForwardProgress,learningV355RouteRelativeProgress,worldMotionProgress)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "haveMission",
+        "haveProbe",
+        "learningV386LocalBreadcrumbForwardProgress",
+        "learningV355RouteRelativeProgress",
+        "worldMotionProgress"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityRouteAdmissionHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV377ActuatorPhysicalFrontierDecision(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, float, ref UnityEngine.Vector3, ref UnityEngine.Vector3, ref float, out bool, out bool, out int, out string, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV377ActuatorPhysicalFrontierDecision_learningV437MissedTakeoffFrontier_B3712084_2(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV377ActuatorPhysicalFrontierDecision_learningV437MissedTakeoffFrontier_B3712084_2(true,learningV439LiveReservedTakeoffEnvelope,learningV448OpportunityStillLive)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV439LiveReservedTakeoffEnvelope",
+        "learningV448OpportunityStillLive"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityRouteAdmissionHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryConsumeLearningV429AtomicJumpAdmission(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, float, float, float, float, float, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryConsumeLearningV429AtomicJumpAdmission_learningV474NativeSprintFloorReady_04291716_5(bool, int, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryConsumeLearningV429AtomicJumpAdmission_learningV474NativeSprintFloorReady_04291716_5(true,learningV474NativeSprintSamples,learningV474NativeSprintFloor,learningV429MeasuredPlanarSpeed,learningV474NativeSprintFloor)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV474NativeSprintSamples",
+        "learningV474NativeSprintFloor",
+        "learningV429MeasuredPlanarSpeed",
+        "learningV474NativeSprintFloor"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityRouteAdmissionHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryConsumeLearningV429AtomicJumpAdmission(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, float, float, float, float, float, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryConsumeLearningV429AtomicJumpAdmission_learningV449InsidePhysicalTakeoffHorizon_04291716_7(bool, bool, bool, bool, bool, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryConsumeLearningV429AtomicJumpAdmission_learningV449InsidePhysicalTakeoffHorizon_04291716_7(learningV449ActuallyInsidePhysicalTakeoffHorizon,cf60LegalOneFrameForecast,true,true,reservationStillPhysical,forwardEntryProjection,maxReservedForwardProjection)",
+      "removed": [
+        2,
+        3
+      ],
+      "retainedArguments": [
+        "learningV449ActuallyInsidePhysicalTakeoffHorizon",
+        "cf60LegalOneFrameForecast",
+        "reservationStillPhysical",
+        "forwardEntryProjection",
+        "maxReservedForwardProjection"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerCapabilityRouteContinuationHost.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateLearningV375PersistentExecutablePhysicalRouteTransaction(EFT.BotOwner)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateLearningV375PersistentExecutablePhysicalRouteTransaction_learningV378ActuatorPhysicalStaging_CC9769FF_3(bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateLearningV375PersistentExecutablePhysicalRouteTransaction_learningV378ActuatorPhysicalStaging_CC9769FF_3(true,learningV377ActuatorPhysicalFrontierOwnsCurrentStep,learningV377ActuatorReady,learningV377ActuatorProducerTargetAvailable)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV377ActuatorPhysicalFrontierOwnsCurrentStep",
+        "learningV377ActuatorReady",
+        "learningV377ActuatorProducerTargetAvailable"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryStartProbeForBot(EFT.BotOwner, UnityEngine.Vector3, string, int, string, string, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryStartProbeForBot_deferWalkThroughTraversalAuthority_1(bool, bool, bool, bool)",
+      "before": "FollowerCapabilityDecisionRules.TryStartProbeForBot_deferWalkThroughTraversalAuthority_1(true,true,learningV375PersistentWriterAvailable,requestedWalkThrough)",
+      "removed": [
+        0,
+        1
+      ],
+      "retainedArguments": [
+        "learningV375PersistentWriterAvailable",
+        "requestedWalkThrough"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV353JumpRouteFunnelTarget(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, out UnityEngine.Vector3, out bool, out float, out float, out float, out float, out float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV387MeasuredMomentumAlive_C2A50036_1(bool, float, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV387MeasuredMomentumAlive_C2A50036_1(true,planarSpeed,RollingTraversalMinSpeed,movementHeadingDot,LearningV352JumpTakeoffCorridorMinMovementHeadingDot)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "planarSpeed",
+        "RollingTraversalMinSpeed",
+        "movementHeadingDot",
+        "LearningV352JumpTakeoffCorridorMinMovementHeadingDot"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV353JumpRouteFunnelTarget(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, out UnityEngine.Vector3, out bool, out float, out float, out float, out float, out float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionMomentumLease_C2A50036_3(bool, int, int, bool)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionMomentumLease_C2A50036_3(true,(int)(state),(int)(EPlayerState.Transition),learningV387MeasuredMomentumAlive)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "(int)(state)",
+        "(int)(EPlayerState.Transition)",
+        "learningV387MeasuredMomentumAlive"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV353JumpRouteFunnelTarget(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, out UnityEngine.Vector3, out bool, out float, out float, out float, out float, out float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV439ReservationAdmissionReady_C2A50036_8(bool, bool, bool, bool, bool, bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV439ReservationAdmissionReady_C2A50036_8(true,locomotionAlive,jumpCapabilityReady,learningV415ModeReady,insideRollingWindow,facingReady,headingReady,learningV429ForwardProducerReady,physicalReservationReady)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "locomotionAlive",
+        "jumpCapabilityReady",
+        "learningV415ModeReady",
+        "insideRollingWindow",
+        "facingReady",
+        "headingReady",
+        "learningV429ForwardProducerReady",
+        "physicalReservationReady"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV353JumpRouteFunnelTarget(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, out UnityEngine.Vector3, out bool, out float, out float, out float, out float, out float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionActuatorStateReady_C2A50036_9(bool, int, int, bool)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV353JumpRouteFunnelTarget_learningV457TransitionActuatorStateReady_C2A50036_9(true,(int)(state),(int)(EPlayerState.Transition),learningV387MeasuredMomentumAlive)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "(int)(state)",
+        "(int)(EPlayerState.Transition)",
+        "learningV387MeasuredMomentumAlive"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV363ActuatorRouteEntryLaneTarget(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, out UnityEngine.Vector3, out bool, out int, out float, out float, out float, out float, out bool, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV363ActuatorRouteEntryLaneTarget_insideLongitudinalLane_3A7F067E_2(bool, float, float, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV363ActuatorRouteEntryLaneTarget_insideLongitudinalLane_3A7F067E_2(true,forwardEntryProjection,LearningV32EntryProgressEpsilon,LearningV3NativeEntryCorrectionStagingDistance,forwardEntryProjection,CompatibilityTraversalEntryMaxForwardOvershoot)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "forwardEntryProjection",
+        "LearningV32EntryProgressEpsilon",
+        "LearningV3NativeEntryCorrectionStagingDistance",
+        "forwardEntryProjection",
+        "CompatibilityTraversalEntryMaxForwardOvershoot"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryDriveLearningV347EmpiricalRouteCorridor(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMission, BotTraversal.Core.FollowerTraversalTestRuntime.FollowerRouteMissionStep, out int)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryDriveLearningV347EmpiricalRouteCorridor_learningV355MeasuredRouteProgress_3A6819C4_1(bool, float, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryDriveLearningV347EmpiricalRouteCorridor_learningV355MeasuredRouteProgress_3A6819C4_1(true,learningV355CumulativePhysicalDisplacement,LearningV350MeasuredPhysicalProgressDistance,learningV355CumulativeRouteForwardProgress,LearningV350MeasuredTargetProgressDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV355CumulativePhysicalDisplacement",
+        "LearningV350MeasuredPhysicalProgressDistance",
+        "learningV355CumulativeRouteForwardProgress",
+        "LearningV350MeasuredTargetProgressDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryContinueLearningV365ContinuousGenericPhysicalRoute(EFT.BotOwner, out int)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryContinueLearningV365ContinuousGenericPhysicalRoute_measured_66D92C3C_1(bool, float, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryContinueLearningV365ContinuousGenericPhysicalRoute_measured_66D92C3C_1(true,cumulativeDisplacement,LearningV350MeasuredPhysicalProgressDistance,cumulativeForward,LearningV350MeasuredTargetProgressDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "cumulativeDisplacement",
+        "LearningV350MeasuredPhysicalProgressDistance",
+        "cumulativeForward",
+        "LearningV350MeasuredTargetProgressDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryDriveLearningV349GenericEmpiricalPassageCorridor(EFT.BotOwner, out int)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryDriveLearningV349GenericEmpiricalPassageCorridor_learningV419SuspiciousFollowYield_12FDB6E0_1(bool, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryDriveLearningV349GenericEmpiricalPassageCorridor_learningV419SuspiciousFollowYield_12FDB6E0_1(true,rejoinDirectDistance,rejoinPathLength,rejoinSuspiciousThreshold)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "rejoinDirectDistance",
+        "rejoinPathLength",
+        "rejoinSuspiciousThreshold"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryDriveLearningV349GenericEmpiricalPassageCorridor(EFT.BotOwner, out int)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryDriveLearningV349GenericEmpiricalPassageCorridor_measuredPhysicalProgress_12FDB6E0_2(bool, float, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryDriveLearningV349GenericEmpiricalPassageCorridor_measuredPhysicalProgress_12FDB6E0_2(true,cumulativePhysicalDisplacement,LearningV350MeasuredPhysicalProgressDistance,cumulativeRouteForwardProgress,LearningV350MeasuredTargetProgressDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "cumulativePhysicalDisplacement",
+        "LearningV350MeasuredPhysicalProgressDistance",
+        "cumulativeRouteForwardProgress",
+        "LearningV350MeasuredTargetProgressDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.IsLearningV31WalkThroughNativeLocomotionEvidence(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.IsLearningV31WalkThroughNativeLocomotionEvidence_recovery_92879F18_1(bool, bool, bool, bool, bool, float, float, bool)",
+      "before": "FollowerCapabilityHelperRules.IsLearningV31WalkThroughNativeLocomotionEvidence_recovery_92879F18_1(probe.TraversalTeleportAttempted,probe.TeleportFallbackUsed,probe.RecoveryExitAlreadySatisfied,true,probe.LearningV341ForcedEgressPhysicalWriterUsed,probe.UnifiedEgressForcedDistance,ForcedEgressRecoveryDistance,probe.IslandExitNominalClimbTopBridge)",
+      "removed": [
+        3
+      ],
+      "retainedArguments": [
+        "probe.TraversalTeleportAttempted",
+        "probe.TeleportFallbackUsed",
+        "probe.RecoveryExitAlreadySatisfied",
+        "probe.LearningV341ForcedEgressPhysicalWriterUsed",
+        "probe.UnifiedEgressForcedDistance",
+        "ForcedEgressRecoveryDistance",
+        "probe.IslandExitNominalClimbTopBridge"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.IsLearningV3RetainableNativeSuccess(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.TraversalCompletionMode)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.IsLearningV3RetainableNativeSuccess_recovery_5170C182_2(bool, bool, bool, bool, bool, float, float, bool)",
+      "before": "FollowerCapabilityHelperRules.IsLearningV3RetainableNativeSuccess_recovery_5170C182_2(probe.TraversalTeleportAttempted,probe.TeleportFallbackUsed,probe.RecoveryExitAlreadySatisfied,true,probe.LearningV341ForcedEgressPhysicalWriterUsed,probe.UnifiedEgressForcedDistance,ForcedEgressRecoveryDistance,probe.IslandExitNominalClimbTopBridge)",
+      "removed": [
+        3
+      ],
+      "retainedArguments": [
+        "probe.TraversalTeleportAttempted",
+        "probe.TeleportFallbackUsed",
+        "probe.RecoveryExitAlreadySatisfied",
+        "probe.LearningV341ForcedEgressPhysicalWriterUsed",
+        "probe.UnifiedEgressForcedDistance",
+        "ForcedEgressRecoveryDistance",
+        "probe.IslandExitNominalClimbTopBridge"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.ShouldPreferAssistedExecutor(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalEdge, string, out string, out float, out bool)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.ShouldPreferAssistedExecutor_adaptiveKind_EBB76326_1(string, string, bool, string, string)",
+      "before": "FollowerCapabilityHelperRules.ShouldPreferAssistedExecutor_adaptiveKind_EBB76326_1(traversalKind,traversalKind,true,traversalKind,traversalKind)",
+      "removed": [
+        2
+      ],
+      "retainedArguments": [
+        "traversalKind",
+        "traversalKind",
+        "traversalKind",
+        "traversalKind"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.ShouldPreferAssistedExecutor(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalEdge, string, out string, out float, out bool)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.ShouldPreferAssistedExecutor_freshSingleSampleCorrection_EBB76326_2(bool, int)",
+      "before": "FollowerCapabilityHelperRules.ShouldPreferAssistedExecutor_freshSingleSampleCorrection_EBB76326_2(true,nativeAttempts)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "nativeAttempts"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryConsumeLearningV311InheritedDropDownEntryAuthority(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, UnityEngine.Vector3, UnityEngine.Vector3, EPlayerState, float, float, float, float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryConsumeLearningV311InheritedDropDownEntryAuthority_inheritedHeadingReady_21A9CFD6_2(bool, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryConsumeLearningV311InheritedDropDownEntryAuthority_inheritedHeadingReady_21A9CFD6_2(true,alignmentAngle,NativeDropDownEntryMaxAlignmentAngle)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "alignmentAngle",
+        "NativeDropDownEntryMaxAlignmentAngle"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateRollingTraversalApproach(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV380RouteActuatorReady_9C18CECF_2(bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV380RouteActuatorReady_9C18CECF_2(true,injectedNativeExecutor,true,nativeDropDownExecutor)",
+      "removed": [
+        0,
+        2
+      ],
+      "retainedArguments": [
+        "injectedNativeExecutor",
+        "nativeDropDownExecutor"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateRollingTraversalApproach(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_traversalGeometryReady_9C18CECF_6(float, bool, bool, float, float, float, float, float, float, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_traversalGeometryReady_9C18CECF_6(alignmentAngle,true,injectedNativeClimb,InjectedNativeVaultRollingMaxAlignmentAngle,InjectedNativeVaultEntryMaxAlignmentAngle,lateralEntryOffset,learningV357ActuatorEntryMaxLateral,forwardEntryProjection,InjectedNativeVaultEntryMaxForwardOvershoot,learningV374ActuatorTriggerFrontierReady,climbSprintReleased,transitionClear)",
+      "removed": [
+        1
+      ],
+      "retainedArguments": [
+        "alignmentAngle",
+        "injectedNativeClimb",
+        "InjectedNativeVaultRollingMaxAlignmentAngle",
+        "InjectedNativeVaultEntryMaxAlignmentAngle",
+        "lateralEntryOffset",
+        "learningV357ActuatorEntryMaxLateral",
+        "forwardEntryProjection",
+        "InjectedNativeVaultEntryMaxForwardOvershoot",
+        "learningV374ActuatorTriggerFrontierReady",
+        "climbSprintReleased",
+        "transitionClear"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateRollingTraversalApproach(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV339JumpControlledEntry_9C18CECF_17(bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV339JumpControlledEntry_9C18CECF_17(true,nativeJumpExecutor,traversalGeometryReady,learningV458ProbeReservationLive)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "nativeJumpExecutor",
+        "traversalGeometryReady",
+        "learningV458ProbeReservationLive"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateRollingTraversalApproach(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV339DropDownControlledEntry_9C18CECF_19(bool, bool, bool, float, float)",
+      "before": "FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_learningV339DropDownControlledEntry_9C18CECF_19(true,nativeDropDownExecutor,traversalGeometryReady,distance,handoffDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "nativeDropDownExecutor",
+        "traversalGeometryReady",
+        "distance",
+        "handoffDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateRollingTraversalApproach(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_mustWaitInPlace_9C18CECF_21(bool, bool, bool, bool, bool, float, float, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_mustWaitInPlace_9C18CECF_21(true,needsEntryStaging,staged,insideHandoffEnvelope,needsEntryStaging,alignmentAngle,InjectedNativeVaultEntryMaxAlignmentAngle,climbSprintReleased,transitionClear)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "needsEntryStaging",
+        "staged",
+        "insideHandoffEnvelope",
+        "needsEntryStaging",
+        "alignmentAngle",
+        "InjectedNativeVaultEntryMaxAlignmentAngle",
+        "climbSprintReleased",
+        "transitionClear"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateRollingTraversalApproach(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_cf21StagingLeaseEligible_9C18CECF_24(bool, bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.UpdateRollingTraversalApproach_cf21StagingLeaseEligible_9C18CECF_24(true,needsLateralCorrection,needsEntryStaging,staged,mustWaitInPlace)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "needsLateralCorrection",
+        "needsEntryStaging",
+        "staged",
+        "mustWaitInPlace"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateWalkThroughEntryConvergence(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateWalkThroughEntryConvergence_headingSolved_8(bool, float, bool, float)",
+      "before": "FollowerCapabilityDecisionRules.UpdateWalkThroughEntryConvergence_headingSolved_8(converged,corridorAlignmentAngle,true,entryApproachAngle)",
+      "removed": [
+        2
+      ],
+      "retainedArguments": [
+        "converged",
+        "corridorAlignmentAngle",
+        "entryApproachAngle"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV419WalkThroughTerminalFrontierContinuation(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, UnityEngine.Vector3, out UnityEngine.Vector3, out float, out float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV419WalkThroughTerminalFrontierContinuation_terminalPlaneActuallyCrossed_8EB2E7E8_1(bool, float, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV419WalkThroughTerminalFrontierContinuation_terminalPlaneActuallyCrossed_8EB2E7E8_1(true,forwardProjection,forwardProjection,LearningV32EntryProgressEpsilon)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "forwardProjection",
+        "forwardProjection",
+        "LearningV32EntryProgressEpsilon"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.ShouldSuppressLearningV322PersistentEvidence(BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalEdge, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.ShouldSuppressLearningV322PersistentEvidence_toxic_BE16881B_2(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.ShouldSuppressLearningV322PersistentEvidence_toxic_BE16881B_2(nativeToxic,true,followToxic)",
+      "removed": [
+        1
+      ],
+      "retainedArguments": [
+        "nativeToxic",
+        "followToxic"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, BotTraversal.Core.FollowerTraversalTestRuntime.TraversalCompletionMode, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_learningV461EquivalentDropDownChronology_395C3253_1(bool, bool, int, int, string, string)",
+      "before": "FollowerCapabilityHelperRules.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_learningV461EquivalentDropDownChronology_395C3253_1(true,learningV452OriginalSemanticReached,(int)(completionMode),(int)(TraversalCompletionMode.Native),originalKind,transferredKind)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV452OriginalSemanticReached",
+        "(int)(completionMode)",
+        "(int)(TraversalCompletionMode.Native)",
+        "originalKind",
+        "transferredKind"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess(EFT.BotOwner, BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, BotTraversal.Core.FollowerTraversalTestRuntime.TraversalCompletionMode, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_transferredClimbAlreadyRejoinedFarSideNavMesh_395C3253_2(bool, string, bool)",
+      "before": "FollowerCapabilityHelperRules.TryCommitLearningV431EquivalentLocalBarrierSelfRescueSuccess_transferredClimbAlreadyRejoinedFarSideNavMesh_395C3253_2(true,transferredKind,downstreamStrictComplete)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "transferredKind",
+        "downstreamStrictComplete"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryGetLearningV331CurrentGroundContinuationProof(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, out float, out float, out float, out float)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryGetLearningV331CurrentGroundContinuationProof_monotonicFarSide_9749B9C6_3(bool, bool, bool, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryGetLearningV331CurrentGroundContinuationProof_monotonicFarSide_9749B9C6_3(true,nativeJumpEpochObserved,supported,projection,span)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "nativeJumpEpochObserved",
+        "supported",
+        "projection",
+        "span"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryBeginNativeTraversalRunOut(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryBeginNativeTraversalRunOut_learningV331ForwardContinuationSafe_3BD486C4_3(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryBeginNativeTraversalRunOut_learningV331ForwardContinuationSafe_3BD486C4_3(true,meaningfulCrossing,supportedNativeLanding)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "meaningfulCrossing",
+        "supportedNativeLanding"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryBeginLearnedNativeJump(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, string, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_learningV352InstantTakeoffCorridorReady_1(bool, float, float, float, float, float, float)",
+      "before": "FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_learningV352InstantTakeoffCorridorReady_1(true,takeoffLateralOffset,LearningV352JumpTakeoffCorridorMaxLateral,takeoffEntryProjection,LearningV352JumpTakeoffCorridorMaxForwardOvershoot,takeoffFacingDot,LearningV352JumpTakeoffCorridorMinFacingDot)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "takeoffLateralOffset",
+        "LearningV352JumpTakeoffCorridorMaxLateral",
+        "takeoffEntryProjection",
+        "LearningV352JumpTakeoffCorridorMaxForwardOvershoot",
+        "takeoffFacingDot",
+        "LearningV352JumpTakeoffCorridorMinFacingDot"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryBeginLearnedNativeJump(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, string, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_rollingHandoffSemanticAuthority_2(bool, bool, string)",
+      "before": "FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_rollingHandoffSemanticAuthority_2(true,true,source)",
+      "removed": [
+        0,
+        1
+      ],
+      "retainedArguments": [
+        "source"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryBeginLearnedNativeJump(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, BotTraversal.Core.FollowerTraversalTestRuntime.LearnedTraversalCommitment, string, out string)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_takeoffPhysicalHeadingReady_4(bool, float, float)",
+      "before": "FollowerCapabilityDecisionRules.TryBeginLearnedNativeJump_takeoffPhysicalHeadingReady_4(true,takeoffMovementHeadingDot,takeoffHeadingThreshold)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "takeoffMovementHeadingDot",
+        "takeoffHeadingThreshold"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateLearnedJumpTakeoffPriming(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_physicalHeadingReady_1(bool, float, float)",
+      "before": "FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_physicalHeadingReady_1(true,movementHeadingDot,LearnedJumpTakeoffMinFacingDot)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "movementHeadingDot",
+        "LearnedJumpTakeoffMinFacingDot"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateLearnedJumpTakeoffPriming(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_learningV352TakeoffCorridorReady_2(bool, float, float, float, float, float, float, float, float)",
+      "before": "FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_learningV352TakeoffCorridorReady_2(true,takeoffLateralOffset,LearningV352JumpTakeoffCorridorMaxLateral,takeoffEntryProjection,LearningV352JumpTakeoffCorridorMaxForwardOvershoot,facingDot,LearningV352JumpTakeoffCorridorMinFacingDot,movementHeadingDot,LearningV352JumpTakeoffCorridorMinMovementHeadingDot)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "takeoffLateralOffset",
+        "LearningV352JumpTakeoffCorridorMaxLateral",
+        "takeoffEntryProjection",
+        "LearningV352JumpTakeoffCorridorMaxForwardOvershoot",
+        "facingDot",
+        "LearningV352JumpTakeoffCorridorMinFacingDot",
+        "movementHeadingDot",
+        "LearningV352JumpTakeoffCorridorMinMovementHeadingDot"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateLearnedJumpTakeoffPriming(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_learningV350TakeoffHorizonReady_5(bool, bool, bool, float, float)",
+      "before": "FollowerCapabilityDecisionRules.UpdateLearnedJumpTakeoffPriming_learningV350TakeoffHorizonReady_5(true,ready,learningV449PhysicalTriggerWindowReady,rawEntryProjection,takeoffHorizonDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "ready",
+        "learningV449PhysicalTriggerWindowReady",
+        "rawEntryProjection",
+        "takeoffHorizonDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateNativeDropDown(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateNativeDropDown_executionEvidenceEligible_2(bool, float, float)",
+      "before": "FollowerCapabilityDecisionRules.UpdateNativeDropDown_executionEvidenceEligible_2(true,forwardProjection,LearningV32DropDownAirborneEvidenceMinProjection)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "forwardProjection",
+        "LearningV32DropDownAirborneEvidenceMinProjection"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateExitAuthorityCommit(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateExitAuthorityCommit_rejectedPathRelease_16(bool, float, bool, float, float, float)",
+      "before": "FollowerCapabilityDecisionRules.UpdateExitAuthorityCommit_rejectedPathRelease_16(probe.ExitAuthorityFollowPathRejected,probe.ExitAuthorityFollowPathRejectedAt,true,Time.time,probe.ExitAuthorityFollowPathRejectedAt,ExitAuthorityRejectedPathRouteReleaseGraceSeconds)",
+      "removed": [
+        2
+      ],
+      "retainedArguments": [
+        "probe.ExitAuthorityFollowPathRejected",
+        "probe.ExitAuthorityFollowPathRejectedAt",
+        "Time.time",
+        "probe.ExitAuthorityFollowPathRejectedAt",
+        "ExitAuthorityRejectedPathRouteReleaseGraceSeconds"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.UpdateExitAuthorityCommit(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityDecisionRules.UpdateExitAuthorityCommit_routePlannerReleaseEligible_19(bool, bool, bool, bool, bool, float, float, bool, float, float, bool, int, int, bool, bool, bool, bool)",
+      "before": "FollowerCapabilityDecisionRules.UpdateExitAuthorityCommit_routePlannerReleaseEligible_19(probe.ExitAuthorityTopologyRejoinConfirmed,followPhysicalProgressAck,rejectedPathRelease,true,validationLongEnough,followHandoffAge,ExitAuthorityFollowNoCommandGraceSeconds,hasLeaderPosition,leaderDistance,ExitAuthorityNoCommandLeaderDistance,exitAuthorityBodySafe,probe.ExitAuthorityStableSamples,ExitAuthorityStableSamplesRequired,rejectedPathRelease,true,observedButStationaryRelease,noDirectPathObservedRelease)",
+      "removed": [
+        3,
+        14
+      ],
+      "retainedArguments": [
+        "probe.ExitAuthorityTopologyRejoinConfirmed",
+        "followPhysicalProgressAck",
+        "rejectedPathRelease",
+        "validationLongEnough",
+        "followHandoffAge",
+        "ExitAuthorityFollowNoCommandGraceSeconds",
+        "hasLeaderPosition",
+        "leaderDistance",
+        "ExitAuthorityNoCommandLeaderDistance",
+        "exitAuthorityBodySafe",
+        "probe.ExitAuthorityStableSamples",
+        "ExitAuthorityStableSamplesRequired",
+        "rejectedPathRelease",
+        "observedButStationaryRelease",
+        "noDirectPathObservedRelease"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryInstallLearningV327NativeJumpLandingMoverRebase(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryInstallLearningV327NativeJumpLandingMoverRebase_learningV332LandingAnchorMonotonic_AE4D664F_1(bool, float, float, float, float, bool)",
+      "before": "FollowerCapabilityHelperRules.TryInstallLearningV327NativeJumpLandingMoverRebase_learningV332LandingAnchorMonotonic_AE4D664F_1(true,landingNavVerticalDelta,LearningV332NativeGroundMoverStartMaxVerticalRebase,landingNavForwardDelta,LearningV332NativeGroundMoverStartMaxBackwardProjection,currentStartMonotonic)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "landingNavVerticalDelta",
+        "LearningV332NativeGroundMoverStartMaxVerticalRebase",
+        "landingNavForwardDelta",
+        "LearningV332NativeGroundMoverStartMaxBackwardProjection",
+        "currentStartMonotonic"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryFinalizeTraversalChainIntermediate(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV376SameExecutableMission_776B9C09_2(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV376SameExecutableMission_776B9C09_2(true,learningV368UsedCanonicalMissionSuccessor,routeMissionPresent)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV368UsedCanonicalMissionSuccessor",
+        "routeMissionPresent"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryFinalizeTraversalChainIntermediate(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV389CanonicalMissionMovementContinuation_776B9C09_3(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV389CanonicalMissionMovementContinuation_776B9C09_3(true,learningV376SameExecutableMission,learningV368UsedCanonicalMissionSuccessor)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "learningV376SameExecutableMission",
+        "learningV368UsedCanonicalMissionSuccessor"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryFinalizeTraversalChainIntermediate(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV379SamePhysicalTransactionChain_776B9C09_4(bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV379SamePhysicalTransactionChain_776B9C09_4(true,sameAuthoredChain,learningV389CanonicalMissionMovementContinuation)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "sameAuthoredChain",
+        "learningV389CanonicalMissionMovementContinuation"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryFinalizeTraversalChainIntermediate(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV332RouteGroundSuccessorCandidate_776B9C09_5(bool, string, bool, bool, bool, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV332RouteGroundSuccessorCandidate_776B9C09_5(true,reason,routeMissionPresent,learningV376SameExecutableRoute,learningV379SamePhysicalTransactionChain,nextDistance,RouteMissionTraversalAdjacentBridgeMaxDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "reason",
+        "routeMissionPresent",
+        "learningV376SameExecutableRoute",
+        "learningV379SamePhysicalTransactionChain",
+        "nextDistance",
+        "RouteMissionTraversalAdjacentBridgeMaxDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryFinalizeTraversalChainIntermediate(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV357RouteGroundSuccessorCandidate_776B9C09_6(bool, bool, bool, bool, float, float)",
+      "before": "FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV357RouteGroundSuccessorCandidate_776B9C09_6(true,routeMissionPresent,learningV376SameExecutableRoute,learningV379SamePhysicalTransactionChain,nextDistance,RouteMissionTraversalAdjacentBridgeMaxDistance)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "routeMissionPresent",
+        "learningV376SameExecutableRoute",
+        "learningV379SamePhysicalTransactionChain",
+        "nextDistance",
+        "RouteMissionTraversalAdjacentBridgeMaxDistance"
+      ]
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs",
+      "caller": "BotTraversal.Core.FollowerTraversalTestRuntime.TryFinalizeTraversalChainIntermediate(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, string)",
+      "target": "BotTraversal.Core.FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV375PersistentRouteGroundSuccessorCandidate_776B9C09_7(bool, bool, bool, bool, bool, bool, bool)",
+      "before": "FollowerCapabilityHelperRules.TryFinalizeTraversalChainIntermediate_learningV375PersistentRouteGroundSuccessorCandidate_776B9C09_7(true,routeMissionPresent,learningV376SameExecutableRoute,learningV379SamePhysicalTransactionChain,learningV368UsedCanonicalMissionSuccessor,learningV354StableRouteReleaseProof,routeSuccessorPhysicallyAhead)",
+      "removed": [
+        0
+      ],
+      "retainedArguments": [
+        "routeMissionPresent",
+        "learningV376SameExecutableRoute",
+        "learningV379SamePhysicalTransactionChain",
+        "learningV368UsedCanonicalMissionSuccessor",
+        "learningV354StableRouteReleaseProof",
+        "routeSuccessorPhysicallyAhead"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "file": "src/Core/FollowerCapabilityDecisionRules.Generated.cs"
+    },
+    {
+      "file": "src/Core/FollowerCapabilityGeneralRecoveryHost.cs"
+    },
+    {
+      "file": "src/Core/FollowerCapabilityHelperRules.Generated.cs"
+    },
+    {
+      "file": "src/Core/FollowerCapabilityRouteAdmissionHost.cs"
+    },
+    {
+      "file": "src/Core/FollowerCapabilityRouteContinuationHost.cs"
+    },
+    {
+      "file": "src/Core/FollowerTraversalTestRuntime.cs"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+--- RC137/src\AssemblyVersion.cs
++++ 0.9.0-Beta1/src\AssemblyVersion.cs
+@@ -0,0 +1,4 @@
++using System.Reflection;
++[assembly: AssemblyVersion("0.9.0.0")]
++[assembly: AssemblyFileVersion("0.9.0.0")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.1+RC138")]
+--- RC137/src\BotTraversalPlugin.cs
++++ 0.9.0-Beta1/src\BotTraversalPlugin.cs
+@@ -10,7 +10,7 @@
+ 
+ namespace BotTraversal
+ {
+-    [BepInPlugin("bottraversal.standalone", "Bot Traversal", "0.3.8")]
++    [BepInPlugin("bottraversal.standalone", "Bot Traversal", "0.9.0")]
+     public sealed class BotTraversalPlugin : BaseUnityPlugin
+     {
+         internal static ConfigEntry<bool> TraversalEnabled;
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal loaded: V2-RC137-LiveFollow");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 1 loaded: V2-RC138-Beta1");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC137/src\Core\FollowerCapabilityCoordinationHost.cs
++++ 0.9.0-Beta1/src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -1000,7 +1000,8 @@
+         }
+         private static void GuardCapabilityResolvedFollowResource(BotOwner bot)
+         {
+-            if(!TryGetCapabilityLiveResolvedFollow(bot,out _,out var generation)||bot.Mover?.HasPathAndNoComplete!=true)return;
++            if(!TryGetCapabilityLiveResolvedFollow(bot,out var leader,out var generation)||bot.Mover?.HasPathAndNoComplete!=true||
++                !FollowerCapabilityPassagePolicy.ReacquireFollowTarget(GetPlanarDistance(bot.Position,leader.Position)))return;
+             var controller=bot.Mover.ActualPathController;var path=controller?.CurPath;
+             if(path==null||path.CurIndex<0||path.CurIndex>=path.Length||path.Length-path.CurIndex>128)return;
+             var points=controller.GetWayPoints(128);if(points==null||points.Length==0)return;
+@@ -1087,10 +1088,12 @@
+             {
+                 if(!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var live)||!ReferenceEquals(live,m)||!ReferenceEquals(m.Steps[m.CurrentStepIndex],step)||
+                     !CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex)||!IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot))return false;
+-                var receipt=ApplyCollisionActivePhysicalRouteMotion(bot,player,direction,direction*Mathf.Max(.001f,Time.deltaTime),
+-                    Mathf.Max(.001f,Time.deltaTime),1f,false,retry?.55f:.85f,false,true,deliveryPurpose:CapabilityMotionPurpose.FollowIngress);
++                float heading=Vector3.Dot(GetFlatDirection(player.MovementContext.PlayerRealForward),direction);
++                bool turnHold=FollowerCapabilityPassagePolicy.EntryTurnHold(heading);
++                var receipt=ApplyCollisionActivePhysicalRouteMotion(bot,player,direction,turnHold?Vector3.zero:direction*Mathf.Max(.001f,Time.deltaTime),
++                    Mathf.Max(.001f,Time.deltaTime),1f,false,turnHold?0f:(retry?.55f:.85f),false,true,deliveryPurpose:CapabilityMotionPurpose.FollowIngress);
+                 if(ShouldEmitDiagnostic("capabilityGroundEntryLead",bot,.25f))WriteEvent("capabilityGroundEntryLead",bot,new{
+-                    missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,retry,distance,height,body=Vec(player.Position),target=Vec(target),
++                    missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,retry,distance,height,heading,turnHold,body=Vec(player.Position),target=Vec(target),
+                     receipt=receipt.Kind.ToString(),nativeSuccessRecorded=false,physicalEntryGranted=false});
+                 return receipt.Accepted;
+             }
+--- RC137/src\Core\FollowerCapabilityNativeObstacleHost.cs
++++ 0.9.0-Beta1/src\Core\FollowerCapabilityNativeObstacleHost.cs
+@@ -1440,15 +1440,17 @@
+                 var direction=positionCorrection?GetFlatDirection(target-player.Position):axis;
+                 if(direction.sqrMagnitude<.5f)direction=axis;
+                 float dt=Mathf.Max(.001f,Time.deltaTime);
+-                bool stationary=hold||!safeHeight;
+-                bool precise=angle>InjectedNativeVaultRollingMaxAlignmentAngle||positionCorrection||c.Kind=="Climb"||HasCapabilityFailureStrategy(probe.Bot);
++                float centerAngle=Vector3.Angle(GetFlatDirection(player.MovementContext.PlayerRealForward),direction);
++                bool centerTurn=FollowerCapabilityPassagePolicy.ObstacleCenterTurn(positionCorrection,centerAngle);
++                bool stationary=hold||centerTurn||!safeHeight;
++                bool precise=FollowerCapabilityPassagePolicy.ObstacleNear(distance)||angle>InjectedNativeVaultRollingMaxAlignmentAngle||positionCorrection||c.Kind=="Climb"||HasCapabilityFailureStrategy(probe.Bot);
+                 bool sprint=!stationary&&!precise&&probe.PreviousSprinting;
+-                float speed=stationary?0f:(precise?.55f:(sprint?1f:.82f));
++                float speed=(float)FollowerCapabilityPassagePolicy.ObstacleEntrySpeed(distance,stationary?0f:(precise?.55f:(sprint?1f:.82f)));
+                 var motion=stationary?Vector3.zero:direction*dt;
+                 // Once centered, axis owns both steering and forward input; the old point target cannot oppose it.
+-                ApplyCollisionActivePhysicalRouteMotion(probe.Bot,player,stationary?axis:direction,motion,dt,1f,sprint,speed,!precise,true);
++                ApplyCollisionActivePhysicalRouteMotion(probe.Bot,player,direction,motion,dt,1f,sprint,speed,!precise,true);
+                 if(ShouldEmitDiagnostic("capabilityObstacleEntryResource",probe.Bot,.25f))WriteEvent("capabilityObstacleEntryResource",probe.Bot,new{
+-                    edgeId=c.EdgeId,kind=c.Kind,hold,safeHeight,distance,side,forward,angle,body=Vec(player.Position),entry=Vec(entry),nativeSuccessRecorded=false});
++                    edgeId=c.EdgeId,kind=c.Kind,hold,centerTurn,centerAngle,safeHeight,distance,side,forward,angle,body=Vec(player.Position),entry=Vec(entry),nativeSuccessRecorded=false});
+                 return true;
+             }
+         }
+--- RC137/src\Core\FollowerCapabilityPassagePolicy.cs
++++ 0.9.0-Beta1/src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -75,6 +75,11 @@
+             => path&&Finite(bodyGap)&&bodyGap>.50&&Finite(remainingGap)&&remainingGap>.35&&Finite(heading)&&heading<-.25&&heading>=-1.001;
+         internal static bool JumpDispatch(bool current,bool debt,bool active,bool failure,double distance)
+             => current&&debt&&!active&&!failure&&Finite(distance)&&distance>=0&&distance<=2.50;
++        internal static bool EntryTurnHold(double heading)=>!Finite(heading)||heading<.95;
++        internal static bool ObstacleCenterTurn(bool correction,double angle)=>correction&&(!Finite(angle)||angle>20);
++        internal static bool ObstacleNear(double distance)=>Finite(distance)&&distance>=0&&distance<.4;
++        internal static double ObstacleEntrySpeed(double distance,double desired)
++            => Finite(distance)&&distance>=0&&distance<.4?Math.Min(desired,.35):desired;
+         internal static bool Lane(bool witnessed,double lateral,double vertical)
+             => witnessed&&Finite(lateral)&&Finite(vertical)&&lateral>=0&&lateral<=.22&&Math.Abs(vertical)<=.35;
+         internal static bool Center(bool walking,bool nativeActor,double lateral)

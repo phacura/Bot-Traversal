@@ -1,0 +1,1191 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9186,
+    "utc": "2026-11-04T05:05:07.2675397Z",
+    "raidTime": 232.448364,
+    "frame": 11919,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerSnapshot",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "breadcrumbSequence": 418,
+      "botPosition": {
+        "x": 471.4062,
+        "y": 4.219528,
+        "z": -142.5446
+      },
+      "leaderPosition": {
+        "x": 451.745422,
+        "y": 4.21953,
+        "z": -140.263
+      },
+      "leaderDistance": 19.7927113,
+      "displacement": 2.18063521,
+      "distanceProgress": 2.11881256,
+      "noProgressSeconds": 0.0,
+      "playerState": "Run",
+      "grounded": true,
+      "inputDirection": {
+        "x": 0.0,
+        "y": 1.0
+      },
+      "activeCommand": "None",
+      "combat": false,
+      "strict": {
+        "rawStart": {
+          "x": 471.4062,
+          "y": 4.219528,
+          "z": -142.5446
+        },
+        "rawTarget": {
+          "x": 451.745422,
+          "y": 4.21953,
+          "z": -140.263
+        },
+        "startSampled": true,
+        "targetSampled": true,
+        "sampledStart": {
+          "x": 471.4062,
+          "y": 4.3664856,
+          "z": -142.5446
+        },
+        "sampledTarget": {
+          "x": 451.745422,
+          "y": 4.300003,
+          "z": -140.263
+        },
+        "startSampleOffset": 0.1469574,
+        "targetSampleOffset": 0.0804729462,
+        "targetVerticalSampleOffset": 0.0804729462,
+        "calculateReturned": true,
+        "status": "PathComplete",
+        "cornerCount": 17,
+        "corners": [
+          {
+            "x": 471.4062,
+            "y": 4.3664856,
+            "z": -142.5446
+          },
+          {
+            "x": 488.900024,
+            "y": 1.29999542,
+            "z": -114.6
+          },
+          {
+            "x": 493.000031,
+            "y": 1.199997,
+            "z": -107.8
+          },
+          {
+            "x": 494.7,
+            "y": 1.15000153,
+            "z": -104.0
+          },
+          {
+            "x": 498.100037,
+            "y": 1.15000153,
+            "z": -83.3
+          },
+          {
+            "x": 504.600037,
+            "y": 1.09999847,
+            "z": -41.4
+          },
+          {
+            "x": 505.000031,
+            "y": 1.09999847,
+            "z": -38.8
+          },
+          {
+            "x": 505.800018,
+            "y": 1.09999847,
+            "z": -33.0
+          },
+          {
+            "x": 503.600037,
+            "y": 1.09999847,
+            "z": -31.2
+          },
+          {
+            "x": 503.300018,
+            "y": 1.09999847,
+            "z": -31.2
+          },
+          {
+            "x": 503.000031,
+            "y": 1.09999847,
+            "z": -31.5
+          },
+          {
+            "x": 498.400024,
+            "y": 1.09999847,
+            "z": -38.1
+          },
+          {
+            "x": 494.500031,
+            "y": 1.15000153,
+            "z": -92.1
+          },
+          {
+            "x": 494.300018,
+            "y": 1.15000153,
+            "z": -92.7000046
+          },
+          {
+            "x": 476.400024,
+            "y": 1.09999847,
+            "z": -120.0
+          },
+          {
+            "x": 471.6,
+            "y": 1.449997,
+            "z": -125.0
+          },
+          {
+            "x": 451.745422,
+            "y": 4.300003,
+            "z": -140.263
+          }
+        ],
+        "pathLength": 248.254044,
+        "directDistance": 19.7927113,
+        "detourRatio": 12.5427,
+        "terminalToSampledTarget": 0.0,
+        "terminalToRawTarget": 0.0804729462,
+        "strictComplete": true
+      },
+      "mover": {
+        "hasPath": false,
+        "hasPathAndNoComplete": false,
+        "blocked": false,
+        "isMoving": false,
+        "pause": false,
+        "sprinting": true,
+        "realDestination": {
+          "x": 471.773743,
+          "y": 4.300003,
+          "z": -142.81308
+        },
+        "currentCorner": null,
+        "target": null,
+        "remainingDistance": 0.0,
+        "waypoints": []
+      },
+      "door": {
+        "interacting": false,
+        "haveDoorToOpen": false,
+        "linkId": null,
+        "state": null
+      }
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9222,
+    "utc": "2026-11-04T05:05:07.3726638Z",
+    "raidTime": 232.554947,
+    "frame": 11925,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 15,
+      "state": "Run",
+      "direction": {
+        "x": -0.126208186,
+        "y": 0.0,
+        "z": -0.9920038
+      },
+      "input": {
+        "x": -0.99999994,
+        "y": -0.000316778169
+      },
+      "requestedMotionMagnitude": 0.02855586,
+      "deltaTime": 0.0154356,
+      "sprint": true,
+      "targetMoveSpeed": 1.0,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "noPathToRetire",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9223,
+    "utc": "2026-11-04T05:05:07.3726638Z",
+    "raidTime": 232.554947,
+    "frame": 11925,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughInstall:begin",
+      "stage": "WalkThrough",
+      "state": "Run",
+      "position": {
+        "x": 471.080383,
+        "y": 4.219528,
+        "z": -142.396622
+      },
+      "target": {
+        "x": 471.039276,
+        "y": 4.219534,
+        "z": -142.719727
+      },
+      "direction": {
+        "x": -0.126208171,
+        "y": 0.0,
+        "z": -0.992003739
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9230,
+    "utc": "2026-11-04T05:05:07.3881288Z",
+    "raidTime": 232.570374,
+    "frame": 11926,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Run",
+      "position": {
+        "x": 471.024536,
+        "y": 4.219528,
+        "z": -142.377213
+      },
+      "target": {
+        "x": 470.9819,
+        "y": 4.219534,
+        "z": -142.712433
+      },
+      "direction": {
+        "x": -0.126162976,
+        "y": 0.0,
+        "z": -0.9920095
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9237,
+    "utc": "2026-11-04T05:05:07.5127756Z",
+    "raidTime": 232.694824,
+    "frame": 11934,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 470.516418,
+        "y": 4.219528,
+        "z": -142.297226
+      },
+      "target": {
+        "x": 470.470978,
+        "y": 4.28341055,
+        "z": -142.64711
+      },
+      "direction": {
+        "x": -0.1287919,
+        "y": 0.0,
+        "z": -0.9916717
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9247,
+    "utc": "2026-11-04T05:05:07.5740362Z",
+    "raidTime": 232.756332,
+    "frame": 11938,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 15,
+      "state": "Sprint",
+      "direction": {
+        "x": -0.524727,
+        "y": 0.0,
+        "z": -0.851270556
+      },
+      "input": {
+        "x": -0.194017366,
+        "y": 0.9809981
+      },
+      "requestedMotionMagnitude": 0.0281782765,
+      "deltaTime": 0.0152315,
+      "sprint": true,
+      "targetMoveSpeed": 1.0,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "noPathToRetire",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9251,
+    "utc": "2026-11-04T05:05:07.6360261Z",
+    "raidTime": 232.817566,
+    "frame": 11942,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 470.2246,
+        "y": 4.28761435,
+        "z": -142.513031
+      },
+      "target": {
+        "x": 470.177155,
+        "y": 4.307334,
+        "z": -142.509918
+      },
+      "direction": {
+        "x": -0.997855544,
+        "y": 0.0,
+        "z": 0.06545419
+      },
+      "targetMoveSpeed": 1.0,
+      "nativeSprintSpeed": 2.0,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9277,
+    "utc": "2026-11-04T05:05:07.7379336Z",
+    "raidTime": 232.920364,
+    "frame": 11948,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "walkThroughProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "learnedEdgeId": 229,
+      "position": {
+        "x": 469.940735,
+        "y": 4.52610254,
+        "z": -142.838989
+      },
+      "target": {
+        "x": 467.023621,
+        "y": 5.46919,
+        "z": -142.207214
+      },
+      "motionTarget": {
+        "x": 469.8543,
+        "y": 4.55651045,
+        "z": -142.5674
+      },
+      "corridorIndex": 7,
+      "remainingDistance": 2.97352028,
+      "finalDistance": 2.98474383,
+      "lateralDeviation": 0.258506,
+      "commandedSegmentDistance": 0.285010844,
+      "observedStep": 0.0766087249,
+      "actualDisplacement": 1.45889032,
+      "moverFixedUpdateAllowed": true,
+      "moverHasPath": false,
+      "ownershipRemaining": 9.63458252,
+      "recoveryAttempts": 0,
+      "recenterAttempts": 0,
+      "turnAngle": 0.0,
+      "commandedSpeed": 1.0,
+      "stableRun": true,
+      "precisionCorridor": true,
+      "completionTargetSource": "learningV373CurrentEpisodeExit",
+      "grounded": true
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9278,
+    "utc": "2026-11-04T05:05:07.7685072Z",
+    "raidTime": 232.950974,
+    "frame": 11950,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 469.804626,
+        "y": 4.558572,
+        "z": -142.919724
+      },
+      "target": {
+        "x": 469.849518,
+        "y": 4.558069,
+        "z": -142.566788
+      },
+      "direction": {
+        "x": 0.126177549,
+        "y": 0.0,
+        "z": 0.9920077
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9282,
+    "utc": "2026-11-04T05:05:07.7831358Z",
+    "raidTime": 232.966064,
+    "frame": 11951,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 15,
+      "state": "Sprint",
+      "direction": {
+        "x": 0.126213327,
+        "y": 0.0,
+        "z": 0.992003143
+      },
+      "input": {
+        "x": 0.969112039,
+        "y": -0.246620938
+      },
+      "requestedMotionMagnitude": 0.0279044732,
+      "deltaTime": 0.0150835,
+      "sprint": true,
+      "targetMoveSpeed": 1.0,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "noPathToRetire",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9293,
+    "utc": "2026-11-04T05:05:07.8892948Z",
+    "raidTime": 233.072067,
+    "frame": 11958,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 469.22998,
+        "y": 4.735047,
+        "z": -143.116943
+      },
+      "target": {
+        "x": 469.308777,
+        "y": 4.734154,
+        "z": -142.497986
+      },
+      "direction": {
+        "x": 0.126285791,
+        "y": 0.0,
+        "z": 0.991993964
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9302,
+    "utc": "2026-11-04T05:05:07.9974895Z",
+    "raidTime": 233.178665,
+    "frame": 11965,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 15,
+      "state": "Sprint",
+      "direction": {
+        "x": 0.126207411,
+        "y": 0.0,
+        "z": 0.992003858
+      },
+      "input": {
+        "x": 0.729725063,
+        "y": 0.6837407
+      },
+      "requestedMotionMagnitude": 0.0278308447,
+      "deltaTime": 0.0150437,
+      "sprint": true,
+      "targetMoveSpeed": 1.0,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "noPathToRetire",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9315,
+    "utc": "2026-11-04T05:05:08.0237981Z",
+    "raidTime": 233.206482,
+    "frame": 11966,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 468.630249,
+        "y": 4.930904,
+        "z": -143.026108
+      },
+      "target": {
+        "x": 468.707184,
+        "y": 4.930039,
+        "z": -142.421432
+      },
+      "direction": {
+        "x": 0.126215756,
+        "y": 0.0,
+        "z": 0.9920028
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9329,
+    "utc": "2026-11-04T05:05:08.0983215Z",
+    "raidTime": 233.280151,
+    "frame": 11971,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "walkThroughProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "learnedEdgeId": 229,
+      "position": {
+        "x": 468.2815,
+        "y": 5.05296659,
+        "z": -142.765549
+      },
+      "target": {
+        "x": 467.023621,
+        "y": 5.46919,
+        "z": -142.207214
+      },
+      "motionTarget": {
+        "x": 468.33136,
+        "y": 5.052416,
+        "z": -142.373611
+      },
+      "corridorIndex": 13,
+      "remainingDistance": 1.318291,
+      "finalDistance": 1.37622058,
+      "lateralDeviation": 0.3950967,
+      "commandedSegmentDistance": 0.3950967,
+      "observedStep": 0.0733155757,
+      "actualDisplacement": 3.27959013,
+      "moverFixedUpdateAllowed": true,
+      "moverHasPath": false,
+      "ownershipRemaining": 9.274796,
+      "recoveryAttempts": 0,
+      "recenterAttempts": 0,
+      "turnAngle": 0.0,
+      "commandedSpeed": 1.0,
+      "stableRun": true,
+      "precisionCorridor": true,
+      "completionTargetSource": "learningV373CurrentEpisodeExit",
+      "grounded": true
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9336,
+    "utc": "2026-11-04T05:05:08.1579979Z",
+    "raidTime": 233.341156,
+    "frame": 11975,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 468.109436,
+        "y": 5.11790562,
+        "z": -142.517242
+      },
+      "target": {
+        "x": 468.011932,
+        "y": 5.156435,
+        "z": -142.332962
+      },
+      "direction": {
+        "x": -0.467675865,
+        "y": 0.0,
+        "z": 0.883900046
+      },
+      "targetMoveSpeed": 1.0,
+      "nativeSprintSpeed": 2.0,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9341,
+    "utc": "2026-11-04T05:05:08.2027545Z",
+    "raidTime": 233.3852,
+    "frame": 11978,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 15,
+      "state": "Sprint",
+      "direction": {
+        "x": -0.996348739,
+        "y": 0.0,
+        "z": 0.085377
+      },
+      "input": {
+        "x": -0.9320782,
+        "y": 0.362257272
+      },
+      "requestedMotionMagnitude": 0.0271248836,
+      "deltaTime": 0.0146621,
+      "sprint": true,
+      "targetMoveSpeed": 1.0,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "noPathToRetire",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9346,
+    "utc": "2026-11-04T05:05:08.2770476Z",
+    "raidTime": 233.45932,
+    "frame": 11983,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "followerSnapshot",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "breadcrumbSequence": 420,
+      "botPosition": {
+        "x": 467.8537,
+        "y": 5.2227807,
+        "z": -141.935974
+      },
+      "leaderPosition": {
+        "x": 451.745422,
+        "y": 4.21953,
+        "z": -140.263
+      },
+      "leaderDistance": 16.2259636,
+      "displacement": 3.74127388,
+      "distanceProgress": 3.56674767,
+      "noProgressSeconds": 0.0,
+      "playerState": "Sprint",
+      "grounded": true,
+      "inputDirection": {
+        "x": -0.68910563,
+        "y": -0.7246609
+      },
+      "activeCommand": "None",
+      "combat": false,
+      "strict": {
+        "rawStart": {
+          "x": 467.8537,
+          "y": 5.2227807,
+          "z": -141.935974
+        },
+        "rawTarget": {
+          "x": 451.745422,
+          "y": 4.21953,
+          "z": -140.263
+        },
+        "startSampled": true,
+        "targetSampled": true,
+        "sampledStart": {
+          "x": 467.8537,
+          "y": 5.27575541,
+          "z": -141.935974
+        },
+        "sampledTarget": {
+          "x": 451.745422,
+          "y": 4.300003,
+          "z": -140.263
+        },
+        "startSampleOffset": 0.0529747,
+        "targetSampleOffset": 0.0804729462,
+        "targetVerticalSampleOffset": 0.0804729462,
+        "calculateReturned": true,
+        "status": "PathPartial",
+        "cornerCount": 2,
+        "corners": [
+          {
+            "x": 467.8537,
+            "y": 5.27575541,
+            "z": -141.935974
+          },
+          {
+            "x": 465.897522,
+            "y": 6.225627,
+            "z": -142.366333
+          }
+        ],
+        "pathLength": 2.21677518,
+        "directDistance": 16.2259636,
+        "detourRatio": 0.136619017,
+        "terminalToSampledTarget": 14.4365492,
+        "terminalToRawTarget": 14.4475031,
+        "strictComplete": false
+      },
+      "mover": {
+        "hasPath": false,
+        "hasPathAndNoComplete": false,
+        "blocked": false,
+        "isMoving": true,
+        "pause": false,
+        "sprinting": true,
+        "realDestination": {
+          "x": 471.773743,
+          "y": 4.300003,
+          "z": -142.81308
+        },
+        "currentCorner": null,
+        "target": null,
+        "remainingDistance": 0.0,
+        "waypoints": []
+      },
+      "door": {
+        "interacting": false,
+        "haveDoorToOpen": false,
+        "linkId": null,
+        "state": null
+      }
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9350,
+    "utc": "2026-11-04T05:05:08.2927446Z",
+    "raidTime": 233.474274,
+    "frame": 11984,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 467.822144,
+        "y": 5.23557138,
+        "z": -141.868057
+      },
+      "target": {
+        "x": 467.766937,
+        "y": 5.23620272,
+        "z": -142.301788
+      },
+      "direction": {
+        "x": -0.126263648,
+        "y": 0.0,
+        "z": -0.991996765
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9367,
+    "utc": "2026-11-04T05:05:08.4114665Z",
+    "raidTime": 233.593445,
+    "frame": 11992,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV409NativeLocomotionIntentPublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "owner": "Traversal",
+      "generation": 15,
+      "state": "Sprint",
+      "direction": {
+        "x": -0.1262312,
+        "y": 0.0,
+        "z": -0.9920009
+      },
+      "input": {
+        "x": -0.983949661,
+        "y": -0.178446487
+      },
+      "requestedMotionMagnitude": 0.0278088283,
+      "deltaTime": 0.0150318,
+      "sprint": true,
+      "targetMoveSpeed": 1.0,
+      "preserveSprintMode": false,
+      "movementIntentPublished": true,
+      "stalePathRetireDetail": "noPathToRetire",
+      "bodyRelocated": false,
+      "traversalSuccessRecorded": false,
+      "persistentLearningChanged": false,
+      "action": "publishNativePlayerMoveIntentActualBodyDeltaIsOnlyProgressProof"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9368,
+    "utc": "2026-11-04T05:05:08.4261166Z",
+    "raidTime": 233.608139,
+    "frame": 11993,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughUpdate",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 467.432129,
+        "y": 5.334393,
+        "z": -141.320633
+      },
+      "target": {
+        "x": 467.292816,
+        "y": 5.38606262,
+        "z": -142.241455
+      },
+      "direction": {
+        "x": -0.14958939,
+        "y": 0.0,
+        "z": -0.9887482
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9375,
+    "utc": "2026-11-04T05:05:08.4411938Z",
+    "raidTime": 233.6233,
+    "frame": 11994,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughRecenter:lateralRecovery1",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 467.375061,
+        "y": 5.334393,
+        "z": -141.27327
+      },
+      "target": {
+        "x": 467.023621,
+        "y": 5.46919,
+        "z": -142.207214
+      },
+      "direction": {
+        "x": -0.352187335,
+        "y": 0.0,
+        "z": -0.935929537
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-130329-567-bigmap-g2",
+    "sequence": 9379,
+    "utc": "2026-11-04T05:05:08.4567286Z",
+    "raidTime": 233.638443,
+    "frame": 11995,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV414NativeInputLeasePublished",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "edgeId": 229,
+      "kind": "WalkThrough",
+      "source": "walkThroughLateralGrace",
+      "stage": "WalkThrough",
+      "state": "Sprint",
+      "position": {
+        "x": 467.313232,
+        "y": 5.331744,
+        "z": -141.228165
+      },
+      "target": {
+        "x": 467.186066,
+        "y": 5.419025,
+        "z": -142.227875
+      },
+      "direction": {
+        "x": -0.126186818,
+        "y": 0.0,
+        "z": -0.9920065
+      },
+      "targetMoveSpeed": 0.55,
+      "nativeSprintSpeed": 1.1,
+      "moverSprinting": true,
+      "moverHasPath": false,
+      "bodyRelocated": false,
+      "locomotionModeRewritten": false,
+      "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+    }
+  }
+]

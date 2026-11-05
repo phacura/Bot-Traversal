@@ -1,0 +1,775 @@
+{
+  "raid": "20261029-204747-179-bigmap-g2",
+  "installedDllSha256": "CD6022DE124994CDE0656F0E53C1161F2DF33E68D32FA82BAD1E84FF021CD810",
+  "events": 3606,
+  "rangeSeconds": [
+    156.34964,
+    391.71048
+  ],
+  "attempts": [
+    {
+      "sequence": 756,
+      "raidTime": 174.706253,
+      "eventType": "learningV322TraversalAttemptSummary",
+      "payload": {
+        "attemptId": 1,
+        "parentAttemptId": 0,
+        "edgeId": 178,
+        "templateEdgeId": 0,
+        "kind": "WalkThrough",
+        "requestSource": "learnedTraversalCommitment",
+        "selectedExecutor": "Auto",
+        "actualExecutor": "Native",
+        "nativeAttempted": true,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": true,
+        "physicalCrossing": true,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": true,
+        "stableExit": true,
+        "topologyRejoined": false,
+        "zeroShot": false,
+        "nativePhysicalSuccess": true,
+        "executionTruth": "NativePhysical",
+        "completionMode": "Native",
+        "success": true,
+        "failureStage": "",
+        "reason": "learningV423StrictPhysicalPassRouteMissionRelease",
+        "elapsed": 0.7483063
+      }
+    },
+    {
+      "sequence": 1414,
+      "raidTime": 205.803055,
+      "eventType": "learningV322TraversalAttemptSummary",
+      "payload": {
+        "attemptId": 2,
+        "parentAttemptId": 0,
+        "edgeId": 178,
+        "templateEdgeId": 0,
+        "kind": "WalkThrough",
+        "requestSource": "learnedTraversalCommitment",
+        "selectedExecutor": "Auto",
+        "actualExecutor": "Native",
+        "nativeAttempted": true,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": true,
+        "physicalCrossing": true,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": true,
+        "stableExit": true,
+        "topologyRejoined": false,
+        "zeroShot": false,
+        "nativePhysicalSuccess": true,
+        "executionTruth": "NativePhysical",
+        "completionMode": "Native",
+        "success": true,
+        "failureStage": "",
+        "reason": "learningV375PersistentRouteGroundSuccessor",
+        "elapsed": 0.832443237
+      }
+    }
+  ],
+  "falseFallCases": [
+    {
+      "request": {
+        "sequence": 992,
+        "raidTime": 176.522461,
+        "eventType": "capabilityFullRouteRetryRequested",
+        "payload": {
+          "missionId": 27,
+          "failedStep": 2,
+          "failedEdge": 218,
+          "rootEdge": 178,
+          "entry": {
+            "x": 159.381332,
+            "y": 1.19865382,
+            "z": 21.2123241
+          },
+          "stage": {
+            "x": 158.181686,
+            "y": 1.20108771,
+            "z": 21.2416439
+          },
+          "reason": "fellBelowUnstartedBarrierEntry",
+          "restarts": 0,
+          "oldSuccessHistoryPreserved": true,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "firstBlocked": {
+        "sequence": 996,
+        "raidTime": 176.522461,
+        "eventType": "capabilityFullRouteReturnBlocked",
+        "payload": {
+          "missionId": 27,
+          "rootEdge": 178,
+          "body": {
+            "x": 164.425079,
+            "y": -1.642401,
+            "z": 27.002491
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.20108771,
+            "z": 21.2416439
+          },
+          "sampled": true,
+          "reason": "firstEntryStagingNotStrictReachable",
+          "leaderDetourAllowed": false,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "vaultEpisode": {
+        "sequence": 669,
+        "raidTime": 173.802536,
+        "eventType": "playerTraversalEpisodeRegistered",
+        "payload": {
+          "episodeId": 5,
+          "chainId": 4,
+          "edgeId": 218,
+          "kind": "Vault",
+          "startBreadcrumbSequence": 131,
+          "endBreadcrumbSequence": 136,
+          "rawStart": {
+            "x": 165.3862,
+            "y": -0.988357842,
+            "z": 30.0234184
+          },
+          "rawEnd": {
+            "x": 166.305634,
+            "y": -0.8370579,
+            "z": 32.51996
+          }
+        }
+      },
+      "nearestRecordedGround": {
+        "sequence": 552,
+        "raidTime": 172.4391,
+        "eventType": "playerBreadcrumb",
+        "payload": {
+          "breadcrumbSequence": 124,
+          "profileId": "6a56228fc9282a1efce19538",
+          "position": {
+            "x": 164.3104,
+            "y": -1.64560354,
+            "z": 27.13975
+          },
+          "direction": {
+            "x": 0.3634878,
+            "y": 0.0,
+            "z": 0.931598961
+          },
+          "state": "Sprint",
+          "grounded": true,
+          "pose": 1.0,
+          "navMesh": {
+            "sampled": true,
+            "radius": 0.5,
+            "position": {
+              "x": 164.3104,
+              "y": -1.57131147,
+              "z": 27.13975
+            },
+            "offset": 0.07429206,
+            "verticalOffset": 0.07429206
+          }
+        }
+      },
+      "distanceToRecordedGround": 0.17886113642154214,
+      "verticalToRecordedGround": 0.003202539999999976,
+      "verticalBelowFutureVaultEntry": 0.654043158,
+      "distanceToFutureVaultEntry": 3.1701350022848795,
+      "forwardFromEntry": -3.1669484013578266,
+      "sourceDetectorThreshold": 0.65,
+      "sourceDetectorWouldRequest": true,
+      "nativeProbeStartedBeforeRequest": false
+    },
+    {
+      "request": {
+        "sequence": 1581,
+        "raidTime": 207.208115,
+        "eventType": "capabilityFullRouteRetryRequested",
+        "payload": {
+          "missionId": 28,
+          "failedStep": 1,
+          "failedEdge": 218,
+          "rootEdge": 178,
+          "entry": {
+            "x": 159.381332,
+            "y": 1.19865382,
+            "z": 21.2123241
+          },
+          "stage": {
+            "x": 158.181686,
+            "y": 1.20108771,
+            "z": 21.2416439
+          },
+          "reason": "fellBelowUnstartedBarrierEntry",
+          "restarts": 1,
+          "oldSuccessHistoryPreserved": true,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "firstBlocked": {
+        "sequence": 1585,
+        "raidTime": 207.208115,
+        "eventType": "capabilityFullRouteReturnBlocked",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": 164.257935,
+            "y": -1.64140153,
+            "z": 27.0134735
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.20108771,
+            "z": 21.2416439
+          },
+          "sampled": true,
+          "reason": "firstEntryStagingNotStrictReachable",
+          "leaderDetourAllowed": false,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "vaultEpisode": {
+        "sequence": 669,
+        "raidTime": 173.802536,
+        "eventType": "playerTraversalEpisodeRegistered",
+        "payload": {
+          "episodeId": 5,
+          "chainId": 4,
+          "edgeId": 218,
+          "kind": "Vault",
+          "startBreadcrumbSequence": 131,
+          "endBreadcrumbSequence": 136,
+          "rawStart": {
+            "x": 165.3862,
+            "y": -0.988357842,
+            "z": 30.0234184
+          },
+          "rawEnd": {
+            "x": 166.305634,
+            "y": -0.8370579,
+            "z": 32.51996
+          }
+        }
+      },
+      "nearestRecordedGround": {
+        "sequence": 552,
+        "raidTime": 172.4391,
+        "eventType": "playerBreadcrumb",
+        "payload": {
+          "breadcrumbSequence": 124,
+          "profileId": "6a56228fc9282a1efce19538",
+          "position": {
+            "x": 164.3104,
+            "y": -1.64560354,
+            "z": 27.13975
+          },
+          "direction": {
+            "x": 0.3634878,
+            "y": 0.0,
+            "z": 0.931598961
+          },
+          "state": "Sprint",
+          "grounded": true,
+          "pose": 1.0,
+          "navMesh": {
+            "sampled": true,
+            "radius": 0.5,
+            "position": {
+              "x": 164.3104,
+              "y": -1.57131147,
+              "z": 27.13975
+            },
+            "offset": 0.07429206,
+            "verticalOffset": 0.07429206
+          }
+        }
+      },
+      "distanceToRecordedGround": 0.1367418395270744,
+      "verticalToRecordedGround": 0.004202009999999978,
+      "verticalBelowFutureVaultEntry": 0.653043688,
+      "distanceToFutureVaultEntry": 3.2144595519715304,
+      "forwardFromEntry": -3.2144061071884074,
+      "sourceDetectorThreshold": 0.65,
+      "sourceDetectorWouldRequest": true,
+      "nativeProbeStartedBeforeRequest": false
+    }
+  ],
+  "returnSegments": [
+    {
+      "mission": 27,
+      "count": 43,
+      "first": {
+        "sequence": 1113,
+        "raidTime": 182.50209,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 27,
+          "rootEdge": 178,
+          "body": {
+            "x": 182.7857,
+            "y": -0.6558647,
+            "z": 28.30358
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 74.6187057,
+          "restarts": 0,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "last": {
+        "sequence": 1323,
+        "raidTime": 204.208176,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 27,
+          "rootEdge": 178,
+          "body": {
+            "x": 157.738647,
+            "y": 1.06917083,
+            "z": 20.62722
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 0.7629566,
+          "restarts": 0,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "minimumReissueInterval": 0.4499969999999962,
+      "firstDirectDistance": 25.597430464651683,
+      "lastDirectDistance": 0.7574960623080705
+    },
+    {
+      "mission": 28,
+      "count": 41,
+      "first": {
+        "sequence": 1794,
+        "raidTime": 220.522171,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": 181.430756,
+            "y": -0.658089161,
+            "z": 28.5360622
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 75.59988,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "last": {
+        "sequence": 3599,
+        "raidTime": 391.2344,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": 13.3582153,
+            "y": 1.09098053,
+            "z": -124.666275
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 214.671112,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      },
+      "minimumReissueInterval": 0.4506529999999884,
+      "firstDirectDistance": 24.366530204365873,
+      "lastDirectDistance": 205.57956723206402
+    }
+  ],
+  "progressEvents": [
+    {
+      "sequence": 1269,
+      "raidTime": 197.599731,
+      "eventType": "capabilityFullRouteReturnProgress",
+      "payload": {
+        "missionId": 27,
+        "body": {
+          "x": 156.938492,
+          "y": 1.07317352,
+          "z": 14.0343018
+        },
+        "target": {
+          "x": 158.181686,
+          "y": 1.20108771,
+          "z": 21.2416439
+        },
+        "remaining": 7.31377554,
+        "forward": -2.26673031,
+        "side": 7.23556566,
+        "vertical": 0.12791419,
+        "state": "Sprint",
+        "input": {
+          "x": 2.9578614e-06,
+          "y": 1.0
+        },
+        "nativeSuccessRecorded": false
+      }
+    },
+    {
+      "sequence": 1277,
+      "raidTime": 198.973434,
+      "eventType": "capabilityFullRouteReturnProgress",
+      "payload": {
+        "missionId": 27,
+        "body": {
+          "x": 156.673889,
+          "y": 1.190752,
+          "z": 17.600502
+        },
+        "target": {
+          "x": 158.181686,
+          "y": 1.20108771,
+          "z": 21.2416439
+        },
+        "remaining": 3.94098544,
+        "forward": -2.61838722,
+        "side": 3.676895,
+        "vertical": 0.0103356838,
+        "state": "Sprint",
+        "input": {
+          "x": 4.6119456e-07,
+          "y": 1.0
+        },
+        "nativeSuccessRecorded": false
+      }
+    },
+    {
+      "sequence": 1284,
+      "raidTime": 199.884552,
+      "eventType": "capabilityFullRouteReturnProgress",
+      "payload": {
+        "missionId": 27,
+        "body": {
+          "x": 157.856842,
+          "y": 1.0908432,
+          "z": 20.7903442
+        },
+        "target": {
+          "x": 158.181686,
+          "y": 1.20108771,
+          "z": 21.2416439
+        },
+        "remaining": 0.5560533,
+        "forward": -1.513725,
+        "side": 0.4591019,
+        "vertical": 0.110244513,
+        "state": "Sprint",
+        "input": {
+          "x": -6.857378e-06,
+          "y": 1.0
+        },
+        "nativeSuccessRecorded": false
+      }
+    },
+    {
+      "sequence": 1318,
+      "raidTime": 203.753159,
+      "eventType": "capabilityFullRouteReturnProgress",
+      "payload": {
+        "missionId": 27,
+        "body": {
+          "x": 157.423965,
+          "y": 1.0512085,
+          "z": 20.19934
+        },
+        "target": {
+          "x": 158.181686,
+          "y": 1.20108771,
+          "z": 21.2416439
+        },
+        "remaining": 1.28861821,
+        "forward": -1.93203235,
+        "side": 1.06050539,
+        "vertical": 0.149879217,
+        "state": "Transition",
+        "input": {
+          "x": -0.8690161,
+          "y": 0.4947838
+        },
+        "nativeSuccessRecorded": false
+      }
+    }
+  ],
+  "manualResets": [
+    {
+      "reset": {
+        "sequence": 1916,
+        "raidTime": 232.309677,
+        "eventType": "movementWriterGenerationAdvanced",
+        "payload": {
+          "previousOwner": "Follow",
+          "owner": "Teleport",
+          "previousGeneration": 6,
+          "generation": 7,
+          "reason": "teleportReset:manualRegroup",
+          "leaseSeconds": 2.25
+        }
+      },
+      "firstOldReturnAfterReset": {
+        "sequence": 3537,
+        "raidTime": 384.8539,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": -2.895874,
+            "y": 1.08817816,
+            "z": -133.961838
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 233.60849,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      }
+    },
+    {
+      "reset": {
+        "sequence": 2353,
+        "raidTime": 288.277222,
+        "eventType": "movementWriterGenerationAdvanced",
+        "payload": {
+          "previousOwner": "Follow",
+          "owner": "Teleport",
+          "previousGeneration": 8,
+          "generation": 9,
+          "reason": "teleportReset:manualRegroup",
+          "leaseSeconds": 2.25
+        }
+      },
+      "firstOldReturnAfterReset": {
+        "sequence": 3537,
+        "raidTime": 384.8539,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": -2.895874,
+            "y": 1.08817816,
+            "z": -133.961838
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 233.60849,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      }
+    },
+    {
+      "reset": {
+        "sequence": 2659,
+        "raidTime": 323.075378,
+        "eventType": "movementWriterGenerationAdvanced",
+        "payload": {
+          "previousOwner": "Follow",
+          "owner": "Teleport",
+          "previousGeneration": 10,
+          "generation": 11,
+          "reason": "teleportReset:manualRegroup",
+          "leaseSeconds": 2.25
+        }
+      },
+      "firstOldReturnAfterReset": {
+        "sequence": 3537,
+        "raidTime": 384.8539,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": -2.895874,
+            "y": 1.08817816,
+            "z": -133.961838
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 233.60849,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      }
+    },
+    {
+      "reset": {
+        "sequence": 2948,
+        "raidTime": 345.028656,
+        "eventType": "movementWriterGenerationAdvanced",
+        "payload": {
+          "previousOwner": "Follow",
+          "owner": "Teleport",
+          "previousGeneration": 12,
+          "generation": 13,
+          "reason": "teleportReset:manualRegroup",
+          "leaseSeconds": 2.25
+        }
+      },
+      "firstOldReturnAfterReset": {
+        "sequence": 3537,
+        "raidTime": 384.8539,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": -2.895874,
+            "y": 1.08817816,
+            "z": -133.961838
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 233.60849,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      }
+    },
+    {
+      "reset": {
+        "sequence": 3420,
+        "raidTime": 382.599762,
+        "eventType": "movementWriterGenerationAdvanced",
+        "payload": {
+          "previousOwner": "Follow",
+          "owner": "Teleport",
+          "previousGeneration": 14,
+          "generation": 15,
+          "reason": "teleportReset:manualRegroup",
+          "leaseSeconds": 2.25
+        }
+      },
+      "firstOldReturnAfterReset": {
+        "sequence": 3537,
+        "raidTime": 384.8539,
+        "eventType": "capabilityFullRouteReturnPath",
+        "payload": {
+          "missionId": 28,
+          "rootEdge": 178,
+          "body": {
+            "x": -2.895874,
+            "y": 1.08817816,
+            "z": -133.961838
+          },
+          "target": {
+            "x": 158.181686,
+            "y": 1.16029036,
+            "z": 21.2416439
+          },
+          "behindEntryMeters": 1.20000422,
+          "status": "PathComplete",
+          "epochReady": true,
+          "pathLength": 233.60849,
+          "restarts": 1,
+          "nativeSuccessRecorded": false
+        }
+      }
+    }
+  ],
+  "retryEvents": {
+    "capabilityFullRouteRetryRequested": 2,
+    "capabilityFullRouteReturnBlocked": 120,
+    "capabilityFullRouteReturnPath": 84,
+    "capabilityFullRouteReturnProgress": 4,
+    "capabilityFullRouteReplayStarted": 1
+  },
+  "writerRejects": 502,
+  "writerRejectReasons": {
+    "exclusiveTransactionRejected writer=Follow owner=Traversal generation=3": 5,
+    "exclusiveTransactionRejected writer=Follow owner=Traversal generation=5": 4,
+    "exclusiveTransactionRejected writer=Unknown owner=Teleport generation=7": 86,
+    "exclusiveTransactionRejected writer=Follow owner=Teleport generation=7": 7,
+    "exclusiveTransactionRejected writer=Unknown owner=Teleport generation=9": 62,
+    "exclusiveTransactionRejected writer=Follow owner=Teleport generation=9": 32,
+    "exclusiveTransactionRejected writer=Unknown owner=Teleport generation=11": 90,
+    "exclusiveTransactionRejected writer=Follow owner=Teleport generation=11": 2,
+    "exclusiveTransactionRejected writer=Unknown owner=Teleport generation=13": 106,
+    "exclusiveTransactionRejected writer=Follow owner=Teleport generation=13": 2,
+    "exclusiveTransactionRejected writer=Unknown owner=Teleport generation=15": 76,
+    "exclusiveTransactionRejected writer=Follow owner=Teleport generation=15": 30
+  },
+  "frontierConstraintEvents": 0,
+  "followerSnapshots": 23,
+  "lastSnapshotTime": 206.740524,
+  "laterPlayerEpisodes": 32,
+  "caveats": [
+    "Original Unity execution not replayed; input/body observations are recorded data.",
+    "No evidence here to measure RC112 Jump landing fix: no Jump attempt summary was reached.",
+    "Direct native getter CIL confirms selected GClass550.TargetPoint stores final vector, not current corner. It is not the demonstrated reissue cause.",
+    "REA member decoding was capacity-limited; native semantic statements use bounded dnlib CIL on SHA/MVID-matched artifact."
+  ]
+}

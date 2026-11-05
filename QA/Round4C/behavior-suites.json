@@ -1,0 +1,23 @@
+[
+  "QA/Regression/Round2/LifecycleTests/LifecycleTests.csproj",
+  "QA/Regression/Round3/CapabilityTests/CapabilityTests.csproj",
+  "QA/Regression/Round3C/PhaseTests/PhaseTests.csproj",
+  "QA/Regression/Round3D/MotionTests/MotionTests.csproj",
+  "QA/Regression/Round3E/ActuationTests/ActuationTests.csproj",
+  "QA/Regression/Round3F/HelperTests/HelperTests.csproj",
+  "QA/Regression/Round3H/FrameTests/FrameTests.csproj",
+  "QA/Regression/Round3I/AdjacentTests/AdjacentTests.csproj",
+  "QA/Regression/Round3J/FrontierTests/FrontierTests.csproj",
+  "QA/Regression/Round3K/PreparationTests/PreparationTests.csproj",
+  "QA/Regression/Round3L/DropDownTests/DropDownTests.csproj",
+  "QA/Regression/Round3M/CapabilityTests/CapabilityTests.csproj",
+  "QA/Regression/Round3N/RecoveryTests/RecoveryTests.csproj",
+  "QA/Regression/Round3O/ClimbTests/ClimbTests.csproj",
+  "QA/Regression/Round3P/GeometryTests/GeometryTests.csproj",
+  "QA/Regression/Round3Q/ContinuityTests/ContinuityTests.csproj",
+  "QA/Regression/Round3R/HandoffTests/HandoffTests.csproj",
+  "QA/Continuity/Tests/Tests.csproj",
+  "QA/RouteRegression/Tests/Tests.csproj",
+  "QA/Round3Y/Tests/Tests.csproj",
+  "QA/Round3Z/Tests/Tests.csproj"
+]

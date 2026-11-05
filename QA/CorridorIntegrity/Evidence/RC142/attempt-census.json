@@ -1,0 +1,20 @@
+{
+  "WalkThrough": {
+    "NativePhysical": 56,
+    "Unproven": 2
+  },
+  "Vault": {
+    "Unproven": 5,
+    "NativePhysical": 11
+  },
+  "Jump": {
+    "Unproven": 5,
+    "NonNativeCompletion": 4
+  },
+  "DropDown": {
+    "NativePhysical": 20
+  },
+  "Climb": {
+    "NativePhysical": 4
+  }
+}

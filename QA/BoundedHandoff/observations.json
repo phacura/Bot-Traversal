@@ -1,0 +1,117 @@
+{
+  "learningV322TraversalAttemptSummary": 122,
+  "learningV331NativeJumpForwardContinuationStarted": 20,
+  "learningV408JumpPartialCrossingForwardContinuationSelected": 24,
+  "traversalTeleportDeferredForQuiescence": 4,
+  "capabilityFailureSequenceAdvanced": 21,
+  "capabilitySequenceStrategySelected": 13,
+  "playerJumpLandingRejected": 3,
+  "selectedDispatches": [
+    {
+      "sequence": 16317,
+      "nextSequence": 16337,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 18969,
+      "nextSequence": 18989,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 21005,
+      "nextSequence": 21018,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 21090,
+      "nextSequence": 21102,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 27194,
+      "nextSequence": 27214,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 30310,
+      "nextSequence": 30328,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 30477,
+      "nextSequence": 30496,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 30510,
+      "nextSequence": 30529,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 30704,
+      "nextSequence": 30723,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 34114,
+      "nextSequence": 34133,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 34265,
+      "nextSequence": 34280,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 38695,
+      "nextSequence": 38715,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    },
+    {
+      "sequence": 38956,
+      "nextSequence": 38975,
+      "kind": "Vault",
+      "template": 148,
+      "actualKind": "Vault",
+      "actualTemplate": 148
+    }
+  ],
+  "selectedMismatchCount": 0,
+  "normalLandingFailures": 0
+}

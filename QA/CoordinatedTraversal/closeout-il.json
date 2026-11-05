@@ -1,0 +1,12 @@
+﻿{
+    "physicsSimulated":  false,
+    "errors":  [
+
+               ],
+    "passed":  true,
+    "purePolicyTypes":  30,
+    "dllSha256":  "0F7BA4A62AF736312B349869FDC97B4B0AB7F9EEBD67324B890CE28AD13D2C32",
+    "strictSites":  58,
+    "scopeLeaves":  8,
+    "checks":  156
+}

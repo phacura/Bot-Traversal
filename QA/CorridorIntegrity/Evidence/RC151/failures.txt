@@ -1,0 +1,197 @@
+
+ capabilityFailureSequenceAdvanced 55
+144.451 Ghost {'missionId': 39, 'stepIndex': 0, 'edgeId': 242, 'episodeId': 1, 'stage': 'ReturnToEntry', 'reason': 'nativeFrontierNoMeasuredProgress', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+155.687 Knight {'missionId': 41, 'stepIndex': 1, 'edgeId': 173, 'episodeId': 2, 'stage': 'Alternate', 'reason': 'learningV32EntryAcquisitionFailed:kind=Vault:distance=0.23:angle=76.2:lateral=0.12:projection=-0.20', 'selectedTemplate': 11, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+156.745 Chris_Redfield {'missionId': 38, 'stepIndex': 0, 'edgeId': 242, 'episodeId': 1, 'stage': 'SelfRescue', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 121, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+166.756 Chris_Redfield {'missionId': 38, 'stepIndex': 0, 'edgeId': 242, 'episodeId': 1, 'stage': 'ReturnToEntry', 'reason': 'sequenceStrategyApproachNoMeasuredProgress', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+174.275 Chris_Redfield {'missionId': 45, 'stepIndex': 0, 'edgeId': 11, 'episodeId': 2, 'stage': 'RecoveryTeleport', 'reason': 'sequenceStrategyApproachNoMeasuredProgress', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+284.891 Ghost {'missionId': 81, 'stepIndex': 0, 'edgeId': 236, 'episodeId': 19, 'stage': 'ReturnToEntry', 'reason': 'monotonicFailure:safetyHold:WalkThrough vertical corridor deviation became unsafe (1.32m)', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+287.471 Knight {'missionId': 82, 'stepIndex': 0, 'edgeId': 236, 'episodeId': 19, 'stage': 'ReturnToEntry', 'reason': 'monotonicFailure:safetyHold:WalkThrough vertical corridor deviation became unsafe (1.31m)', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+373.773 Knight {'missionId': 110, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 28, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+380.418 Knight {'missionId': 112, 'stepIndex': 0, 'edgeId': 225, 'episodeId': 31, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+381.435 Ada_Wong {'missionId': 109, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 28, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+386.689 Ghost {'missionId': 108, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 28, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+393.499 Ada_Wong {'missionId': 114, 'stepIndex': 1, 'edgeId': 225, 'episodeId': 31, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+401.205 Chris_Redfield {'missionId': 107, 'stepIndex': 1, 'edgeId': 225, 'episodeId': 31, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+424.984 Chris_Redfield {'missionId': 119, 'stepIndex': 1, 'edgeId': 16, 'episodeId': 33, 'stage': 'Alternate', 'reason': 'learningV32EntryAcquisitionFailed:kind=Climb:distance=0.39:angle=48.5:lateral=0.36:projection=-0.15', 'selectedTemplate': 12, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+426.056 Knight {'missionId': 121, 'stepIndex': 0, 'edgeId': 250, 'episodeId': 32, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+429.224 Ada_Wong {'missionId': 120, 'stepIndex': 0, 'edgeId': 250, 'episodeId': 32, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+432.757 Ghost {'missionId': 122, 'stepIndex': 0, 'edgeId': 250, 'episodeId': 32, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadMeasuredMovingAway', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+593.546 Ada_Wong {'missionId': 171, 'stepIndex': 0, 'edgeId': 230, 'episodeId': 57, 'stage': 'ReturnToEntry', 'reason': 'portalQueueHeadLeftUnfinishedIngressWindow', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+604.121 Ada_Wong {'missionId': 173, 'stepIndex': 0, 'edgeId': 230, 'episodeId': 57, 'stage': 'RecoveryTeleport', 'reason': 'walkThroughHardValidationFailed:polyline segment 9 failed: WalkThrough corridor is too short', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+680.34 Ghost {'missionId': 394, 'stepIndex': 1, 'edgeId': 155, 'episodeId': 72, 'stage': 'Alternate', 'reason': 'portalQueueHeadNoMeasuredProgress', 'selectedTemplate': 147, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+680.386 Ghost {'missionId': 394, 'stepIndex': 1, 'edgeId': 155, 'episodeId': 72, 'stage': 'ReturnToEntry', 'reason': 'sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+685.424 Chris_Redfield {'missionId': 393, 'stepIndex': 1, 'edgeId': 155, 'episodeId': 72, 'stage': 'Alternate', 'reason': 'portalQueueHeadNoMeasuredProgress', 'selectedTemplate': 147, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+685.996 Chris_Redfield {'missionId': 393, 'stepIndex': 1, 'edgeId': 155, 'episodeId': 72, 'stage': 'ReturnToEntry', 'reason': 'sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+691.009 Knight {'missionId': 396, 'stepIndex': 1, 'edgeId': 155, 'episodeId': 72, 'stage': 'Alternate', 'reason': 'portalQueueHeadNoMeasuredProgress', 'selectedTemplate': 147, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+691.538 Knight {'missionId': 396, 'stepIndex': 1, 'edgeId': 155, 'episodeId': 72, 'stage': 'ReturnToEntry', 'reason': 'sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+888.496 Chris_Redfield {'missionId': 485, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'Alternate', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 184, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+888.496 Ghost {'missionId': 486, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'Alternate', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 184, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+888.583 Ada_Wong {'missionId': 487, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'Alternate', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 184, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+888.827 Knight {'missionId': 488, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'Alternate', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 184, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+892.105 Chris_Redfield {'missionId': 485, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+892.193 Ada_Wong {'missionId': 487, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+892.299 Knight {'missionId': 488, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+892.637 Ghost {'missionId': 486, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+897.138 Knight {'missionId': 491, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'RecoveryTeleport', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+897.154 Chris_Redfield {'missionId': 489, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'RecoveryTeleport', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+897.434 Ghost {'missionId': 492, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'RecoveryTeleport', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+897.497 Ada_Wong {'missionId': 490, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 107, 'stage': 'RecoveryTeleport', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+912.133 Ada_Wong {'missionId': 495, 'stepIndex': 1, 'edgeId': 228, 'episodeId': 116, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+912.389 Ghost {'missionId': 493, 'stepIndex': 1, 'edgeId': 228, 'episodeId': 116, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+912.764 Knight {'missionId': 496, 'stepIndex': 1, 'edgeId': 228, 'episodeId': 116, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+913.077 Chris_Redfield {'missionId': 494, 'stepIndex': 1, 'edgeId': 228, 'episodeId': 116, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+924.954 Chris_Redfield {'missionId': 505, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 119, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+925.422 Ghost {'missionId': 506, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 119, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+926.196 Ada_Wong {'missionId': 508, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 119, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+926.436 Knight {'missionId': 507, 'stepIndex': 0, 'edgeId': 185, 'episodeId': 119, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+931.763 Chris_Redfield {'missionId': 513, 'stepIndex': 0, 'edgeId': 225, 'episodeId': 123, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+932.328 Ghost {'missionId': 511, 'stepIndex': 1, 'edgeId': 225, 'episodeId': 123, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+932.537 Ada_Wong {'missionId': 510, 'stepIndex': 1, 'edgeId': 225, 'episodeId': 123, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+932.641 Knight {'missionId': 512, 'stepIndex': 1, 'edgeId': 225, 'episodeId': 123, 'stage': 'ReturnToEntry', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+986.708 Knight {'missionId': 537, 'stepIndex': 1, 'edgeId': 234, 'episodeId': 138, 'stage': 'ReturnToEntry', 'reason': 'monotonicFailure:verifyDropBack', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+987.602 Chris_Redfield {'missionId': 536, 'stepIndex': 1, 'edgeId': 234, 'episodeId': 138, 'stage': 'ReturnToEntry', 'reason': 'walkThroughSolidGeometryQuarantined:', 'selectedTemplate': 0, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+1006.53 Ghost {'missionId': 542, 'stepIndex': 0, 'edgeId': 175, 'episodeId': 141, 'stage': 'SelfRescue', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 175, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+1006.686 Knight {'missionId': 544, 'stepIndex': 0, 'edgeId': 175, 'episodeId': 141, 'stage': 'SelfRescue', 'reason': 'walkThroughSolidGeometryQuarantined:', 'selectedTemplate': 175, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+1008.089 Ada_Wong {'missionId': 541, 'stepIndex': 1, 'edgeId': 175, 'episodeId': 141, 'stage': 'SelfRescue', 'reason': 'walkThroughSolidGeometryQuarantined:heap_junk_1_BALLISTIC_metal_thin', 'selectedTemplate': 175, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+1008.897 Chris_Redfield {'missionId': 543, 'stepIndex': 0, 'edgeId': 175, 'episodeId': 141, 'stage': 'SelfRescue', 'reason': 'genericWatchdogCurrentTypedAttemptStalled', 'selectedTemplate': 175, 'completedPrefixRetained': True, 'nativeSuccessRecorded': False}
+
+ capabilitySequenceSelectionFailed 66
+144.451 Ghost {'missionId': 39, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+144.451 Ghost {'missionId': 39, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+156.745 Chris_Redfield {'missionId': 38, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+284.891 Ghost {'missionId': 81, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+284.891 Ghost {'missionId': 81, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+287.471 Knight {'missionId': 82, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+287.471 Knight {'missionId': 82, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+373.773 Knight {'missionId': 110, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+373.773 Knight {'missionId': 110, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+380.418 Knight {'missionId': 112, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+380.418 Knight {'missionId': 112, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+381.435 Ada_Wong {'missionId': 109, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+381.435 Ada_Wong {'missionId': 109, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+386.689 Ghost {'missionId': 108, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+386.689 Ghost {'missionId': 108, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+393.499 Ada_Wong {'missionId': 114, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+393.499 Ada_Wong {'missionId': 114, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+401.205 Chris_Redfield {'missionId': 107, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+401.205 Chris_Redfield {'missionId': 107, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+426.056 Knight {'missionId': 121, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+426.056 Knight {'missionId': 121, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+429.224 Ada_Wong {'missionId': 120, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+429.224 Ada_Wong {'missionId': 120, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+432.757 Ghost {'missionId': 122, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+432.757 Ghost {'missionId': 122, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+593.546 Ada_Wong {'missionId': 171, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+593.546 Ada_Wong {'missionId': 171, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+680.386 Ghost {'missionId': 394, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+685.996 Chris_Redfield {'missionId': 393, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+691.538 Knight {'missionId': 396, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+892.105 Chris_Redfield {'missionId': 485, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+892.193 Ada_Wong {'missionId': 487, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+892.299 Knight {'missionId': 488, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+892.637 Ghost {'missionId': 486, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+912.133 Ada_Wong {'missionId': 495, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+912.133 Ada_Wong {'missionId': 495, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+912.389 Ghost {'missionId': 493, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+912.389 Ghost {'missionId': 493, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+912.764 Knight {'missionId': 496, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+912.764 Knight {'missionId': 496, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+913.077 Chris_Redfield {'missionId': 494, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+913.077 Chris_Redfield {'missionId': 494, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+924.954 Chris_Redfield {'missionId': 505, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+924.954 Chris_Redfield {'missionId': 505, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+925.422 Ghost {'missionId': 506, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+925.422 Ghost {'missionId': 506, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+926.196 Ada_Wong {'missionId': 508, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+926.196 Ada_Wong {'missionId': 508, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+926.436 Knight {'missionId': 507, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+926.436 Knight {'missionId': 507, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+931.763 Chris_Redfield {'missionId': 513, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+931.763 Chris_Redfield {'missionId': 513, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+932.328 Ghost {'missionId': 511, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+932.328 Ghost {'missionId': 511, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+932.537 Ada_Wong {'missionId': 510, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+932.537 Ada_Wong {'missionId': 510, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+932.641 Knight {'missionId': 512, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+932.641 Knight {'missionId': 512, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+986.708 Knight {'missionId': 537, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+986.708 Knight {'missionId': 537, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+987.602 Chris_Redfield {'missionId': 536, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+987.602 Chris_Redfield {'missionId': 536, 'stage': 'SelfRescue', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+1006.53 Ghost {'missionId': 542, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+1006.686 Knight {'missionId': 544, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+1008.089 Ada_Wong {'missionId': 541, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+1008.897 Chris_Redfield {'missionId': 543, 'stage': 'Alternate', 'reason': 'noExecutableTemplate', 'nativeSuccessRecorded': False}
+
+ capabilitySequenceReturnFailed 7
+691.119 Chris_Redfield {'missionId': 393, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+935.772 Chris_Redfield {'missionId': 513, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+936.332 Ghost {'missionId': 511, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+936.55 Ada_Wong {'missionId': 510, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+936.65 Knight {'missionId': 512, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+990.748 Knight {'missionId': 537, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+992.348 Chris_Redfield {'missionId': 536, 'reason': 'returnNoProgress', 'nativeSuccessRecorded': False}
+
+ capabilityPortalQueueAdmittedIngressLost 1
+593.546 Ada_Wong {'missionId': 171, 'stepIndex': 0, 'EdgeId': 230, 'distance': 7.04194927, 'body': {'x': 478.8196, 'y': 4.219531, 'z': -143.83551}, 'entry': {'x': 471.854, 'y': 4.21953249, 'z': -142.8014}, 'nativeSuccessRecorded': False}
+
+ learningV426TraversalConsumerEpochSuccessorMismatch 0
+
+UNPROVEN
+155.687 Knight Vault 173 implicitUnregister:forceRelease:sequenceAttemptFailed:learningV32EntryAcquisitionFailed:kind=Vault:distance=0.23:angle=76.2:lateral=0.12:projection=-0.20
+284.891 Ghost WalkThrough 236 implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:safetyHold:WalkThrough vertical corridor deviation became unsafe (1.32m)
+287.471 Knight WalkThrough 236 implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:safetyHold:WalkThrough vertical corridor deviation became unsafe (1.31m)
+373.773 Knight WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+380.418 Knight WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+381.435 Ada_Wong WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+386.689 Ghost WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+393.499 Ada_Wong WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+401.205 Chris_Redfield WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+424.984 Chris_Redfield Climb 16 implicitUnregister:forceRelease:sequenceAttemptFailed:learningV32EntryAcquisitionFailed:kind=Climb:distance=0.39:angle=48.5:lateral=0.36:projection=-0.15
+604.121 Ada_Wong WalkThrough 230 implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughHardValidationFailed:polyline segment 9 failed: WalkThrough corridor is too short
+680.386 Ghost Vault 155 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+685.996 Chris_Redfield Vault 155 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+691.538 Knight Vault 155 implicitUnregister:forceRelease:sequenceAttemptFailed:sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle
+888.496 Chris_Redfield WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+888.496 Ghost WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+888.583 Ada_Wong WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+888.827 Knight WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+892.105 Chris_Redfield WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+892.193 Ada_Wong WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+892.299 Knight WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+892.637 Ghost WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+897.138 Knight WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+897.154 Chris_Redfield WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+897.434 Ghost WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+897.497 Ada_Wong WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+912.133 Ada_Wong WalkThrough 228 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+912.389 Ghost WalkThrough 228 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+912.764 Knight WalkThrough 228 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+913.077 Chris_Redfield WalkThrough 228 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+924.954 Chris_Redfield WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+925.422 Ghost WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+926.196 Ada_Wong WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+926.436 Knight WalkThrough 185 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+931.763 Chris_Redfield WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+932.328 Ghost WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+932.537 Ada_Wong WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+932.641 Knight WalkThrough 225 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+986.708 Knight WalkThrough 234 implicitUnregister:forceRelease:sequenceAttemptFailed:monotonicFailure:verifyDropBack
+987.602 Chris_Redfield WalkThrough 234 implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:
+1006.53 Ghost WalkThrough 175 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+1006.686 Knight WalkThrough 175 implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:
+1008.089 Ada_Wong WalkThrough 175 implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:heap_junk_1_BALLISTIC_metal_thin
+1008.897 Chris_Redfield WalkThrough 175 implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled
+
+SAMPLE projections
+learningV377ActiveMoverPhysicalEpochRejected 309
+{'missionId': 40, 'generation': 4, 'bestRouteArc': 6.28804, 'currentRouteArc': 6.28804, 'cornerArc': 0.0, 'cornerForwardDot': -0.9999975, 'reason': 'currentMoverCornerBackwardAndBehindPhysicalFrontier', 'traversalSuccessRecorded': False, 'persistentLearningChanged': False, 'action': 'staleBackwardMoverPathCannotCountAsPersistentPhysicalProducer'}
+learningV426TraversalConsumerEpochSynchronized 81
+{'missionId': 40, 'sourceEdgeId': 11, 'sourceEpisodeId': 2, 'successorEdgeId': 60, 'successorEpisodeId': 3, 'successorKind': 'DropDown', 'chainId': 1, 'body': {'x': 573.5033, 'y': 2.017859, 'z': -35.5962677}, 'movementOwner': 'Traversal', 'movementGeneration': 4, 'walkThroughFollowPreflight': False, 'scrubDetail': 'scrubbed:Traversal:generation=4:source=learningV426ExactSuccessorProbeAcquired', 'traversalSuccessRecordedForSuccessor': False, 'persistentLearningChangedForSuccessor': False, 'bodyRelocated': False, 'action': 'exactSuccessorProbeAtomicallyReplacesInterBoundaryV364GuardWithActiveTraversalPhysicalEpoch'}
+learningV426TraversalConsumerEpochSuccessorMismatch 0
+
+cf24FreshFollowPhysicalEpochPreflightDeferred 36
+{'reason': 'learningV419OrphanTraversalFreshFollow', 'source': 'post-traversal-fresh-epoch', 'traversalGeneration': 4, 'body': {'x': 573.700867, 'y': 2.018627, 'z': -35.81845}, 'tightSampled': False, 'tightPlanar': 3.40282347e+38, 'tightVertical': 3.40282347e+38, 'allowedPlanar': 0.2, 'allowedVertical': 0.2, 'movementOwner': 'Traversal', 'movementGeneration': 4, 'traversalSuccessRecorded': False, 'persistentLearningChanged': False, 'bodyRelocated': False, 'action': 'deferFreshFollowUntilV364TightBodyNavMeshAdmissionWithoutOwnershipChurn'}
+learningV364StaleNavigationEpochProjectionSuppressed 45
+{'edgeId': 198, 'episodeId': 49, 'chainId': 45, 'source': 'learningV426CanonicalConsumerBoundary:learningV414WalkThroughPhysicalPassSuccessorHandoff', 'physicalAnchor': {'x': -208.577576, 'y': 0.428646147, 'z': -29.4398937}, 'current': {'x': -208.774414, 'y': 0.202515841, 'z': -28.95274}, 'candidate': {'x': -208.668335, 'y': 0.390495121, 'z': -29.2168655}, 'movementOwner': 'Follow', 'movementGeneration': 46, 'freshConsumerPathObserved': False, 'freshConsumerPathSource': '', 'withExtra': False, 'action': 'rejectNativeBodyProjectionUntilPhysicalAndNavigationEpochsAreSynchronized'}

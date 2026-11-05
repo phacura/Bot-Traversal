@@ -1,0 +1,53 @@
+﻿{
+    "kind":  "structural IL omission detection; mutated DLLs never executed",
+    "faults":  [
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryBeginNativeTraversalRunOut"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryBeginLearningV408JumpPartialCrossingForwardContinuation"
+                   },
+                   {
+                       "method":  "TryBeginAssistedTraversalReplay",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilitySequenceNative"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TickCapabilityFailureSequence"
+                   },
+                   {
+                       "method":  "TryValidateV2CurrentTypedStep",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "DriveLearningV32NativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "GetFlatDirection"
+                   }
+               ],
+    "gameExecuted":  false,
+    "checks":  9,
+    "passed":  true
+}

@@ -1,0 +1,41 @@
+capabilityFailureSequenceAdvanced 27 {'ReturnToEntry': 17, 'RecoveryTeleport': 7, 'Alternate': 1, 'SelfRescue': 2}
+capabilitySequenceSelectionFailed 31 {'noExecutableTemplate': 31}
+capabilitySequenceReturnFailed 7 {'returnNoProgress': 7}
+automaticRecoveryTeleportCompleted 14 {'capabilityFailureSequenceExhausted': 14}
+capabilityTeleportRouteWorkCleared 88 {'manualRegroup': 60, 'capabilityFailureSequenceExhausted': 28}
+capabilityFullRouteReplayStarted 9 {'229': 4, '228': 1, '184': 1, '116': 3}
+learningV347TraversalOpportunityNoStart 562 {'redundantWithEquivalentRouteStep': 462, 'stepCreationRejected': 99, 'physicalPassAlreadyProvenNoExecutionRequired': 1}
+capabilityPortalQueueAdmittedIngressLost 7 {'229': 3, '184': 1, '254': 3}
+native byedge
+(12, 'Climb', 'NativePhysical') 4
+(18, 'Climb', 'NonNativeCompletion') 1
+(48, 'Climb', 'Unproven') 1
+(48, 'DropDown', 'Unproven') 1
+(82, 'DropDown', 'NativePhysical') 4
+(87, 'DropDown', 'NonNativeCompletion') 1
+(110, 'DropDown', 'NativePhysical') 3
+(111, 'DropDown', 'NativePhysical') 1
+(116, 'Climb', 'Unproven') 2
+(116, 'Jump', 'NativePhysical') 3
+(116, 'Jump', 'NonNativeCompletion') 1
+(117, 'Jump', 'NonNativeCompletion') 1
+(120, 'Jump', 'NativePhysical') 2
+(120, 'Jump', 'NonNativeCompletion') 1
+(141, 'Vault', 'NativePhysical') 4
+(154, 'Vault', 'NativePhysical') 4
+(177, 'WalkThrough', 'NativePhysical') 3
+(177, 'WalkThrough', 'NonNativeCompletion') 1
+(184, 'WalkThrough', 'NativePhysical') 3
+(187, 'WalkThrough', 'NativePhysical') 4
+(192, 'WalkThrough', 'NativePhysical') 3
+(200, 'WalkThrough', 'NativePhysical') 4
+(228, 'Jump', 'Unproven') 1
+(228, 'WalkThrough', 'NativePhysical') 2
+(228, 'WalkThrough', 'Unproven') 1
+(229, 'WalkThrough', 'NativePhysical') 3
+(229, 'WalkThrough', 'Unproven') 5
+(235, 'WalkThrough', 'NativePhysical') 3
+(235, 'WalkThrough', 'Unproven') 1
+(236, 'WalkThrough', 'NativePhysical') 3
+(237, 'WalkThrough', 'NativePhysical') 4
+(238, 'WalkThrough', 'NativePhysical') 3

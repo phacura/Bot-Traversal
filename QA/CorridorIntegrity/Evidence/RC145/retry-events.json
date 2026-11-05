@@ -1,0 +1,6444 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 4939,
+    "utc": "2026-11-03T13:06:51.5825437Z",
+    "raidTime": 238.878525,
+    "frame": 12079,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 4946,
+    "utc": "2026-11-03T13:06:51.8357538Z",
+    "raidTime": 239.155457,
+    "frame": 12095,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorRejected",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "deviation": 0.761661947,
+      "body": {
+        "x": 465.8704,
+        "y": 6.26938248,
+        "z": -142.337646
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 4949,
+    "utc": "2026-11-03T13:06:51.8388072Z",
+    "raidTime": 239.155457,
+    "frame": 12095,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "rootEdge": 118,
+      "body": {
+        "x": 465.8704,
+        "y": 6.26938248,
+        "z": -142.337646
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.85622311,
+      "fixedBudget": 10.0,
+      "writer": 11,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 4951,
+    "utc": "2026-11-03T13:06:51.8495833Z",
+    "raidTime": 239.169922,
+    "frame": 12096,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "body": {
+        "x": 465.870117,
+        "y": 6.2734046,
+        "z": -142.33963
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.90677357,
+      "directDistance": 1.66925907,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.014465332,
+      "state": "Idle",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 4964,
+    "utc": "2026-11-03T13:06:52.3674374Z",
+    "raidTime": 239.68779,
+    "frame": 12132,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "body": {
+        "x": 466.581635,
+        "y": 5.66132927,
+        "z": -142.5881
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 0.9984665,
+      "directDistance": 0.9492763,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.0,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 4999,
+    "utc": "2026-11-03T13:06:52.8816711Z",
+    "raidTime": 240.20079,
+    "frame": 12168,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "body": {
+        "x": 467.6575,
+        "y": 5.23781538,
+        "z": -143.152222
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 0.6490325,
+      "directDistance": 0.638945341,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.213287354,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5029,
+    "utc": "2026-11-03T13:06:53.3864773Z",
+    "raidTime": 240.706024,
+    "frame": 12203,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "body": {
+        "x": 468.994659,
+        "y": 4.7964015,
+        "z": -143.474854
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.83209455,
+      "directDistance": 1.74588239,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.7185211,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5064,
+    "utc": "2026-11-03T13:06:53.9260376Z",
+    "raidTime": 241.244354,
+    "frame": 12240,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "body": {
+        "x": 470.4795,
+        "y": 4.22800732,
+        "z": -143.657959
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 3.35401726,
+      "directDistance": 3.16014671,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 1.2568512,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5143,
+    "utc": "2026-11-03T13:06:54.4317924Z",
+    "raidTime": 241.751923,
+    "frame": 12275,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "body": {
+        "x": 471.882263,
+        "y": 4.22800732,
+        "z": -143.81839
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 4.67803764,
+      "directDistance": 4.54104948,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 1.76441956,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5179,
+    "utc": "2026-11-03T13:06:54.6803956Z",
+    "raidTime": 241.998062,
+    "frame": 12292,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "rootEdge": 118,
+      "body": {
+        "x": 472.580078,
+        "y": 4.22800732,
+        "z": -143.897827
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 5.83703136,
+      "speed": 2.69260859,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5341,
+    "utc": "2026-11-03T13:06:56.0458211Z",
+    "raidTime": 243.364014,
+    "frame": 12386,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 119,
+      "rootEdge": 118,
+      "body": {
+        "x": 473.306,
+        "y": 4.22800732,
+        "z": -144.031174
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 6.47172737,
+      "speed": 0.0,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5489,
+    "utc": "2026-11-03T13:06:56.6300953Z",
+    "raidTime": 243.947,
+    "frame": 12426,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5521,
+    "utc": "2026-11-03T13:06:56.9617435Z",
+    "raidTime": 244.282379,
+    "frame": 12449,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorRejected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "deviation": 0.7921286,
+      "body": {
+        "x": 465.871,
+        "y": 6.24912,
+        "z": -142.333023
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5524,
+    "utc": "2026-11-03T13:06:56.9617435Z",
+    "raidTime": 244.282379,
+    "frame": 12449,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "rootEdge": 118,
+      "body": {
+        "x": 465.871,
+        "y": 6.24912,
+        "z": -142.333023
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.85593748,
+      "fixedBudget": 10.0,
+      "writer": 11,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5525,
+    "utc": "2026-11-03T13:06:56.9770949Z",
+    "raidTime": 244.2977,
+    "frame": 12450,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "body": {
+        "x": 465.871,
+        "y": 6.24912,
+        "z": -142.333023
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.89570653,
+      "directDistance": 1.669132,
+      "pathIndex": 0,
+      "writer": 11,
+      "noProgressAge": 0.0153198242,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5638,
+    "utc": "2026-11-03T13:06:57.4933709Z",
+    "raidTime": 244.813858,
+    "frame": 12484,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "body": {
+        "x": 466.743378,
+        "y": 5.51212549,
+        "z": -142.640747
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 0.8098375,
+      "directDistance": 0.7938084,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.05697632,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5732,
+    "utc": "2026-11-03T13:06:57.9061585Z",
+    "raidTime": 245.225662,
+    "frame": 12511,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 118,
+      "failedStep": 2,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5739,
+    "utc": "2026-11-03T13:06:57.9066674Z",
+    "raidTime": 245.225662,
+    "frame": 12511,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 118,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.647034,
+        "y": 5.64995337,
+        "z": -142.174118
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.01348448,
+      "fixedBudget": 10.0,
+      "writer": 11,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5740,
+    "utc": "2026-11-03T13:06:57.9209969Z",
+    "raidTime": 245.2416,
+    "frame": 12512,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 118,
+      "body": {
+        "x": 466.602081,
+        "y": 5.68503141,
+        "z": -142.1744
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.04590309,
+      "directDistance": 0.991397262,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.0159301758,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5743,
+    "utc": "2026-11-03T13:06:58.0012979Z",
+    "raidTime": 245.3222,
+    "frame": 12517,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "body": {
+        "x": 467.6578,
+        "y": 5.23373175,
+        "z": -143.254684
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 0.749015749,
+      "directDistance": 0.739652,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.2584076,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5762,
+    "utc": "2026-11-03T13:06:58.4377250Z",
+    "raidTime": 245.758163,
+    "frame": 12546,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 118,
+      "body": {
+        "x": 466.409241,
+        "y": 5.82773542,
+        "z": -142.256668
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.24614739,
+      "directDistance": 1.15167987,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.5325012,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5765,
+    "utc": "2026-11-03T13:06:58.5103638Z",
+    "raidTime": 245.830826,
+    "frame": 12551,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "body": {
+        "x": 469.008972,
+        "y": 4.787401,
+        "z": -143.588226
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.90702224,
+      "directDistance": 1.82159007,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 0.7670288,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5779,
+    "utc": "2026-11-03T13:06:58.9897253Z",
+    "raidTime": 246.309708,
+    "frame": 12584,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 118,
+      "index": 0,
+      "remaining": 0.774539351,
+      "body": {
+        "x": 466.890747,
+        "y": 5.470765,
+        "z": -142.947052
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5781,
+    "utc": "2026-11-03T13:06:59.0327551Z",
+    "raidTime": 246.353363,
+    "frame": 12587,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "body": {
+        "x": 470.4521,
+        "y": 4.23134565,
+        "z": -143.7706
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 3.36876655,
+      "directDistance": 3.17697573,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 1.289566,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5795,
+    "utc": "2026-11-03T13:06:59.2902454Z",
+    "raidTime": 246.610641,
+    "frame": 12605,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 118,
+      "index": 0,
+      "remaining": 0.5207797,
+      "body": {
+        "x": 467.043884,
+        "y": 5.453036,
+        "z": -142.6826
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5805,
+    "utc": "2026-11-03T13:06:59.5465153Z",
+    "raidTime": 246.867065,
+    "frame": 12623,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "body": {
+        "x": 471.86,
+        "y": 4.23134565,
+        "z": -143.935669
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 4.69040346,
+      "directDistance": 4.55461025,
+      "pathIndex": 1,
+      "writer": 11,
+      "noProgressAge": 1.80326843,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5833,
+    "utc": "2026-11-03T13:06:59.7487191Z",
+    "raidTime": 247.068008,
+    "frame": 12637,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "rootEdge": 118,
+      "body": {
+        "x": 472.429077,
+        "y": 4.23134565,
+        "z": -144.002045
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 5.808495,
+      "speed": 2.901218,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5847,
+    "utc": "2026-11-03T13:07:00.0505641Z",
+    "raidTime": 247.370178,
+    "frame": 12658,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 118,
+      "missionId": 121,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.75,
+        "y": 5.227937,
+        "z": -142.650391
+      },
+      "behindEntryMeters": 1.43056941,
+      "side": 0.1053987,
+      "vertical": 0.117594719,
+      "facing": 0.990774,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 5944,
+    "utc": "2026-11-03T13:07:01.1215092Z",
+    "raidTime": 248.4408,
+    "frame": 12733,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 117,
+      "rootEdge": 118,
+      "body": {
+        "x": 473.170776,
+        "y": 4.215661,
+        "z": -144.147446
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 6.438865,
+      "speed": 0.0,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6436,
+    "utc": "2026-11-03T13:07:06.6391999Z",
+    "raidTime": 253.95816,
+    "frame": 13122,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "failedStep": 2,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6443,
+    "utc": "2026-11-03T13:07:06.6397118Z",
+    "raidTime": 253.95816,
+    "frame": 13122,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.5424,
+        "y": 5.71113062,
+        "z": -142.388351
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.06914926,
+      "fixedBudget": 10.0,
+      "writer": 12,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6444,
+    "utc": "2026-11-03T13:07:06.6515184Z",
+    "raidTime": 253.97226,
+    "frame": 13123,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "body": {
+        "x": 466.503326,
+        "y": 5.741991,
+        "z": -142.384644
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 1.10640574,
+      "directDistance": 1.03531766,
+      "pathIndex": 1,
+      "writer": 12,
+      "noProgressAge": 0.0140991211,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6448,
+    "utc": "2026-11-03T13:07:07.1776263Z",
+    "raidTime": 254.498,
+    "frame": 13160,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "body": {
+        "x": 466.586426,
+        "y": 5.66749573,
+        "z": -142.484772
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "remaining": 0.9948126,
+      "directDistance": 0.943391144,
+      "pathIndex": 1,
+      "writer": 12,
+      "noProgressAge": 0.0,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6457,
+    "utc": "2026-11-03T13:07:07.5158109Z",
+    "raidTime": 254.836273,
+    "frame": 13184,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "index": 0,
+      "remaining": 0.6494535,
+      "body": {
+        "x": 466.966644,
+        "y": 5.46685839,
+        "z": -142.827911
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6463,
+    "utc": "2026-11-03T13:07:07.8269768Z",
+    "raidTime": 255.147446,
+    "frame": 13206,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 120,
+      "index": 0,
+      "remaining": 0.3147414,
+      "body": {
+        "x": 467.220123,
+        "y": 5.40174246,
+        "z": -142.55
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.345532,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 6470,
+    "utc": "2026-11-03T13:07:08.4536533Z",
+    "raidTime": 255.774124,
+    "frame": 13250,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 120,
+      "missionId": 123,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.640228,
+        "y": 5.2645793,
+        "z": -142.612961
+      },
+      "behindEntryMeters": 1.3180871,
+      "side": 0.07713988,
+      "vertical": 0.0809526443,
+      "facing": 0.9939632,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 7886,
+    "utc": "2026-11-03T13:07:27.8363001Z",
+    "raidTime": 275.1489,
+    "frame": 14399,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 129,
+      "failedStep": 2,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 7920,
+    "utc": "2026-11-03T13:07:28.6180266Z",
+    "raidTime": 275.9382,
+    "frame": 14452,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 129,
+      "index": 0,
+      "remaining": 0.8527054,
+      "body": {
+        "x": 466.790863,
+        "y": 5.532592,
+        "z": -142.2267
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 7935,
+    "utc": "2026-11-03T13:07:28.9322866Z",
+    "raidTime": 276.2521,
+    "frame": 14473,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 129,
+      "index": 0,
+      "remaining": 0.297675967,
+      "body": {
+        "x": 467.320618,
+        "y": 5.376468,
+        "z": -142.373825
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 7948,
+    "utc": "2026-11-03T13:07:29.2444274Z",
+    "raidTime": 276.5642,
+    "frame": 14494,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 129,
+      "index": 0,
+      "remaining": 0.255210817,
+      "body": {
+        "x": 467.4559,
+        "y": 5.31814241,
+        "z": -142.753784
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 7981,
+    "utc": "2026-11-03T13:07:29.8862464Z",
+    "raidTime": 277.205719,
+    "frame": 14537,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 129,
+      "missionId": 132,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.418457,
+        "y": 5.343956,
+        "z": -142.402832
+      },
+      "behindEntryMeters": 1.079758,
+      "side": 0.114003554,
+      "vertical": 0.115693569,
+      "facing": 1.0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8569,
+    "utc": "2026-11-03T13:07:36.0500243Z",
+    "raidTime": 283.369354,
+    "frame": 14961,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8574,
+    "utc": "2026-11-03T13:07:36.0505326Z",
+    "raidTime": 283.369354,
+    "frame": 14961,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorArmed",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "rootEdge": 118,
+      "points": 1,
+      "arc": 1.07073355,
+      "body": {
+        "x": 466.558319,
+        "y": 5.70776463,
+        "z": -142.293716
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "source": "currentStrictSupportedGroundPath",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8609,
+    "utc": "2026-11-03T13:07:36.4312647Z",
+    "raidTime": 283.751831,
+    "frame": 14988,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorRejected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "deviation": 0.6537758,
+      "body": {
+        "x": 465.908234,
+        "y": 6.222082,
+        "z": -142.22435
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8613,
+    "utc": "2026-11-03T13:07:36.5013592Z",
+    "raidTime": 283.82196,
+    "frame": 14993,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorArmed",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "rootEdge": 118,
+      "points": 2,
+      "arc": 1.85357392,
+      "body": {
+        "x": 465.896027,
+        "y": 6.231732,
+        "z": -142.223129
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "source": "currentStrictSupportedGroundPath",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8621,
+    "utc": "2026-11-03T13:07:36.5156714Z",
+    "raidTime": 283.836121,
+    "frame": 14994,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "index": 0,
+      "remaining": 1.88099027,
+      "body": {
+        "x": 465.894836,
+        "y": 6.232673,
+        "z": -142.223
+      },
+      "target": {
+        "x": 466.712463,
+        "y": 5.79176474,
+        "z": -142.374741
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8644,
+    "utc": "2026-11-03T13:07:36.8283312Z",
+    "raidTime": 284.148926,
+    "frame": 15016,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "index": 0,
+      "remaining": 1.470005,
+      "body": {
+        "x": 466.2365,
+        "y": 5.96622849,
+        "z": -142.219162
+      },
+      "target": {
+        "x": 466.712463,
+        "y": 5.79176474,
+        "z": -142.374741
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8671,
+    "utc": "2026-11-03T13:07:37.1406591Z",
+    "raidTime": 284.461365,
+    "frame": 15038,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "index": 0,
+      "remaining": 1.12406278,
+      "body": {
+        "x": 466.549683,
+        "y": 5.705831,
+        "z": -142.384216
+      },
+      "target": {
+        "x": 466.712463,
+        "y": 5.79176474,
+        "z": -142.374741
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8692,
+    "utc": "2026-11-03T13:07:37.4445685Z",
+    "raidTime": 284.764984,
+    "frame": 15059,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "index": 1,
+      "remaining": 0.6484263,
+      "body": {
+        "x": 466.893127,
+        "y": 5.46538353,
+        "z": -142.468491
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8735,
+    "utc": "2026-11-03T13:07:37.9953769Z",
+    "raidTime": 285.315979,
+    "frame": 15097,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 128,
+      "index": 1,
+      "remaining": 0.348173976,
+      "body": {
+        "x": 467.840271,
+        "y": 5.20606136,
+        "z": -142.471268
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 8777,
+    "utc": "2026-11-03T13:07:38.5423011Z",
+    "raidTime": 285.863159,
+    "frame": 15135,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 128,
+      "missionId": 134,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.55423,
+        "y": 5.29737043,
+        "z": -142.480438
+      },
+      "behindEntryMeters": 1.22146285,
+      "side": 0.04784705,
+      "vertical": 0.06910801,
+      "facing": 1.0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9591,
+    "utc": "2026-11-03T13:07:45.7762152Z",
+    "raidTime": 293.09552,
+    "frame": 15626,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "failedStep": 2,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9598,
+    "utc": "2026-11-03T13:07:45.7772353Z",
+    "raidTime": 293.09552,
+    "frame": 15626,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.348663,
+        "y": 5.88513756,
+        "z": -142.151382
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.34642708,
+      "fixedBudget": 10.0,
+      "writer": 19,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9599,
+    "utc": "2026-11-03T13:07:45.7900546Z",
+    "raidTime": 293.110352,
+    "frame": 15627,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "body": {
+        "x": 466.2665,
+        "y": 5.95122147,
+        "z": -142.131271
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "remaining": 1.45224881,
+      "directDistance": 1.32276893,
+      "pathIndex": 1,
+      "writer": 19,
+      "noProgressAge": 0.014831543,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9721,
+    "utc": "2026-11-03T13:07:46.3578330Z",
+    "raidTime": 293.67804,
+    "frame": 15661,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "body": {
+        "x": 465.912567,
+        "y": 6.23432875,
+        "z": -142.06134
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "remaining": 1.899376,
+      "directDistance": 1.68189418,
+      "pathIndex": 1,
+      "writer": 19,
+      "noProgressAge": 0.582519531,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9776,
+    "utc": "2026-11-03T13:07:46.8608383Z",
+    "raidTime": 294.181152,
+    "frame": 15692,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "body": {
+        "x": 466.410126,
+        "y": 5.76909828,
+        "z": -142.861
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "remaining": 1.24007273,
+      "directDistance": 1.16775012,
+      "pathIndex": 1,
+      "writer": 19,
+      "noProgressAge": 0.0163574219,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9827,
+    "utc": "2026-11-03T13:07:47.2379487Z",
+    "raidTime": 294.557159,
+    "frame": 15715,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "failedStep": 2,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9834,
+    "utc": "2026-11-03T13:07:47.2384574Z",
+    "raidTime": 294.557159,
+    "frame": 15715,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.5693,
+        "y": 5.70889854,
+        "z": -142.192413
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.08828783,
+      "fixedBudget": 10.0,
+      "writer": 20,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9835,
+    "utc": "2026-11-03T13:07:47.2527970Z",
+    "raidTime": 294.573059,
+    "frame": 15716,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "body": {
+        "x": 466.532318,
+        "y": 5.73809767,
+        "z": -142.189133
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "remaining": 1.12076771,
+      "directDistance": 1.05208957,
+      "pathIndex": 1,
+      "writer": 20,
+      "noProgressAge": 0.0158996582,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9839,
+    "utc": "2026-11-03T13:07:47.3654472Z",
+    "raidTime": 294.685455,
+    "frame": 15723,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "index": 0,
+      "remaining": 0.6765699,
+      "body": {
+        "x": 467.3584,
+        "y": 5.332909,
+        "z": -143.172668
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9850,
+    "utc": "2026-11-03T13:07:47.6737027Z",
+    "raidTime": 294.994019,
+    "frame": 15742,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "index": 0,
+      "remaining": 0.3041271,
+      "body": {
+        "x": 467.514771,
+        "y": 5.296567,
+        "z": -142.822372
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9852,
+    "utc": "2026-11-03T13:07:47.7709928Z",
+    "raidTime": 295.091431,
+    "frame": 15748,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "body": {
+        "x": 466.575531,
+        "y": 5.6918273,
+        "z": -142.319748
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "remaining": 1.03306246,
+      "directDistance": 0.9754988,
+      "pathIndex": 1,
+      "writer": 20,
+      "noProgressAge": 0.0,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9855,
+    "utc": "2026-11-03T13:07:47.9851264Z",
+    "raidTime": 295.305145,
+    "frame": 15761,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "index": 0,
+      "remaining": 0.275332749,
+      "body": {
+        "x": 467.6583,
+        "y": 5.271613,
+        "z": -142.287216
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9862,
+    "utc": "2026-11-03T13:07:48.2442341Z",
+    "raidTime": 295.563965,
+    "frame": 15777,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "index": 0,
+      "remaining": 0.465556562,
+      "body": {
+        "x": 467.180237,
+        "y": 5.4053216,
+        "z": -142.778992
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9864,
+    "utc": "2026-11-03T13:07:48.2928890Z",
+    "raidTime": 295.6129,
+    "frame": 15780,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "index": 0,
+      "remaining": 0.331874937,
+      "body": {
+        "x": 467.6596,
+        "y": 5.279667,
+        "z": -142.225662
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9871,
+    "utc": "2026-11-03T13:07:48.5515468Z",
+    "raidTime": 295.8713,
+    "frame": 15796,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "index": 0,
+      "remaining": 0.5293309,
+      "body": {
+        "x": 467.0645,
+        "y": 5.44252253,
+        "z": -142.662842
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9874,
+    "utc": "2026-11-03T13:07:48.5996987Z",
+    "raidTime": 295.91983,
+    "frame": 15799,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 130,
+      "index": 0,
+      "remaining": 0.2944642,
+      "body": {
+        "x": 467.6969,
+        "y": 5.290856,
+        "z": -142.292755
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9883,
+    "utc": "2026-11-03T13:07:48.8260765Z",
+    "raidTime": 296.146118,
+    "frame": 15813,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 130,
+      "missionId": 136,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.806641,
+        "y": 5.251606,
+        "z": -142.488724
+      },
+      "behindEntryMeters": 1.47369826,
+      "side": 0.0603850149,
+      "vertical": 0.0233435631,
+      "facing": 0.995748937,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9891,
+    "utc": "2026-11-03T13:07:48.8598686Z",
+    "raidTime": 296.179535,
+    "frame": 15815,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "index": 0,
+      "remaining": 0.516919,
+      "body": {
+        "x": 467.18576,
+        "y": 5.39084244,
+        "z": -142.8771
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9908,
+    "utc": "2026-11-03T13:07:49.1696485Z",
+    "raidTime": 296.4893,
+    "frame": 15834,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "index": 0,
+      "remaining": 0.5605974,
+      "body": {
+        "x": 467.285645,
+        "y": 5.355661,
+        "z": -143.015091
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9924,
+    "utc": "2026-11-03T13:07:49.4793252Z",
+    "raidTime": 296.7991,
+    "frame": 15853,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 131,
+      "index": 0,
+      "remaining": 0.478748739,
+      "body": {
+        "x": 467.625671,
+        "y": 5.28027153,
+        "z": -142.992325
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.22826242,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 9948,
+    "utc": "2026-11-03T13:07:50.0837271Z",
+    "raidTime": 297.403564,
+    "frame": 15890,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 131,
+      "missionId": 137,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.592926,
+        "y": 5.27617359,
+        "z": -142.703735
+      },
+      "behindEntryMeters": 1.27842438,
+      "side": 0.1715029,
+      "vertical": 0.0479111671,
+      "facing": 1.0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11785,
+    "utc": "2026-11-03T13:08:10.7881351Z",
+    "raidTime": 318.107269,
+    "frame": 17106,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 142,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11792,
+    "utc": "2026-11-03T13:08:10.7891568Z",
+    "raidTime": 318.107269,
+    "frame": 17106,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 142,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.62088,
+        "y": 5.646294,
+        "z": -142.425278
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 0.9777107,
+      "fixedBudget": 10.0,
+      "writer": 26,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11793,
+    "utc": "2026-11-03T13:08:10.8024686Z",
+    "raidTime": 318.1222,
+    "frame": 17107,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 142,
+      "body": {
+        "x": 466.570557,
+        "y": 5.686007,
+        "z": -142.420959
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "remaining": 1.0204047,
+      "directDistance": 0.9641213,
+      "pathIndex": 1,
+      "writer": 26,
+      "noProgressAge": 0.0149230957,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11815,
+    "utc": "2026-11-03T13:08:11.3256706Z",
+    "raidTime": 318.645264,
+    "frame": 17142,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 142,
+      "body": {
+        "x": 466.57428,
+        "y": 5.6726265,
+        "z": -142.530182
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "remaining": 1.00709772,
+      "directDistance": 0.95462805,
+      "pathIndex": 1,
+      "writer": 26,
+      "noProgressAge": 0.5379944,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11821,
+    "utc": "2026-11-03T13:08:11.7256819Z",
+    "raidTime": 319.0452,
+    "frame": 17169,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 142,
+      "index": 0,
+      "remaining": 0.617005169,
+      "body": {
+        "x": 467.045532,
+        "y": 5.444455,
+        "z": -142.887253
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11837,
+    "utc": "2026-11-03T13:08:12.0276497Z",
+    "raidTime": 319.347382,
+    "frame": 17189,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 142,
+      "index": 0,
+      "remaining": 0.348776,
+      "body": {
+        "x": 467.21167,
+        "y": 5.400806,
+        "z": -142.643051
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 11854,
+    "utc": "2026-11-03T13:08:12.6737457Z",
+    "raidTime": 319.993622,
+    "frame": 17233,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 142,
+      "missionId": 144,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.5877,
+        "y": 5.280072,
+        "z": -142.6474
+      },
+      "behindEntryMeters": 1.26858222,
+      "side": 0.1157889,
+      "vertical": 0.03476286,
+      "facing": 0.992745042,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 12472,
+    "utc": "2026-11-03T13:08:19.0935560Z",
+    "raidTime": 326.41275,
+    "frame": 17684,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 143,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 12489,
+    "utc": "2026-11-03T13:08:19.0945815Z",
+    "raidTime": 326.41275,
+    "frame": 17684,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 143,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.5778,
+        "y": 5.69118738,
+        "z": -142.308029
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.04626751,
+      "fixedBudget": 10.0,
+      "writer": 28,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 12496,
+    "utc": "2026-11-03T13:08:19.1073777Z",
+    "raidTime": 326.427124,
+    "frame": 17685,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 143,
+      "body": {
+        "x": 466.539948,
+        "y": 5.72146463,
+        "z": -142.300461
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "remaining": 1.07967949,
+      "directDistance": 1.014423,
+      "pathIndex": 1,
+      "writer": 28,
+      "noProgressAge": 0.0143737793,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 12557,
+    "utc": "2026-11-03T13:08:19.9102694Z",
+    "raidTime": 327.229645,
+    "frame": 17741,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 143,
+      "index": 0,
+      "remaining": 0.376637876,
+      "body": {
+        "x": 467.170135,
+        "y": 5.41662645,
+        "z": -142.5791
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 12595,
+    "utc": "2026-11-03T13:08:20.4819435Z",
+    "raidTime": 327.8015,
+    "frame": 17781,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 143,
+      "missionId": 146,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.46228,
+        "y": 5.320909,
+        "z": -142.632324
+      },
+      "behindEntryMeters": 1.14233935,
+      "side": 0.111098014,
+      "vertical": 0.00607395172,
+      "facing": 0.9903041,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13700,
+    "utc": "2026-11-03T13:08:29.2221452Z",
+    "raidTime": 336.5419,
+    "frame": 18377,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 140,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "reason": "portalQueueHeadNoMeasuredProgress",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13703,
+    "utc": "2026-11-03T13:08:29.2380424Z",
+    "raidTime": 336.557922,
+    "frame": 18378,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 140,
+      "rootEdge": 118,
+      "body": {
+        "x": 465.8818,
+        "y": 6.23995972,
+        "z": -142.253143
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.85354435,
+      "fixedBudget": 10.0,
+      "writer": 25,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13705,
+    "utc": "2026-11-03T13:08:29.2856379Z",
+    "raidTime": 336.606079,
+    "frame": 18381,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 140,
+      "body": {
+        "x": 465.892883,
+        "y": 6.23119736,
+        "z": -142.2543
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "remaining": 1.8772794,
+      "directDistance": 1.65848172,
+      "pathIndex": 0,
+      "writer": 25,
+      "noProgressAge": 0.04815674,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13722,
+    "utc": "2026-11-03T13:08:30.1526214Z",
+    "raidTime": 337.472656,
+    "frame": 18435,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 140,
+      "index": 0,
+      "remaining": 0.652346432,
+      "body": {
+        "x": 467.018921,
+        "y": 5.45213,
+        "z": -142.909271
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13751,
+    "utc": "2026-11-03T13:08:30.4559404Z",
+    "raidTime": 337.77594,
+    "frame": 18454,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 140,
+      "index": 0,
+      "remaining": 0.35283,
+      "body": {
+        "x": 467.3146,
+        "y": 5.36152172,
+        "z": -142.802734
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13810,
+    "utc": "2026-11-03T13:08:30.8871125Z",
+    "raidTime": 338.205658,
+    "frame": 18481,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13817,
+    "utc": "2026-11-03T13:08:30.8876212Z",
+    "raidTime": 338.205658,
+    "frame": 18481,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.57016,
+        "y": 5.698904,
+        "z": -142.289688
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.05895531,
+      "fixedBudget": 10.0,
+      "writer": 26,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13820,
+    "utc": "2026-11-03T13:08:30.9014345Z",
+    "raidTime": 338.22168,
+    "frame": 18482,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 140,
+      "index": 0,
+      "remaining": 0.3715491,
+      "body": {
+        "x": 467.846527,
+        "y": 5.20815945,
+        "z": -142.365784
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13821,
+    "utc": "2026-11-03T13:08:30.9014345Z",
+    "raidTime": 338.22168,
+    "frame": 18482,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "body": {
+        "x": 466.5315,
+        "y": 5.72972536,
+        "z": -142.283157
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "remaining": 1.09397984,
+      "directDistance": 1.02662671,
+      "pathIndex": 1,
+      "writer": 26,
+      "noProgressAge": 0.0160217285,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13829,
+    "utc": "2026-11-03T13:08:31.3756977Z",
+    "raidTime": 338.696,
+    "frame": 18512,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 140,
+      "missionId": 147,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.541382,
+        "y": 5.2971797,
+        "z": -142.58992
+      },
+      "behindEntryMeters": 1.21767855,
+      "side": 0.0623210669,
+      "vertical": 0.0176553726,
+      "facing": 1.0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13831,
+    "utc": "2026-11-03T13:08:31.4074295Z",
+    "raidTime": 338.7273,
+    "frame": 18514,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "body": {
+        "x": 466.413116,
+        "y": 5.82391548,
+        "z": -142.265045
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "remaining": 1.239415,
+      "directDistance": 1.14597321,
+      "pathIndex": 1,
+      "writer": 26,
+      "noProgressAge": 0.521636963,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13846,
+    "utc": "2026-11-03T13:08:32.0100552Z",
+    "raidTime": 339.329926,
+    "frame": 18552,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.7894227,
+      "body": {
+        "x": 466.894867,
+        "y": 5.47084236,
+        "z": -142.970032
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13863,
+    "utc": "2026-11-03T13:08:32.3113733Z",
+    "raidTime": 339.630981,
+    "frame": 18571,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.8269009,
+      "body": {
+        "x": 466.7811,
+        "y": 5.47428942,
+        "z": -142.8412
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13878,
+    "utc": "2026-11-03T13:08:32.6130648Z",
+    "raidTime": 339.932953,
+    "frame": 18590,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.675916851,
+      "body": {
+        "x": 467.0649,
+        "y": 5.433403,
+        "z": -143.003342
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13889,
+    "utc": "2026-11-03T13:08:32.9169147Z",
+    "raidTime": 340.2365,
+    "frame": 18609,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.240935162,
+      "body": {
+        "x": 467.634552,
+        "y": 5.26335764,
+        "z": -142.736679
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13914,
+    "utc": "2026-11-03T13:08:33.2182204Z",
+    "raidTime": 340.538177,
+    "frame": 18628,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.363746822,
+      "body": {
+        "x": 467.795319,
+        "y": 5.22796249,
+        "z": -142.294434
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13956,
+    "utc": "2026-11-03T13:08:33.5332009Z",
+    "raidTime": 340.853424,
+    "frame": 18648,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.217075989,
+      "body": {
+        "x": 467.635559,
+        "y": 5.276778,
+        "z": -142.341156
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13967,
+    "utc": "2026-11-03T13:08:33.8350259Z",
+    "raidTime": 341.155,
+    "frame": 18667,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 141,
+      "index": 0,
+      "remaining": 0.2984624,
+      "body": {
+        "x": 467.267517,
+        "y": 5.38247871,
+        "z": -142.653564
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.314835,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 13982,
+    "utc": "2026-11-03T13:08:34.4540920Z",
+    "raidTime": 341.7742,
+    "frame": 18706,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 141,
+      "missionId": 148,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.372131,
+        "y": 5.35862,
+        "z": -142.407623
+      },
+      "behindEntryMeters": 1.03398454,
+      "side": 0.105411954,
+      "vertical": 0.0437850952,
+      "facing": 0.99999994,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15623,
+    "utc": "2026-11-03T13:08:56.1910607Z",
+    "raidTime": 363.448853,
+    "frame": 19964,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 151,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15640,
+    "utc": "2026-11-03T13:08:56.2079475Z",
+    "raidTime": 363.473267,
+    "frame": 19965,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 151,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.441376,
+        "y": 5.79613447,
+        "z": -142.324524
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.19089353,
+      "fixedBudget": 10.0,
+      "writer": 32,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15641,
+    "utc": "2026-11-03T13:08:56.2232975Z",
+    "raidTime": 363.48877,
+    "frame": 19966,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 151,
+      "body": {
+        "x": 466.3736,
+        "y": 5.85000134,
+        "z": -142.314758
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 1.27581584,
+      "directDistance": 1.17452085,
+      "pathIndex": 1,
+      "writer": 32,
+      "noProgressAge": 0.01550293,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15656,
+    "utc": "2026-11-03T13:08:56.7374896Z",
+    "raidTime": 364.003082,
+    "frame": 20000,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 151,
+      "body": {
+        "x": 466.5543,
+        "y": 5.71844769,
+        "z": -142.215134
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 1.08680844,
+      "directDistance": 1.02309346,
+      "pathIndex": 1,
+      "writer": 32,
+      "noProgressAge": 0.015045166,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15678,
+    "utc": "2026-11-03T13:08:57.2586807Z",
+    "raidTime": 364.524384,
+    "frame": 20035,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 151,
+      "index": 0,
+      "remaining": 0.552019,
+      "body": {
+        "x": 467.122345,
+        "y": 5.447185,
+        "z": -142.192413
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15690,
+    "utc": "2026-11-03T13:08:57.5656176Z",
+    "raidTime": 364.8316,
+    "frame": 20056,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 151,
+      "index": 0,
+      "remaining": 0.35021764,
+      "body": {
+        "x": 467.28653,
+        "y": 5.390368,
+        "z": -142.298874
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 15712,
+    "utc": "2026-11-03T13:08:58.2552635Z",
+    "raidTime": 365.52005,
+    "frame": 20103,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 151,
+      "missionId": 154,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.7738,
+        "y": 5.22489071,
+        "z": -142.533615
+      },
+      "behindEntryMeters": 1.44467151,
+      "side": 0.0129409377,
+      "vertical": 0.0551929474,
+      "facing": 0.995087266,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17415,
+    "utc": "2026-11-03T13:09:09.1343815Z",
+    "raidTime": 376.399048,
+    "frame": 20848,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 153,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "reason": "portalQueueHeadNoMeasuredProgress",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17419,
+    "utc": "2026-11-03T13:09:09.1635300Z",
+    "raidTime": 376.4283,
+    "frame": 20850,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 153,
+      "rootEdge": 118,
+      "body": {
+        "x": 465.9356,
+        "y": 6.23611975,
+        "z": -141.855
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.89355516,
+      "fixedBudget": 10.0,
+      "writer": 34,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17420,
+    "utc": "2026-11-03T13:09:09.1778870Z",
+    "raidTime": 376.442841,
+    "frame": 20851,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 153,
+      "body": {
+        "x": 465.9356,
+        "y": 6.23611975,
+        "z": -141.855
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 1.94357431,
+      "directDistance": 1.728959,
+      "pathIndex": 0,
+      "writer": 34,
+      "noProgressAge": 0.0145263672,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17445,
+    "utc": "2026-11-03T13:09:09.9808583Z",
+    "raidTime": 377.246033,
+    "frame": 20906,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 153,
+      "index": 0,
+      "remaining": 0.7561383,
+      "body": {
+        "x": 467.2044,
+        "y": 5.433917,
+        "z": -141.860931
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17507,
+    "utc": "2026-11-03T13:09:10.2874661Z",
+    "raidTime": 377.5521,
+    "frame": 20927,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 153,
+      "index": 0,
+      "remaining": 0.464774519,
+      "body": {
+        "x": 467.362946,
+        "y": 5.373575,
+        "z": -142.1024
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17634,
+    "utc": "2026-11-03T13:09:10.7233999Z",
+    "raidTime": 377.988159,
+    "frame": 20957,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 153,
+      "index": 0,
+      "remaining": 0.335617572,
+      "body": {
+        "x": 467.822754,
+        "y": 5.20384455,
+        "z": -142.669449
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 17789,
+    "utc": "2026-11-03T13:09:11.1759602Z",
+    "raidTime": 378.440857,
+    "frame": 20988,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 153,
+      "missionId": 156,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.5423,
+        "y": 5.29542351,
+        "z": -142.627075
+      },
+      "behindEntryMeters": 1.221652,
+      "side": 0.09927448,
+      "vertical": 0.0153398514,
+      "facing": 0.99999994,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18596,
+    "utc": "2026-11-03T13:09:14.1676673Z",
+    "raidTime": 381.43338,
+    "frame": 21193,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "failedStep": 2,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "reason": "portalQueueHeadNoMeasuredProgress",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18599,
+    "utc": "2026-11-03T13:09:14.1963188Z",
+    "raidTime": 381.462433,
+    "frame": 21195,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "rootEdge": 118,
+      "body": {
+        "x": 465.837555,
+        "y": 6.24313068,
+        "z": -142.580475
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.88520813,
+      "fixedBudget": 10.0,
+      "writer": 33,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18601,
+    "utc": "2026-11-03T13:09:14.2111711Z",
+    "raidTime": 381.477264,
+    "frame": 21196,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "body": {
+        "x": 465.837555,
+        "y": 6.24313068,
+        "z": -142.580475
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 1.91341829,
+      "directDistance": 1.69221091,
+      "pathIndex": 0,
+      "writer": 33,
+      "noProgressAge": 0.014831543,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18613,
+    "utc": "2026-11-03T13:09:14.7219816Z",
+    "raidTime": 381.987976,
+    "frame": 21231,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "body": {
+        "x": 466.397858,
+        "y": 5.750012,
+        "z": -143.153168
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 1.35304463,
+      "directDistance": 1.29311836,
+      "pathIndex": 1,
+      "writer": 33,
+      "noProgressAge": 0.01461792,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18622,
+    "utc": "2026-11-03T13:09:15.1750696Z",
+    "raidTime": 382.440918,
+    "frame": 21262,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.8217815,
+      "body": {
+        "x": 467.086273,
+        "y": 5.41839647,
+        "z": -143.204788
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18679,
+    "utc": "2026-11-03T13:09:15.3362052Z",
+    "raidTime": 382.600983,
+    "frame": 21273,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "failedStep": 1,
+      "failedEdge": 118,
+      "rootEdge": 118,
+      "entry": {
+        "x": 466.332977,
+        "y": 5.870912,
+        "z": -142.42749
+      },
+      "stage": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "reason": "jumpFinalConsumer:nativeLiveWindowOrGeometry",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18687,
+    "utc": "2026-11-03T13:09:15.3372739Z",
+    "raidTime": 382.600983,
+    "frame": 21273,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "rootEdge": 118,
+      "body": {
+        "x": 466.4513,
+        "y": 5.783786,
+        "z": -142.372528
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.17151558,
+      "fixedBudget": 10.0,
+      "writer": 34,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18688,
+    "utc": "2026-11-03T13:09:15.3495239Z",
+    "raidTime": 382.6156,
+    "frame": 21274,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "body": {
+        "x": 466.4304,
+        "y": 5.801802,
+        "z": -142.354889
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 1.1994288,
+      "directDistance": 1.11181176,
+      "pathIndex": 1,
+      "writer": 34,
+      "noProgressAge": 0.01461792,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18695,
+    "utc": "2026-11-03T13:09:15.4815420Z",
+    "raidTime": 382.747437,
+    "frame": 21283,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.818971,
+      "body": {
+        "x": 467.019653,
+        "y": 5.43752956,
+        "z": -143.148117
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18702,
+    "utc": "2026-11-03T13:09:15.7865126Z",
+    "raidTime": 383.052368,
+    "frame": 21304,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.796713054,
+      "body": {
+        "x": 466.847137,
+        "y": 5.46886826,
+        "z": -142.892838
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18705,
+    "utc": "2026-11-03T13:09:15.8591923Z",
+    "raidTime": 383.125122,
+    "frame": 21309,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "body": {
+        "x": 466.671631,
+        "y": 5.627964,
+        "z": -142.185638
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 0.9629456,
+      "directDistance": 0.9224946,
+      "pathIndex": 1,
+      "writer": 34,
+      "noProgressAge": 0.0143737793,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18708,
+    "utc": "2026-11-03T13:09:16.0914855Z",
+    "raidTime": 383.357422,
+    "frame": 21325,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.7979295,
+      "body": {
+        "x": 466.850769,
+        "y": 5.46960545,
+        "z": -142.901733
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18712,
+    "utc": "2026-11-03T13:09:16.1790785Z",
+    "raidTime": 383.444641,
+    "frame": 21331,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.701238453,
+      "body": {
+        "x": 466.984833,
+        "y": 5.470716,
+        "z": -142.127121
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18731,
+    "utc": "2026-11-03T13:09:16.3976168Z",
+    "raidTime": 383.663757,
+    "frame": 21346,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.781585932,
+      "body": {
+        "x": 466.812073,
+        "y": 5.46118832,
+        "z": -142.7798
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18733,
+    "utc": "2026-11-03T13:09:16.4851262Z",
+    "raidTime": 383.750732,
+    "frame": 21352,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.643278241,
+      "body": {
+        "x": 467.083649,
+        "y": 5.45860434,
+        "z": -142.097763
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18742,
+    "utc": "2026-11-03T13:09:16.7027536Z",
+    "raidTime": 383.96875,
+    "frame": 21367,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.775597453,
+      "body": {
+        "x": 466.8181,
+        "y": 5.4605155,
+        "z": -142.7789
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18748,
+    "utc": "2026-11-03T13:09:16.7902901Z",
+    "raidTime": 384.0559,
+    "frame": 21373,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.727942348,
+      "body": {
+        "x": 466.995,
+        "y": 5.470616,
+        "z": -142.069687
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18759,
+    "utc": "2026-11-03T13:09:17.0082502Z",
+    "raidTime": 384.274475,
+    "frame": 21388,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.699152768,
+      "body": {
+        "x": 466.910919,
+        "y": 5.470824,
+        "z": -142.791931
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18764,
+    "utc": "2026-11-03T13:09:17.0962355Z",
+    "raidTime": 384.3619,
+    "frame": 21394,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.8157833,
+      "body": {
+        "x": 466.872437,
+        "y": 5.46581936,
+        "z": -142.079071
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18785,
+    "utc": "2026-11-03T13:09:17.3159325Z",
+    "raidTime": 384.5818,
+    "frame": 21409,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.656680465,
+      "body": {
+        "x": 467.016144,
+        "y": 5.44756842,
+        "z": -142.900864
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18793,
+    "utc": "2026-11-03T13:09:17.4029585Z",
+    "raidTime": 384.6687,
+    "frame": 21415,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.8001894,
+      "body": {
+        "x": 466.810577,
+        "y": 5.498042,
+        "z": -142.2492
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18805,
+    "utc": "2026-11-03T13:09:17.6282980Z",
+    "raidTime": 384.8944,
+    "frame": 21430,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.3815404,
+      "body": {
+        "x": 467.41922,
+        "y": 5.32458,
+        "z": -142.889069
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18806,
+    "utc": "2026-11-03T13:09:17.7158436Z",
+    "raidTime": 384.981537,
+    "frame": 21436,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.6646483,
+      "body": {
+        "x": 466.891449,
+        "y": 5.46785975,
+        "z": -142.538742
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18825,
+    "utc": "2026-11-03T13:09:17.9338698Z",
+    "raidTime": 385.199768,
+    "frame": 21451,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.347038418,
+      "body": {
+        "x": 467.848724,
+        "y": 5.24626732,
+        "z": -142.656754
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18834,
+    "utc": "2026-11-03T13:09:18.0208846Z",
+    "raidTime": 385.286926,
+    "frame": 21457,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.42160356,
+      "body": {
+        "x": 467.2123,
+        "y": 5.39094734,
+        "z": -142.781754
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18846,
+    "utc": "2026-11-03T13:09:18.2389817Z",
+    "raidTime": 385.504761,
+    "frame": 21472,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.48846212,
+      "body": {
+        "x": 467.980682,
+        "y": 5.21533632,
+        "z": -142.3523
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18850,
+    "utc": "2026-11-03T13:09:18.3265578Z",
+    "raidTime": 385.592072,
+    "frame": 21478,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.314219475,
+      "body": {
+        "x": 467.543427,
+        "y": 5.28601265,
+        "z": -142.840179
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18866,
+    "utc": "2026-11-03T13:09:18.5446697Z",
+    "raidTime": 385.810883,
+    "frame": 21493,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.477538317,
+      "body": {
+        "x": 467.751617,
+        "y": 5.248638,
+        "z": -142.1051
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18877,
+    "utc": "2026-11-03T13:09:18.6328007Z",
+    "raidTime": 385.8984,
+    "frame": 21499,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 152,
+      "index": 0,
+      "remaining": 0.307429,
+      "body": {
+        "x": 467.6979,
+        "y": 5.2405076,
+        "z": -142.78009
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18892,
+    "utc": "2026-11-03T13:09:18.8502597Z",
+    "raidTime": 386.1165,
+    "frame": 21514,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.6156167,
+      "body": {
+        "x": 467.548584,
+        "y": 5.32149363,
+        "z": -141.912445
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18924,
+    "utc": "2026-11-03T13:09:19.0100506Z",
+    "raidTime": 386.2761,
+    "frame": 21525,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 152,
+      "missionId": 157,
+      "rootEdge": 118,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.516785,
+        "y": 5.304036,
+        "z": -142.633835
+      },
+      "behindEntryMeters": 1.196783,
+      "side": 0.10811305,
+      "vertical": 0.0239524841,
+      "facing": 0.99999994,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18936,
+    "utc": "2026-11-03T13:09:19.1579787Z",
+    "raidTime": 386.423767,
+    "frame": 21535,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "index": 0,
+      "remaining": 0.6549062,
+      "body": {
+        "x": 467.238831,
+        "y": 5.413687,
+        "z": -141.95459
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18945,
+    "utc": "2026-11-03T13:09:19.2444750Z",
+    "raidTime": 386.510529,
+    "frame": 21541,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorRejected",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "deviation": 0.6501072,
+      "body": {
+        "x": 467.1639,
+        "y": 5.43514538,
+        "z": -141.988373
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18948,
+    "utc": "2026-11-03T13:09:19.2449859Z",
+    "raidTime": 386.510529,
+    "frame": 21541,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "rootEdge": 118,
+      "body": {
+        "x": 467.1639,
+        "y": 5.43514538,
+        "z": -141.988373
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.35179758,
+        "z": -142.526352
+      },
+      "behindEntryMeters": 1.20000207,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 0.666195333,
+      "fixedBudget": 10.0,
+      "writer": 33,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18949,
+    "utc": "2026-11-03T13:09:19.2588155Z",
+    "raidTime": 386.525146,
+    "frame": 21542,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "body": {
+        "x": 467.158234,
+        "y": 5.43605661,
+        "z": -141.991348
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 0.6562943,
+      "directDistance": 0.650862932,
+      "pathIndex": 1,
+      "writer": 33,
+      "noProgressAge": 0.01461792,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18964,
+    "utc": "2026-11-03T13:09:19.7730464Z",
+    "raidTime": 387.039276,
+    "frame": 21577,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "body": {
+        "x": 466.848,
+        "y": 5.464615,
+        "z": -142.308044
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 0.7238936,
+      "directDistance": 0.7150484,
+      "pathIndex": 1,
+      "writer": 33,
+      "noProgressAge": 0.484863281,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 18988,
+    "utc": "2026-11-03T13:09:20.2863473Z",
+    "raidTime": 387.552368,
+    "frame": 21612,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "body": {
+        "x": 466.782654,
+        "y": 5.481418,
+        "z": -142.776291
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 0.797593,
+      "directDistance": 0.786989868,
+      "pathIndex": 1,
+      "writer": 33,
+      "noProgressAge": 0.9979553,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 19008,
+    "utc": "2026-11-03T13:09:20.7999571Z",
+    "raidTime": 388.065552,
+    "frame": 21647,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "body": {
+        "x": 467.070374,
+        "y": 5.419837,
+        "z": -143.310226
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "remaining": 0.910678446,
+      "directDistance": 0.9081332,
+      "pathIndex": 1,
+      "writer": 33,
+      "noProgressAge": 1.51113892,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 19022,
+    "utc": "2026-11-03T13:09:21.4749034Z",
+    "raidTime": 388.739746,
+    "frame": 21693,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "rootEdge": 118,
+      "body": {
+        "x": 467.765564,
+        "y": 4.09543848,
+        "z": -144.342392
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 7.412207,
+      "speed": 2.614215,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 19050,
+    "utc": "2026-11-03T13:09:22.8462053Z",
+    "raidTime": 390.111237,
+    "frame": 21787,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 150,
+      "rootEdge": 118,
+      "body": {
+        "x": 468.115143,
+        "y": 4.1415863,
+        "z": -144.862564
+      },
+      "target": {
+        "x": 467.5289,
+        "y": 5.28008366,
+        "z": -142.526352
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 7.18078947,
+      "speed": 0.0,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21548,
+    "utc": "2026-11-03T13:09:46.2927448Z",
+    "raidTime": 413.55777,
+    "frame": 23200,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 165,
+      "failedStep": 1,
+      "failedEdge": 121,
+      "rootEdge": 121,
+      "entry": {
+        "x": 466.429,
+        "y": 5.81025648,
+        "z": -142.278152
+      },
+      "stage": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "reason": "sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21561,
+    "utc": "2026-11-03T13:09:46.3070736Z",
+    "raidTime": 413.572632,
+    "frame": 23201,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 165,
+      "rootEdge": 121,
+      "body": {
+        "x": 465.927582,
+        "y": 6.236691,
+        "z": -141.914337
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.327406,
+        "z": -142.413147
+      },
+      "behindEntryMeters": 1.20000017,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.93870425,
+      "fixedBudget": 10.0,
+      "writer": 42,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21563,
+    "utc": "2026-11-03T13:09:46.3509813Z",
+    "raidTime": 413.617035,
+    "frame": 23204,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 165,
+      "body": {
+        "x": 465.9629,
+        "y": 6.208745,
+        "z": -141.9183
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "remaining": 1.94220912,
+      "directDistance": 1.73072755,
+      "pathIndex": 1,
+      "writer": 42,
+      "noProgressAge": 0.0444030762,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21601,
+    "utc": "2026-11-03T13:09:46.8541198Z",
+    "raidTime": 414.120056,
+    "frame": 23238,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 165,
+      "body": {
+        "x": 466.684357,
+        "y": 5.657617,
+        "z": -141.7922
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "remaining": 1.17157936,
+      "directDistance": 1.12408137,
+      "pathIndex": 1,
+      "writer": 42,
+      "noProgressAge": 0.0,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21629,
+    "utc": "2026-11-03T13:09:47.2717250Z",
+    "raidTime": 414.537323,
+    "frame": 23266,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 165,
+      "index": 0,
+      "remaining": 0.7029093,
+      "body": {
+        "x": 467.200226,
+        "y": 5.43475866,
+        "z": -141.873322
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21671,
+    "utc": "2026-11-03T13:09:47.5840202Z",
+    "raidTime": 414.849823,
+    "frame": 23287,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 165,
+      "index": 0,
+      "remaining": 0.458386779,
+      "body": {
+        "x": 467.3595,
+        "y": 5.37671947,
+        "z": -142.050751
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 21756,
+    "utc": "2026-11-03T13:09:48.3863302Z",
+    "raidTime": 415.651733,
+    "frame": 23341,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 165,
+      "missionId": 168,
+      "rootEdge": 121,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.599152,
+        "y": 5.27884,
+        "z": -142.585709
+      },
+      "behindEntryMeters": 1.19733739,
+      "side": 0.173962042,
+      "vertical": 0.00316905975,
+      "facing": 0.9946561,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22345,
+    "utc": "2026-11-03T13:09:55.5065067Z",
+    "raidTime": 422.771729,
+    "frame": 23810,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "failedStep": 2,
+      "failedEdge": 121,
+      "rootEdge": 121,
+      "entry": {
+        "x": 466.429,
+        "y": 5.81025648,
+        "z": -142.278152
+      },
+      "stage": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "reason": "sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22358,
+    "utc": "2026-11-03T13:09:55.5229104Z",
+    "raidTime": 422.7883,
+    "frame": 23811,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnPath",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "rootEdge": 121,
+      "body": {
+        "x": 465.8657,
+        "y": 6.24111462,
+        "z": -142.37233
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.327406,
+        "z": -142.413147
+      },
+      "behindEntryMeters": 1.20000017,
+      "status": "PathComplete",
+      "epochReady": true,
+      "pathLength": 1.94589245,
+      "fixedBudget": 10.0,
+      "writer": 42,
+      "restarts": 0,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22359,
+    "utc": "2026-11-03T13:09:55.5387667Z",
+    "raidTime": 422.804626,
+    "frame": 23812,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "body": {
+        "x": 465.864441,
+        "y": 6.241201,
+        "z": -142.381622
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "remaining": 1.9809382,
+      "directDistance": 1.75721025,
+      "pathIndex": 0,
+      "writer": 42,
+      "noProgressAge": 0.0163269043,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22368,
+    "utc": "2026-11-03T13:09:56.0511234Z",
+    "raidTime": 423.316925,
+    "frame": 23844,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "body": {
+        "x": 466.197327,
+        "y": 6.00496,
+        "z": -142.134369
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "remaining": 1.60146546,
+      "directDistance": 1.45107269,
+      "pathIndex": 1,
+      "writer": 42,
+      "noProgressAge": 0.0160522461,
+      "state": "Run",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22380,
+    "utc": "2026-11-03T13:09:56.6290028Z",
+    "raidTime": 423.8943,
+    "frame": 23880,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "index": 0,
+      "remaining": 0.6677214,
+      "body": {
+        "x": 467.078674,
+        "y": 5.46261358,
+        "z": -142.071991
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22392,
+    "utc": "2026-11-03T13:09:56.9350948Z",
+    "raidTime": 424.200043,
+    "frame": 23899,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "index": 0,
+      "remaining": 0.62974906,
+      "body": {
+        "x": 467.16922,
+        "y": 5.435875,
+        "z": -142.005127
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22413,
+    "utc": "2026-11-03T13:09:57.2414016Z",
+    "raidTime": 424.506317,
+    "frame": 23918,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "index": 0,
+      "remaining": 0.5840597,
+      "body": {
+        "x": 467.244568,
+        "y": 5.414351,
+        "z": -141.988983
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22427,
+    "utc": "2026-11-03T13:09:57.5491449Z",
+    "raidTime": 424.81424,
+    "frame": 23937,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "index": 0,
+      "remaining": 0.474245042,
+      "body": {
+        "x": 467.426483,
+        "y": 5.357697,
+        "z": -141.988647
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22454,
+    "utc": "2026-11-03T13:09:57.8537355Z",
+    "raidTime": 425.118774,
+    "frame": 23956,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "index": 0,
+      "remaining": 0.345425874,
+      "body": {
+        "x": 467.67746,
+        "y": 5.290579,
+        "z": -142.072632
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22469,
+    "utc": "2026-11-03T13:09:58.1593233Z",
+    "raidTime": 425.424255,
+    "frame": 23975,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 166,
+      "index": 0,
+      "remaining": 0.262721151,
+      "body": {
+        "x": 467.830719,
+        "y": 5.263539,
+        "z": -142.254883
+      },
+      "target": {
+        "x": 467.621368,
+        "y": 5.275671,
+        "z": -142.413147
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 22508,
+    "utc": "2026-11-03T13:09:58.4478786Z",
+    "raidTime": 425.713776,
+    "frame": 23993,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 166,
+      "missionId": 170,
+      "rootEdge": 121,
+      "stepCount": 1,
+      "restarts": 1,
+      "body": {
+        "x": 467.753754,
+        "y": 5.26317453,
+        "z": -142.463455
+      },
+      "behindEntryMeters": 1.33720469,
+      "side": 0.035092216,
+      "vertical": 0.0124964714,
+      "facing": 1.00000012,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 38994,
+    "utc": "2026-11-03T13:14:32.6576949Z",
+    "raidTime": 699.9221,
+    "frame": 41709,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 248,
+      "failedStep": 1,
+      "failedEdge": 117,
+      "rootEdge": 117,
+      "entry": {
+        "x": -275.686554,
+        "y": -0.7756503,
+        "z": -49.3008842
+      },
+      "stage": {
+        "x": -274.681519,
+        "y": -0.777150631,
+        "z": -48.6452332
+      },
+      "reason": "sequenceNativeAdmission:selfRescueNoCurrentBlockingObstacle",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39007,
+    "utc": "2026-11-03T13:14:32.7129937Z",
+    "raidTime": 699.977844,
+    "frame": 41713,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 248,
+      "index": 0,
+      "remaining": 1.491889,
+      "body": {
+        "x": -275.826782,
+        "y": -0.8772583,
+        "z": -49.5960655
+      },
+      "target": {
+        "x": -274.681519,
+        "y": -0.777150631,
+        "z": -48.6452332
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39026,
+    "utc": "2026-11-03T13:14:33.0194839Z",
+    "raidTime": 700.284241,
+    "frame": 41735,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 248,
+      "index": 0,
+      "remaining": 1.00085211,
+      "body": {
+        "x": -275.363617,
+        "y": -0.8772583,
+        "z": -49.3707848
+      },
+      "target": {
+        "x": -274.681519,
+        "y": -0.777150631,
+        "z": -48.6452332
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39042,
+    "utc": "2026-11-03T13:14:33.3253454Z",
+    "raidTime": 700.590332,
+    "frame": 41757,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 248,
+      "index": 0,
+      "remaining": 0.451826274,
+      "body": {
+        "x": -274.732269,
+        "y": -0.8772583,
+        "z": -49.0828972
+      },
+      "target": {
+        "x": -274.681519,
+        "y": -0.777150631,
+        "z": -48.6452332
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39065,
+    "utc": "2026-11-03T13:14:33.7490367Z",
+    "raidTime": 701.013245,
+    "frame": 41787,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnCorridorProgress",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 248,
+      "index": 0,
+      "remaining": 0.211862415,
+      "body": {
+        "x": -274.739624,
+        "y": -0.8772583,
+        "z": -48.4677849
+      },
+      "target": {
+        "x": -274.681519,
+        "y": -0.777150631,
+        "z": -48.6452332
+      },
+      "receipt": "ManualFrameAccepted",
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39110,
+    "utc": "2026-11-03T13:14:34.3565440Z",
+    "raidTime": 701.6212,
+    "frame": 41830,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReplayStarted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "previousMissionId": 248,
+      "missionId": 254,
+      "rootEdge": 117,
+      "stepCount": 3,
+      "restarts": 1,
+      "body": {
+        "x": -274.804474,
+        "y": -0.8772583,
+        "z": -48.78365
+      },
+      "behindEntryMeters": 1.02138209,
+      "side": 0.04874312,
+      "vertical": 0.10010767,
+      "facing": 1.00000012,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39840,
+    "utc": "2026-11-03T13:14:45.7658378Z",
+    "raidTime": 713.0285,
+    "frame": 42640,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteRetryRequested",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 251,
+      "failedStep": 2,
+      "failedEdge": 36,
+      "rootEdge": 36,
+      "entry": {
+        "x": -278.298248,
+        "y": 1.04721332,
+        "z": -51.24208
+      },
+      "stage": {
+        "x": -277.370026,
+        "y": 0.110746935,
+        "z": -50.48154
+      },
+      "reason": "nativeRecovery:nativeTraversalNoProgress",
+      "restarts": 0,
+      "oldSuccessHistoryPreserved": true,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39849,
+    "utc": "2026-11-03T13:14:45.7775952Z",
+    "raidTime": 713.0426,
+    "frame": 42641,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 251,
+      "rootEdge": 36,
+      "body": {
+        "x": -278.723022,
+        "y": -0.871305,
+        "z": -50.5401421
+      },
+      "target": {
+        "x": -277.370026,
+        "y": 0.110746935,
+        "z": -50.48154
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 0.0,
+      "speed": 0.000224393938,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39862,
+    "utc": "2026-11-03T13:14:47.1330532Z",
+    "raidTime": 714.397766,
+    "frame": 42737,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 251,
+      "rootEdge": 36,
+      "body": {
+        "x": -278.722961,
+        "y": -0.871305,
+        "z": -50.5400963
+      },
+      "target": {
+        "x": -277.370026,
+        "y": 0.110746935,
+        "z": -50.48154
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 0.0,
+      "speed": 0.00025431317,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-210532-731-bigmap-g2",
+    "sequence": 39871,
+    "utc": "2026-11-03T13:14:48.5087108Z",
+    "raidTime": 715.773743,
+    "frame": 42834,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "capabilityFullRouteReturnBlocked",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "missionId": 251,
+      "rootEdge": 36,
+      "body": {
+        "x": -278.722961,
+        "y": -0.871305,
+        "z": -50.5400963
+      },
+      "target": {
+        "x": -277.370026,
+        "y": 0.110746935,
+        "z": -50.48154
+      },
+      "sampled": true,
+      "fixedBudget": 10.0,
+      "pathLength": 0.0,
+      "speed": 0.000293438236,
+      "input": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget",
+      "leaderDetourAllowed": false,
+      "nativeSuccessRecorded": false
+    }
+  }
+]

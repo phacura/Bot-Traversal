@@ -1,0 +1,178 @@
+--- Beta1/src\AssemblyVersion.cs
++++ Beta2/src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.1+RC138")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.2+RC139")]
+--- Beta1/src\BotTraversalPlugin.cs
++++ Beta2/src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 1 loaded: V2-RC138-Beta1");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 2 loaded: V2-RC139-Beta2");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- Beta1/src\Core\FollowerCapabilityCoordinationHost.cs
++++ Beta2/src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -299,6 +299,60 @@
+             WriteEvent("capabilityNativeDropSuccessorCovered",bot,new{missionId=mission.MissionId,previous.EpisodeId,previous.EdgeId,
+                 coveredEpisode=step.EpisodeId,coveredEdge=step.EdgeId,witness=Vec(proof.Rc58ObservedNativeEnd),body=Vec(bot.Position),
+                 newDropDownSuccessRecorded=false,persistentLearningChanged=false,bodyRelocated=false});return true;
++        }
++        private static bool RejectCapabilityForeignCommitment(BotOwner bot,LearnedTraversalCommitment c)
++        {
++            if(bot==null||c==null||HasActiveTraversalProbe(bot)||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||
++                m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count)return false;
++            var step=m.Steps[m.CurrentStepIndex];if(step==null)return false;
++            bool exact=OwnsCapabilityUnfinishedCommitment(bot,m,c);
++            // An ordinary candidate may not yet carry its mission link; reconcile only
++            // the same recorded episode/edge through the existing binder, never another debt.
++            if(!exact&&c.EpisodeId==step.EpisodeId&&c.EdgeId==step.EdgeId&&!HasCapabilityFailureStrategy(bot))
++            {
++                TryPrepareCapabilityAutomaticProbeMission(bot,"currentCommitmentReconcile",c.EdgeId,out _);
++                exact=OwnsCapabilityUnfinishedCommitment(bot,m,c);
++            }
++            if(!FollowerCapabilityPassagePolicy.ForeignCommitment(true,step.Lifecycle.DebtOutstanding&&!IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId),
++                HasCapabilityFailureStrategy(bot),exact))return false;
++            ClearLearnedTraversalCommitment(bot,c.EdgeId,"currentTypedDebtOutranksForeignCommitment");
++            global::BotTraversal.LegacyOriginalPITFollowBridge.CancelDelivery(bot.ProfileId);
++            if(ShouldEmitDiagnostic("capabilityForeignCommitmentRejected",bot,.5f))WriteEvent("capabilityForeignCommitmentRejected",bot,new{
++                missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,step.EpisodeId,rejectedEdge=c.EdgeId,rejectedEpisode=c.EpisodeId,
++                rejectedMission=c.RouteMissionId,routeFloorAdvanced=false,nativeSuccessRecorded=false});
++            return true;
++        }
++        private static bool HandleCapabilityRecordedTeleportFailure(BotOwner bot,LearnedTraversalCommitment c,string source)
++        {
++            if(bot==null||c==null)return false;
++            bool recorded=FollowerCapabilityPassagePolicy.RecordedFallback(c.EpisodeId);
++            if(!FollowerCapabilityPassagePolicy.RecordedRecoveryScope(recorded,HasCapabilityUnresolvedRouteWork(bot)))return false;
++            string reason="currentTypedDebtRetainsRecovery";
++            bool prepared=recorded&&TryPrepareCapabilityAutomaticProbeMission(bot,"legacyMissedTraversalFailure",c.EdgeId,out reason);
++            bool advanced=false;
++            if(FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)&&OwnsCapabilityUnfinishedCommitment(bot,m,c))
++                advanced=TryRequestCapabilityFullRouteRetry(bot,m,"recordedEntryFailure:"+source);
++            else RejectCapabilityForeignCommitment(bot,c);
++            if(!advanced)
++            {
++                ClearLearnedTraversalCommitment(bot,c.EdgeId,"recordedTeleportCannotBypassCurrentDebt");
++                global::BotTraversal.LegacyOriginalPITFollowBridge.CancelDelivery(bot.ProfileId);
++            }
++            WriteEvent("capabilityRecordedTeleportRedirected",bot,new{edgeId=c.EdgeId,episodeId=c.EpisodeId,prepared,reason,advanced,
++                directTeleportAttempted=false,nativeSuccessRecorded=false});
++            return true; // Handled/suppressed, never a successful teleport receipt.
++        }
++        private static bool TryCloseCapabilityClimbAtSuccessor(ProbeRuntime probe,LearnedTraversalCommitment c)
++        {
++            if(probe?.Bot==null||c?.Kind!="Climb"||!IsProbeLifecycleCurrent(probe)||!IsCapabilityRouteRetrySafe(probe.Bot)||
++                !TryGetLearningV375FutureSameChainSuccessor(probe,out var mission,out var next))return false;
++            if(!FollowerCapabilityPassagePolicy.ClimbSuccessor(true,probe.NativeExecutorConsumed,probe.NativeStateObserved,
++                probe.LearningV349PhysicalPassageCrossed,IsEffectivelySupportedForProbe(probe.Bot,probe.Player),next.Kind=="DropDown",
++                Vector3.Distance(probe.Player.Position,c.RawExit),Vector3.Distance(probe.Player.Position,next.RawEntry)))return false;
++            bool closed=TryFinalizeTraversalChainIntermediate(probe,"currentNativeClimbUpperLandingDropSuccessor");
++            WriteEvent("capabilityClimbUpperSuccessorClosure",probe.Bot,new{missionId=mission.MissionId,edgeId=c.EdgeId,nextEdge=next.EdgeId,closed,
++                existingChainValidatorUsed=true,nativeSuccessRecordedByThisAdapter=false,bodyRelocated=false});
++            return closed;
+         }
+         private static bool OwnsCapabilityUnfinishedCommitment(BotOwner bot,FollowerRouteMission mission,LearnedTraversalCommitment c)
+         {
+--- Beta1/src\Core\FollowerCapabilityNativeObstacleHost.cs
++++ Beta2/src\Core\FollowerCapabilityNativeObstacleHost.cs
+@@ -1437,7 +1437,11 @@
+                 bool hold=FollowerCapabilityPassagePolicy.ObstacleHold(true,false,distance,side,InjectedNativeVaultRollingMaxLateralOffset,angle,InjectedNativeVaultRollingMaxAlignmentAngle);
+                 bool safeHeight=FollowerCapabilityPassagePolicy.EntryHeight(player.MovementContext.IsGrounded,entry.y-player.Position.y);
+                 bool positionCorrection=side>InjectedNativeVaultRollingMaxLateralOffset;
+-                var direction=positionCorrection?GetFlatDirection(target-player.Position):axis;
++                bool sideOnly=FollowerCapabilityPassagePolicy.CenterSideOnly(positionCorrection,distance);
++                // Inside the actuator frontier correct only cross-track debt; a cached
++                // staging point must not pull the body backward over the completed prefix.
++                var direction=sideOnly?GetFlatDirection(-(offset-axis*forward)):
++                    (positionCorrection?GetFlatDirection(target-player.Position):axis);
+                 if(direction.sqrMagnitude<.5f)direction=axis;
+                 float dt=Mathf.Max(.001f,Time.deltaTime);
+                 float centerAngle=Vector3.Angle(GetFlatDirection(player.MovementContext.PlayerRealForward),direction);
+@@ -1450,7 +1454,7 @@
+                 // Once centered, axis owns both steering and forward input; the old point target cannot oppose it.
+                 ApplyCollisionActivePhysicalRouteMotion(probe.Bot,player,direction,motion,dt,1f,sprint,speed,!precise,true);
+                 if(ShouldEmitDiagnostic("capabilityObstacleEntryResource",probe.Bot,.25f))WriteEvent("capabilityObstacleEntryResource",probe.Bot,new{
+-                    edgeId=c.EdgeId,kind=c.Kind,hold,centerTurn,centerAngle,safeHeight,distance,side,forward,angle,body=Vec(player.Position),entry=Vec(entry),nativeSuccessRecorded=false});
++                    edgeId=c.EdgeId,kind=c.Kind,hold,sideOnly,centerTurn,centerAngle,safeHeight,distance,side,forward,angle,body=Vec(player.Position),entry=Vec(entry),nativeSuccessRecorded=false});
+                 return true;
+             }
+         }
+--- Beta1/src\Core\FollowerCapabilityPassagePolicy.cs
++++ Beta2/src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -80,6 +80,12 @@
+         internal static bool ObstacleNear(double distance)=>Finite(distance)&&distance>=0&&distance<.4;
+         internal static double ObstacleEntrySpeed(double distance,double desired)
+             => Finite(distance)&&distance>=0&&distance<.4?Math.Min(desired,.35):desired;
++        internal static bool RecordedRecoveryScope(bool recorded,bool typedDebt)=>recorded||typedDebt;
++        internal static bool RecordedFallback(int episode)=>episode>0;
++        internal static bool ForeignCommitment(bool live,bool debt,bool strategy,bool exact)=>live&&debt&&!strategy&&!exact;
++        internal static bool ClimbSuccessor(bool current,bool consumed,bool observed,bool crossed,bool supported,bool drop,double gap,double nextGap)
++            => current&&consumed&&observed&&crossed&&supported&&drop&&Finite(gap)&&gap>=0&&gap<=.35&&Finite(nextGap)&&nextGap>=0&&nextGap<=2.5;
++        internal static bool CenterSideOnly(bool correction,double distance)=>correction&&Finite(distance)&&distance>=0&&distance<=.65;
+         internal static bool Lane(bool witnessed,double lateral,double vertical)
+             => witnessed&&Finite(lateral)&&Finite(vertical)&&lateral>=0&&lateral<=.22&&Math.Abs(vertical)<=.35;
+         internal static bool Center(bool walking,bool nativeActor,double lateral)
+--- Beta1/src\Core\FollowerTraversalTestRuntime.cs
++++ Beta2/src\Core\FollowerTraversalTestRuntime.cs
+@@ -23469,6 +23469,7 @@
+                 return false;
+             }
+ 
++            if(RejectCapabilityForeignCommitment(bot,commitment))return false;
+             LearnedTraversalEdge commitmentEdge = LearnedTraversalEdges.FirstOrDefault(edge =>
+                 edge != null && edge.Id == commitment.EdgeId);
+             if (commitmentEdge == null)
+@@ -23926,6 +23927,16 @@
+                     bool missionHardRecoveryEligible =
+                         Time.time - routeMission.LastProgressAt >= RouteMissionHardRecoverySeconds &&
+                         routeMission.LocalRecoveryAttempts >= RouteMissionMaxLocalRecoveriesBeforeTeleport;
++                    // A ladder handoff owns this frame. Do not restore the local
++                    // commitment or publish its old entry after the adapter cleared it.
++                    if (missionHardRecoveryEligible && HandleCapabilityRecordedTeleportFailure(
++                            bot, commitment, "routeMissionLastResort:" + fallbackSource))
++                    {
++                        target = bot.Position;
++                        edgeId = commitment.EdgeId;
++                        probeStarted = true;
++                        return true;
++                    }
+                     if (missionHardRecoveryEligible &&
+                         TryTeleportMissedLearnedTraversal(
+                             bot, commitment, "routeMissionLastResort:" + fallbackSource,
+@@ -23969,6 +23980,13 @@
+                 else
+                 {
+                     bool directTeleportEligible = FollowerCapabilityHelperRules.TryUseLearnedTraversalCommitment_directTeleportEligible_9F193F74_7(missedTraversal,expired,episodeProvenanceAuthoritative,stillEntrySide,entryDistance,LearnedTraversalMissedFallbackMaxEntryDistance);
++                    if (directTeleportEligible && HandleCapabilityRecordedTeleportFailure(bot, commitment, fallbackSource))
++                    {
++                        target = bot.Position;
++                        edgeId = commitment.EdgeId;
++                        probeStarted = true;
++                        return true;
++                    }
+                     if (directTeleportEligible &&
+                         TryTeleportMissedLearnedTraversal(bot, commitment, fallbackSource, entryDistance, exitDistance, noEntryProgress))
+                     {
+@@ -24400,6 +24418,7 @@
+                 return false;
+             }
+ 
++            if(HandleCapabilityRecordedTeleportFailure(bot,commitment,source))return false;
+             Player player = bot.GetPlayer;
+             Vector3 flatVelocity = player != null ? player.Velocity : Vector3.zero;
+             flatVelocity.y = 0f;
+@@ -54612,6 +54631,7 @@
+                     normalMoverTargetRejected = Vec(target),
+                     action = "existingClimbDirectDriveIslandBridgeOwnsUpperSemanticLayer"
+                 });
++                if(TryCloseCapabilityClimbAtSuccessor(probe,commitment))return;
+                 if (TryBeginPlayerRouteContinuationBridge(
+                         probe, commitment, "climbOffNavMeshUpperLanding"))
+                 {

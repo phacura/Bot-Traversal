@@ -1,0 +1,19 @@
+{'byAbility': defaultdict(<class 'collections.Counter'>, {'Vault': Counter({'NativePhysical': 4, 'Unproven': 3}), 'Climb': Counter({'NativePhysical': 4}), 'DropDown': Counter({'NativePhysical': 4}), 'WalkThrough': Counter({'NativePhysical': 16}), 'Jump': Counter({'NativePhysical': 4})}), 'stageDestinations': Counter({'Alternate': 2, 'SelfRescue': 2}), 'cleanupReasons': Counter({'manualRegroup': 24}), 'noStartReasons': Counter({'stepCreationRejected': 115, 'redundantWithEquivalentRouteStep': 94})}
+queue edge 237
+368.324 Knight capabilityPortalQueueAdmitted
+370.784 Knight learningV322TraversalAttemptSummary
+371.798 Chris_Redfield capabilityPortalQueueAdmitted
+373.633 Chris_Redfield learningV322TraversalAttemptSummary
+374.639 Ghost capabilityPortalQueueAdmitted
+377.309 Ghost learningV322TraversalAttemptSummary
+378.319 Ada_Wong capabilityPortalQueueAdmitted
+381.886 Ada_Wong learningV322TraversalAttemptSummary
+queue edge 236
+400.1 Ghost capabilityPortalQueueAdmitted
+403.132 Ghost learningV322TraversalAttemptSummary
+404.135 Chris_Redfield capabilityPortalQueueAdmitted
+406.452 Chris_Redfield learningV322TraversalAttemptSummary
+407.453 Knight capabilityPortalQueueAdmitted
+410.699 Knight learningV322TraversalAttemptSummary
+411.7 Ada_Wong capabilityPortalQueueAdmitted
+415.289 Ada_Wong learningV322TraversalAttemptSummary

@@ -1,0 +1,48 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "velocity_always_allowed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "velocity_disabled",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "portal_always_centred",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "portal_correction_disabled",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "geometry_consumer_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "body_observer_disconnected",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

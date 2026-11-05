@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "addedCompilerLocalFields": [
+    "BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep closure[GetCapabilityQueueAnchor|step:BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep]::step",
+    "BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalCommitment closure[TryGetCapabilityObstacleCenterFacing|c:BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalCommitment]::c"
+  ],
+  "changedExistingFields": [],
+  "newBotStateFields": 0,
+  "catalogSame": true
+}

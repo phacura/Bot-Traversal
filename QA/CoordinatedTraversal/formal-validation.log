@@ -1,0 +1,466 @@
+PASS 151 fixed reviewed QA inputs; no automatic contract refresh
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\StandaloneContracts.cs(143,44): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\StandaloneContracts.cs(28,47): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\LegacyPITCompatibility.cs(235,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\StandaloneContracts.cs(137,64): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerMovementWriterAuthorityPatch.cs(325,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerMovementWriterAuthorityPatch.cs(343,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityGeneralRecoveryHost.cs(1293,22): warning CS0642: 可能誤用了空白的陳述式 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityHandoffHost.cs(93,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityRouteContinuationHost.cs(112,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityRouteContinuationHost.cs(3721,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalPhysicalInput.cs(456,22): warning CS0642: 可能誤用了空白的陳述式 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalPhysicalInput.cs(428,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(4835,18): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(8755,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(11401,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(11713,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(13852,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(13866,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14367,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14374,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14401,28): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14420,28): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14487,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14562,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14569,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14892,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(15003,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(17284,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(19291,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(24168,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25673,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25688,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25704,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25726,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25758,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25807,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25891,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(26225,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(27844,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(30439,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(30808,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(33027,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(33035,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(34524,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(35118,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(35554,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(36693,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(36830,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37859,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37935,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37939,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37942,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(38728,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(39504,107): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(40550,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(40877,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(40991,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(43882,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(47143,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(49177,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(49209,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(49691,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(52255,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(55967,29): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(56122,33): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(56846,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(57647,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(59365,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(59510,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(60757,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(61887,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(62786,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(62849,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(63262,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(63285,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(63291,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(64167,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(64176,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(64211,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(66408,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(66457,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(67622,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(70584,26): warning CS0642: 可能誤用了空白的陳述式 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(72243,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(72253,28): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(1512,29): warning CS0414: 已指派欄位 'FollowerTraversalTestRuntime.learningV337TraversalLinksDirty'，但從未使用過其值 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+  BotTraversal -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\bin\Release\net472\BotTraversal.dll
+
+建置成功。
+
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\StandaloneContracts.cs(143,44): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\StandaloneContracts.cs(28,47): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\LegacyPITCompatibility.cs(235,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\StandaloneContracts.cs(137,64): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerMovementWriterAuthorityPatch.cs(325,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerMovementWriterAuthorityPatch.cs(343,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityGeneralRecoveryHost.cs(1293,22): warning CS0642: 可能誤用了空白的陳述式 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityHandoffHost.cs(93,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityRouteContinuationHost.cs(112,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerCapabilityRouteContinuationHost.cs(3721,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalPhysicalInput.cs(456,22): warning CS0642: 可能誤用了空白的陳述式 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalPhysicalInput.cs(428,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(4835,18): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(8755,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(11401,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(11713,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(13852,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(13866,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14367,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14374,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14401,28): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14420,28): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14487,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14562,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14569,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(14892,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(15003,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(17284,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(19291,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(24168,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25673,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25688,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25704,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25726,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25758,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25807,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(25891,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(26225,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(27844,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(30439,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(30808,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(33027,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(33035,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(34524,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(35118,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(35554,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(36693,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(36830,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37859,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37935,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37939,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(37942,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(38728,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(39504,107): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(40550,21): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(40877,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(40991,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(43882,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(47143,25): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(49177,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(49209,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(49691,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(52255,20): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(55967,29): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(56122,33): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(56846,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(57647,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(59365,17): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(59510,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(60757,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(61887,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(62786,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(62849,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(63262,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(63285,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(63291,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(64167,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(64176,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(64211,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(66408,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(66457,13): warning CS0162: 偵測到執行不到的程式碼 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(67622,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(70584,26): warning CS0642: 可能誤用了空白的陳述式 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(72243,24): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(72253,28): warning CS8603: 可能有 Null 參考傳回。 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\src\Core\FollowerTraversalTestRuntime.cs(1512,29): warning CS0414: 已指派欄位 'FollowerTraversalTestRuntime.learningV337TraversalLinksDirty'，但從未使用過其值 [C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\BotTraversal-0.3.8-CF20-SOURCE\BotTraversal.csproj]
+    86 個警告
+    0 個錯誤
+
+經過時間 00:00:06.87
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  LifecycleTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round2\LifecycleTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  CapabilityTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3\CapabilityTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  PhaseTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3C\PhaseTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  MotionTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3D\MotionTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ActuationTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3E\ActuationTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  HelperTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3F\HelperTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  FrameTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3H\FrameTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  AdjacentTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3I\AdjacentTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  FrontierTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3J\FrontierTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  PreparationTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3K\PreparationTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  DropDownTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3L\DropDownTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  CapabilityTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3M\CapabilityTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  RecoveryTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3N\RecoveryTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ClimbTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3O\ClimbTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  GeometryTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3P\GeometryTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ContinuityTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3Q\ContinuityTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  HandoffTests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Regression\Round3R\HandoffTests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Continuity\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\RouteRegression\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round3Y\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round3Z\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Oracle -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round4B\Oracle\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  ScopeAudit -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round4B\ScopeAudit\bin\Release\net10.0\ScopeAudit.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Fingerprint -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round4B\Fingerprint\bin\Release\net10.0\Fingerprint.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round4C\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Compatibility -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\Round4C\Compatibility\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\CoordinatedTraversal\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.88
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\RouteRetry\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.84
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\RecoveryFix\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.81
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\FailureOnly\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.81
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\RouteRecovery\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.81
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\IngressContract\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.79
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\PassageAdmission\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.83
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\MotionEvidence\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.81
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\JumpBoundary\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.82
+  正在判斷要還原的專案...
+  所有專案都在最新狀態，可進行還原。
+  Tests -> C:\Users\Phacura\Documents\Codex\2026-10-24\bot-traversal\work\rc121-coordinated-traversal\QA\RescueDisposition\Tests\bin\Release\net10.0\BotTraversal.Lifecycle.Tests.dll
+
+建置成功。
+    0 個警告
+    0 個錯誤
+
+經過時間 00:00:01.90
+PASS 124 compiled lifecycle state-transition checks; 3 permanent chain fixtures
+PASS 99 compiled capability/retry/chain checks
+PASS 63 compiled phase/rule/covered-successor checks
+PASS 48 compiled motion delivery/lifetime/typed-ack checks
+PASS 72 compiled actuation/heading/native-probe checks
+PASS 67 compiled seven-capability helper regression checks
+PASS 79 compiled probe-frame order/preemption/reentry checks
+PASS 47 compiled adjacent landing envelope checks
+PASS 51 compiled native frontier and preparation-frame checks
+PASS 32 compiled preparation and epoch-continuity checks
+PASS 47 compiled dropdown transition checks
+PASS 63 compiled capability failure and approach checks
+PASS 55 compiled native recovery decision and sequence checks
+PASS 53 compiled Climb ingress and input ownership checks
+PASS 54 compiled published geometry and physical ingress checks
+PASS 110 compiled chain continuity and boundary checks
+PASS 109 compiled planar and terminal handoff checks
+PASS 63 candidate DLL native-consumer and Follow gait checks
+PASS 162 candidate route continuation checks
+PASS 68 candidate Follow/recovery checks (1024 ownership combinations)
+PASS 405 cross-capability checks
+PASS 809 continuity policy/driver/recorded-boundary checks
+PASS 82 actual DLL route-retry policy/lifecycle/recorded-boundary checks
+PASS 111 recovery regression/continuous-policy/lifecycle checks
+PASS 82 explicit-failure isolation and retained replay checks
+PASS 151 actual DLL return/terminal/heading checks
+PASS 118 RC116 actual DLL recorded-geometry/gait/jump/low-step checks
+PASS 44 RC117 actual DLL cold-run/contact/Vault/stall checks
+PASS 76 RC118 actual DLL velocity reconciliation and nearest Vault portal checks
+PASS 49 RC119 actual DLL observation/handoff/prefix/missed-window checks
+PASS 20 RC120 actual lifecycle and frozen evidence checks
+PASS 1723 RC121 sequence/ranking/four-bot queue/lifecycle/evidence checks
+Closeout IL: checks=156 failures=0
+Follow/recovery IL: checks=129 failures=0
+Native consumer / Follow gait IL: checks=57 failures=0
+Route continuation IL: checks=141 failures=0
+RC111 Continuity IL: checks=39 failures=0
+RC112 RouteRetry IL: checks=50 failures=0
+RC113 recovery integration IL: checks=46 failures=0
+RC114 failure-only boundary: checks=24 failures=0
+RC115 route recovery boundary: checks=36 failures=0
+RC116 ingress contract boundary: checks=36 failures=0
+RC117 passage admission boundary: checks=55 failures=0
+RC118 motion evidence boundary: checks=43 failures=0
+RC119 jump boundary: checks=39 failures=0
+RC120 rescue disposition: checks=51 failures=0
+RC121 coordination integration: checks=106 failures=0
+PASS actual SPT4.0.13 avoidance IL transformed by actual plugin; six invariants; no game method executed
+Fingerprint 24577 methods 19111 fields 922 catalog sites
+Fingerprint 24722 methods 19212 fields 922 catalog sites
+PASS 5 actual normal method body fingerprints equal RC111; shared first/retry entry paths
+PASS 6352 catalog-bound compatibility refusal checks; strict=489 compat=404 infra=29
+PASS 6591 original/specialized rule comparisons across 53 actual DLL methods
+Resolved all source: external observations=1882, backend operations=46, route calls=922, residual assignments=354, dynamic=0
+Scope classification {'strict-inherited': 298, 'retained-compatibility': 404, 'strict-existing': 191, 'retained-infrastructure': 29} retained method groups 94
+PASS RC121 reviewed source/binary/ownership/native effects 24642 checks
+Rejected RC113 actual binary fault healthy_return_forced_repath
+Rejected RC113 actual binary fault hold_always_hard_stops
+Rejected RC113 actual binary fault path_budget_always_accepts
+Rejected RC113 actual binary fault manual_reset_retirement_removed
+Rejected RC113 actual binary fault native_hold_adapter_disconnected
+Rejected RC113 actual binary fault recovery_skips_observations
+Rejected route retry actual DLL mutant rear_pose_always_accepts
+Rejected route retry actual DLL mutant retry_phase_disconnected
+Rejected route retry actual DLL mutant return_update_disconnected
+Rejected route retry actual DLL mutant return_site_legacy_scope
+Rejected RC114 actual fault normal_can_enter_recovery
+Rejected RC114 actual fault cleanup_recovery_hook_restored
+Rejected RC115 actual fault sideways_borrow_allowed
+Rejected RC115 actual fault return_segment_unbounded
+Rejected RC115 actual fault missed_jump_no_return
+Rejected RC115 actual fault return_drive_disconnected
+Rejected RC115 actual fault terminal_failure_skips_root
+Rejected RC116 actual fault vault_forward_lead_removed
+Rejected RC116 actual fault sprint_floor_bypassed
+Rejected RC116 actual fault low_step_wall_allowed
+Rejected RC116 actual fault return_walk_latch_removed
+Rejected RC116 actual fault jump_guard_inverted
+Rejected RC116 actual fault low_step_site_disconnected
+Rejected RC117 actual fault cold_start_disabled
+Rejected RC117 actual fault reused_trial_allowed
+Rejected RC117 actual fault contact_wall_guard_removed
+Rejected RC117 actual fault vault_centering_removed
+Rejected RC117 actual fault contact_dispatch_disconnected
+Rejected RC117 actual fault vault_facing_disconnected
+Rejected RC118 actual fault velocity_always_allowed
+Rejected RC118 actual fault velocity_disabled
+Rejected RC118 actual fault portal_always_centred
+Rejected RC118 actual fault portal_correction_disabled
+Rejected RC118 actual fault geometry_consumer_disconnected
+Rejected RC118 actual fault body_observer_disconnected
+Rejected RC119 actual fault body_observation_disabled
+Rejected RC119 actual fault body_observation_unbounded
+Rejected RC119 actual fault handoff_identity_bypassed
+Rejected RC119 actual fault prefix_identity_bypassed
+Rejected RC119 actual fault missed_window_geometry_only
+Rejected RC119 actual fault carry_consumer_disconnected
+Rejected RC119 actual fault world_input_disconnected
+Rejected RC119 actual fault snapshot_raw_after_attempt
+Rejected RC120 actual fault terminal_disconnected
+Rejected RC120 actual fault strategy_cleanup_disconnected
+Rejected RC120 actual fault lifecycle_guard_bypassed
+Rejected RC120 actual fault verified_gate_bypassed
+Rejected RC120 actual fault retry_never_admitted
+Rejected RC121 actual DLL fault failure_skips_alternate
+Rejected RC121 actual DLL fault ranking_ignores_evidence
+Rejected RC121 actual DLL fault queue_always_admits
+Rejected RC121 actual DLL fault queue_cooldown_removed
+Rejected RC121 actual DLL fault native_first_disconnected
+Rejected RC121 actual DLL fault teleport_cleanup_disconnected
+Rejected RC121 actual DLL fault walking_guard_disconnected
+Rejected RC121 actual DLL fault friendly_filter_disconnected
+Rejected RC121 actual DLL fault native_transform_noop
+PASS 151 fixed reviewed QA inputs; no automatic contract refresh
+RC121 COORDINATED TRAVERSAL VALIDATION SUCCESS

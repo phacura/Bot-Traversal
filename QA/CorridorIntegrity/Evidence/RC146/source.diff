@@ -1,0 +1,408 @@
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.8+RC145")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.9+RC146")]
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 8 loaded: V2-RC145-Beta8");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 9 loaded: V2-RC146-Beta9");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -463,6 +463,13 @@
+             {
+                 if(m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||m.Steps[m.CurrentStepIndex]?.EdgeId!=edge)
+                 {reason="automaticProbeForeignOrRetiredMission";return false;}
++                // Resolve the old terminal epoch BEFORE allocating the new probe/writer.
++                // The existing supersession gate alone decides whether this route is fresh.
++                if(IsLearningV350TerminalPhysicalRecoveryEligible(bot)&&
++                    !TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch(bot,m,"capabilityPreProbeAdmission"))
++                {reason="automaticProbeTerminalEpochStillOwnsRecovery";return false;}
++                if(m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||m.Steps[m.CurrentStepIndex]?.EdgeId!=edge)
++                {reason="automaticProbeSupersessionChangedCurrentStep";return false;}
+                 if(!LearnedTraversalCommitments.TryGetValue(bot.ProfileId,out var bound)||bound==null||
+                     bound.EpisodeId!=m.Steps[m.CurrentStepIndex].EpisodeId){reason="automaticProbeMissingCurrentCommitment";return false;}
+                 if(IsCapabilityDebtResolved(bot,bound.EpisodeId,bound.EdgeId)){reason="automaticProbeEpisodeAlreadyResolved";PruneCapabilityResolvedCommitment(bot);return false;}
+@@ -539,6 +546,8 @@
+         private static bool TryAdmitCapabilitySequenceProbe(BotOwner bot,string source,int edge,string kind,out string reason)
+         {
+             reason=string.Empty;
++            if(!CanAllocateCapabilityWalkingKind(bot,kind))
++            {reason="provenWalkingContractRejectsActuatorRecovery";return false;}
+             if(!HasCapabilityFailureStrategy(bot))
+             {
+                 if(!FollowerCapabilityPassagePolicy.UnownedSequenceProbe(string.Equals(source,"capabilitySequenceOwnedDispatch",StringComparison.Ordinal)))
+@@ -726,6 +735,8 @@
+             var axis=GetFlatDirection(original.RawExit-original.RawEntry);
+             LearnedTraversalEdge best=null;Vector3 entry=default,exit=default;double rank=double.NegativeInfinity;
+             var originalEdge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==state.Edge);
++            bool walkingOnly=IsCapabilityWalkingRecoveryOnly(original);
++            if(walkingOnly&&generalized)return TrySelectCapabilityWalkingRescue(bot,mission,state);
+             if(generalized&&!TryObserveCapabilityRescueObstacle(bot,axis,out string obstacleFailure))
+             {
+                 WriteEvent("capabilitySequenceObstacleUnavailable",bot,new{missionId=mission.MissionId,
+@@ -739,6 +750,7 @@
+             {
+                 if(e==null||(!generalized&&e.Id==state.Edge))continue;
+                 if(e.Kind!="WalkThrough"&&e.Kind!="Jump"&&e.Kind!="DropDown"&&e.Kind!="Vault"&&e.Kind!="Climb")continue;
++                if(!FollowerCapabilityPassagePolicy.WalkingRecoveryKind(walkingOnly,e.Kind))continue;
+                 // Learning quality ranks, never suppresses, the requested self-rescue attempt.
+                 if(generalized&&!IsLearningV433ObstacleClearanceActuatorKind(e.Kind))continue;
+                 if(!generalized&&e.Disabled)continue;
+@@ -982,6 +994,7 @@
+         {
+             var c=state.Selected;var player=bot.GetPlayer;
+             if(c==null||!c.SkillTransferTransient||!IsCapabilityRouteRetrySafe(bot)||!player.MovementContext.IsGrounded)return false;
++            if(c.Kind=="WalkThrough")return true; // WT retains its selected current route; actuator braking/rebasing does not apply.
+             var axis=GetFlatDirection(c.RawExit-c.RawEntry);if(axis.sqrMagnitude<.5f)return false;
+             long generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
+             if(generation<=0||(owner!=FollowerMovementWriterAuthority.WriterDomain.Traversal&&owner!=FollowerMovementWriterAuthority.WriterDomain.Follow)||
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityGeneralRecoveryHost.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityGeneralRecoveryHost.cs
+@@ -908,7 +908,10 @@
+                 return;
+             }
+ 
+-            float stalledFor = Time.time - state.LearningV349PhysicalStallSince;
++            // Observations from a previous attempt cannot terminalize a newly dispatched actuator.
++            // This bounds observation age; it does not renew progress or grant movement/success.
++            float stalledFor = (float)FollowerCapabilityPassagePolicy.AttemptStallAge(
++                haveProbe&&IsProbeLifecycleCurrent(probe),Time.time,state.LearningV349PhysicalStallSince,probe?.RequestedAt??0f);
+             // CF38: the CF37 run had a valid 13 m Follow route at 585.315, but its
+             // native mover lost the path at 586.699 while the bot was still 11 m behind.
+             // Re-publish the existing Follow consumer once before the 3 s generic rescue;
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -5,6 +5,19 @@
+     internal static class FollowerCapabilityPassagePolicy
+     {
+         private static bool Finite(double v)=>!double.IsNaN(v)&&!double.IsInfinity(v);
++        internal static bool SameWalkingPortal(double entryGap,double exitGap,double axis)
++            => Finite(entryGap)&&entryGap>=0&&entryGap<=.65&&Finite(exitGap)&&exitGap>=0&&exitGap<=1.5&&Finite(axis)&&axis>=.94&&axis<=1.001;
++        internal static bool WalkingRecoveryKind(bool walkOnly,string kind)=>!walkOnly||kind=="WalkThrough";
++        internal static bool WalkingRescue(double forward,double span,double side,double height)
++            => Finite(forward)&&Finite(span)&&span>=.20&&forward>=-3.5&&forward<span-.20&&
++                Finite(side)&&side>=0&&side<=1.5&&Finite(height)&&Math.Abs(height)<=.65;
++        internal static bool WalkExitSample(double planar,double vertical,double tolerance,double maxVertical)
++            => Finite(planar)&&planar>=0&&Finite(vertical)&&Finite(tolerance)&&tolerance>0&&Finite(maxVertical)&&maxVertical>0&&
++                planar<=tolerance&&Math.Abs(vertical)<=maxVertical;
++        internal static double AttemptStallAge(bool current,double now,double stalledAt,double requestedAt)
++            => !Finite(now)||!Finite(stalledAt)||(current&&!Finite(requestedAt))?0:
++                Math.Max(0,now-(current?Math.Max(stalledAt,requestedAt):stalledAt));
++        internal static bool TerminalMayYield(bool terminal,bool active)=>terminal&&!active;
+         internal static bool FreshInput(bool exact,bool path,bool nativeWay,bool returning,bool pending,double age,double delta)
+             => exact&&!path&&!nativeWay&&!returning&&!pending&&Finite(age)&&age>=0&&age<=.20&&Finite(delta)&&delta<=.000001&&delta>=0;
+         internal static bool PassageInFlight(bool corridor,bool exact,double forward,double span,double lateral,double height)
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteContinuationHost.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityRouteContinuationHost.cs
+@@ -1500,7 +1500,7 @@
+         {
+             if ((bot == null) || mission == null ||
+                 cursor == null || !cursor.LearningV375TransactionActive ||
+-                !IsLearningV350TerminalPhysicalRecoveryEligible(bot))
++                !FollowerCapabilityPassagePolicy.TerminalMayYield(IsLearningV350TerminalPhysicalRecoveryEligible(bot),HasActiveTraversalProbe(bot)))
+             {
+                 return false;
+             }
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityWalkThroughHandoffHost.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityWalkThroughHandoffHost.cs
+@@ -0,0 +1,77 @@
++using System;
++using System.Linq;
++using EFT;
++using UnityEngine;
++namespace BotTraversal.Core
++{
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        private static LearnedTraversalEdge? GetCapabilityWalkingRecoveryProof(LearnedTraversalCommitment original)
++        {
++            if(original?.Kind!="WalkThrough"||!IsFinite(original.RawEntry)||!IsFinite(original.RawExit))return null;
++            var axis=GetFlatDirection(original.RawExit-original.RawEntry);
++            return LearnedTraversalEdges.Where(e=>e!=null&&e.Kind=="WalkThrough"&&e.PlayerValidated&&
++                IsLearningV3NativeProvenEdge(e)&&e.NativeVaultParameters==null&&IsFinite(e.RawStart)&&IsFinite(e.RawEnd)&&
++                FollowerCapabilityPassagePolicy.SameWalkingPortal(GetPlanarDistance(original.RawEntry,e.RawStart),
++                    GetPlanarDistance(original.RawExit,e.RawEnd),Vector3.Dot(axis,GetFlatDirection(e.RawEnd-e.RawStart))))
++                .OrderByDescending(e=>e.NativeSuccessCount).ThenBy(e=>e.Id).FirstOrDefault();
++        }
++        private static bool IsCapabilityWalkingRecoveryOnly(LearnedTraversalCommitment original)
++            => GetCapabilityWalkingRecoveryProof(original)!=null;
++        private static bool CanAllocateCapabilityWalkingKind(BotOwner bot,string kind)
++        {
++            if(kind=="WalkThrough"||bot==null||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||
++                m.Lifecycle.Retired||m.LifecycleRaid!=raidGeneration||m.LifecycleBotId!=bot.ProfileId||
++                m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count)return true;
++            var step=m.Steps[m.CurrentStepIndex];
++            bool walking=step?.Kind=="WalkThrough"&&step.Lifecycle.DebtOutstanding&&
++                IsCapabilityWalkingRecoveryOnly(CapabilitySemanticCommitment(m,step));
++            return FollowerCapabilityPassagePolicy.WalkingRecoveryKind(walking,kind);
++        }
++        private static bool TrySelectCapabilityWalkingRescue(BotOwner bot,FollowerRouteMission m,CapabilityFailureTransaction state)
++        {
++            var original=state.Original;var proof=GetCapabilityWalkingRecoveryProof(original);var player=bot.GetPlayer;
++            if(proof==null||!IsCapabilityRouteRetrySafe(bot)||!player.MovementContext.IsGrounded)return false;
++            var axis=GetFlatDirection(original.RawExit-original.RawEntry);var offset=GetFlatDelta(original.RawEntry,player.Position);
++            float forward=Vector3.Dot(offset,axis),span=GetPlanarDistance(original.RawEntry,original.RawExit);
++            if(!FollowerCapabilityPassagePolicy.WalkingRescue(forward,span,(offset-axis*forward).magnitude,
++                player.Position.y-original.RawEntry.y))return false;
++            var selected=CapabilitySemanticCommitment(m,m.Steps[m.CurrentStepIndex]);
++            var entry=forward<0?original.RawEntry:player.Position;
++            selected.Kind="WalkThrough";selected.Entry=selected.RawEntry=selected.SettledEntry=entry;
++            selected.Exit=selected.RawExit=selected.SettledExit=original.RawExit;
++            selected.SkillTransferTransient=true;selected.LearningV382RouteBoundTransientNativeSkill=true;
++            selected.SkillTemplateEdgeId=proof.Id;selected.SkillTransferNearFrontier=entry;selected.SkillTransferFarFrontier=original.RawExit;
++            selected.SkillTransferSource="learningV433EquivalentPhysicalActuatorFrontier:RC146:ProvenWalkingContract";
++            state.Selected=selected;
++            WriteEvent("capabilityWalkingRescueSelected",bot,new{missionId=m.MissionId,edgeId=state.Edge,template=proof.Id,
++                entry=Vec(entry),exit=Vec(original.RawExit),completedPrefixRetained=true,nativeActuatorAllowed=false,nativeSuccessRecorded=false});
++            return true;
++        }
++        private static bool TryResolveCapabilityWalkThroughEgress(ProbeRuntime probe,LearnedTraversalCommitment c,
++            out Vector3 target,out string source)
++        {
++            target=default;source=string.Empty;
++            if(!IsProbeLifecycleCurrent(probe)||probe.LifecycleStep?.Kind!="WalkThrough"||c==null||
++                c.Kind!="WalkThrough"||probe.RequestedTraversalKind!="WalkThrough"||
++                c.RouteMissionId!=probe.LifecycleMission.MissionId||c.RouteMissionStepIndex!=probe.LifecycleMission.CurrentStepIndex||
++                !IsFinite(c.RawExit)||Vector3.Distance(c.RawExit,probe.LifecycleStep.RawExit)>.05f)return false;
++            target=c.RawExit;source="currentTypedWalkThroughRawExit";
++            if(TrySampleTraversalSettledAnchor(target,TraversalSettledCaptureNavRadius,out var sampled)&&
++                FollowerCapabilityPassagePolicy.WalkExitSample(GetPlanarDistance(target,sampled),sampled.y-target.y,
++                    WalkThroughPassageStraightLateralTolerance,WalkThroughPassageMicroVerticalDeviation))
++            {target=sampled;source="currentTypedWalkThroughLocalNavExit";}
++            return true; // No broad NavMesh projection may substitute another lane for the recorded exit.
++        }
++        private static bool TryCloseCapabilityProvenWalkThrough(ProbeRuntime probe)
++        {
++            if(!IsProbeLifecycleCurrent(probe)||probe.LifecycleStep?.Kind!="WalkThrough"||
++                probe.RequestedTraversalKind!="WalkThrough"||
++                !TryGetLearnedCommitmentForProbe(probe,out var c)||c==null||c.Kind!="WalkThrough")return false;
++            // Reuse all existing finite crossing and passage proofs; this adapter mints none.
++            return TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery(probe,allowEgressFallback:false);
++        }
++    }
++}
++
++
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -36272,7 +36272,7 @@
+             return defer;
+         }
+ 
+-        private static bool TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery(ProbeRuntime probe)
++        private static bool TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery(ProbeRuntime probe, bool allowEgressFallback = true)
+         {
+             if ((probe?.Player == null) || probe.Bot == null)
+             {
+@@ -36446,6 +36446,8 @@
+                 }
+             }
+ 
++            // Completion-only consumers must not restart Egress/Verify and renew its deadline.
++            if(!allowEgressFallback)return false;
+             BeginUnifiedTraversalEgressOrVerify(
+                 probe, "learningV414WalkThroughPhysicalPassBeforeRecovery");
+             return true;
+@@ -53596,6 +53598,7 @@
+                 return false;
+             }
+ 
++            if(TryResolveCapabilityWalkThroughEgress(probe,commitment,out target,out source))return true;
+             bool requiresDownstreamBridge = IsLearningV340DownstreamBridgeKind(commitment.Kind);
+             bool demonstratedEgressTailKind =
+                 FollowerCapabilityHelperRules.TryResolveUnifiedTraversalEgressTarget_demonstratedEgressTailKind_BDA22C82_1(commitment.Kind,commitment.Kind,commitment.Kind);
+@@ -56583,6 +56586,7 @@
+                 return;
+             }
+ 
++            if(TryCloseCapabilityProvenWalkThrough(probe))return;
+             if (probe.Stage == ProbeStage.ExitCommit)
+             {
+                 return;
+@@ -57751,6 +57755,9 @@
+                 return;
+             }
+ 
++            // A finite WT physical pass remains authoritative in ExitCommit too.
++            // NavMesh sampling cannot hold a proven route step hostage to an old linked anchor.
++            if(TryCloseCapabilityProvenWalkThrough(probe))return;
+             Vector3 position = probe.Player.Position;
+             if (!IsFinite(position) || !IsFinite(probe.ExitAuthorityAnchor))
+             {
+--- RC145/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalWalkThroughEntry.cs
++++ RC146/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalWalkThroughEntry.cs
+@@ -28,12 +28,11 @@
+             bool published=false;
+             if(safeHeight&&distance>.08f)
+             {
+-                bool physicalAimReady=!physicalEntry||TryGetCapabilitySupportedLocalAim(player,entry,out _);
+-                if(physicalAimReady)
+-                {
+-                    float dt=Mathf.Max(.001f,Time.deltaTime);
+-                    published=ApplyCollisionActivePhysicalRouteMotion(bot,player,toEntry,toEntry*Mathf.Min(distance,dt),dt,1f,false,.70f,false,true).Accepted;
+-                }
++                // A projection mismatch changes the goal, not the WT locomotion contract.
++                // Native collision handles the local step. A distant terrain forecast must
++                // not veto this same grounded entry only because RawEntry differs from NavMesh.
++                float dt=Mathf.Max(.001f,Time.deltaTime);
++                published=ApplyCollisionActivePhysicalRouteMotion(bot,player,toEntry,toEntry*Mathf.Min(distance,dt),dt,1f,false,.70f,false,true).Accepted;
+             }
+             if(!published)CommitCapabilityRouteRetryZeroInput(bot,player);
+             if(ShouldEmitDiagnostic("capabilityWalkThroughEntryResource",bot,.25f))WriteEvent("capabilityWalkThroughEntryResource",bot,new{
+--- RC145/QA\CorridorIntegrity\Replay\Program.cs
++++ RC146/QA\CorridorIntegrity\Replay\Program.cs
+@@ -605,5 +605,33 @@
+ Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,.8f,2f,.09f),"path metadata change alone is not measured body divergence");
+ Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,float.MaxValue,2f,1f),"initial native allocation cannot count as lost distance");
+ Check(!BotTraversal.Core.FollowerCapabilityRouteRetryPolicy.ReturnDiverging(true,float.NaN,2f,1f),"invalid best distance cannot order path recovery");
++// RC146 recorded WT entry, exit, inherited watchdog and walking-only recovery.
++foreach(var sample in new[]{new[]{.9574,.0384},new[]{1.5522,.0864}}){
++ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.ManualEntry(true,false,false,false,sample[0]),"roughWT recorded entry owns local movement "+sample[0]);
++ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.EntryHeight(true,sample[1]),"roughWT has existing grounded entry height authority "+sample[1]);
++}
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkExitSample(1.014,.0117,.22,.35),"Knight/Ghost rawExitNav shifted to adjacent lane cannot replace authored WT exit");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkExitSample(.06,.03,.22,.35),"local WT NavMesh sample remains usable");
++foreach(double gap in new[]{double.NaN,double.PositiveInfinity,-1,.221})Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkExitSample(gap,0,.22,.35),"invalid/displaced WT sample "+gap);
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkExitSample(.01,.351,.22,.35),"NavMesh on another floor cannot own WT exit");
++Check(Math.Abs(BotTraversal.Core.FollowerCapabilityPassagePolicy.AttemptStallAge(true,576.2479,572.8,576.2321)-.0158)<.0001,"Chris newly issued Vault cannot inherit WT stall at16ms");
++Check(Math.Abs(BotTraversal.Core.FollowerCapabilityPassagePolicy.AttemptStallAge(true,569.6455,565,566.205)-3.4405)<.0001,"genuine current WT stall retains its own age");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.AttemptStallAge(false,10,3,9)==7,"untyped Follow watchdog retains original observation age");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.AttemptStallAge(true,10,9,3)==1,"real progress after current attempt resets observation age");
++foreach(double now in new[]{double.NaN,double.PositiveInfinity})Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.AttemptStallAge(true,now,3,4)==0,"invalid clock cannot kill an actuator");
++for(int mask=0;mask<4;mask++)Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.TerminalMayYield((mask&1)!=0,(mask&2)!=0)==(mask==1),"terminal teardown versus active probe "+mask);
++foreach(var sample in new[]{new[]{.147,.212,.999},new[]{.43,.78,.997}})Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.SameWalkingPortal(sample[0],sample[1],sample[2]),"rough180/239 share native walking contract "+sample[0]);
++foreach(var kind in new[]{"WalkThrough","Vault","Climb","Jump","DropDown"}){
++ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRecoveryKind(true,kind)==(kind=="WalkThrough"),"proven walking rescue never allocates "+kind);
++ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRecoveryKind(false,kind),"other semantic route retains cross-kind strategy "+kind);
++}
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SameWalkingPortal(.651,.1,.99),"a distant WT proof cannot lock another portal");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SameWalkingPortal(.1,1.501,.99),"different exit is not same walking contract");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SameWalkingPortal(.1,.1,.93),"different direction is not same walking contract");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRescue(-.56,2.60,1.45,.086),"Chris before unfinished entry uses original WT entrance");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRescue(1,2.60,.10,.086),"inside WT rescue resumes from current body toward same exit");
++foreach(double forward in new[]{double.NaN,double.PositiveInfinity,-3.501,2.401,3})Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRescue(forward,2.60,.10,.086),"no expired/distant/backward walking rescue "+forward);
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRescue(1,2.6,1.501,.1),"unrelated lateral body cannot borrow WT proof");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingRescue(1,2.6,.1,.651),"another floor cannot borrow WT recovery");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta8 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta9 production decision and recorded-order replay checks");
+--- RC145/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC146/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,22 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('CanAllocateCapabilityWalkingKind','WalkingRecoveryKind'),
++ @('TryResolveUnifiedTraversalEgressTarget','TryResolveCapabilityWalkThroughEgress'),
++ @('TryResolveCapabilityWalkThroughEgress','WalkExitSample'),
++ @('TryCloseCapabilityProvenWalkThrough','TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery'),
++ @('BeginExitAuthorityCommit','TryCloseCapabilityProvenWalkThrough'),
++ @('UpdateExitAuthorityCommit','TryCloseCapabilityProvenWalkThrough'),
++ @('UpdateLearningV349GenericPhysicalProgressWatchdog','AttemptStallAge'),
++ @('TryYieldLearningV402PersistentRouteTransactionToTerminalRecovery','TerminalMayYield'),
++ @('TryPrepareCapabilityAutomaticProbeMission','TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch'),
++ @('TrySelectCapabilitySequenceStrategy','IsCapabilityWalkingRecoveryOnly'),
++ @('TrySelectCapabilitySequenceStrategy','TrySelectCapabilityWalkingRescue'),
++ @('TrySelectCapabilitySequenceStrategy','WalkingRecoveryKind'),
++ @('TrySelectCapabilityWalkingRescue','WalkingRescue'),
++ @('TryAdmitCapabilitySequenceProbe','CanAllocateCapabilityWalkingKind'),
++ @('IsCapabilityWalkingRecoveryOnly','GetCapabilityWalkingRecoveryProof'),
++ @('*GetCapabilityWalkingRecoveryProof*','SameWalkingPortal','*'),
+  @('TickCapabilityFullRouteRetry','ReturnDiverging'),
+  @('TryConsumeLearningV429AtomicJumpAdmission','MarkLearningV32NativeEntryAcquired'),
+  @('TryTriggerLearningV354RollingJumpActuatorLead','MarkLearningV32NativeEntryAcquired'),
+@@ -14,7 +30,6 @@
+  @('IsCapabilityJumpTriggerReady','IsLearningV450LiveEftJumpAttemptLegal'),
+  @('IsLearningV450LiveEftJumpAttemptLegal','LiveJumpAttempt'),
+  @('TryDriveCapabilityLocalWalkThroughEntry','PhysicalWalkEntry'),
+- @('TryDriveCapabilityLocalWalkThroughEntry','TryGetCapabilitySupportedLocalAim'),
+  @('TryGetCapabilitySupportedLocalAim','LocalAimFraction'),
+  @('TryGetCapabilitySupportedLocalAim','GroundAim'),
+  @('TryGetCapabilitySupportedLocalAim','TryGetFirstNonSelfRaycastHit'),
+@@ -23,7 +38,7 @@
+  @('DriveCapabilityStrategyApproach','ClearCapabilityNativeDestinationData'),
+  @('IsCapabilityCurrentPassageInFlight','PassageInFlight'),
+  @('TickCapabilityPortalWait','IsCapabilityCurrentPassageInFlight'),
+- @('<TickCapabilityPortalWait>g__Live|0','IsCapabilityCurrentPassageInFlight','<>c__DisplayClass104_0'),
++ @('<TickCapabilityPortalWait>g__Live|0','IsCapabilityCurrentPassageInFlight','*'),
+  @('TickCapabilityPortalWait','LeftAdmittedIngress'),
+  @('PrepareCapabilityGenericFollowHandoff','GenericFollowStart'),
+  @('PrepareCapabilityGenericFollowHandoff','CanAcceptFollowPath'),
+@@ -411,7 +426,7 @@
+ $d=Join-Path $PSScriptRoot 'Mutants';New-Item -ItemType Directory -Force $d|Out-Null;$results=@()
+ foreach($case in $cases){
+  $m=[dnlib.DotNet.ModuleDefMD]::Load((Resolve-Path $Dll).Path)
+- $typeName=if($case.Count -gt 2){$case[2]}else{'FollowerTraversalTestRuntime'};$r=$m.GetTypes()|Where-Object Name -eq $typeName;$f=$r.Methods|Where-Object Name -eq $case[0]|Select-Object -First 1
++ $typeName=if($case.Count -gt 2){$case[2]}else{'FollowerTraversalTestRuntime'};$r=$m.GetTypes()|Where-Object Name -like $typeName;$f=$r.Methods|Where-Object {$_.Name -like $case[0] -and $_.HasBody -and @($_.Body.Instructions|Where-Object {$_.OpCode.Name -in @('call','callvirt') -and $_.Operand.Name -eq $case[1]}).Count -gt 0}|Select-Object -First 1
+  $i=$f.Body.Instructions|Where-Object{$_.OpCode.Name -in @('call','callvirt') -and $_.Operand.Name -eq $case[1]}
+  if(!$i){throw "mutation target missing $case"};foreach($instruction in $i){$instruction.OpCode=[dnlib.DotNet.Emit.OpCodes]::Nop;$instruction.Operand=$null};$f.Body.KeepOldMaxStack=$true
+  $safeCaseName=($case[0]+'-'+$case[1]) -replace '[^a-zA-Z0-9_.-]','_';$file=Join-Path $d ($safeCaseName+'.dll');$m.Write($file);$m.Dispose()
+--- RC145/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC146/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.8+RC145') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.9+RC146') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -404,7 +404,7 @@
+ foreach($n in @('IsLearningV411JumpTakeoffModeReady','IsLearningV329JumpTakeoffMomentumReady','SprintFloor')){Check ((C $f $n).Count -eq 0) ('historical preparation cannot veto actual legal Jump '+$n)}
+ $f=M 'IsLearningV450LiveEftJumpAttemptLegal';Check ((C $f 'LiveJumpAttempt').Count -eq 1) 'all existing Jump admission consumers use same tested live policy'
+ $f=M 'TryDriveCapabilityLocalWalkThroughEntry';Check ((C $f 'PhysicalWalkEntry').Count -eq 1 -and (C $f 'PhysicalWalkEntry')[0].Offset -lt (C $f 'LocalEntryPath')[0].Offset) 'current recorded WT entry outranks displaced Nav projection before resource selection'
+-Check ((C $f 'TryGetCapabilitySupportedLocalAim').Count -eq 1 -and (C $f 'TryGetCapabilitySupportedLocalAim')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'off-lane physical WT entry needs current support and clearance before drive'
++Check ((C $f 'TryGetCapabilitySupportedLocalAim').Count -eq 0 -and (C $f 'EntryHeight').Count -eq 1 -and (C $f 'ApplyCollisionActivePhysicalRouteMotion').Count -eq 1) 'projection mismatch uses same grounded collision-active WT entry, not a second forecast-only veto'
+ $f=M 'TryGetCapabilitySupportedLocalAim';foreach($n in @('LocalAimFraction','GroundAim','TryGetFirstNonSelfRaycastHit','TryGetFirstNonSelfCapsuleCastHit')){Check ((C $f $n).Count -eq 1) ('bounded slope approach has real terrain sensor '+$n)}
+ foreach($n in @('TryTeleportAcrossTraversalExit','CommitUnifiedTraversalSuccess','BotOwnerGoToPoint')){Check ((C $f $n).Count -eq 0) ('local aim has no body relocation or alternate route writer '+$n)}
+ $f=M 'DriveCapabilityStrategyApproach';Check ((C $f 'TryGetCapabilitySupportedLocalAim').Count -eq 1 -and (C $f 'TryGetCapabilitySupportedLocalAim')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'pending retry samples finite supported ramp before motion'
+@@ -439,8 +439,36 @@
+ $f=M 'TickCapabilityFullRouteRetry';$observe=@(C $f 'TryObserveCapabilityReturnRemaining')[-1]
+ $baseline=@($f.Body.Instructions|Where-Object {$_.Offset -gt $observe.Offset -and $_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'LastProgressPosition'})
+ Check ($baseline.Count -eq 1) 'replacement return path starts a fresh body-distance baseline without refreshing progress time'
++# RC146 preserves WT identity and finite physical proof across every handoff.
++$f=M 'TryResolveUnifiedTraversalEgressTarget';Check ((C $f 'TryResolveCapabilityWalkThroughEgress').Count -eq 1 -and (C $f 'TryResolveCapabilityWalkThroughEgress')[0].Offset -lt (C $f 'IsLearningV340DownstreamBridgeKind')[0].Offset) 'current WT egress precedes broad settled/NavMesh projection'
++$f=M 'TryResolveCapabilityWalkThroughEgress';foreach($n in @('IsProbeLifecycleCurrent','TrySampleTraversalSettledAnchor','WalkExitSample')){Check ((C $f $n).Count -eq 1) ('WT exit remains exact and locally projected '+$n)}
++$f=M 'TryCloseCapabilityProvenWalkThrough';foreach($n in @('IsProbeLifecycleCurrent','TryGetLearnedCommitmentForProbe','TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery')){Check ((C $f $n).Count -eq 1) ('WT post-phase closure reuses existing physical authority '+$n)}
++foreach($n in @('CommitUnifiedTraversalSuccess','TryTeleportAcrossTraversalExit','MarkFollowerTraversalEpisodeCompleted')){Check ((C $f $n).Count -eq 0) ('adapter cannot mint success '+$n)}
++foreach($n in @('BeginExitAuthorityCommit','UpdateExitAuthorityCommit')){$f=M $n;Check ((C $f 'TryCloseCapabilityProvenWalkThrough').Count -eq 1) ($n+' consumes strict WT pass before legacy topology')}
++$f=M 'UpdateExitAuthorityCommit';Check ((C $f 'TryCloseCapabilityProvenWalkThrough')[0].Offset -lt (C $f 'UpdateExitAuthorityTopologyRejoin')[0].Offset) 'full finite WT crossing wins before stale linked-anchor topology'
++$f=M 'UpdateLearningV349GenericPhysicalProgressWatchdog';Check ((C $f 'AttemptStallAge').Count -eq 1 -and (C $f 'AttemptStallAge')[0].Offset -lt (C $f 'TryRequestCapabilityFullRouteRetry')[0].Offset) 'watchdog failure belongs to current attempt age'
++$f=M 'TryYieldLearningV402PersistentRouteTransactionToTerminalRecovery';Check ((C $f 'TerminalMayYield').Count -eq 1 -and (C $f 'HasActiveTraversalProbe').Count -eq 1) 'terminal producer cannot tear down active native probe'
++$f=M 'TryPrepareCapabilityAutomaticProbeMission';Check ((C $f 'TrySupersedeLearningV362TerminalRecoveryByFreshRouteEpoch').Count -eq 1) 'old terminal epoch resolved at pre-probe allocation boundary'
++$f=M 'GetCapabilityWalkingRecoveryProof';Check ((C $f 'Where').Count -eq 1) 'walking proof comes from learned same-portal candidates'
++$proof=@($m.GetTypes()|ForEach-Object {$_.Methods}|Where-Object {$_.Name -like '*GetCapabilityWalkingRecoveryProof*' -and (C $_ 'SameWalkingPortal').Count -eq 1})
++Check ($proof.Count -eq 1 -and (C $proof[0] 'IsLearningV3NativeProvenEdge').Count -eq 1) 'walking contract requires actual native-proven WT and geometric identity'
++$f=M 'TrySelectCapabilitySequenceStrategy';foreach($n in @('IsCapabilityWalkingRecoveryOnly','TrySelectCapabilityWalkingRescue','WalkingRecoveryKind')){Check ((C $f $n).Count -eq 1) ('alternative and rescue honour WT contract '+$n)}
++Check ((C $f 'TrySelectCapabilityWalkingRescue')[0].Offset -lt (C $f 'TryObserveCapabilityRescueObstacle')[0].Offset) 'walking rescue does not require an actuator obstacle or fall through to scanner'
++$f=M 'TrySelectCapabilityWalkingRescue';foreach($n in @('GetCapabilityWalkingRecoveryProof','WalkingRescue','CapabilitySemanticCommitment')){Check ((C $f $n).Count -eq 1) ('WT self-rescue remains local and typed '+$n)}
++foreach($n in @('TryBeginInjectedNativeVault','TriggerNativeVaultScan','TriggerNativeJump','CommitUnifiedTraversalSuccess')){Check ((C $f $n).Count -eq 0) ('WT rescue cannot dispatch actuator or write success '+$n)}
++$f=M 'TryAdmitCapabilitySequenceProbe';Check ((C $f 'CanAllocateCapabilityWalkingKind').Count -eq 1 -and (C $f 'CanAllocateCapabilityWalkingKind')[0].Offset -lt (C $f 'HasCapabilityFailureStrategy')[0].Offset) 'all allocation sources reject non-WT before native/sequence/legacy branch selection'
++$f=M 'CanAllocateCapabilityWalkingKind';Check ((C $f 'WalkingRecoveryKind').Count -eq 1 -and (C $f 'IsCapabilityWalkingRecoveryOnly').Count -eq 1) 'final gate binds current unresolved WT debt to the same proven walking contract'
++$f=M 'TryDriveCapabilityLocalWalkThroughEntry';Check ((C $f 'EntryHeight')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'restored grounded entry still gates collision-active move by height'
++$f=M 'PrepareCapabilityStationaryRescue';$wt=@($f.Body.Instructions|Where-Object {$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'WalkThrough'})
++Check ($wt.Count -eq 1 -and $wt[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'walking rescue bypasses actuator stationary braking and geometry rebasing'
++$f=M 'IsCapabilityWalkingRecoveryOnly';Check ((C $f 'GetCapabilityWalkingRecoveryProof').Count -eq 1) 'WT-only classification cannot lose its native walking proof consumer'
++$f=M 'TryCloseCapabilityProvenWalkThrough';$call=@(C $f 'TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery')[0];$ix=$f.Body.Instructions.IndexOf($call)
++Check ($f.Body.Instructions[$ix-1].OpCode.Name -eq 'ldc.i4.0') 'ExitCommit closure explicitly disables Egress/Verify restart fallback'
++$f=M 'TryConsumeLearningV414WalkThroughPhysicalPassBeforeRecovery';Check ($f.Parameters.Count -eq 2 -and $f.Parameters[1].ParamDef.HasConstant -and $f.Parameters[1].ParamDef.Constant.Value) 'legacy WT consumers retain their explicit original egress fallback'
++$call=@(C $f 'BeginUnifiedTraversalEgressOrVerify')[-1];$ix=$f.Body.Instructions.IndexOf($call);$tail=@($f.Body.Instructions|Where-Object {$_.Offset -gt ($call.Offset-24) -and $_.Offset -lt $call.Offset})
++Check (@($tail|Where-Object {$_.OpCode.Name -eq 'ldarg.1'}).Count -eq 1 -and @($tail|Where-Object {$_.OpCode.Name -eq 'ret'}).Count -ge 1) 'completion-only failure returns without re-entering a fresh egress epoch'
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta8 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta9 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}
+ 

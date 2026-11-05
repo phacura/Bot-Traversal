@@ -1,0 +1,41 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual candidate scalar and lifecycle behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "sideways_borrow_allowed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual candidate scalar and lifecycle behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "return_segment_unbounded",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual candidate integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "missed_jump_no_return",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual candidate integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "return_drive_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual candidate integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "terminal_failure_skips_root",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

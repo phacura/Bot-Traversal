@@ -1,0 +1,48 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "vault_forward_lead_removed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "sprint_floor_bypassed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "low_step_wall_allowed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL pure behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "return_walk_latch_removed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "jump_guard_inverted",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "low_step_site_disconnected",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

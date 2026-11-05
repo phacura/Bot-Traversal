@@ -1,0 +1,493 @@
+﻿{
+    "kind":  "structural IL omission detection; mutated DLLs never executed",
+    "faults":  [
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryBeginNativeTraversalRunOut"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "TryBeginLearningV408JumpPartialCrossingForwardContinuation"
+                   },
+                   {
+                       "method":  "TryBeginAssistedTraversalReplay",
+                       "detected":  true,
+                       "removedCall":  "TryDispatchCapabilitySequenceNative"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TickCapabilityFailureSequence"
+                   },
+                   {
+                       "method":  "TryValidateV2CurrentTypedStep",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityRecoveryPending"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TryEnterBoundPhysicalMotion"
+                   },
+                   {
+                       "method":  "DriveLearningV32NativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "GetFlatDirection"
+                   },
+                   {
+                       "method":  "TryRecoverPlayerValidatedTraversal",
+                       "detected":  true,
+                       "removedCall":  "ContinueExecutedJump"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "TryAdmitCapabilitySequenceProbe"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "TryGetLearningV353JumpRouteFunnelTarget",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityFailureStrategy"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityStrategyPending"
+                   },
+                   {
+                       "method":  "TryAdmitCapabilitySequenceProbe",
+                       "detected":  true,
+                       "removedCall":  "CanAllocateStrategy"
+                   },
+                   {
+                       "method":  "HasCapabilityFailureStrategy",
+                       "detected":  true,
+                       "removedCall":  "OwnsStrategy"
+                   },
+                   {
+                       "method":  "EscalateTraversalFailureMonotonic",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryTeleportPlayerValidatedTraversalAtExit",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryBeginPlayerRouteContinuationBridge",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "UpdateUnifiedTraversalVerify",
+                       "detected":  true,
+                       "removedCall":  "TryRetainCapabilityObservedJumpBeforePassageBridge"
+                   },
+                   {
+                       "method":  "TryRetainCapabilityObservedJumpBeforePassageBridge",
+                       "detected":  true,
+                       "removedCall":  "CanClosePassageBoundary"
+                   },
+                   {
+                       "method":  "TryRetainCapabilityObservedJumpBeforePassageBridge",
+                       "detected":  true,
+                       "removedCall":  "TryFinalizeTraversalChainIntermediate"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "PastObstacleEntry"
+                   },
+                   {
+                       "method":  "UpdateSharedNativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "EntryBudget"
+                   },
+                   {
+                       "method":  "TryRequestCapabilityFullRouteRetry",
+                       "detected":  true,
+                       "removedCall":  "IsCancellation"
+                   },
+                   {
+                       "method":  "TryRetainCapabilityObservedJumpBeforePassageBridge",
+                       "detected":  true,
+                       "removedCall":  "TryLatchLearningV372WalkThroughPhysicalPassageProof"
+                   },
+                   {
+                       "method":  "TryStartProbeForBot",
+                       "detected":  true,
+                       "removedCall":  "TryPrepareCapabilityAutomaticProbeMission"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "RegisterCapabilityLocalMission"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "RegisterCapabilityLocalMission"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "HeadStalled"
+                   },
+                   {
+                       "method":  "TryReadV2LiveRouteAdmission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TryValidateV2CurrentTypedStep",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TryMaintainCapabilityNativeInput",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "IsCapabilityRetryWalking",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "DriveLearningV32NativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "EntryRequiresPointAim"
+                   },
+                   {
+                       "method":  "RestoreTraversalMovementAuthorityAfterTeleportAttempt",
+                       "detected":  true,
+                       "removedCall":  "IsActiveProbe"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityPortalWaiting"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "Mark"
+                   },
+                   {
+                       "method":  "RegisterCapabilityLocalMission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityAutomaticProbeMission",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "IsTraversalEpisodeAlreadyConsumed",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "IsLearningV366RuntimeEpisodeBehindExecutionFrontier",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "PruneCapabilityResolvedCommitment"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "InWindow"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "CanCommitScopedPhysicalMotion"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "BlockOriginalFollowDestination"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "OwnsCapabilityLocalMotion"
+                   },
+                   {
+                       "method":  "TryRejectOriginalPITFollowWrite",
+                       "detected":  true,
+                       "removedCall":  "IsOriginalPITFollowCall"
+                   },
+                   {
+                       "method":  "PatchBotMoverDestination",
+                       "detected":  true,
+                       "removedCall":  "TryRejectOriginalPITFollowWrite"
+                   },
+                   {
+                       "method":  "PatchPointDataDestination",
+                       "detected":  true,
+                       "removedCall":  "TryRejectOriginalPITFollowWrite"
+                   },
+                   {
+                       "method":  "FinishProbeWithoutReanchor",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughEntryConvergence",
+                       "detected":  true,
+                       "removedCall":  "TryRequestCapabilityFullRouteRetry"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "CommitCapabilityResolvedNavigation"
+                   },
+                   {
+                       "method":  "CommitCapabilityResolvedNavigation",
+                       "detected":  true,
+                       "removedCall":  "ResolvedNavigationFloor"
+                   },
+                   {
+                       "method":  "CommitCapabilityResolvedNavigation",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "TryGetLearnedTraversalFollowTarget",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "UpdateLearningV375PersistentExecutablePhysicalRouteTransaction",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "Owns"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "Approach"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityDebtResolved"
+                   },
+                   {
+                       "method":  "TickCapabilityPortalWait",
+                       "detected":  true,
+                       "removedCall":  "CancelDelivery"
+                   },
+                   {
+                       "method":  "UpdateSharedNativeEntryAcquisition",
+                       "detected":  true,
+                       "removedCall":  "AngularProgress"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "CalculateStrictPath"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "LocalApproachPath"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryValidateCapabilityPortalApproachPath"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "IsFollowerRouteMissionStepPhysicallyPassed"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "HasWriter"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "MayReleaseResolvedAuthority"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "HasCapabilityUnresolvedRouteWork"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "TryReleaseCapabilityResolvedAuthority",
+                       "detected":  true,
+                       "removedCall":  "TransitionTraversalToFollowIfIdleExact"
+                   },
+                   {
+                       "method":  "TryAdvanceRouteMission",
+                       "detected":  true,
+                       "removedCall":  "MarkWriter"
+                   },
+                   {
+                       "method":  "UnregisterActiveProbe",
+                       "detected":  true,
+                       "removedCall":  "ReconcileCapabilityRetiredProbeConsumer"
+                   },
+                   {
+                       "method":  "ReconcileCapabilityRetiredProbeConsumer",
+                       "detected":  true,
+                       "removedCall":  "MayRetireConsumer"
+                   },
+                   {
+                       "method":  "ReconcileCapabilityRetiredProbeConsumer",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "CapabilitySelfRescueFrontier",
+                       "detected":  true,
+                       "removedCall":  "RebaseRescueAtBody"
+                   },
+                   {
+                       "method":  "TrySelectCapabilitySequenceStrategy",
+                       "detected":  true,
+                       "removedCall":  "CapabilitySelfRescueFrontier"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "MayYieldApproach"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "EndLearningV375PersistentRouteTransaction"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "TryPrepareCapabilityPortalApproachDelivery",
+                       "detected":  true,
+                       "removedCall":  "TransitionTraversalToFollowIfIdleExact"
+                   },
+                   {
+                       "method":  "ClearCapabilityNativeDestinationData",
+                       "detected":  true,
+                       "removedCall":  "CanCommitScopedPhysicalMotion"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "TryGetCapabilityPortalApproachTarget"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryReleaseCapabilityResolvedAuthority"
+                   },
+                   {
+                       "method":  "Tick",
+                       "detected":  true,
+                       "removedCall":  "TryPrepareCapabilityPortalApproachDelivery"
+                   },
+                   {
+                       "method":  "TryValidateCapabilityPortalApproachPath",
+                       "detected":  true,
+                       "removedCall":  "ForwardApproach"
+                   },
+                   {
+                       "method":  "ClearCapabilityStrategyTargets",
+                       "detected":  true,
+                       "removedCall":  "ClearCapabilityNativeDestinationData"
+                   },
+                   {
+                       "method":  "ClearCapabilityStrategyTargets",
+                       "detected":  true,
+                       "removedCall":  "TryRetireNativeMoverPathPreserveLocomotion"
+                   },
+                   {
+                       "method":  "TickCapabilityFailureSequence",
+                       "detected":  true,
+                       "removedCall":  "StrategyEntryReady"
+                   },
+                   {
+                       "method":  "TryGetCapabilityPortalApproachTarget",
+                       "detected":  true,
+                       "removedCall":  "Distance"
+                   }
+               ],
+    "gameExecuted":  false,
+    "checks":  97,
+    "passed":  true
+}

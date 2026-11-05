@@ -1,0 +1,670 @@
+{
+  "sourceLog": "20261025-143236-444-bigmap-g2.jsonl",
+  "sha256": "3CB02952422DB96784C5E80EE375D3CD06B7FB6353E024B4DA2F781A031741C4",
+  "loadedBuild": "RC86-R3D",
+  "events": [
+    {
+      "sequence": 5240,
+      "raidTime": 536.3473,
+      "eventType": "learningV470JumpBoundaryHeadingWitness",
+      "payload": {
+        "cf60ForecastEligible": false,
+        "cf60BoundaryFrameDistance": 0.09149376,
+        "cf60BoundaryNativeLead": 0.42,
+        "playerState": "Sprint",
+        "isGrounded": true,
+        "canJump": true,
+        "missionId": 232,
+        "predecessorStepIndex": 0,
+        "successorStepIndex": 1,
+        "successorEdgeId": 100,
+        "readinessSource": "learningV353JumpRollingFunnel",
+        "forwardProjection": -0.5408752,
+        "planarSpeed": 5.48962545,
+        "velocityHeadingDot": 0.9679197,
+        "stagingHeadingDot": 0.939481556,
+        "stagingTargetValid": true,
+        "nativeSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "bodyRelocated": false,
+        "action": "observeExactPreJumpHeadingContinuityWithoutChangingV388Admission"
+      }
+    },
+    {
+      "sequence": 5251,
+      "raidTime": 536.398743,
+      "eventType": "learningV452JumpPreparationFrontierHeld",
+      "payload": {
+        "edgeId": 100,
+        "position": {
+          "x": -275.55658,
+          "y": -0.867310762,
+          "z": -49.0017853
+        },
+        "forwardEntryProjection": -0.271339923,
+        "targetProjection": -0.271339923,
+        "alignmentProjectionCeiling": -0.97905314,
+        "triggerLeadDistance": 0.42,
+        "preparationLeadDistance": 0.97905314,
+        "lateralEntryOffset": 0.1809093,
+        "facingDot": 0.9295448,
+        "movementHeadingDot": 0.9613889,
+        "planarSpeed": 5.439083,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "bodyRelocated": false,
+        "action": "prepareOutsideTryJumpHorizonNoRewindThenReleaseLongitudinalAuthorityOnlyAfterLiveAlignment"
+      }
+    },
+    {
+      "sequence": 5261,
+      "raidTime": 536.433167,
+      "eventType": "learningV460PreBoundarySuccessorAdmissionLease",
+      "payload": {
+        "missionId": 232,
+        "predecessorStepIndex": 0,
+        "predecessorEdgeId": 217,
+        "predecessorKind": "PhysicalCorridor",
+        "successorStepIndex": 1,
+        "successorEdgeId": 100,
+        "successorKind": "Jump",
+        "forwardProjection": -0.0959911644,
+        "preparationLead": 0.9646426,
+        "originalPreparationLead": 0.9646426,
+        "learningV472LateralOffset": 0.127945289,
+        "learningV472EarlyCenterlineAdmission": false,
+        "planarSpeed": 5.359026,
+        "body": {
+          "x": -275.675232,
+          "y": -0.867310762,
+          "z": -49.1413345
+        },
+        "stagingTarget": {
+          "x": -275.821,
+          "y": -0.867310762,
+          "z": -49.3876038
+        },
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "bodyRelocated": false,
+        "action": "rollingJumpPhysicalAdmissionBeginsInsideExistingPreparationEnvelopeBeforeSemanticPredecessorRetires"
+      }
+    },
+    {
+      "sequence": 5269,
+      "raidTime": 536.4854,
+      "eventType": "learningV457SuccessorAdmissionProducerYieldedAtPhysicalFrontier",
+      "payload": {
+        "missionId": 232,
+        "predecessorStepIndex": 0,
+        "predecessorEdgeId": 217,
+        "successorStepIndex": 1,
+        "successorEdgeId": 100,
+        "successorKind": "Jump",
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "bodyRelocated": false,
+        "action": "typedFrontierLostEndBoundaryLeaseLetExistingCurrentBodyEquivalentHowOwnSuccessor"
+      }
+    },
+    {
+      "sequence": 5283,
+      "raidTime": 536.503235,
+      "eventType": "learningV386PersistentJumpRollingHandoff",
+      "payload": {
+        "missionId": 232,
+        "stepIndex": 1,
+        "edgeId": 100,
+        "kind": "Jump",
+        "jumpForwardProjection": 0.257406652,
+        "jumpLateralOffset": 0.00138928567,
+        "jumpFacingDot": 0.7621048,
+        "jumpMovementHeadingDot": 0.925306559,
+        "jumpPlanarSpeed": 4.72112846,
+        "actuatorReady": false,
+        "producerTargetAvailable": true,
+        "target": {
+          "x": -276.300018,
+          "y": -0.8499985,
+          "z": -49.78869
+        },
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "sameV353RollingProofKeepsPersistentRouteMovingThroughJumpRunup"
+      }
+    },
+    {
+      "sequence": 5580,
+      "raidTime": 539.289734,
+      "eventType": "learningV450MissedJumpCurrentBodySelfRescueUnavailable",
+      "payload": {
+        "missionId": 232,
+        "stepIndex": 1,
+        "edgeId": 100,
+        "episodeId": 28,
+        "source": "learningV437MissedJumpTakeoffFrontierNoSamePortalCandidate",
+        "transferSource": "",
+        "primaryJumpStrategyRetired": true,
+        "originalSemanticDebtPreserved": true,
+        "body": {
+          "x": -276.6459,
+          "y": -0.2623948,
+          "z": -50.27887
+        },
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "bodyRelocated": false,
+        "action": "retireImpossibleJumpHowKeepSemanticDebtForExistingNonRewindFallback"
+      }
+    },
+    {
+      "sequence": 5707,
+      "raidTime": 540.486,
+      "eventType": "learningV429JumpPhysicalReservationLatched",
+      "payload": {
+        "edgeId": 100,
+        "state": "Sprint",
+        "position": {
+          "x": -276.293365,
+          "y": -0.669307,
+          "z": -49.72966
+        },
+        "forwardEntryProjection": 0.7423479,
+        "lateralEntryOffset": 0.0314395726,
+        "facingDot": 0.987519264,
+        "movementHeadingDot": 0.9551466,
+        "planarSpeed": 0.2543825,
+        "movementGeneration": 16,
+        "nativeActuatorStateReady": true,
+        "forwardProducerReady": true,
+        "centerlineReady": true,
+        "reservationAdmissionBeforeCenterline": false,
+        "reservationLeadSeconds": 0.180003345,
+        "reservationLeadDistance": 0.95,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "physicalFrontierMayReserveButCannotRetireProducerUntilNativeJumpStateCanConsume"
+      }
+    },
+    {
+      "sequence": 5718,
+      "raidTime": 540.486,
+      "eventType": "learnedTraversalExecutorSelected",
+      "payload": {
+        "edgeId": 100,
+        "kind": "Jump",
+        "scannerSkipped": true,
+        "executor": "CompatibilityExecutor",
+        "assistedPreferredByExperience": true,
+        "nativeDirectionCompatibleForSelection": true,
+        "learningV372DemonstratedDownhillJumpAuthority": false,
+        "executorPreferenceReason": "learningV446PrimaryPhysicalStrategyRetired:learningV450MissedJumpTakeoffFrontierNoRewind:learningV3NativeOnly:assistHasZeroLearningAuthority",
+        "effectiveScore": 0.5,
+        "explorationOverride": false,
+        "concurrentActiveProbes": 1
+      }
+    },
+    {
+      "sequence": 5766,
+      "raidTime": 540.9658,
+      "eventType": "traversalRollingApproachForcedCrossing",
+      "payload": {
+        "edgeId": 100,
+        "kind": "Jump",
+        "distance": 1.41430581,
+        "alignmentAngle": 54.77428,
+        "lateralEntryOffset": 0.171437964,
+        "forwardEntryProjection": 1.40387666,
+        "climbSprintReleased": true,
+        "state": "Transition",
+        "elapsed": 0.479797363,
+        "noProgress": 0.4623413,
+        "bestLateral": 0.0314395726,
+        "bestAlignment": 4.341178
+      }
+    },
+    {
+      "sequence": 5769,
+      "raidTime": 540.9658,
+      "eventType": "assistedTraversalReplayStarted",
+      "payload": {
+        "edgeId": 100,
+        "kind": "Jump",
+        "source": "rollingApproachTimeout",
+        "targetSource": "rawExit",
+        "start": {
+          "x": -276.959259,
+          "y": -0.152914226,
+          "z": -49.917717
+        },
+        "exit": {
+          "x": -277.1725,
+          "y": 0.145392567,
+          "z": -50.25924
+        },
+        "directDistance": 0.5010886,
+        "planarDistance": 0.402620018,
+        "duration": 0.5,
+        "arcHeight": 0.6498307,
+        "liftY": 0.6953926,
+        "collisionLease": false,
+        "demonstratedApproachSpeed": 5.386081,
+        "demonstratedApproachMode": "Sprint",
+        "demonstratedTraversalDuration": 0.330444336,
+        "jumpBridgeActive": false,
+        "jumpBridgeCrestY": 0.0,
+        "jumpBridgeLandingSampleIndex": -1
+      }
+    },
+    {
+      "sequence": 5956,
+      "raidTime": 543.008,
+      "eventType": "nativeDropDownStarted",
+      "payload": {
+        "edgeId": 77,
+        "source": "rollingHandoff",
+        "rawEntry": {
+          "x": -279.793945,
+          "y": 0.400615245,
+          "z": -52.48052
+        },
+        "rawExit": {
+          "x": -281.561951,
+          "y": -0.8586979,
+          "z": -53.6768951
+        },
+        "start": {
+          "x": -279.6694,
+          "y": 0.360719562,
+          "z": -52.4598465
+        },
+        "authoredDrop": 1.25931311,
+        "previousSprinting": true,
+        "previousRunning": true
+      }
+    },
+    {
+      "sequence": 5964,
+      "raidTime": 543.268433,
+      "eventType": "learningV414NativeInputLeasePublished",
+      "payload": {
+        "edgeId": 77,
+        "kind": "DropDown",
+        "source": "dropDownUpdate",
+        "stage": "NativeDropDown",
+        "state": "Run",
+        "position": {
+          "x": -279.681549,
+          "y": 0.358476073,
+          "z": -52.47357
+        },
+        "target": {
+          "x": -281.561951,
+          "y": -0.8586979,
+          "z": -53.6768951
+        },
+        "direction": {
+          "x": -0.8422986,
+          "y": 0.0,
+          "z": -0.53901124
+        },
+        "targetMoveSpeed": 1.0,
+        "nativeSprintSpeed": -1.0,
+        "moverSprinting": true,
+        "moverHasPath": false,
+        "bodyRelocated": false,
+        "locomotionModeRewritten": false,
+        "action": "refreshNativePlayerMoveDirectionWithoutSyntheticNavMeshTopology"
+      }
+    },
+    {
+      "sequence": 5985,
+      "raidTime": 543.956665,
+      "eventType": "followerSnapshot",
+      "payload": {
+        "breadcrumbSequence": 1661,
+        "botPosition": {
+          "x": -279.681549,
+          "y": 0.358476073,
+          "z": -52.47357
+        },
+        "leaderPosition": {
+          "x": -295.176758,
+          "y": -0.8127735,
+          "z": -61.5815468
+        },
+        "leaderDistance": 18.0119,
+        "displacement": 0.191046357,
+        "distanceProgress": 0.183481216,
+        "noProgressSeconds": 0.0,
+        "playerState": "Run",
+        "grounded": true,
+        "inputDirection": {
+          "x": 1.96792541e-07,
+          "y": 1.0
+        },
+        "activeCommand": "None",
+        "combat": false,
+        "strict": {
+          "rawStart": {
+            "x": -279.681549,
+            "y": 0.358476073,
+            "z": -52.47357
+          },
+          "rawTarget": {
+            "x": -295.176758,
+            "y": -0.8127735,
+            "z": -61.5815468
+          },
+          "startSampled": true,
+          "targetSampled": true,
+          "sampledStart": {
+            "x": -279.429382,
+            "y": 0.470622182,
+            "z": -52.38249
+          },
+          "sampledTarget": {
+            "x": -295.176758,
+            "y": -0.7289811,
+            "z": -61.5815468
+          },
+          "startSampleOffset": 0.2906218,
+          "targetSampleOffset": 0.08379245,
+          "targetVerticalSampleOffset": 0.08379245,
+          "calculateReturned": true,
+          "status": "PathPartial",
+          "cornerCount": 3,
+          "corners": [
+            {
+              "x": -279.429382,
+              "y": 0.470618367,
+              "z": -52.38249
+            },
+            {
+              "x": -279.4,
+              "y": 0.5,
+              "z": -52.5
+            },
+            {
+              "x": -279.800018,
+              "y": 0.449996948,
+              "z": -53.6000023
+            }
+          ],
+          "pathLength": 1.29619133,
+          "directDistance": 18.0119,
+          "detourRatio": 0.07196306,
+          "terminalToSampledTarget": 17.3648834,
+          "terminalToRawTarget": 17.3707733,
+          "strictComplete": false
+        },
+        "mover": {
+          "hasPath": false,
+          "hasPathAndNoComplete": false,
+          "blocked": false,
+          "isMoving": true,
+          "pause": false,
+          "sprinting": true,
+          "realDestination": {
+            "x": -272.370972,
+            "y": -0.8499985,
+            "z": -46.4167252
+          },
+          "currentCorner": null,
+          "target": null,
+          "remainingDistance": 0.0,
+          "waypoints": []
+        },
+        "door": {
+          "interacting": false,
+          "haveDoorToOpen": false,
+          "linkId": null,
+          "state": null
+        }
+      }
+    },
+    {
+      "sequence": 5993,
+      "raidTime": 544.2341,
+      "eventType": "nativeDropDownFailed",
+      "payload": {
+        "edgeId": 77,
+        "reason": "nativeDropDownNoProgress",
+        "elapsed": 1.22607422,
+        "position": {
+          "x": -279.681549,
+          "y": 0.358476073,
+          "z": -52.47357
+        },
+        "grounded": true,
+        "sawAirborne": false,
+        "sawDescent": false,
+        "sawFarSide": false,
+        "forwardProjection": -0.09697989,
+        "requiredProjection": 1.23815536,
+        "descent": 0.002243489
+      }
+    },
+    {
+      "sequence": 6054,
+      "raidTime": 545.9737,
+      "eventType": "routeLifecycleStepResolved",
+      "payload": {
+        "source": "RetireLearningV355ValidatedRecoveryExecutionDebt:2",
+        "missionId": 232,
+        "stepIndex": 3,
+        "episodeId": 30,
+        "edgeId": 77,
+        "chainId": 23,
+        "resolution": "TeleportBypass",
+        "geometry": 4,
+        "writer": 16,
+        "nativeSuccessRecordedByThisTransition": false,
+        "currentStepIndex": 4
+      }
+    },
+    {
+      "sequence": 6470,
+      "raidTime": 574.1522,
+      "eventType": "vaultProbeRequested",
+      "payload": {
+        "requestedDirection": {
+          "x": -0.855987132,
+          "y": 0.0,
+          "z": -0.5169971
+        },
+        "startPosition": {
+          "x": -275.143982,
+          "y": -0.9201251,
+          "z": -48.8091125
+        },
+        "requestSource": "traversalAdjacentLocalEntryBridge",
+        "learnedEdgeId": 100,
+        "requestedKind": "Jump",
+        "walkThroughEntry": null,
+        "walkThroughRawEntry": null,
+        "walkThroughTarget": null,
+        "diagnosticsAutoStarted": false,
+        "previousSprinting": true,
+        "previousRunning": true
+      }
+    },
+    {
+      "sequence": 6471,
+      "raidTime": 574.1522,
+      "eventType": "learnedTraversalExecutorSelected",
+      "payload": {
+        "edgeId": 100,
+        "kind": "Jump",
+        "scannerSkipped": true,
+        "executor": "NativeJump",
+        "assistedPreferredByExperience": false,
+        "nativeDirectionCompatibleForSelection": true,
+        "learningV372DemonstratedDownhillJumpAuthority": false,
+        "executorPreferenceReason": "learningV2FreshNativeExplore:learningV3NativeOnly:assistHasZeroLearningAuthority",
+        "effectiveScore": 0.5,
+        "explorationOverride": false,
+        "concurrentActiveProbes": 1
+      }
+    },
+    {
+      "sequence": 6473,
+      "raidTime": 574.1522,
+      "eventType": "traversalRollingApproachStarted",
+      "payload": {
+        "edgeId": 100,
+        "kind": "Jump",
+        "target": {
+          "x": -275.686554,
+          "y": -0.7756503,
+          "z": -49.3008842
+        },
+        "distance": 0.732273042,
+        "previousSprinting": true,
+        "previousRunning": true
+      }
+    },
+    {
+      "sequence": 6487,
+      "raidTime": 574.190247,
+      "eventType": "learningV429AtomicJumpAdmissionDeferred",
+      "payload": {
+        "missionId": 282,
+        "stepIndex": 0,
+        "edgeId": 100,
+        "state": "Transition",
+        "actuatorStateReady": false,
+        "modeReady": true,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "samePhysicalEpoch": true,
+        "exactReservationGeneration": true,
+        "learningV441CanonicalGenerationRollover": false,
+        "reservationAge": 0.0189819336,
+        "reservationBodyDrift": 0.0475577861,
+        "currentGeneration": 20,
+        "reservedGeneration": 20,
+        "forwardEntryProjection": -0.61766243,
+        "reservedForwardEntryProjection": -0.665062666,
+        "maxReservedForwardProjection": 0.284937322,
+        "lateralEntryOffset": 0.132271439,
+        "facingDot": 0.996027231,
+        "alignmentAngle": 5.108909,
+        "movementHeadingDot": 0.9966817,
+        "frontierPlanarSpeed": 2.161819,
+        "measuredPlanarSpeed": 2.161819,
+        "requiredSpeed": 5.386081,
+        "learningV474NativeSprintFloor": 0.0,
+        "learningV474NativeSprintSamples": 0,
+        "learningV474NativeSprintFloorReady": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "doNotConsumeReservationUnlessExactNativeConsumerCanTriggerInsideSamePhysicalEpoch"
+      }
+    },
+    {
+      "sequence": 6491,
+      "raidTime": 574.2304,
+      "eventType": "learningV429AtomicJumpAdmissionDeferred",
+      "payload": {
+        "missionId": 282,
+        "stepIndex": 0,
+        "edgeId": 100,
+        "state": "Transition",
+        "actuatorStateReady": false,
+        "modeReady": true,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "samePhysicalEpoch": true,
+        "exactReservationGeneration": true,
+        "learningV441CanonicalGenerationRollover": false,
+        "reservationAge": 0.0591430664,
+        "reservationBodyDrift": 0.1163029,
+        "currentGeneration": 20,
+        "reservedGeneration": 20,
+        "forwardEntryProjection": -0.5490649,
+        "reservedForwardEntryProjection": -0.665062666,
+        "maxReservedForwardProjection": 0.284937322,
+        "lateralEntryOffset": 0.127720788,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.998188,
+        "frontierPlanarSpeed": 1.83368468,
+        "measuredPlanarSpeed": 1.83368468,
+        "requiredSpeed": 5.386081,
+        "learningV474NativeSprintFloor": 0.0,
+        "learningV474NativeSprintSamples": 0,
+        "learningV474NativeSprintFloorReady": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "doNotConsumeReservationUnlessExactNativeConsumerCanTriggerInsideSamePhysicalEpoch"
+      }
+    },
+    {
+      "sequence": 6618,
+      "raidTime": 575.2359,
+      "eventType": "traversalRollingApproachForcedCrossing",
+      "payload": {
+        "edgeId": 100,
+        "kind": "Jump",
+        "distance": 1.23475456,
+        "alignmentAngle": 0.0,
+        "lateralEntryOffset": 0.394051641,
+        "forwardEntryProjection": 1.1701889,
+        "climbSprintReleased": true,
+        "state": "Sprint",
+        "elapsed": 1.0836792,
+        "noProgress": 0.460021973,
+        "bestLateral": 0.136139482,
+        "bestAlignment": 0.0
+      }
+    },
+    {
+      "sequence": 6680,
+      "raidTime": 576.3494,
+      "eventType": "learningV323NativeJumpAuthorityRetiredForAssist",
+      "payload": {
+        "edgeId": 100,
+        "source": "learningV32EntryAcquisitionFailed",
+        "position": {
+          "x": -279.7329,
+          "y": 0.280892372,
+          "z": -50.93428
+        },
+        "action": "assistOwnsAttemptLateNativeStateCannotReenter"
+      }
+    }
+  ],
+  "jump": {
+    "forward": -0.271339923,
+    "lateral": 0.1809093,
+    "facing": 0.9295448,
+    "heading": 0.9613889,
+    "speed": 5.439083,
+    "preparationLead": 0.97905314,
+    "maxLateral": 0.36,
+    "minFacing": 0.955,
+    "minHeading": 0.94,
+    "maxOvershoot": 0.16
+  },
+  "drop": {
+    "activeProbe": true,
+    "stage": "NativeDropDown",
+    "grounded": true,
+    "hasNativePath": false,
+    "forward": -0.09697989,
+    "required": 1.23815536,
+    "nativeNoProgressTimeout": 1.2,
+    "canWalkRecorded": null,
+    "canWalkTrueIsTestAssumption": true
+  },
+  "newReleaseGameTested": false,
+  "earlyBridgeJump": {
+    "mission": 282,
+    "episode": 31,
+    "reservedProjection": -0.665062666,
+    "physicalLead": 0.42,
+    "firstDeferredState": "Transition",
+    "nativeJumpStarted": false
+  }
+}

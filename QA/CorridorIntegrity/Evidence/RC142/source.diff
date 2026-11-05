@@ -1,0 +1,297 @@
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.4+RC141")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.5+RC142")]
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 4 loaded: V2-RC141-Beta4");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 5 loaded: V2-RC142-Beta5");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -539,7 +539,12 @@
+         private static bool TryAdmitCapabilitySequenceProbe(BotOwner bot,string source,int edge,string kind,out string reason)
+         {
+             reason=string.Empty;
+-            if(!HasCapabilityFailureStrategy(bot))return true;
++            if(!HasCapabilityFailureStrategy(bot))
++            {
++                if(!FollowerCapabilityPassagePolicy.UnownedSequenceProbe(string.Equals(source,"capabilitySequenceOwnedDispatch",StringComparison.Ordinal)))
++                {reason="sequenceOwnedDispatchRequiresLiveSelectedTransaction";return false;}
++                return true;
++            }
+             var m=FollowerRouteMissions[bot.ProfileId];var state=m.FailureSequence;var selected=state.Selected;
+             if(!FollowerCapabilityFailureSequence.CanAllocateStrategy(true,state.Pending,
+                 string.Equals(source,"capabilitySequenceOwnedDispatch",StringComparison.Ordinal),
+@@ -721,6 +726,13 @@
+             var axis=GetFlatDirection(original.RawExit-original.RawEntry);
+             LearnedTraversalEdge best=null;Vector3 entry=default,exit=default;double rank=double.NegativeInfinity;
+             var originalEdge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==state.Edge);
++            if(generalized&&!TryObserveCapabilityRescueObstacle(bot,axis,out string obstacleFailure))
++            {
++                WriteEvent("capabilitySequenceObstacleUnavailable",bot,new{missionId=mission.MissionId,
++                    stepIndex=mission.CurrentStepIndex,semanticEdge=state.Edge,reason=obstacleFailure,
++                    attemptedStage="SelfRescue",nativeSuccessRecorded=false});
++                return false; // Explicit physical refusal advances the existing ladder, never a history veto.
++            }
+             float requestedSpan=Mathf.Clamp(GetPlanarDistance(body,original.RawExit),.4f,2.5f);
+             float requestedHeight=originalEdge?.NativeVaultParameters?.VaultingHeight??Mathf.Max(.4f,original.RawExit.y-body.y);
+             foreach(var e in LearnedTraversalEdges)
+@@ -796,6 +808,21 @@
+             return true;
+         }
+ 
++        private static bool TryObserveCapabilityRescueObstacle(BotOwner bot,Vector3 axis,out string reason)
++        {
++            reason="selfRescueNoCurrentBlockingObstacle";
++            var player=bot?.GetPlayer;
++            if(player?.MovementContext==null||axis.sqrMagnitude<.5f)return false;
++            bool hit=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.40f,
++                player.Position+Vector3.up*1.35f,.18f,axis,.85f,LayerMaskClass.HighPolyWithTerrainMask,out var obstacle);
++            bool accepted=FollowerCapabilityPassagePolicy.RescueObstacle(player.MovementContext.IsGrounded,hit,
++                hit?obstacle.normal.y:0,hit?-Vector3.Dot(obstacle.normal,axis):0,hit?obstacle.distance:0);
++            if(accepted)reason=string.Empty;
++            if(ShouldEmitDiagnostic("capabilityRescueObstacleEvidence",bot,.25f))WriteEvent("capabilityRescueObstacleEvidence",bot,new{
++                accepted,grounded=player.MovementContext.IsGrounded,hit,normal=Vec(obstacle.normal),distance=obstacle.distance,
++                body=Vec(player.Position),direction=Vec(axis),nativeSuccessRecorded=false});
++            return accepted;
++        }
+         private static bool TryRetainCapabilityObservedJumpBeforePassageBridge(ProbeRuntime probe)
+         {
+             if(!IsProbeLifecycleCurrent(probe)||probe.LifecycleMission==null||probe.LifecycleStep==null||
+@@ -1148,12 +1175,21 @@
+                 missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,handled,started,body=Vec(bot.Position),entry=Vec(step.RawEntry),nativeSuccessRecorded=false});
+             return started||m.FailureSequence!=null;
+         }
++        private static bool CanApproachCapabilityUnfinishedWalkEntry(BotOwner bot,FollowerRouteMissionStep step)
++        {
++            if(step?.Kind!="WalkThrough")return true;
++            var axis=GetFlatDirection(step.RawExit-step.RawEntry);
++            var offset=GetFlatDelta(step.RawEntry,bot.Position);float forward=Vector3.Dot(offset,axis);
++            var closest=Vector3.Lerp(step.RawEntry,step.RawExit,Mathf.Clamp01(forward/Mathf.Max(.01f,GetPlanarDistance(step.RawEntry,step.RawExit))));
++            return FollowerCapabilityPassagePolicy.EntryStillAhead(forward,(offset-axis*forward).magnitude,bot.Position.y-closest.y);
++        }
+         private static bool TryDriveCapabilityGroundEntryLead(BotOwner bot,FollowerRouteMission m,Vector3 entry,bool retry)
+         {
+             if(bot?.GetPlayer?.MovementContext==null||m==null||m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||
+                 BotTraversalPlugin.PassThroughEnabled?.Value!=false||!CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex)||
+                 !IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot)||IsCapabilityReturnInProgress(bot))return false;
+             var step=m.Steps[m.CurrentStepIndex];
++            if(!CanApproachCapabilityUnfinishedWalkEntry(bot,step))return false;
+             if(step==null||step.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId)||
+                 !IsFinite(entry)||Vector3.Distance(entry,step.RawEntry)>.35f)return false;
+             bool selectedRetry=m.FailureSequence?.Stage==S.RetryAlternate&&m.FailureSequence.Pending&&m.FailureSequence.Selected?.Kind=="WalkThrough";
+@@ -1219,6 +1255,7 @@
+                 BotTraversalPlugin.PassThroughEnabled?.Value!=false||!IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot)||
+                 m.FailureSequence!=null||IsCapabilityReturnInProgress(bot))return false;
+             var step=m.Steps[m.CurrentStepIndex];
++            if(!CanApproachCapabilityUnfinishedWalkEntry(bot,step))return false;
+             if(step==null||step.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId)||
+                 !LearnedTraversalCommitments.TryGetValue(bot.ProfileId,out var commitment)||commitment==null||commitment.Kind!="WalkThrough"||
+                 commitment.RouteMissionId!=m.MissionId||commitment.RouteMissionStepIndex!=m.CurrentStepIndex||
+@@ -1239,6 +1276,7 @@
+                 BotTraversalPlugin.PassThroughEnabled?.Value!=false||!CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex)||
+                 !IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot)||m.FailureSequence!=null||IsCapabilityReturnInProgress(bot))return false;
+             var step=m.Steps[m.CurrentStepIndex];
++            if(!CanApproachCapabilityUnfinishedWalkEntry(bot,step))return false;
+             if(step==null||step.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId))return false;
+             var player=bot.GetPlayer;float distance=GetPlanarDistance(player.Position,step.RawEntry);
+             if(distance<=.65f||distance>5||!player.MovementContext.IsGrounded)return false;
+@@ -1365,7 +1403,10 @@
+                     if(LearnedTraversalCommitments.TryGetValue(bot.ProfileId,out var queued)&&queued!=null)queued.ExpiresAt=Math.Max(queued.ExpiresAt,Time.time+6);
+                     WriteEvent("capabilityPortalQueueApproachReleased",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,claim=ticket.ClaimSerial,nativeSuccessRecorded=false});
+                 }
+-                float progressDistance=step.Kind=="PhysicalCorridor"?GetPlanarDistance(bot.Position,step.RawExit):distance;
++                bool corridor=step.Kind=="PhysicalCorridor"||step.Kind=="WalkThrough";
++                // Once inside a passage, distance from the entry increases during SUCCESSFUL motion.
++                // Use remaining distance to its exit, with the same existing claim/progress clock.
++                float progressDistance=(float)FollowerCapabilityPassagePolicy.QueueDistance(corridor,distance,GetPlanarDistance(bot.Position,step.RawExit));
+                 if(acquired)
+                 {
+                     m.PortalQueueStep=m.CurrentStepIndex;m.PortalQueueClaimSerial=ticket.ClaimSerial;m.PortalQueueAdmittedAt=m.PortalQueueHeadProgressAt=Time.time;
+@@ -1373,7 +1414,7 @@
+                     WriteEvent("capabilityPortalQueueAdmitted",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,edgeId=step.EdgeId,distance,nearest,sameBotContinuation=ticket?.LastAdmissionContinued??false});
+                 }
+                 if(progressDistance<m.PortalQueueHeadBestDistance-.04f){m.PortalQueueHeadBestDistance=progressDistance;m.PortalQueueHeadProgressAt=Time.time;}
+-                if(FollowerPortalAdmission.HeadStalled(Time.time,m.PortalQueueAdmittedAt,m.PortalQueueHeadProgressAt,active,m.FailureSequence!=null))
++                if(FollowerPortalAdmission.HeadStalled(Time.time,m.PortalQueueAdmittedAt,m.PortalQueueHeadProgressAt,active,m.FailureSequence!=null,corridor))
+                 {TryRequestCapabilityFullRouteRetry(bot,m,"portalQueueHeadNoMeasuredProgress");return true;}
+                 return false;
+             }
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityGeneralRecoveryHost.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityGeneralRecoveryHost.cs
+@@ -1130,6 +1130,13 @@
+                               mission != null && Time.time <= mission.ExpiresAt;
+             }
+ 
++            if(haveProbe&&IsProbeLifecycleCurrent(probe)&&probe.LifecycleMission!=null)
++            {
++                // A typed WT stall is a Native failure too. It must not escape into the old
++                // untyped physical-producer switch and skip Alternate/SelfRescue/Return.
++                TryRequestCapabilityFullRouteRetry(probe,"genericWatchdogCurrentTypedAttemptStalled",true);
++                return;
++            }
+             bool learningV380YieldPassageProbeDirectly =
+                 (haveProbe) &&
+                 (FollowerCapabilityHelperRules.UpdateLearningV349GenericPhysicalProgressWatchdog_learningV380YieldPassageProbeDirectly_958583D5_7(probe.TraversalKind,probe.RequestedTraversalKind,probe.TraversalKind,probe.RequestedTraversalKind));
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityNativeObstacleHost.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityNativeObstacleHost.cs
+@@ -82,6 +82,8 @@
+             {
+                 return TryBeginLearningV32NativeEntryAcquisition(probe, commitment, source, out failure);
+             }
++            if(IsLearningV319TransientSkillTransfer(commitment)&&!TryObserveCapabilityRescueObstacle(probe.Bot,
++                GetFlatDirection(commitment.RawExit-commitment.RawEntry),out failure))return false;
+             probe.NativeExecutorConsumed = true;
+ 
+             Vector3 rawEntry = IsFinite(commitment.RawEntry) ? commitment.RawEntry : commitment.Entry;
+@@ -1664,6 +1666,7 @@
+                 return;
+             }
+             probe.LearningV32NativeEntryAcquired = true;
++            CaptureCapabilityNativeJumpEntry(probe);
+             probe.LearningV32NativeEntryReadySince = -1f;
+             WriteEvent("learningV32NativeEntryAcquired", probe.Bot, new
+             {
+@@ -1683,6 +1686,14 @@
+             });
+         }
+ 
++        private static void CaptureCapabilityNativeJumpEntry(ProbeRuntime probe)
++        {
++            // The shared entry consumer is the same physical witness used by Jump.
++            // Do not require an unrelated rolling/reservation branch to mint it again.
++            if(FollowerCapabilityPassagePolicy.CaptureJumpEntry(IsProbeLifecycleCurrent(probe),
++                probe.NativeStrategySelected,string.Equals(probe.RequestedTraversalKind,"Jump",StringComparison.OrdinalIgnoreCase)))
++                probe.JumpEntryCaptured=true;
++        }
+         private static void BeginLearningV32NativeExecutionEpoch(ProbeRuntime probe, string kind, string source)
+         {
+             if (probe == null)
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -93,6 +93,15 @@
+             => issued>0&&issued==live&&clean&&complete&&path&&Finite(gap)&&gap>=0&&gap<=.35;
+         internal static bool NativeFollowIdle(bool clean,bool grounded,bool path,bool moving,bool actor,bool input)
+             => clean&&grounded&&!path&&!moving&&!actor&&input;
++        internal static bool EntryStillAhead(double forward,double lateral,double height)
++            => !Finite(forward)||!Finite(lateral)||!Finite(height)||forward<=.10||lateral>.65||Math.Abs(height)>.65;
++        internal static double QueueDistance(bool corridor,double entry,double exit)
++            => corridor?exit:entry;
++        internal static bool UnownedSequenceProbe(bool reserved)=>!reserved;
++        internal static bool CaptureJumpEntry(bool current,bool native,bool jump)=>current&&native&&jump;
++        internal static bool RescueObstacle(bool grounded,bool hit,double normalY,double opposition,double distance)
++            => grounded&&hit&&Finite(normalY)&&normalY>=-1.001&&normalY<.65&&
++                Finite(opposition)&&opposition>=.35&&opposition<=1.001&&Finite(distance)&&distance>=0&&distance<=.85;
+         internal static bool WalkSeam(bool current,bool safe,bool grounded,bool active,bool nativeActor,double stalled,double speed)
+             => current&&safe&&!nativeActor&&(active||grounded&&Finite(stalled)&&stalled>=.28&&Finite(speed)&&speed>=0&&speed<=.20);
+         internal static bool WalkSeamSupport(double height)=>Finite(height)&&height>=-.15&&height<=.20;
+--- RC141/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerPortalAdmission.cs
++++ RC142/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerPortalAdmission.cs
+@@ -40,9 +40,9 @@
+         }
+         internal Ticket Inspect(double x,double y,double z,double dx,double dz)
+             => portals.Find(t=>t.SamePortal(x,y,z,dx,dz));
+-        internal static bool HeadStalled(double now,double admitted,double progress,bool active,bool failure)
++        internal static bool HeadStalled(double now,double admitted,double progress,bool active,bool failure,bool measuredCorridor=false)
+             => Finite(now)&&Finite(admitted)&&Finite(progress)&&!active&&!failure&&admitted>=0&&
+-                (now-progress>4||now-admitted>8);
++                (now-progress>4||!measuredCorridor&&now-admitted>8);
+         internal void Complete(string bot,int mission,int step,double now)
+         {foreach(var p in portals)if(p.Bot==bot&&p.Mission==mission&&p.Step==step){p.CompletedBot=bot;p.CompletedMission=mission;p.CompletedStep=step;p.Bot=null;p.ReadyAt=now+1;}}
+         internal void Cancel(string bot,double now)
+--- RC141/QA\CorridorIntegrity\Replay\Program.cs
++++ RC142/QA\CorridorIntegrity\Replay\Program.cs
+@@ -510,5 +510,28 @@
+ for(int mask=0;mask<8;mask++)Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageLease((mask&1)!=0,(mask&2)!=0,(mask&4)!=0,953,952,12,10)==(mask==3),"live generic passage excludes ordinary Follow "+mask);
+ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageLease(true,true,false,953,953,12,10),"completed floor cannot keep a stale passage producer alive");
+ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageLease(true,true,false,953,952,9,10),"expired generic lease returns ordinary Follow");
++// RC142 frozen raid: shared entry at191.5679 was acquired, but no Jump entry capture existed.
++for(int mask=0;mask<8;mask++)Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.CaptureJumpEntry((mask&1)!=0,(mask&2)!=0,(mask&4)!=0)==(mask==7),"shared physical entry issues Jump witness only to exact current native Jump "+mask);
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.UnownedSequenceProbe(true),"retired sequence cannot allocate reserved dispatch without a live selected transaction");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.UnownedSequenceProbe(false),"ordinary native allocation retains existing admission");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(true,true,0,1,.35),"current wall admits ranked generalized rescue");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(true,false,0,1,.35),"empty board cannot trigger synthetic Vault");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(false,true,0,1,.35),"airborne on slope cannot trigger injected rescue");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(true,true,.9,.4,.35),"walkable slope is not a clearance obstacle");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(true,true,0,.2,.35),"side wall is not on current rescue axis");
++foreach(double v in new[]{double.NaN,double.PositiveInfinity,-.01,.86})Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(true,true,0,1,v),"invalid or out-of-reach obstacle "+v);
++foreach(double v in new[]{double.NaN,double.PositiveInfinity,-1.01,.65})Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RescueObstacle(true,true,v,1,.35),"invalid obstacle normal "+v);
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.EntryStillAhead(.806,.069,-.04),"Ada264.407 already on board must not turn to entry");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.EntryStillAhead(1.199,.1,-.04),"Ada264.554 cannot reverse after leaving entrance radius");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.EntryStillAhead(-2,.1,0),"near-side queue head can approach entry");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.EntryStillAhead(1,.8,0),"side-of-board body cannot invent an entered corridor");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.EntryStillAhead(1,.1,-1),"body underneath board cannot invent an entered corridor");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.QueueDistance(true,3,1)<BotTraversal.Core.FollowerCapabilityPassagePolicy.QueueDistance(true,1,3),"moving away from entry toward exit is positive queue progress");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.QueueDistance(false,1,3)==1,"obstacle ingress still measures distance to entry");
++Check(!BotTraversal.Core.FollowerPortalAdmission.HeadStalled(20,1,19,false,false,true),"long moving WT does not exhaust eight-second entry clock");
++Check(BotTraversal.Core.FollowerPortalAdmission.HeadStalled(20,1,15,false,false,true),"real WT no-progress still advances failure ladder after four seconds");
++Check(BotTraversal.Core.FollowerPortalAdmission.HeadStalled(20,1,19,false,false),"noncorridor retains original bounded entry window");
++Check(!BotTraversal.Core.FollowerPortalAdmission.HeadStalled(20,1,15,true,false,true),"existing native probe owns its own deadline");
++Check(!BotTraversal.Core.FollowerPortalAdmission.HeadStalled(20,1,15,false,true,true),"selected failure transaction owns its own deadline");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta4 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta5 production decision and recorded-order replay checks");
+--- RC141/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC142/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,19 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('MarkLearningV32NativeEntryAcquired','CaptureCapabilityNativeJumpEntry'),
++ @('CaptureCapabilityNativeJumpEntry','CaptureJumpEntry'),
++ @('TryAdmitCapabilitySequenceProbe','UnownedSequenceProbe'),
++ @('TrySelectCapabilitySequenceStrategy','TryObserveCapabilityRescueObstacle'),
++ @('TryBeginInjectedNativeVault','TryObserveCapabilityRescueObstacle'),
++ @('TryObserveCapabilityRescueObstacle','TryGetFirstNonSelfCapsuleCastHit'),
++ @('TryObserveCapabilityRescueObstacle','RescueObstacle'),
++ @('TryDriveCapabilityGroundEntryLead','CanApproachCapabilityUnfinishedWalkEntry'),
++ @('TryAdmitCapabilityHeadWalkThroughEntry','CanApproachCapabilityUnfinishedWalkEntry'),
++ @('TryDriveCapabilityRecordedEntryConnector','CanApproachCapabilityUnfinishedWalkEntry'),
++ @('CanApproachCapabilityUnfinishedWalkEntry','EntryStillAhead'),
++ @('TickCapabilityPortalWait','QueueDistance'),
++ @('UpdateLearningV349GenericPhysicalProgressWatchdog','TryRequestCapabilityFullRouteRetry'),
+  @('TryAdvanceRouteMission','CanConsumeCapabilityCursorFloor'),
+  @('CanConsumeCapabilityCursorFloor','CursorFloor'),
+  @('IsFollowerRouteMissionStepPhysicallyPassed','CorridorExit'),
+--- RC141/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC142/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.4+RC141') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.5+RC142') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -368,7 +368,18 @@
+ $f=M 'TryDriveCapabilityGenericLowStep';Check ((C $f 'IsCapabilityLowStepProducerCurrent').Count -eq 1) 'shared step contract admits only current typed or already-authorized generic producer'
+ $f=M 'HasCapabilityLivePassageProducer';Check ((C $f 'PassageLease').Count -eq 1) 'generic passage uses existing finite lease and floor, no new owner registry'
+ foreach($n in @('OwnsCapabilityLocalMotion','TryGetCapabilityLiveResolvedFollow','TryGetCapabilityCleanCompletedFollow')){Check ((C (M $n) 'HasCapabilityLivePassageProducer').Count -eq 1) ('live passage exclusion reaches '+$n)}
++$f=M 'MarkLearningV32NativeEntryAcquired';Check ((C $f 'CaptureCapabilityNativeJumpEntry').Count -eq 1) 'shared accepted physical entry supplies the Jump executor witness'
++$f=M 'CaptureCapabilityNativeJumpEntry';Check ((C $f 'CaptureJumpEntry').Count -eq 1 -and (C $f 'IsProbeLifecycleCurrent').Count -eq 1) 'Jump witness belongs to exact current native Jump'
++Check (@($f.Body.Instructions|Where-Object {$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'JumpEntryCaptured'}).Count -eq 1) 'accepted shared entry writes actual Jump capture field'
++$f=M 'TryAdmitCapabilitySequenceProbe';Check ((C $f 'UnownedSequenceProbe').Count -eq 1 -and (C $f 'CanAllocateStrategy').Count -eq 1) 'reserved dispatch requires live transaction and exact selected HOW'
++$f=M 'TrySelectCapabilitySequenceStrategy';Check ((C $f 'TryObserveCapabilityRescueObstacle').Count -eq 1 -and (C $f 'TryObserveCapabilityRescueObstacle')[0].Offset -lt (C $f 'Rank')[0].Offset) 'live obstacle evidence precedes historical generalized ranking'
++$f=M 'TryBeginInjectedNativeVault';Check ((C $f 'TryObserveCapabilityRescueObstacle').Count -eq 1 -and (C $f 'TryObserveCapabilityRescueObstacle')[0].Offset -lt (C $f 'MovementContextPlayerAnimatorSetDoVault')[0].Offset) 'transient obstacle injection revalidates current physical obstacle at final actuator'
++$f=M 'TryObserveCapabilityRescueObstacle';foreach($n in @('TryGetFirstNonSelfCapsuleCastHit','RescueObstacle')){Check ((C $f $n).Count -eq 1) ('live physical rescue evidence '+$n)}
++foreach($n in @('TryDriveCapabilityGroundEntryLead','TryAdmitCapabilityHeadWalkThroughEntry','TryDriveCapabilityRecordedEntryConnector')){Check ((C (M $n) 'CanApproachCapabilityUnfinishedWalkEntry').Count -eq 1) ('queue entry cannot rewind current corridor '+$n)}
++$f=M 'CanApproachCapabilityUnfinishedWalkEntry';Check ((C $f 'EntryStillAhead').Count -eq 1) 'queue ingress distinguishes body already on finite current corridor'
++$f=M 'TickCapabilityPortalWait';Check ((C $f 'QueueDistance').Count -eq 1) 'queue progress uses exit distance during WalkThrough'
++$f=M 'UpdateLearningV349GenericPhysicalProgressWatchdog';Check ((C $f 'TryRequestCapabilityFullRouteRetry').Count -eq 1 -and (C $f 'TryRequestCapabilityFullRouteRetry')[0].Offset -lt (C $f 'TryArmLearningV336TraversalSelfRescue')[0].Offset) 'current typed stall enters sole failure ladder before legacy recovery'
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta4 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta5 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}

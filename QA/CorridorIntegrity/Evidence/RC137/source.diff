@@ -1,0 +1,218 @@
+--- RC136/src\BotTraversalPlugin.cs
++++ RC137/src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal loaded: V2-RC136-FrontierHandoff");
++            Logger.LogInfo("Bot Traversal loaded: V2-RC137-LiveFollow");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC136/src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC137/src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -160,8 +160,12 @@
+         internal static bool TryGetCapabilityCompletedFollowTarget(BotOwner bot,out Vector3 target)
+         {
+             target=default;
+-            if(!TryGetCapabilityCleanCompletedFollow(bot,out var watch,out var leader)||
+-                !FollowerCapabilityPassagePolicy.CompletedFollowRange(GetPlanarDistance(bot.Position,leader.Position),watch.InitialLeaderDistance))return false;
++            bool recent=TryGetCapabilityCleanCompletedFollow(bot,out var watch,out var leader);
++            if(!recent&&!TryGetCapabilityLiveResolvedFollow(bot,out leader,out _))return false;
++            float leaderDistance=GetPlanarDistance(bot.Position,leader.Position);
++            // Nearby native formation / stationary-player separation keeps its own target.
++            if(!FollowerCapabilityPassagePolicy.ReacquireFollowTarget(leaderDistance)||
++                !FollowerCapabilityPassagePolicy.CompletedFollowRange(leaderDistance,recent?watch.InitialLeaderDistance:24))return false;
+             var path=CalculateStrictPath(bot.Position,leader.Position);
+             if(!FollowerCapabilityPortalPolicy.LocalApproachPath(path?.StrictComplete==true,path?.PathLength??float.PositiveInfinity,Vector3.Distance(bot.Position,leader.Position)))return false;
+             target=leader.Position;return true;
+@@ -854,6 +858,7 @@
+         {
+             if(!IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot)||IsCapabilityPortalWaiting(bot)||state.Selected==null||
+                 BotTraversalPlugin.PassThroughEnabled?.Value==false&&!CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex))return;
++            if(state.Stage==S.RetryAlternate&&state.Selected.Kind=="WalkThrough"&&TryDriveCapabilityGroundEntryLead(bot,m,state.Selected.RawEntry,true))return;
+             var player=bot.GetPlayer;var target=state.Selected.RawEntry;var path=CalculateStrictPath(player.Position,target);
+             bool valid=FollowerCapabilityPortalPolicy.LocalApproachPath(path?.StrictComplete==true,path?.PathLength??float.PositiveInfinity,Vector3.Distance(player.Position,target));
+             var step=m.Steps[m.CurrentStepIndex];
+@@ -984,6 +989,112 @@
+             => bot!=null&&FollowerCapabilityIngressMotionPolicy.ProtectLocalBody(IsCapabilityRouteRetrySafe(bot),
+                 IsCapabilityPortalWaiting(bot),IsCapabilityReturnInProgress(bot),HasCapabilityFailureStrategy(bot));
+ 
++        private static bool TryGetCapabilityLiveResolvedFollow(BotOwner bot,out Player leader,out long generation)
++        {
++            leader=FollowerEnvironment.LocalPlayer;generation=0;
++            if(bot?.GetPlayer?.MovementContext==null||!IsLivePlayer(leader))return false;
++            generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
++            return FollowerCapabilityPassagePolicy.LiveFollow(IsCapabilityRouteRetrySafe(bot),bot.GetPlayer.MovementContext.IsGrounded,
++                HasActiveTraversalProbe(bot),HasCapabilityUnresolvedRouteWork(bot),HasCapabilityNewRecordedWork(bot),HasCurrentCapabilityNativeWay(bot,out _),
++                CapabilityGenericResumeFloor(bot),generation,owner==FollowerMovementWriterAuthority.WriterDomain.Follow);
++        }
++        private static void GuardCapabilityResolvedFollowResource(BotOwner bot)
++        {
++            if(!TryGetCapabilityLiveResolvedFollow(bot,out _,out var generation)||bot.Mover?.HasPathAndNoComplete!=true)return;
++            var controller=bot.Mover.ActualPathController;var path=controller?.CurPath;
++            if(path==null||path.CurIndex<0||path.CurIndex>=path.Length||path.Length-path.CurIndex>128)return;
++            var points=controller.GetWayPoints(128);if(points==null||points.Length==0)return;
++            var corner=controller.CurrentCornerPoint;
++            if(!IsFinite(corner)||points.Any(p=>!IsFinite(p)))return;
++            float bodyGap=Vector3.Distance(bot.GetPlayer.Position,corner),remainingGap=points.Min(p=>Vector3.Distance(p,corner));
++            int nextIndex=Array.FindIndex(points,p=>GetPlanarDistance(bot.GetPlayer.Position,p)>.35f);
++            if(nextIndex<0)return;
++            var next=points[nextIndex];
++            var actual=bot.GetPlayer.Velocity;actual.y=0;
++            if(actual.magnitude<.3f)
++            {
++                var forward=GetFlatDirection(bot.GetPlayer.MovementContext.PlayerRealForward);var right=Vector3.Cross(Vector3.up,forward);
++                var input=bot.GetPlayer.InputDirection;actual=forward*input.y+right*input.x;
++            }
++            if(actual.sqrMagnitude<.01f)return;
++            float heading=Vector3.Dot(GetFlatDirection(actual),GetFlatDirection(next-bot.GetPlayer.Position));
++            if(!FollowerCapabilityPassagePolicy.StaleNativeCorner(true,bodyGap,remainingGap,heading)||
++                !FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,FollowerMovementWriterAuthority.WriterDomain.Follow,generation,out var scope,out _))return;
++            using(scope)
++            {
++                if(!ReferenceEquals(controller.CurPath,path)||!TryGetCapabilityLiveResolvedFollow(bot,out _,out var live)||live!=generation)return;
++                if(!TryRetireNativeMoverPathPreserveLocomotion(bot,"resolvedFollowStaleCorner",out _))return;
++                ClearCapabilityNativeDestinationData(bot);CommitCapabilityRouteRetryZeroInput(bot,bot.GetPlayer);
++                TryScrubLearningV364NativeMoverEpochAnchor(bot,bot.GetPlayer.Position,"resolvedFollowStaleCorner",out _);
++                global::BotTraversal.LegacyOriginalPITFollowBridge.CancelDelivery(bot.ProfileId);
++                WriteEvent("capabilityResolvedFollowStaleCornerRetired",bot,new{generation,body=Vec(bot.GetPlayer.Position),corner=Vec(corner),bodyGap,remainingGap,heading,
++                    source="currentCornerAbsentFromActualRemainingPath",nativeSuccessRecorded=false,bodyRelocated=false});
++            }
++        }
++        private static bool TryDispatchCapabilityCurrentJump(BotOwner bot,FollowerRouteMission m)
++        {
++            if(bot==null||m==null||m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||
++                !IsCapabilityRouteRetrySafe(bot)||IsCapabilityPortalWaiting(bot)||IsCapabilityReturnInProgress(bot))return false;
++            var step=m.Steps[m.CurrentStepIndex];
++            if(step==null||step.Kind!="Jump"||!FollowerCapabilityPassagePolicy.JumpDispatch(true,step.Lifecycle.DebtOutstanding&&!IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId),
++                HasActiveTraversalProbe(bot),m.FailureSequence!=null,Vector3.Distance(bot.Position,step.RawEntry)))return false;
++            if(BotTraversalPlugin.PassThroughEnabled?.Value==false&&!CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex))
++            {
++                if(TickCapabilityPortalWait(bot)||!CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex))return false;
++            }
++            // Run the same bound selector at the native Bot update / predecessor release, not the slower bridge scan.
++            var leader=FollowerEnvironment.LocalPlayer;if(!IsLivePlayer(leader))return false;
++            bool handled=false;
++            if(EnsureFollowerRouteMissionCommitment(bot,m)&&LearnedTraversalCommitments.TryGetValue(bot.ProfileId,out var commitment)&&commitment!=null&&
++                commitment.Kind=="Jump"&&commitment.RouteMissionId==m.MissionId&&commitment.RouteMissionStepIndex==m.CurrentStepIndex&&
++                IsLearningV376RouteStepEquivalentToEdgeId(step,commitment.EdgeId))
++                handled=TryStartEmpiricalLocalEntryBridge(bot,commitment,Vector3.Distance(bot.Position,step.RawEntry),out _,freshTraversalFrontierReady:true);
++            if(!HasActiveTraversalProbe(bot)&&m.FailureSequence==null)
++                TryGetPlayerRouteMissionFollowTarget(bot,leader.Position,out _,out handled,out _,out _);
++            bool started=HasActiveTraversalProbe(bot);
++            if(ShouldEmitDiagnostic("capabilityJumpFrontierImmediateDispatch",bot,.25f))WriteEvent("capabilityJumpFrontierImmediateDispatch",bot,new{
++                missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,handled,started,body=Vec(bot.Position),entry=Vec(step.RawEntry),nativeSuccessRecorded=false});
++            return started||m.FailureSequence!=null;
++        }
++        private static bool TryDriveCapabilityGroundEntryLead(BotOwner bot,FollowerRouteMission m,Vector3 entry,bool retry)
++        {
++            if(bot?.GetPlayer?.MovementContext==null||m==null||m.Lifecycle.Retired||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||
++                BotTraversalPlugin.PassThroughEnabled?.Value!=false||!CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex)||
++                !IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot)||IsCapabilityReturnInProgress(bot))return false;
++            var step=m.Steps[m.CurrentStepIndex];
++            if(step==null||step.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId)||
++                !IsFinite(entry)||Vector3.Distance(entry,step.RawEntry)>.35f)return false;
++            bool selectedRetry=m.FailureSequence?.Stage==S.RetryAlternate&&m.FailureSequence.Pending&&m.FailureSequence.Selected?.Kind=="WalkThrough";
++            if(retry?!selectedRetry:m.FailureSequence!=null)return false;
++            var player=bot.GetPlayer;float distance=GetPlanarDistance(player.Position,entry),height=entry.y-player.Position.y;
++            if(distance<=.65f||distance>5||Mathf.Abs(height)>.65f||!player.MovementContext.IsGrounded)return false;
++            var target=Vector3.Lerp(player.Position,entry,Mathf.Min(1,1f/distance));var direction=GetFlatDirection(target-player.Position);
++            if(TryGetCapabilityCompletedPrefixBoundary(bot,m,step,out var boundary,out var axis)&&
++                !FollowerCapabilityIngressMotionPolicy.PrefixPath(true,Vector3.Dot(GetFlatDelta(boundary,player.Position),axis),
++                    Vector3.Dot(GetFlatDelta(boundary,entry),axis),Vector3.Dot(GetFlatDelta(boundary,target),axis),Vector3.Dot(GetFlatDelta(boundary,target),axis)))return false;
++            bool support=true;
++            foreach(var point in new[]{Vector3.Lerp(player.Position,target,.5f),target})
++                if(!TryGetFirstNonSelfRaycastHit(player,point+Vector3.up*.6f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var hit)||
++                    Mathf.Abs(hit.point.y-point.y)>.35f||hit.normal.y<.65f){support=false;break;}
++            var delta=target-player.Position;
++            bool blocked=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.4f,player.Position+Vector3.up*1.35f,
++                .18f,delta.normalized,delta.magnitude,LayerMaskClass.HighPolyWithTerrainMask,out _);
++            if(!FollowerCapabilityPassagePolicy.GroundLead(true,true,true,false,distance,height,support,blocked))return false;
++            long generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
++            if(generation<=0||(owner!=FollowerMovementWriterAuthority.WriterDomain.Follow&&owner!=FollowerMovementWriterAuthority.WriterDomain.Traversal)||
++                !FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,owner,generation,out var scope,out _))return false;
++            using(scope)
++            {
++                if(!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var live)||!ReferenceEquals(live,m)||!ReferenceEquals(m.Steps[m.CurrentStepIndex],step)||
++                    !CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex)||!IsCapabilityRouteRetrySafe(bot)||HasActiveTraversalProbe(bot))return false;
++                var receipt=ApplyCollisionActivePhysicalRouteMotion(bot,player,direction,direction*Mathf.Max(.001f,Time.deltaTime),
++                    Mathf.Max(.001f,Time.deltaTime),1f,false,retry?.55f:.85f,false,true,deliveryPurpose:CapabilityMotionPurpose.FollowIngress);
++                if(ShouldEmitDiagnostic("capabilityGroundEntryLead",bot,.25f))WriteEvent("capabilityGroundEntryLead",bot,new{
++                    missionId=m.MissionId,stepIndex=m.CurrentStepIndex,step.EdgeId,retry,distance,height,body=Vec(player.Position),target=Vec(target),
++                    receipt=receipt.Kind.ToString(),nativeSuccessRecorded=false,physicalEntryGranted=false});
++                return receipt.Accepted;
++            }
++        }
+         private static bool TryValidateCapabilitySemanticWalkingRamp(ProbeRuntime probe,Vector3 target)
+         {
+             if(probe?.Player==null||!IsProbeLifecycleCurrent(probe)||!IsFinite(target)||!IsCapabilityRouteRetrySafe(probe.Bot))return false;
+@@ -1037,6 +1148,7 @@
+             if(step==null||step.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding||IsCapabilityDebtResolved(bot,step.EpisodeId,step.EdgeId))return false;
+             var player=bot.GetPlayer;float distance=GetPlanarDistance(player.Position,step.RawEntry);
+             if(distance<=.65f||distance>5||!player.MovementContext.IsGrounded)return false;
++            if(TryDriveCapabilityGroundEntryLead(bot,m,step.RawEntry,false))return true;
+             var strict=CalculateStrictPath(player.Position,step.Entry);
+             if(FollowerCapabilityPortalPolicy.LocalApproachPath(strict?.StrictComplete==true,strict?.PathLength??float.PositiveInfinity,Vector3.Distance(player.Position,step.Entry)))return false;
+             // Only the current raid's ordered, grounded upstream demonstration may fill a NavMesh hole.
+--- RC136/src\Core\FollowerCapabilityPassagePolicy.cs
++++ RC137/src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -66,6 +66,15 @@
+             => Finite(distance)&&distance>=0&&Finite(initial)&&initial>=0&&distance<=Math.Max(7,Math.Min(25,initial+1));
+         internal static bool DestinationMatches(bool hasPath,double gap)
+             => hasPath&&Finite(gap)&&gap>=0&&gap<=.35;
++        internal static bool GroundLead(bool owns,bool safe,bool grounded,bool active,double distance,double height,bool support,bool blocked)
++            => owns&&safe&&grounded&&!active&&Finite(distance)&&distance>.65&&distance<=5&&Finite(height)&&Math.Abs(height)<=.65&&support&&!blocked;
++        internal static bool ReacquireFollowTarget(double distance)=>Finite(distance)&&distance>2.5;
++        internal static bool LiveFollow(bool safe,bool grounded,bool active,bool pending,bool newWork,bool nativeWay,int floor,long generation,bool follow)
++            => safe&&grounded&&!active&&!pending&&!newWork&&!nativeWay&&floor>0&&generation>0&&follow;
++        internal static bool StaleNativeCorner(bool path,double bodyGap,double remainingGap,double heading)
++            => path&&Finite(bodyGap)&&bodyGap>.50&&Finite(remainingGap)&&remainingGap>.35&&Finite(heading)&&heading<-.25&&heading>=-1.001;
++        internal static bool JumpDispatch(bool current,bool debt,bool active,bool failure,double distance)
++            => current&&debt&&!active&&!failure&&Finite(distance)&&distance>=0&&distance<=2.50;
+         internal static bool Lane(bool witnessed,double lateral,double vertical)
+             => witnessed&&Finite(lateral)&&Finite(vertical)&&lateral>=0&&lateral<=.22&&Math.Abs(vertical)<=.35;
+         internal static bool Center(bool walking,bool nativeActor,double lateral)
+--- RC136/src\Core\FollowerCapabilityRouteRetryHost.cs
++++ RC137/src\Core\FollowerCapabilityRouteRetryHost.cs
+@@ -204,7 +204,9 @@
+             TryRetireCapabilityCoveredDropOverlap(bot,mission);
+             if(mission.CurrentStepIndex>=mission.Steps.Count)return false;
+             // One update entry arbitrates queue, staged failure and the existing return driver.
+-            if(TickCapabilityPortalWait(bot)||TickCapabilityUnstartedNative(bot,mission)||TickCapabilityFailureSequence(bot))return true;
++            if(TickCapabilityPortalWait(bot))return true;
++            if(TryDispatchCapabilityCurrentJump(bot,mission))return true;
++            if(TickCapabilityUnstartedNative(bot,mission)||TickCapabilityFailureSequence(bot))return true;
+             if(TryAdmitCapabilityHeadWalkThroughEntry(bot,mission))return true;
+             if(TryDriveCapabilityRecordedEntryConnector(bot,mission))return true;
+             if(!IsCapabilityRouteRetryReturning(mission))
+--- RC136/src\Core\FollowerTraversalLifecycleCommit.cs
++++ RC137/src\Core\FollowerTraversalLifecycleCommit.cs
+@@ -103,6 +103,9 @@
+                     CapabilityResolvedDebt.MarkWriter(raidGeneration,bot.ProfileId,writer);
+                     CommitCapabilityResolvedNavigation(bot,mission,step);
+                 }
++                // This clock belongs to the resolved step. Only an applied identity advance
++                // may clear it; polling the successor must retain its own attempt backoff.
++                CommitCapabilityMoveRetry(mission,FollowerCapabilityRetryPolicy.Change.Reset,0f);
+                 PruneCapabilityResolvedCommitment(bot);
+                 if(mission.CurrentStepIndex>=mission.Steps.Count)global::BotTraversal.LegacyOriginalPITFollowBridge.CancelDelivery(bot.ProfileId);
+                 CapabilityPortalQueue.Complete(bot.ProfileId,mission.MissionId,index,UnityEngine.Time.time);
+--- RC136/src\Core\FollowerTraversalTestRuntime.cs
++++ RC137/src\Core\FollowerTraversalTestRuntime.cs
+@@ -28364,6 +28364,7 @@
+             bool recoveryHandled=TickCapabilityFullRouteRetry(bot);
+             if(!recoveryHandled)TryReleaseCapabilityResolvedAuthority(bot);
+             if(!recoveryHandled)QuiesceCapabilityCompletedFollowInput(bot);
++            if(!recoveryHandled)GuardCapabilityResolvedFollowResource(bot);
+             if(!recoveryHandled)
+             {
+             // CompileFix39: authority rollback must be corrected before RollingApproach consumes
+@@ -69437,6 +69438,7 @@
+                     action = "postCompletionMissionIdentityOutranksAllPreCompletionCachedRawSuccessors"
+                 });
+ 
++                if(TryDispatchCapabilityCurrentJump(probe.Bot,liveMission))return true;
+                 UpdateLearningV375PersistentExecutablePhysicalRouteTransaction(probe.Bot);
+                 UpdateLearningV365ContinuousEmpiricalRouteProducer(probe.Bot);
+                 return true;

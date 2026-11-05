@@ -1,0 +1,30 @@
+
+ Chris_Redfield
+630.959 walkThroughCompositeCorridorBuilt {'routeMissionId': 209, 'currentStepIndex': 0, 'appendedEdges': [234], 'appendedEpisodes': [65]}
+632.254 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 3.725149, 'requiredProjection': 2.21106839, 'localCorridorDistance': 1.26778424}
+632.332 learningV346PhysicalNavigationEpochSnapshot {'boundary': 'exitCommitAcquired', 'edgeId': 180, 'kind': 'WalkThrough', 'stage': 'ExitCommit', 'routeMissionId': 209, 'routeStepIndex': 0, 'routeStepEdgeId': 180, 'routeStepKind': 'WalkThrough'}
+632.766 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.91164541, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.46412468}
+633.271 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.998963, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.56227}
+633.775 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.998973, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.56229639}
+634.281 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.998973, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.56229639}
+634.547 learningV346PhysicalNavigationEpochSnapshot {'boundary': 'exitConsumerHandoffAccepted', 'edgeId': 180, 'kind': 'WalkThrough', 'stage': 'ExitCommit', 'routeMissionId': 209, 'routeStepIndex': 1, 'routeStepEdgeId': 234, 'routeStepKind': 'WalkThrough'}
+
+ Ada_Wong
+637.739 walkThroughCompositeCorridorBuilt {'routeMissionId': 211, 'currentStepIndex': 0, 'appendedEdges': [234], 'appendedEpisodes': [65]}
+639.03 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 3.73697448, 'requiredProjection': 2.21106839, 'localCorridorDistance': 1.27937853}
+639.107 learningV346PhysicalNavigationEpochSnapshot {'boundary': 'exitCommitAcquired', 'edgeId': 180, 'kind': 'WalkThrough', 'stage': 'ExitCommit', 'routeMissionId': 211, 'routeStepIndex': 0, 'routeStepEdgeId': 180, 'routeStepKind': 'WalkThrough'}
+639.545 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.991551, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.533183}
+640.059 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.992356, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.53529763}
+640.571 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.992356, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.53529763}
+641.074 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.992356, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.53529763}
+641.313 learningV346PhysicalNavigationEpochSnapshot {'boundary': 'exitConsumerHandoffAccepted', 'edgeId': 180, 'kind': 'WalkThrough', 'stage': 'ExitCommit', 'routeMissionId': 211, 'routeStepIndex': 1, 'routeStepEdgeId': 234, 'routeStepKind': 'WalkThrough'}
+
+ Ghost
+644.551 walkThroughCompositeCorridorBuilt {'routeMissionId': 210, 'currentStepIndex': 0, 'appendedEdges': [234], 'appendedEpisodes': [65]}
+645.837 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 3.744783, 'requiredProjection': 2.21106839, 'localCorridorDistance': 1.28723145}
+645.9 learningV346PhysicalNavigationEpochSnapshot {'boundary': 'exitCommitAcquired', 'edgeId': 180, 'kind': 'WalkThrough', 'stage': 'ExitCommit', 'routeMissionId': 210, 'routeStepIndex': 0, 'routeStepEdgeId': 180, 'routeStepKind': 'WalkThrough'}
+646.349 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.98575926, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.525583}
+646.863 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.985751, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.52558327}
+647.376 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.985751, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.52558327}
+647.887 learningV342WalkThroughPhysicalPassRejectedNonLocal {'edgeId': 180, 'episodeId': 59, 'projection': 4.985751, 'requiredProjection': 2.21106839, 'localCorridorDistance': 2.52558327}
+648.112 learningV346PhysicalNavigationEpochSnapshot {'boundary': 'exitConsumerHandoffAccepted', 'edgeId': 180, 'kind': 'WalkThrough', 'stage': 'ExitCommit', 'routeMissionId': 210, 'routeStepIndex': 1, 'routeStepEdgeId': 234, 'routeStepKind': 'WalkThrough'}

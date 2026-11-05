@@ -1,0 +1,57 @@
+truth {'NativePhysical': 79, 'Unproven': 26, 'NonNativeCompletion': 3}
+kind {('WalkThrough', 'NativePhysical'): 47, ('Vault', 'NativePhysical'): 8, ('Jump', 'Unproven'): 18, ('Jump', 'NonNativeCompletion'): 2, ('Jump', 'NativePhysical'): 11, ('Vault', 'Unproven'): 3, ('WalkThrough', 'NonNativeCompletion'): 1, ('DropDown', 'NativePhysical'): 12, ('Climb', 'Unproven'): 4, ('Climb', 'NativePhysical'): 1, ('DropDown', 'Unproven'): 1}
+
+ capabilitySequenceSelectionFailed 36
+stages {'Alternate': 17, 'SelfRescue': 19}
+example {"missionId": 119, "stage": "Alternate", "reason": "noExecutableTemplate", "nativeSuccessRecorded": false}
+
+ capabilitySequenceObstacleUnavailable 19
+stages {'': 19}
+example {"missionId": 119, "stepIndex": 1, "semanticEdge": 118, "reason": "selfRescueNoCurrentBlockingObstacle", "attemptedStage": "SelfRescue", "nativeSuccessRecorded": false}
+
+ capabilityPortalQueueAdmitted 122
+stages {'': 122}
+example {"missionId": 112, "stepIndex": 0, "edgeId": 201, "distance": 4.923023, "nearest": true, "sameBotContinuation": false}
+
+ capabilityFullRouteReturnBlocked 9
+stages {'': 9}
+example {"missionId": 119, "rootEdge": 118, "body": {"x": 472.580078, "y": 4.22800732, "z": -143.897827}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 5.83703136, "speed": 2.69260859, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+
+ capabilityFullRouteReturnCorridorRejected 4
+stages {'': 4}
+example {"missionId": 119, "deviation": 0.761661947, "body": {"x": 465.8704, "y": 6.26938248, "z": -142.337646}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "nativeSuccessRecorded": false}
+
+ learningV331NativeGroundContinuationFailed 1
+stages {'': 1}
+example {"edgeId": 118, "kind": "Jump", "source": "learningV408JumpPartialCrossingCurrentBody:nativeLandingContinuation", "position": {"x": 459.5675, "y": 4.164605, "z": -142.601868}, "projection": 6.728106, "bestProjection": 6.728106, "supported": true, "timedOut": true, "stalled": false, "elapsed": 2.63305664, "action": "terminalSameStepRetryNoAssist"}
+
+ walkThroughStepAssistFailed 1
+stages {'': 1}
+example {"learnedEdgeId": 238, "blocker": "Vagon_movable_door_slide_04_BALLISTIC_metalthick", "planarProgress": 0.05302727, "elapsed": 0.489624023, "position": {"x": 468.32663, "y": 5.059244, "z": -142.668259}}
+
+RETURN Ada_Wong 243.99
+240.706 capabilityFullRouteReturnProgress {"missionId": 119, "body": {"x": 468.994659, "y": 4.7964015, "z": -143.474854}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "remaining": 1.83209455, "directDistance": 1.74588239, "pathIndex": 1, "writer": 11, "noProgressAge": 0.7185211, "state": "Run", "nativeSuccessRecorded": false}
+241.244 capabilityFullRouteReturnProgress {"missionId": 119, "body": {"x": 470.4795, "y": 4.22800732, "z": -143.657959}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "remaining": 3.35401726, "directDistance": 3.16014671, "pathIndex": 1, "writer": 11, "noProgressAge": 1.2568512, "state": "Run", "nativeSuccessRecorded": false}
+241.752 capabilityFullRouteReturnProgress {"missionId": 119, "body": {"x": 471.882263, "y": 4.22800732, "z": -143.81839}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "remaining": 4.67803764, "directDistance": 4.54104948, "pathIndex": 1, "writer": 11, "noProgressAge": 1.76441956, "state": "Run", "nativeSuccessRecorded": false}
+241.998 capabilityFullRouteReturnBlocked {"missionId": 119, "rootEdge": 118, "body": {"x": 472.580078, "y": 4.22800732, "z": -143.897827}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 5.83703136, "speed": 2.69260859, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+243.364 capabilityFullRouteReturnBlocked {"missionId": 119, "rootEdge": 118, "body": {"x": 473.306, "y": 4.22800732, "z": -144.031174}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 6.47172737, "speed": 0.0, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+
+RETURN Chris_Redfield 249.074
+245.831 capabilityFullRouteReturnProgress {"missionId": 117, "body": {"x": 469.008972, "y": 4.787401, "z": -143.588226}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "remaining": 1.90702224, "directDistance": 1.82159007, "pathIndex": 1, "writer": 11, "noProgressAge": 0.7670288, "state": "Run", "nativeSuccessRecorded": false}
+246.353 capabilityFullRouteReturnProgress {"missionId": 117, "body": {"x": 470.4521, "y": 4.23134565, "z": -143.7706}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "remaining": 3.36876655, "directDistance": 3.17697573, "pathIndex": 1, "writer": 11, "noProgressAge": 1.289566, "state": "Run", "nativeSuccessRecorded": false}
+246.867 capabilityFullRouteReturnProgress {"missionId": 117, "body": {"x": 471.86, "y": 4.23134565, "z": -143.935669}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "remaining": 4.69040346, "directDistance": 4.55461025, "pathIndex": 1, "writer": 11, "noProgressAge": 1.80326843, "state": "Run", "nativeSuccessRecorded": false}
+247.068 capabilityFullRouteReturnBlocked {"missionId": 117, "rootEdge": 118, "body": {"x": 472.429077, "y": 4.23134565, "z": -144.002045}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 5.808495, "speed": 2.901218, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+248.441 capabilityFullRouteReturnBlocked {"missionId": 117, "rootEdge": 118, "body": {"x": 473.170776, "y": 4.215661, "z": -144.147446}, "target": {"x": 467.5289, "y": 5.345532, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 6.438865, "speed": 0.0, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+
+RETURN Chris_Redfield 390.563
+387.039 capabilityFullRouteReturnProgress {"missionId": 150, "body": {"x": 466.848, "y": 5.464615, "z": -142.308044}, "target": {"x": 467.5289, "y": 5.28008366, "z": -142.526352}, "remaining": 0.7238936, "directDistance": 0.7150484, "pathIndex": 1, "writer": 33, "noProgressAge": 0.484863281, "state": "Run", "nativeSuccessRecorded": false}
+387.552 capabilityFullRouteReturnProgress {"missionId": 150, "body": {"x": 466.782654, "y": 5.481418, "z": -142.776291}, "target": {"x": 467.5289, "y": 5.28008366, "z": -142.526352}, "remaining": 0.797593, "directDistance": 0.786989868, "pathIndex": 1, "writer": 33, "noProgressAge": 0.9979553, "state": "Run", "nativeSuccessRecorded": false}
+388.066 capabilityFullRouteReturnProgress {"missionId": 150, "body": {"x": 467.070374, "y": 5.419837, "z": -143.310226}, "target": {"x": 467.5289, "y": 5.28008366, "z": -142.526352}, "remaining": 0.910678446, "directDistance": 0.9081332, "pathIndex": 1, "writer": 33, "noProgressAge": 1.51113892, "state": "Run", "nativeSuccessRecorded": false}
+388.74 capabilityFullRouteReturnBlocked {"missionId": 150, "rootEdge": 118, "body": {"x": 467.765564, "y": 4.09543848, "z": -144.342392}, "target": {"x": 467.5289, "y": 5.28008366, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 7.412207, "speed": 2.614215, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+390.111 capabilityFullRouteReturnBlocked {"missionId": 150, "rootEdge": 118, "body": {"x": 468.115143, "y": 4.1415863, "z": -144.862564}, "target": {"x": 467.5289, "y": 5.28008366, "z": -142.526352}, "sampled": true, "fixedBudget": 10.0, "pathLength": 7.18078947, "speed": 0.0, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+
+RETURN Ghost 717.039
+713.029 capabilityFullRouteRetryRequested {"missionId": 251, "failedStep": 2, "failedEdge": 36, "rootEdge": 36, "entry": {"x": -278.298248, "y": 1.04721332, "z": -51.24208}, "stage": {"x": -277.370026, "y": 0.110746935, "z": -50.48154}, "reason": "nativeRecovery:nativeTraversalNoProgress", "restarts": 0, "oldSuccessHistoryPreserved": true, "nativeSuccessRecorded": false}
+713.043 capabilityFullRouteReturnBlocked {"missionId": 251, "rootEdge": 36, "body": {"x": -278.723022, "y": -0.871305, "z": -50.5401421}, "target": {"x": -277.370026, "y": 0.110746935, "z": -50.48154}, "sampled": true, "fixedBudget": 10.0, "pathLength": 0.0, "speed": 0.000224393938, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+714.398 capabilityFullRouteReturnBlocked {"missionId": 251, "rootEdge": 36, "body": {"x": -278.722961, "y": -0.871305, "z": -50.5400963}, "target": {"x": -277.370026, "y": 0.110746935, "z": -50.48154}, "sampled": true, "fixedBudget": 10.0, "pathLength": 0.0, "speed": 0.00025431317, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}
+715.774 capabilityFullRouteReturnBlocked {"missionId": 251, "rootEdge": 36, "body": {"x": -278.722961, "y": -0.871305, "z": -50.5400963}, "target": {"x": -277.370026, "y": 0.110746935, "z": -50.48154}, "sampled": true, "fixedBudget": 10.0, "pathLength": 0.0, "speed": 0.000293438236, "input": {"x": 0.0, "y": 0.0}, "reason": "firstEntryStagingNotStrictReachableWithinFrozenBudget", "leaderDetourAllowed": false, "nativeSuccessRecorded": false}

@@ -1,0 +1,34 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual DLL behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "rear_pose_always_accepts",
+                      "exitCode":  -532462766
+                  },
+                  {
+                      "oracle":  "actual DLL behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "retry_phase_disconnected",
+                      "exitCode":  -532462766
+                  },
+                  {
+                      "oracle":  "actual host IL wiring",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "return_update_disconnected",
+                      "exitCode":  1
+                  },
+                  {
+                      "oracle":  "actual host IL wiring",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "return_site_legacy_scope",
+                      "exitCode":  1
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

@@ -1,0 +1,20 @@
+﻿{
+    "cases":  [
+                  {
+                      "oracle":  "actual failure-only paired first/retry behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "normal_can_enter_recovery",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual cleanup isolation IL",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "cleanup_recovery_hook_restored",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

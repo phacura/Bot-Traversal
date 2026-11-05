@@ -1,0 +1,42 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261103-220538-744-bigmap-g2",
+    "sequence": 192,
+    "utc": "2026-11-03T14:05:38.9125253Z",
+    "raidTime": 128.6702,
+    "frame": 5938,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV31NativeProvenEdgeLoaded",
+    "bot": null,
+    "payload": {
+      "edgeId": 180,
+      "experienceKey": "b057fe4062fa4c488021832e0050e8ef",
+      "kind": "WalkThrough",
+      "nativeSuccesses": 57,
+      "successfulExecutions": 57,
+      "historicalSemanticAuthority": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261103-220538-744-bigmap-g2",
+    "sequence": 310,
+    "utc": "2026-11-03T14:05:38.9135499Z",
+    "raidTime": 128.6702,
+    "frame": 5938,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "learningV31NativeProvenEdgeLoaded",
+    "bot": null,
+    "payload": {
+      "edgeId": 239,
+      "experienceKey": "b45c94dddcb849e29f9e2673024c08bb",
+      "kind": "WalkThrough",
+      "nativeSuccesses": 30,
+      "successfulExecutions": 30,
+      "historicalSemanticAuthority": false
+    }
+  }
+]

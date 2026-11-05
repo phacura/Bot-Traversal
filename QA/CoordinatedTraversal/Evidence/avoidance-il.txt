@@ -1,0 +1,258 @@
+﻿TYPE GClass492 BASE GClass429
+FIELD UnityEngine.Vector3 GClass492::Vector3_0
+FIELD UnityEngine.Vector3 GClass492::Vector3_1
+FIELD System.Boolean GClass492::Bool_0
+FIELD System.Single GClass492::Float_0
+FIELD System.Single GClass492::Float_1
+FIELD System.Single GClass492::Float_2
+FIELD System.Single GClass492::Float_3
+FIELD System.Single GClass492::Float_4
+FIELD System.Single GClass492::Float_5
+FIELD System.Boolean GClass492::Bool_1
+METHOD UnityEngine.Vector3 GClass492::get_TotalOffset()
+IL_0000: ldarg.0
+IL_0001: ldfld UnityEngine.Vector3 GClass492::Vector3_0
+IL_0006: ret
+METHOD UnityEngine.Vector3 GClass492::get_NotLinkedOffset()
+IL_0000: ldarg.0
+IL_0001: ldfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_0006: ret
+METHOD System.Void GClass492::.ctor(EFT.BotOwner)
+IL_0000: ldarg.0
+IL_0001: ldarg.1
+IL_0002: call System.Void GClass429::.ctor(EFT.BotOwner)
+IL_0007: ldarg.0
+IL_0008: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+IL_000D: stfld UnityEngine.Vector3 GClass492::Vector3_0
+IL_0012: ret
+METHOD System.Void GClass492::ManualUpdate()
+IL_0000: ldarg.0
+IL_0001: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_0006: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_000B: callvirt EBotMoverState BotMover::get_CurrentState()
+IL_0010: ldc.i4.2
+IL_0011: bne.un.s IL_0014
+IL_0013: ret
+IL_0014: ldarg.0
+IL_0015: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_001A: callvirt BotVoxelesPersonalData EFT.BotOwner::get_VoxelesPersonalData()
+IL_001F: callvirt NavGraphVoxelSimple BotVoxelesPersonalData::get_CurVoxel()
+IL_0024: stloc.0
+IL_0025: ldarg.0
+IL_0026: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_002B: callvirt EFT.HealthSystem.IHealthController EFT.BotOwner::get_HealthController()
+IL_0030: callvirt System.Boolean EFT.HealthSystem.IHealthController::get_IsAlive()
+IL_0035: brtrue.s IL_0038
+IL_0037: ret
+IL_0038: ldarg.0
+IL_0039: call System.Void GClass492::method_0()
+IL_003E: ldloc.0
+IL_003F: ldfld System.Collections.Generic.List`1<EFT.BotOwner> NavGraphVoxelSimple::BotsInside
+IL_0044: callvirt System.Collections.Generic.List`1/Enumerator<EFT.BotOwner> System.Collections.Generic.List`1<EFT.BotOwner>::GetEnumerator()
+IL_0049: stloc.1
+IL_004A: nop
+IL_004B: br IL_01B7
+IL_0050: ldloca.s V_1
+IL_0052: call EFT.BotOwner System.Collections.Generic.List`1/Enumerator<EFT.BotOwner>::get_Current()
+IL_0057: stloc.2
+IL_0058: ldloc.2
+IL_0059: callvirt System.Int32 EFT.BotOwner::get_Id()
+IL_005E: ldarg.0
+IL_005F: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_0064: callvirt System.Int32 EFT.BotOwner::get_Id()
+IL_0069: beq IL_01B7
+IL_006E: ldloc.2
+IL_006F: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_0074: callvirt EBotMoverState BotMover::get_CurrentState()
+IL_0079: ldc.i4.2
+IL_007A: beq IL_01B7
+IL_007F: ldloc.2
+IL_0080: callvirt EFT.HealthSystem.IHealthController EFT.BotOwner::get_HealthController()
+IL_0085: callvirt System.Boolean EFT.HealthSystem.IHealthController::get_IsAlive()
+IL_008A: brfalse IL_01B7
+IL_008F: ldloc.2
+IL_0090: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_0095: callvirt UnityEngine.Vector3 BotMover::get_PositionOnWay()
+IL_009A: ldarg.0
+IL_009B: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_00A0: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_00A5: callvirt UnityEngine.Vector3 BotMover::get_PositionOnWay()
+IL_00AA: call UnityEngine.Vector3 UnityEngine.Vector3::op_Subtraction(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_00AF: stloc.3
+IL_00B0: ldloc.3
+IL_00B1: ldfld System.Single UnityEngine.Vector3::y
+IL_00B6: call System.Single UnityEngine.Mathf::Abs(System.Single)
+IL_00BB: ldc.r4 0.5
+IL_00C0: bge.un IL_01B7
+IL_00C5: ldloca.s V_3
+IL_00C7: ldc.r4 0
+IL_00CC: stfld System.Single UnityEngine.Vector3::y
+IL_00D1: ldloca.s V_3
+IL_00D3: call System.Single UnityEngine.Vector3::get_magnitude()
+IL_00D8: stloc.s V_4
+IL_00DA: ldloc.s V_4
+IL_00DC: ldc.r4 2.52
+IL_00E1: bge.un IL_01B7
+IL_00E6: ldarg.0
+IL_00E7: call System.Single UnityEngine.Time::get_time()
+IL_00EC: ldc.r4 0.15
+IL_00F1: add
+IL_00F2: stfld System.Single GClass492::Float_0
+IL_00F7: ldloc.2
+IL_00F8: callvirt UnityEngine.Vector3 EFT.BotOwner::get_Position()
+IL_00FD: ldarg.0
+IL_00FE: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_0103: callvirt UnityEngine.Vector3 EFT.BotOwner::get_Position()
+IL_0108: call UnityEngine.Vector3 UnityEngine.Vector3::op_Subtraction(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_010D: stloc.s V_5
+IL_010F: ldloca.s V_5
+IL_0111: call System.Single UnityEngine.Vector3::get_magnitude()
+IL_0116: ldc.r4 2.1
+IL_011B: bge.un IL_01B7
+IL_0120: ldloc.s V_4
+IL_0122: ldc.r4 2.1
+IL_0127: bge.un IL_01B7
+IL_012C: ldloca.s V_3
+IL_012E: call System.Single UnityEngine.Vector3::get_sqrMagnitude()
+IL_0133: ldc.r4 0
+IL_0138: ble.un.s IL_01B7
+IL_013A: ldloc.3
+IL_013B: call UnityEngine.Vector3 GClass855::NormalizeFastSelf(UnityEngine.Vector3)
+IL_0140: stloc.s V_6
+IL_0142: ldarg.0
+IL_0143: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_0148: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_014D: callvirt UnityEngine.Vector3 BotMover::get_NormDirCurPoint()
+IL_0152: ldloc.s V_6
+IL_0154: ldc.r4 0.9848077
+IL_0159: call System.Boolean GClass855::IsAngLessNormalized(UnityEngine.Vector3,UnityEngine.Vector3,System.Single)
+IL_015E: brfalse.s IL_016A
+IL_0160: ldloc.s V_6
+IL_0162: ldc.i4.1
+IL_0163: call UnityEngine.Vector3 GClass855::Rotate90(UnityEngine.Vector3,GClass855/SideTurn)
+IL_0168: stloc.s V_6
+IL_016A: ldloc.2
+IL_016B: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_0170: callvirt System.Boolean BotMover::get_HasPathAndNoComplete()
+IL_0175: brfalse.s IL_01B7
+IL_0177: ldarg.0
+IL_0178: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_017D: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_0182: callvirt System.Boolean BotMover::get_HasPathAndNoComplete()
+IL_0187: brfalse.s IL_01B7
+IL_0189: ldloc.2
+IL_018A: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_018F: ldfld GClass492 BotMover::LocalAvoidance
+IL_0194: ldloc.s V_6
+IL_0196: callvirt System.Void GClass492::method_1(UnityEngine.Vector3)
+IL_019B: ldarg.0
+IL_019C: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_01A1: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_01A6: ldfld GClass492 BotMover::LocalAvoidance
+IL_01AB: ldloc.s V_6
+IL_01AD: call UnityEngine.Vector3 UnityEngine.Vector3::op_UnaryNegation(UnityEngine.Vector3)
+IL_01B2: callvirt System.Void GClass492::method_1(UnityEngine.Vector3)
+IL_01B7: ldloca.s V_1
+IL_01B9: call System.Boolean System.Collections.Generic.List`1/Enumerator<EFT.BotOwner>::MoveNext()
+IL_01BE: brtrue IL_0050
+IL_01C3: leave.s IL_01D3
+IL_01C5: ldloca.s V_1
+IL_01C7: constrained. System.Collections.Generic.List`1/Enumerator<EFT.BotOwner>
+IL_01CD: callvirt System.Void System.IDisposable::Dispose()
+IL_01D2: endfinally
+IL_01D3: ret
+METHOD System.Void GClass492::method_0()
+IL_0000: ldarg.0
+IL_0001: ldfld System.Boolean GClass492::Bool_0
+IL_0006: brtrue.s IL_0009
+IL_0008: ret
+IL_0009: ldarg.0
+IL_000A: ldfld System.Single GClass492::Float_0
+IL_000F: call System.Single UnityEngine.Time::get_time()
+IL_0014: ble.un.s IL_0017
+IL_0016: ret
+IL_0017: ldarg.0
+IL_0018: ldflda UnityEngine.Vector3 GClass492::Vector3_0
+IL_001D: call System.Single UnityEngine.Vector3::get_magnitude()
+IL_0022: stloc.0
+IL_0023: ldarg.0
+IL_0024: ldloc.0
+IL_0025: ldc.r4 0.0001
+IL_002A: cgt
+IL_002C: stfld System.Boolean GClass492::Bool_0
+IL_0031: ldarg.0
+IL_0032: ldfld System.Boolean GClass492::Bool_0
+IL_0037: brfalse.s IL_0078
+IL_0039: call System.Single UnityEngine.Time::get_deltaTime()
+IL_003E: ldc.r4 0
+IL_0043: ldc.r4 0.05
+IL_0048: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+IL_004D: stloc.1
+IL_004E: ldarg.0
+IL_004F: ldarg.0
+IL_0050: ldfld UnityEngine.Vector3 GClass492::Vector3_0
+IL_0055: call UnityEngine.Vector3 GClass855::NormalizeFastSelf(UnityEngine.Vector3)
+IL_005A: ldloc.0
+IL_005B: ldloc.1
+IL_005C: ldc.r4 0.9
+IL_0061: mul
+IL_0062: sub
+IL_0063: ldc.r4 0
+IL_0068: ldloc.0
+IL_0069: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+IL_006E: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_0073: stfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_0078: ret
+METHOD System.Void GClass492::method_1(UnityEngine.Vector3)
+IL_0000: ldarg.0
+IL_0001: ldc.i4.1
+IL_0002: stfld System.Boolean GClass492::Bool_0
+IL_0007: call System.Single UnityEngine.Time::get_deltaTime()
+IL_000C: ldc.r4 0
+IL_0011: ldc.r4 0.05
+IL_0016: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+IL_001B: stloc.0
+IL_001C: ldarg.0
+IL_001D: ldarg.0
+IL_001E: ldfld UnityEngine.Vector3 GClass492::Vector3_0
+IL_0023: ldarg.1
+IL_0024: ldloc.0
+IL_0025: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_002A: ldc.r4 1.2
+IL_002F: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_0034: call UnityEngine.Vector3 UnityEngine.Vector3::op_Addition(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_0039: stfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_003E: ldarg.0
+IL_003F: ldflda UnityEngine.Vector3 GClass492::Vector3_1
+IL_0044: call System.Single UnityEngine.Vector3::get_magnitude()
+IL_0049: stloc.1
+IL_004A: ldloc.1
+IL_004B: ldc.r4 1E-05
+IL_0050: ble.un.s IL_0078
+IL_0052: ldarg.0
+IL_0053: ldarg.0
+IL_0054: ldfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_0059: call UnityEngine.Vector3 GClass855::NormalizeFastSelf(UnityEngine.Vector3)
+IL_005E: ldloc.1
+IL_005F: ldc.r4 0
+IL_0064: ldc.r4 0.3
+IL_0069: call System.Single UnityEngine.Mathf::Clamp(System.Single,System.Single,System.Single)
+IL_006E: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_0073: stfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_0078: ret
+METHOD System.Void GClass492::UpdateTotal(System.Single)
+IL_0000: ldarg.0
+IL_0001: ldarg.0
+IL_0002: ldfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_0007: ldarg.1
+IL_0008: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_000D: stfld UnityEngine.Vector3 GClass492::Vector3_0
+IL_0012: ret
+METHOD System.Void GClass492::DropOffset()
+IL_0000: ldarg.0
+IL_0001: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+IL_0006: stfld UnityEngine.Vector3 GClass492::Vector3_0
+IL_000B: ldarg.0
+IL_000C: call UnityEngine.Vector3 UnityEngine.Vector3::get_zero()
+IL_0011: stfld UnityEngine.Vector3 GClass492::Vector3_1
+IL_0016: ret

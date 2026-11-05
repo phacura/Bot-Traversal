@@ -1,0 +1,33 @@
+{
+  "byAbility": {
+    "WalkThrough": {
+      "NativePhysical": 37
+    },
+    "Vault": {
+      "NativePhysical": 7,
+      "Unproven": 4
+    },
+    "Climb": {
+      "NativePhysical": 6,
+      "Unproven": 2
+    },
+    "DropDown": {
+      "NativePhysical": 16,
+      "Unproven": 2
+    },
+    "Jump": {
+      "NativePhysical": 7,
+      "NonNativeCompletion": 1
+    }
+  },
+  "stages": {
+    "Alternate": 1,
+    "SelfRescue": 7,
+    "ReturnToEntry": 4
+  },
+  "cleanupReasons": {
+    "manualRegroup": 28,
+    "worldSafety:lastSafeNav": 2,
+    "capabilityFailureSequenceExhausted": 6
+  }
+}

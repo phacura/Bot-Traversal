@@ -1,0 +1,391 @@
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.16+RC153")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.17+RC154")]
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 16 loaded: V2-RC153-Beta16");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 17 loaded: V2-RC154-Beta17");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -624,6 +624,8 @@
+             if(hasProbe&&probe.NativeExecutorConsumed&&(probe.RequestedTraversalKind=="Jump"||probe.RequestedTraversalKind=="Vault"||probe.RequestedTraversalKind=="Climb"))return false;
+             if(!bot.GetPlayer.MovementContext.CanSprint||bot.GetPlayer.MovementContext.PoseLevel<.9f)return true;
+             bool correction=IsCapabilityRetryWalking(bot);
++            if(hasProbe&&FollowerCapabilityIngressMotionPolicy.WalkingGaitCorrection(probe.Stage==ProbeStage.Aligning,
++                NeedsCapabilityWalkThroughPrecision(probe,requestedDirection)))correction=true;
+             if(IsCapabilityPortalWaiting(bot)||correction)return true;
+             var gait=step;Vector3 tangent=GetFlatDirection(step.RawExit-step.RawEntry);
+             if(hasProbe&&probe.RequestedTraversalKind=="WalkThrough")
+@@ -1545,7 +1547,9 @@
+             if(ShouldEmitDiagnostic("capabilityPortalQueueWaiting",bot,.5f))
+                 WriteEvent("capabilityPortalQueueWaiting",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,edgeId=step.EdgeId,
+                     distance,nearest,entry=Vec(entry),head=ticket?.Bot,cooldownRemaining=Mathf.Max(0,(float)(ticket?.ReadyAt??0)-Time.time),
+-                    waitSeconds=Time.time-m.PortalQueueWaitStartedAt,waitingMode="holdCurrentBodyNoAlternatePath",nativeSuccessRecorded=false});
++                    waitSeconds=Time.time-m.PortalQueueWaitStartedAt,waitingMode="holdCurrentBodyNoAlternatePath",
++                    waitReason=ticket?.Bot!=null?"portalOwnedByOtherBot":ticket!=null&&Time.time<ticket.ReadyAt?"oneSecondCompletionCooldown":!nearest?"nearerEligibleBot":"admissionNotGranted",
++                    canonicalAnchor=Vec(queueAnchor),claimSerial=ticket?.ClaimSerial??0,nativeSuccessRecorded=false});
+             return true;
+         }
+         private static void CommitCapabilityPortalHold(BotOwner bot,FollowerRouteMission m)
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityExecutionMotionHost.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityExecutionMotionHost.cs
+@@ -44,6 +44,58 @@
+                 probe.WalkThroughCorridorPoints!=null&&probe.WalkThroughCorridorPoints.Count>=2&&
+                 IsFinite(probe.WalkThroughCorridorPoints[0]))return probe.WalkThroughCorridorPoints[0];
+             return fallback;
++        }
++        // Read-only preview of the finite recorded lane. Gait changes still use the one existing producer.
++        private static bool NeedsCapabilityWalkThroughPrecision(ProbeRuntime p,Vector3 requestedDirection)
++        {
++            if(!IsProbeLifecycleCurrent(p)||p.RequestedTraversalKind!="WalkThrough"||
++                p.WalkThroughStepAssistNativeOwned||p.WalkThroughCorridorPoints==null||p.WalkThroughCorridorPoints.Count<2)return false;
++            var points=p.WalkThroughCorridorPoints;var body=p.Player.Position;
++            float arc=0,bodyS=0,best=float.MaxValue,height=0;
++            float minimum=p.Stage==ProbeStage.WalkThrough?Mathf.Max(0,p.WalkThroughProgressS-WalkThroughArcProjectionBackSlack):0;
++            for(int i=1;i<points.Count;i++)
++            {
++                if(!IsFinite(points[i-1])||!IsFinite(points[i]))return true;
++                var delta=GetFlatDelta(points[i-1],points[i]);float length=delta.magnitude;
++                if(length<.001f)continue;
++                float fraction=Mathf.Clamp01(Vector3.Dot(GetFlatDelta(points[i-1],body),delta)/(length*length));
++                var projected=Vector3.Lerp(points[i-1],points[i],fraction);float s=arc+fraction*length;
++                float side=GetPlanarDistance(body,projected);
++                if(s>=minimum&&(side<best-.001f||Mathf.Abs(side-best)<=.001f&&s>bodyS))
++                {best=side;bodyS=s;height=body.y-projected.y;}
++                arc+=length;
++            }
++            float heading=Vector3.Dot(GetFlatDirection(p.Player.MovementContext.PlayerRealForward),GetFlatDirection(requestedDirection));
++            bool correction=FollowerCapabilityIngressMotionPolicy.WalkingLanePrecision(best,height,heading);
++            float speed=GetLearningV329PlanarSpeed(p.Player),apex=0,turnDistance=float.MaxValue,turnDot=1;
++            for(int i=1;i<points.Count-1;i++)
++            {
++                apex+=GetPlanarDistance(points[i-1],points[i]);
++                var incoming=GetFlatDirection(points[i]-points[i-1]);var outgoing=GetFlatDirection(points[i+1]-points[i]);
++                if(incoming.sqrMagnitude<.5f||outgoing.sqrMagnitude<.5f)continue;
++                float dot=Vector3.Dot(incoming,outgoing),distance=apex-bodyS;
++                if(FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(distance,dot,speed)&&distance<turnDistance)
++                {correction=true;turnDistance=distance;turnDot=dot;}
++            }
++            // Short WT episodes may put the bend exactly at the semantic handoff.
++            var m=p.LifecycleMission;
++            if(m.CurrentStepIndex+1<m.Steps.Count&&IsRouteMissionSameChainImmediateSuccessor(m,m.CurrentStepIndex+1))
++            {
++                var next=m.Steps[m.CurrentStepIndex+1];var incoming=GetFlatDirection(points[points.Count-1]-points[points.Count-2]);
++                var outgoing=next==null?Vector3.zero:GetFlatDirection(next.RawExit-next.RawEntry);
++                if(next?.Kind=="WalkThrough"&&GetPlanarDistance(points[points.Count-1],next.RawEntry)<=.65f&&
++                    incoming.sqrMagnitude>.5f&&outgoing.sqrMagnitude>.5f)
++                {
++                    float distance=arc-bodyS,dot=Vector3.Dot(incoming,outgoing);
++                    if(FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(distance,dot,speed)&&distance<turnDistance)
++                    {correction=true;turnDistance=distance;turnDot=dot;}
++                }
++            }
++            if(correction&&ShouldEmitDiagnostic("capabilityWalkingTurnPrecision",p.Bot,.25f))WriteEvent("capabilityWalkingTurnPrecision",p.Bot,new{
++                edgeId=p.LearnedEdgeId,episodeId=p.TraversalEpisodeId,body=Vec(body),bodyS,lateral=best,height,heading,speed,
++                turnDistance=turnDistance<float.MaxValue?(float?)turnDistance:null,turnDot,brakingDistance=FollowerCapabilityIngressMotionPolicy.BrakingDistance(speed),
++                nativeSuccessRecorded=false,bodyRelocated=false,action="entryUsesRunPassageRetainsSprintWithFiniteSpeedEnvelope"});
++            return correction;
+         }
+         private static bool NeedsCapabilityEntryRun(BotOwner bot)
+         {
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityIngressMotionPolicy.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityIngressMotionPolicy.cs
+@@ -7,6 +7,15 @@
+         internal static bool EntryCorrection(bool entry,bool local,double lateral,double maximum,double facing,double minimum)
+             => entry&&local&&Finite(lateral)&&Finite(maximum)&&maximum>0&&Finite(facing)&&Finite(minimum)&&
+                 (lateral>maximum||facing<minimum);
++        internal static bool WalkingGaitCorrection(bool entry,bool precision)=>entry&&precision;
++        internal static double WalkingTurnSpeed(double requested,bool precision)
++            => precision&&Finite(requested)&&requested>0?Math.Min(requested,.65):requested;
++        internal static bool WalkingTurnPrecision(double distance,double turnDot,double speed)
++            => Finite(distance)&&distance>=-.15&&Finite(turnDot)&&turnDot>=-1.001&&turnDot<.94&&
++                Finite(speed)&&speed>=0&&distance<=BrakingDistance(speed);
++        internal static bool WalkingLanePrecision(double side,double height,double heading)
++            => !Finite(side)||side<0||side>.22||!Finite(height)||Math.Abs(height)>.35||
++                !Finite(heading)||heading<.94||heading>1.001;
+         internal static bool ExecutionSprint(bool demonstrated,bool current,bool canSprint,bool correction,
+             double forward,double lateral,double heading,double tangent,double speed)
+             => canSprint&&!correction&&(demonstrated||current)&&Finite(forward)&&Finite(lateral)&&lateral>=0&&
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -15,6 +15,9 @@
+         internal static bool SameWalkingPortal(double entryGap,double exitGap,double axis)
+             => Finite(entryGap)&&entryGap>=0&&entryGap<=.65&&Finite(exitGap)&&exitGap>=0&&exitGap<=1.5&&Finite(axis)&&axis>=.94&&axis<=1.001;
+         internal static bool WalkingRecoveryKind(bool walkOnly,string kind)=>!walkOnly||kind=="WalkThrough";
++        internal static bool WalkingInterior(bool witnessed,double arc,double length,double side,double height)
++            => witnessed&&Finite(arc)&&arc>=0&&Finite(length)&&length>.05&&arc<length&&Finite(side)&&side>=0&&side<=.22&&
++                Finite(height)&&Math.Abs(height)<=.35;
+         internal static bool WalkingRescue(double forward,double span,double side,double height)
+             => Finite(forward)&&Finite(span)&&span>=.20&&forward>=-3.5&&forward<span-.20&&
+                 Finite(side)&&side>=0&&side<=1.5&&Finite(height)&&Math.Abs(height)<=.65;
+@@ -105,9 +108,9 @@
+         internal static bool HeadEntry(bool current,bool owns,bool ground,double distance,double height)
+             => current&&owns&&ground&&Finite(distance)&&distance>.65&&distance<=2.25&&Finite(height)&&Math.Abs(height)<=.65;
+         internal static bool SemanticContinuation(bool supported,double height,bool supportedRamp=false)
+-            => supported&&Finite(height)&&(Math.Abs(height)<=.65||height>.65&&supportedRamp);
++            => supported&&Finite(height)&&(Math.Abs(height)<=.65||supportedRamp);
+         internal static bool RampEnvelope(double height,double distance)
+-            => Finite(height)&&height>.65&&Finite(distance)&&distance>0&&distance<=8;
++            => Finite(height)&&Math.Abs(height)>.65&&Finite(distance)&&distance>0&&distance<=8;
+         internal static bool RampSample(bool hit,double height,double normal,bool blocked)
+             => hit&&Finite(height)&&Math.Abs(height)<=.35&&Finite(normal)&&normal>=.65&&normal<=1.001&&!blocked;
+         internal static bool CompletedFollowRange(double distance,double initial)
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityWalkThroughHandoffHost.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityWalkThroughHandoffHost.cs
+@@ -31,11 +31,21 @@
+         private static bool TrySelectCapabilityWalkingRescue(BotOwner bot,FollowerRouteMission m,CapabilityFailureTransaction state)
+         {
+             var original=state.Original;var proof=GetCapabilityWalkingRecoveryProof(original);var player=bot.GetPlayer;
+-            if(proof==null||!IsCapabilityRouteRetrySafe(bot)||!player.MovementContext.IsGrounded)return false;
++            if(proof==null||!IsCapabilityRouteRetrySafe(bot)||!player.MovementContext.IsGrounded)
++            {
++                WriteEvent("capabilityWalkingRescueUnavailable",bot,new{missionId=m.MissionId,edgeId=state.Edge,
++                    reason=proof==null?"nativeWalkingProofUnavailable":!player.MovementContext.IsGrounded?"bodyNotGrounded":"higherPriorityMovement",
++                    nativeActuatorAllowed=false,nativeSuccessRecorded=false});return false;
++            }
+             var axis=GetFlatDirection(original.RawExit-original.RawEntry);var offset=GetFlatDelta(original.RawEntry,player.Position);
+             float forward=Vector3.Dot(offset,axis),span=GetPlanarDistance(original.RawEntry,original.RawExit);
+             if(!FollowerCapabilityPassagePolicy.WalkingRescue(forward,span,(offset-axis*forward).magnitude,
+-                player.Position.y-original.RawEntry.y))return false;
++                player.Position.y-original.RawEntry.y))
++            {
++                WriteEvent("capabilityWalkingRescueUnavailable",bot,new{missionId=m.MissionId,edgeId=state.Edge,
++                    reason="outsideUnfinishedWalkingEnvelope",forward,span,lateral=(offset-axis*forward).magnitude,
++                    height=player.Position.y-original.RawEntry.y,nativeActuatorAllowed=false,nativeSuccessRecorded=false});return false;
++            }
+             var selected=CapabilitySemanticCommitment(m,m.Steps[m.CurrentStepIndex]);
+             var entry=forward<0?original.RawEntry:player.Position;
+             selected.Kind="WalkThrough";selected.Entry=selected.RawEntry=selected.SettledEntry=entry;
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalPhysicalInput.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalPhysicalInput.cs
+@@ -60,6 +60,10 @@
+             }
+             if(motion.sqrMagnitude>0.000001f&&TryGetCapabilityRouteSprint(bot,direction,out bool routeSprint))
+             {sprint=routeSprint;preserveSprintMode=false;if(sprint)targetMoveSpeed=ProbeMomentumFullMoveSpeed;}
++            // Route Sprint restores its normal speed above; the finite WT envelope must be applied AFTER that boost.
++            if(motion.sqrMagnitude>0.000001f&&TryGetActiveProbe(bot,out var precisionProbe)&&precisionProbe.Stage==ProbeStage.WalkThrough&&
++                NeedsCapabilityWalkThroughPrecision(precisionProbe,direction))
++                targetMoveSpeed=(float)FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(targetMoveSpeed,true);
+             if(motion.sqrMagnitude>0.000001f)PrepareCapabilityJumpLocomotion(bot,player);
+             if(motion.sqrMagnitude>0.000001f)PrepareCapabilityDropIngressLocomotion(bot,player,deliveryPurpose);
+ 
+--- RC153/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC154/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -29654,6 +29654,9 @@
+ 
+             float dt = Mathf.Max(0.001f, Time.deltaTime);
+             Vector3 intentToken = direction * Mathf.Max(0.001f, ChainLocalSuccessorBridgeSpeed * dt);
++            if(probe.Stage==ProbeStage.WalkThrough)
++                targetMoveSpeed=(float)FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(targetMoveSpeed,
++                    NeedsCapabilityWalkThroughPrecision(probe,direction));
+             bool gait=TryGetCapabilityRouteSprint(probe.Bot,direction,out bool desiredSprint);
+             bool currentSprintMode = gait?desiredSprint:(probe.Bot.Mover.Sprinting||probe.Player.CurrentStateName==EPlayerState.Sprint);
+             bool learningV416WalkThroughLease = !string.IsNullOrEmpty(source) &&
+@@ -35977,16 +35980,19 @@
+             TryLatchLearningV373CurrentEpisodeWalkThroughEntryFrontier(
+                 probe, "beginWalkThroughProbe");
+             bool learningV367EntryFrontierStillValid = false;
+-            if ((probe.LearningV367WalkThroughEntryFrontierAcquired) &&
+-                TryGetLearningV367WalkThroughFiniteProgress(
+-                    probe, out float learningV367BeginProjection, out float learningV367BeginSpan,
+-                    out float learningV367BeginLateral, out float learningV367BeginVerticalDeviation))
+-            {
+-                learningV367EntryFrontierStillValid =
+-                    learningV367BeginProjection >= -0.05f &&
+-                    learningV367BeginProjection < learningV367BeginSpan &&
+-                    learningV367BeginLateral <= WalkThroughHardLateralDeviation &&
+-                    learningV367BeginVerticalDeviation <= WalkThroughMaxVerticalDelta + 0.20f;
++            if (probe.LearningV367WalkThroughEntryFrontierAcquired)
++            {
++                float learningV367BeginProjection,learningV367BeginSpan,learningV367BeginLateral,learningV367BeginVerticalDeviation;
++                bool finite=probe.LearningV372CurrentEpisodeWalkThroughCorridorAuthority
++                    ? TryGetLearningV372CurrentEpisodeWalkThroughCorridorWitness(probe,probe.Player.Position,
++                        out learningV367BeginProjection,out learningV367BeginSpan,out learningV367BeginLateral,out learningV367BeginVerticalDeviation)
++                    : TryGetLearningV367WalkThroughFiniteProgress(probe,out learningV367BeginProjection,out learningV367BeginSpan,
++                        out learningV367BeginLateral,out learningV367BeginVerticalDeviation);
++                learningV367EntryFrontierStillValid=probe.LearningV372CurrentEpisodeWalkThroughCorridorAuthority
++                    ? FollowerCapabilityPassagePolicy.WalkingInterior(finite,learningV367BeginProjection,learningV367BeginSpan,
++                        learningV367BeginLateral,learningV367BeginVerticalDeviation)
++                    : finite&&learningV367BeginProjection>=-.05f&&learningV367BeginProjection<learningV367BeginSpan&&
++                        learningV367BeginLateral<=WalkThroughHardLateralDeviation&&learningV367BeginVerticalDeviation<=WalkThroughMaxVerticalDelta+.20f;
+                 if (entryDistance > WalkThroughEntryTolerance && learningV367EntryFrontierStillValid)
+                 {
+                     WriteEvent("learningV367WalkThroughEntryDistanceGateSatisfiedByMonotonicFrontier", probe.Bot, new
+@@ -66804,6 +66810,8 @@
+                     TraversalEpisodeMetadata historicalEpisode = RegisterTraversalEpisodeForEdge(
+                         historicalSemantic.Id, "WalkThrough", episode.RawStart, episode.RawEnd,
+                         episode.StartSequence, episode.EndSequence, allowChain: true);
++                    ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry(null,historicalEpisode,historicalSemantic,
++                        episode.RawStart,episode.RawEnd,"finalizedPlayerWalkThroughHistoricalIdentity");
+                     WriteEvent("learningV344HistoricalWalkThroughEpisodeBoundToRestoredSemantic", null, new
+                     {
+                         edgeId = historicalSemantic.Id,
+@@ -66944,7 +66952,7 @@
+                 SavePersistentTraversalLinks();
+             }
+ 
+-            RegisterTraversalEpisodeForEdge(
++            var finalizedEpisode=RegisterTraversalEpisodeForEdge(
+                 edgeId,
+                 "WalkThrough",
+                 episode.RawStart,
+@@ -66953,6 +66961,8 @@
+                 episode.EndSequence,
+                 true,
+                 episode.EpisodeId);
++            ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry(null,finalizedEpisode,learnedEpisodeEdge,
++                episode.RawStart,episode.RawEnd,"finalizedPlayerWalkThroughRecordedLane");
+             WriteEvent("playerWalkThroughEpisodeLearned", null, new
+             {
+                 episodeId = episode.EpisodeId,
+--- RC153/QA\CorridorIntegrity\Replay\Program.cs
++++ RC154/QA\CorridorIntegrity\Replay\Program.cs
+@@ -400,7 +400,8 @@
+ Check(P.AfterFailure(P.Stage.SelfRescue)==P.Stage.ReturnToEntry,"local Vault does not replay completed prefix after semantic failure");
+ 
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(true,3.334768,true),"431.829 successful Vault-to-board ascent retained only with actual supported ramp");
+-Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(true,-2.81,true),"ramp permission cannot become a blind lower-floor drop");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(true,-2.81,true),"measured continuously supported downhill ramp is symmetric with uphill");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(true,-2.81,false),"unmeasured lower floor still cannot authorize a drop");
+ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(false,3.334768,true),"ramp cannot substitute current body support");
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.RampEnvelope(3.334768,6.775677),"Chris433.196 ascent fits finite ramp observation envelope");
+ foreach(var v in new[]{(3.3,8.001),(.65,6.7),(double.NaN,6.7),(3.3,double.NaN)})Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.RampEnvelope(v.Item1,v.Item2),"unknown or unbounded ramp cannot continue "+v);
+@@ -725,7 +726,7 @@
+  Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.NativeEgressKind(kind,"DropDown",current)==expected,"Ada pre-acquisition drop egress uses current typed kind "+kind+":"+current);
+ }
+ foreach(string kind in new string[]{null,"","Jump","Climb","Vault"})Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.NativeEgressKind(kind,"Jump",true),"other recovery kinds keep original egress contract "+kind);
+-// RC153 proof identity and exact queued physical observation.
++// RC154 proof identity and exact queued physical observation.
+ for(int mask=0;mask<4;mask++)Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingIdentity((mask&1)!=0,(mask&2)!=0)==(mask!=0),"native-proven semantic WT remains WT-only after current demonstration geometry changes "+mask);
+ for(int mask=0;mask<4;mask++)foreach(double angle in new[]{0,20,72.01585,81.44067,90,double.NaN})Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.SideCenterTurn((mask&1)!=0,(mask&2)!=0,angle)==((mask&1)==0&&(mask&2)!=0&&(double.IsNaN(angle)||angle>20)),"sideways Run does not wait for lateral-facing agreement "+mask+":"+angle);
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.ForwardCorner(1,1.12,.1,.1),"short authored forward corner remains selectable after long chord hits concrete");
+@@ -746,5 +747,47 @@
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.ObservedLowerDrop(true,true,true,true,.8),"actual lower Chris body may enter original local Egress");
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.ImmediateEntryDistance(true,2.893,.781)==.781,"old upper-floor height does not veto observed lower continuation allocation");
+ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.ImmediateEntryDistance(false,2.893,.781)==2.893,"unobserved lower body cannot borrow planar admission");
++// RC154 finite signed ramp, predictive bend gait, exact episode interior.
++foreach(double sign in new[]{-1d,1d})foreach(double height in new[]{.650001,.775,.85788,1.416,3.334})
++{
++ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.RampEnvelope(sign*height,1.975),"both ramp directions request actual terrain proof "+sign+" "+height);
++ Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(true,sign*height,true),"verified supported signed slope continues "+sign+" "+height);
++ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(true,sign*height,false),"height alone cannot authorize signed ramp "+sign+" "+height);
++ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.SemanticContinuation(false,sign*height,true),"ramp proof cannot replace current body support "+sign+" "+height);
++}
++foreach(double speed in new[]{0d,1d,2d,4d,5d,8d})
++{
++ double brake=BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.BrakingDistance(speed);
++ foreach(double dot in new[]{-1d,0d,.5,.939})
++ {
++  Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(brake,dot,speed),"bend inside measured speed braking envelope "+speed+" "+dot);
++  Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(brake+.001,dot,speed),"distant bend does not globally disable Sprint "+speed+" "+dot);
++ }
++ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(-.151,0,speed),"already passed bend does not hold precision "+speed);
++ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(.1,1,speed),"straight lane keeps demonstrated Sprint "+speed);
++}
++foreach(double bad in new[]{double.NaN,double.PositiveInfinity,double.NegativeInfinity})
++{
++ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(bad,0,4),"invalid turn distance cannot masquerade as finite bend "+bad);
++ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(.1,bad,4),"invalid turn heading "+bad);
++ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(.1,0,bad),"invalid measured speed "+bad);
++ Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingLanePrecision(bad,0,1),"invalid lane measurement holds Sprint "+bad);
++ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingInterior(true,bad,2,.1,.1),"invalid interior arc cannot waive entry distance "+bad);
++}
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnPrecision(.56,0,4.5),"Chris WT245 90 degree short exit requires precision before body overshoots");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingLanePrecision(1.1799,.191,1),"recorded Chris offlane cannot retain Sprint");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingLanePrecision(.1,.1,0),"turning toward new WT tangent first uses precision");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingLanePrecision(.22,.35,.94),"centered supported aligned lane retains Sprint eligibility");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingInterior(true,1.1,4,.1,.1),"bent current episode interior uses finite arc rather than entry-exit chord");
++foreach(var v in new[]{(1.1,4d,.22001,.1),(1.1,4d,.1,.35001),(4d,4d,.1,.1),(-.001,4d,.1,.1)})
++ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingInterior(true,v.Item1,v.Item2,v.Item3,v.Item4),"outside or ended finite episode cannot waive entry distance "+v);
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.WalkingInterior(false,1,4,.1,.1),"missing finite witness never waives entry distance");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingGaitCorrection(true,true),"entry precision may force Run");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingGaitCorrection(false,true),"in-passage bend precision cannot force Run or restart gait");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingGaitCorrection(true,false),"straight aligned entry not forced Run");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(1,true)==.65,"predictive bend bounds existing native Sprint speed before apex");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(.40,true)==.40,"bend precision never speeds up a tighter existing envelope");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(1,false)==1,"straight path retains full requested speed");
++Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(double.NaN,true).Equals(double.NaN),"invalid speed is not laundered into an executable command");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta16 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta17 production decision and recorded-order replay checks");
+--- RC153/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC154/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,22 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('ApplyCollisionActivePhysicalRouteMotion','WalkingTurnSpeed'),
++ @('ApplyCollisionActivePhysicalRouteMotion','NeedsCapabilityWalkThroughPrecision'),
++
++ @('TryGetCapabilityRouteSprint','WalkingGaitCorrection'),
++ @('TryPublishLearningV414PathlessNativeInputLease','WalkingTurnSpeed'),
++ @('TryPublishLearningV414PathlessNativeInputLease','NeedsCapabilityWalkThroughPrecision'),
++
++ @('FinalizeActiveWalkThroughEpisode','ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry'),
++ @('TryGetCapabilityRouteSprint','NeedsCapabilityWalkThroughPrecision'),
++ @('NeedsCapabilityWalkThroughPrecision','WalkingTurnPrecision'),
++ @('NeedsCapabilityWalkThroughPrecision','WalkingLanePrecision'),
++ @('NeedsCapabilityWalkThroughPrecision','IsProbeLifecycleCurrent'),
++ @('NeedsCapabilityWalkThroughPrecision','IsRouteMissionSameChainImmediateSuccessor'),
++ @('BeginWalkThroughProbe','TryGetLearningV372CurrentEpisodeWalkThroughCorridorWitness'),
++ @('BeginWalkThroughProbe','WalkingInterior'),
++
+  @('TryDispatchCapabilityCurrentAction','ObservedLowerDrop'),
+  @('TryDispatchCapabilityCurrentAction','ImmediateEntryDistance'),
+  @('GetCapabilityQueueAnchor','CanonicalQueue'),
+--- RC153/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC154/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.16+RC153') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.17+RC154') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -524,7 +524,7 @@
+ $f=M 'TickCapabilityPortalWait';Check ((C $f 'QueueClaimCurrent').Count -eq 1 -and (C $f 'QueueClaimCurrent')[0].Offset -lt (C $f 'LeftAdmittedIngress')[0].Offset) 'changed entry invalidates old ticket before lost-ingress failure can fire'
+ $f=M 'UpdateUnifiedTraversalEgress';Check ((C $f 'NativeEgressKind').Count -eq 1 -and (C $f 'NativeEgressKind')[0].Offset -lt (C $f 'HoldForwardInput')[0].Offset) 'typed current DropDown selects native world input before legacy forward hold'
+ Check ((C $f 'IsProbeLifecycleCurrent').Count -eq 1) 'pre-acquisition DropDown requires exact live probe lifecycle'
+-# RC153 current-entry start, proof identity, one facing resolver, finite clear-corner and queued observation.
++# RC154 current-entry start, proof identity, one facing resolver, finite clear-corner and queued observation.
+ $f=M 'BeginWalkThroughProbe';Check ((C $f 'GetCapabilityWalkThroughEntryTarget').Count -eq 1) 'actual WT Begin uses same current entry as arrival and motion'
+ $proof=@($m.GetTypes()|ForEach-Object {$_.Methods}|Where-Object {$_.Name -like '*GetCapabilityWalkingRecoveryProof*' -and (C $_ 'WalkingIdentity').Count -eq 1});Check ($proof.Count -eq 1) 'native-proven semantic identity retains WT-only contract'
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'SideCenterTurn').Count -eq 1) 'lateral center is not blocked by impossible side-facing pose'
+@@ -541,8 +541,22 @@
+ $f=M 'GetCapabilityQueueAnchor';Check ((C $f 'CanonicalQueue').Count -eq 1 -and (C $f 'IsLearningV3NativeProvenEdge').Count -eq 1) 'stable queue anchor requires bounded native walking proof'
+ $f=M 'TryDispatchCapabilityCurrentAction';foreach($n in @('ObservedLowerDrop','ImmediateEntryDistance')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -lt (C $f 'JumpDispatch')[0].Offset) ('observed lower continuation reuses existing allocation frontier '+$n)}
+ Check ((C $f 'PeekExactGeneration').Count -eq 1) 'lower continuation only reads current writer generation, never acquires a fresh proof epoch'
++# RC154 exact episode geometry and predictive walking gait use existing producer only.
++$f=M 'TryGetCapabilityRouteSprint';Check ((C $f 'NeedsCapabilityWalkThroughPrecision').Count -eq 1) 'all existing execution gait including released queue head previews finite WT bend'
++$f=M 'NeedsCapabilityWalkThroughPrecision';foreach($n in @('IsProbeLifecycleCurrent','WalkingTurnPrecision','WalkingLanePrecision','IsRouteMissionSameChainImmediateSuccessor','BrakingDistance')){Check ((C $f $n).Count -ge 1) ('read-only finite lane gait query '+$n)}
++Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld'}).Count -eq 0) 'gait preview cannot advance progress proof timers or body fields'
++foreach($n in @('TryCommitV2ProbePhysicalMotion','ApplyCollisionActivePhysicalRouteMotion','FinishProbeWithoutReanchor')){Check ((C $f $n).Count -eq 0) ('gait preview cannot become competing controller '+$n)}
++$f=M 'BeginWalkThroughProbe';foreach($n in @('TryGetLearningV372CurrentEpisodeWalkThroughCorridorWitness','WalkingInterior')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -lt (C $f 'PrepareWalkThroughCompletionTarget')[0].Offset) ('Begin uses bounded same current episode lane '+$n)}
++$f=M 'TrySelectCapabilityWalkingRescue';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'capabilityWalkingRescueUnavailable'}).Count -eq 2) 'WT rescue refusal explains resource or finite envelope and preserves WT-only rule'
++$f=M 'TickCapabilityPortalWait';foreach($n in @('portalOwnedByOtherBot','oneSecondCompletionCooldown','nearerEligibleBot','admissionNotGranted')){Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq $n}).Count -eq 1) ('queue diagnostics distinguish actual admission wait '+$n)}
++$f=M 'FinalizeActiveWalkThroughEpisode';Check ((C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry').Count -eq 2) 'both finalized recorded WT branches publish current physical lane before alias selects old parent geometry'
++Check ((C $f 'RegisterTraversalEpisodeForEdge')[0].Offset -lt (C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry')[0].Offset -and (C $f 'RegisterTraversalEpisodeForEdge')[-1].Offset -lt (C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry')[-1].Offset) 'current lane binding consumes the actual registered episode identity'
++$f=($m.GetTypes()|Where-Object Name -eq 'BotTraversalPlugin').Methods|Where-Object Name -eq 'Awake';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'Bot Traversal 0.9.0 Beta 17 loaded: V2-RC154-Beta17'}).Count -eq 1) 'startup human Beta label matches release marker'
++$f=M 'TryGetCapabilityRouteSprint';Check ((C $f 'WalkingGaitCorrection').Count -eq 1) 'only entry precision can force Run; in-passage Sprint intent survives bends'
++$f=M 'TryPublishLearningV414PathlessNativeInputLease';foreach($n in @('WalkingTurnSpeed','NeedsCapabilityWalkThroughPrecision')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -lt (C $f 'TryCommitV2ProbePhysicalMotion')[-1].Offset) ('predictive bend tapers existing native Sprint speed before same bound writer '+$n)}
++$f=M 'ApplyCollisionActivePhysicalRouteMotion';foreach($n in @('WalkingTurnSpeed','NeedsCapabilityWalkThroughPrecision')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -gt (C $f 'TryGetCapabilityRouteSprint')[0].Offset -and (C $f $n)[0].Offset -lt (C $f 'BotOwnerSetTargetMoveSpeed')[0].Offset) ('central Sprint full-speed restoration cannot overwrite finite WT envelope '+$n)}
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta16 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta17 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}
+ 

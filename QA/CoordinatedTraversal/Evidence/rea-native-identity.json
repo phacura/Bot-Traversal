@@ -1,0 +1,388 @@
+{
+  "artifact": {
+    "evidence_id": "ev_1f01f868c3ef2e9448bd2bda099c41480c6e5e0dc4e33f055141e2d481960c5e",
+    "subject": {
+      "name": "Assembly-CSharp.dll",
+      "digest": {
+        "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982"
+      },
+      "local_path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+      "format": "pe",
+      "architecture": "x86"
+    },
+    "provider": {
+      "id": "rea-analysis-view",
+      "name": "REA analysis view projection",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis-view",
+    "operation": "inspect_analysis_view",
+    "parameters": {
+      "parent_evidence_id": "ev_389a4c15cad6155aad41d5f316753a54f419b7d56329d5409e00e96e7ae96fb2",
+      "view": {
+        "kind": "summary"
+      }
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "kind": "summary",
+      "view": {
+        "kind": "summary"
+      },
+      "parent_evidence_id": "ev_389a4c15cad6155aad41d5f316753a54f419b7d56329d5409e00e96e7ae96fb2",
+      "parent_operation": "inspect_managed_artifact",
+      "parent_digest": "389a4c15cad6155aad41d5f316753a54f419b7d56329d5409e00e96e7ae96fb2",
+      "view_digest": "ca6e2b29e0497461b4472d36c251068f9df2e346ad55483aa8c08be2da7bd2dc",
+      "artifact": {
+        "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+        "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982"
+      },
+      "coverage": {
+        "status": "complete-within-view",
+        "examined": 42524,
+        "total": 42524,
+        "next_offset": null,
+        "exhausted": true
+      },
+      "limitations": [
+        "Static inspection did not load the assembly, resolve dependencies through a CLR, decompile C#, or execute target code."
+      ],
+      "unknowns": [
+        "Collection counts and pages cover producer-returned rows; metadata completeness remains the original metadata status and coverage, not an absence claim about unreturned rows.",
+        "Metadata tokens are build-local coordinates bound to the recorded artifact SHA-256 and module MVID; this view does not load or execute the assembly."
+      ],
+      "summary": {
+        "artifact": {
+          "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+          "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982",
+          "byte_length": 15899648,
+          "format": "pe"
+        },
+        "pe": {
+          "machine": 332,
+          "machine_hex": "0x014c",
+          "architecture": "x86",
+          "optional_header": "pe32",
+          "section_count": 3,
+          "characteristics": 8482,
+          "cli": {
+            "header_offset": 520,
+            "header_size": 72,
+            "runtime_version": "2.5",
+            "flags": 1,
+            "flag_names": [
+              "il-only"
+            ],
+            "entry_point": {
+              "kind": "none",
+              "value": null
+            },
+            "metadata_rva": 7599292,
+            "metadata_size": 8138416,
+            "resources_rva": 15737708,
+            "resources_size": 167639,
+            "strong_name_rva": 0,
+            "strong_name_size": 0,
+            "managed_native_header_rva": 0,
+            "managed_native_header_size": 0,
+            "ready_to_run_signature": false
+          }
+        },
+        "classification": {
+          "status": "managed",
+          "container": "pe",
+          "runtime_family": "unity-mono",
+          "implementation": "cil",
+          "managed_architecture": "anycpu",
+          "evidence": [
+            {
+              "code": "cli-header-observed",
+              "detail": "A file-backed PE CLI header and metadata root were admitted.",
+              "file_offset": 520
+            },
+            {
+              "code": "unity-reference-observed",
+              "detail": "The admitted AssemblyRef table contains a UnityEngine reference.",
+              "file_offset": 12628094
+            },
+            {
+              "code": "managed-architecture-derived",
+              "detail": "Managed architecture anycpu is derived from PE machine and CLI flags.",
+              "file_offset": 536
+            }
+          ]
+        },
+        "metadata": {
+          "status": "complete",
+          "version": "v4.0.30319",
+          "stream_names": [
+            "#Blob",
+            "#GUID",
+            "#Strings",
+            "#US",
+            "#~"
+          ],
+          "table_row_counts": {
+            "Module": 1,
+            "TypeRef": 1360,
+            "TypeDef": 15137,
+            "Field": 77289,
+            "MethodDef": 90767,
+            "Param": 70452,
+            "InterfaceImpl": 6278,
+            "MemberRef": 32505,
+            "Constant": 13069,
+            "CustomAttribute": 42450,
+            "FieldMarshal": 12,
+            "DeclSecurity": 1,
+            "ClassLayout": 66,
+            "FieldLayout": 43,
+            "StandAloneSig": 13447,
+            "EventMap": 545,
+            "Event": 1203,
+            "PropertyMap": 4145,
+            "Property": 13719,
+            "MethodSemantics": 19940,
+            "MethodImpl": 6180,
+            "ModuleRef": 4,
+            "TypeSpec": 9947,
+            "ImplMap": 19,
+            "FieldRVA": 96,
+            "Assembly": 1,
+            "AssemblyRef": 73,
+            "ManifestResource": 1,
+            "NestedClass": 6454,
+            "GenericParam": 2077,
+            "MethodSpec": 9338,
+            "GenericParamConstraint": 1228
+          }
+        },
+        "module": {
+          "name": "Assembly-CSharp.dll",
+          "generation": 0,
+          "mvid": "ad47400a-25db-462c-bf0a-531df654c3c3",
+          "enc_id": null,
+          "enc_base_id": null,
+          "token": "0x00000001",
+          "row_offset": 7591872
+        },
+        "assembly": {
+          "name": "Assembly-CSharp",
+          "version": "0.0.0.0",
+          "culture": null,
+          "flags": 0,
+          "hash_algorithm": 32772,
+          "public_key": {
+            "kind": "none",
+            "byte_length": 0,
+            "sha256": null,
+            "token": null
+          },
+          "token": "0x20000001",
+          "row_offset": 12628066
+        },
+        "target_frameworks": [],
+        "coverage": {
+          "state": "complete",
+          "issues": []
+        },
+        "limitations": [
+          "Static inspection did not load the assembly, resolve dependencies through a CLR, decompile C#, or execute target code."
+        ],
+        "reported_counts": {
+          "references": 73,
+          "resources": 1,
+          "attributes": 42450
+        },
+        "identity_scope": {
+          "token_identity": "build-local",
+          "requires_artifact_sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982",
+          "requires_mvid": "ad47400a-25db-462c-bf0a-531df654c3c3"
+        }
+      }
+    },
+    "confidence": "derived",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Static inspection did not load the assembly, resolve dependencies through a CLR, decompile C#, or execute target code."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "artifact-path",
+        "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll"
+      }
+    ],
+    "evidence_links": [
+      "ev_389a4c15cad6155aad41d5f316753a54f419b7d56329d5409e00e96e7ae96fb2"
+    ]
+  },
+  "members": {
+    "evidence_id": "ev_b7a550fbffce693048aeca5b8cb3d88b74c6f1521ab985aaed2a4ab2c25c6b11",
+    "subject": {
+      "name": "Assembly-CSharp.dll",
+      "digest": {
+        "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982"
+      },
+      "local_path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+      "format": "pe",
+      "architecture": "x86"
+    },
+    "provider": {
+      "id": "rea-dotnet-static",
+      "name": "REA managed static analysis provider",
+      "version": "1"
+    },
+    "analysis_profile": null,
+    "predicate_type": "rea.analysis",
+    "operation": "inspect_managed_members",
+    "parameters": {
+      "path": "D:/Games/SIT_DIR/SPT AKI 4.0.13/EscapeFromTarkov_Data/Managed/Assembly-CSharp.dll",
+      "type_names": [
+        "GClass492"
+      ]
+    },
+    "raw_result": null,
+    "normalized_result": {
+      "signature_resolution": null,
+      "artifact": {
+        "path": "D:\\Games\\SIT_DIR\\SPT AKI 4.0.13\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll",
+        "sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982",
+        "byte_length": 15899648,
+        "format": "pe"
+      },
+      "module": {
+        "name": "Assembly-CSharp.dll",
+        "generation": 0,
+        "mvid": "ad47400a-25db-462c-bf0a-531df654c3c3",
+        "enc_id": null,
+        "enc_base_id": null,
+        "token": "0x00000001",
+        "row_offset": 7591872
+      },
+      "assembly": null,
+      "metadata": {
+        "status": "partial",
+        "version": "v4.0.30319",
+        "table_row_counts": {
+          "Module": 1,
+          "TypeRef": 1360,
+          "TypeDef": 15137,
+          "Field": 77289,
+          "MethodDef": 90767,
+          "Param": 70452,
+          "InterfaceImpl": 6278,
+          "MemberRef": 32505,
+          "Constant": 13069,
+          "CustomAttribute": 42450,
+          "FieldMarshal": 12,
+          "DeclSecurity": 1,
+          "ClassLayout": 66,
+          "FieldLayout": 43,
+          "StandAloneSig": 13447,
+          "EventMap": 545,
+          "Event": 1203,
+          "PropertyMap": 4145,
+          "Property": 13719,
+          "MethodSemantics": 19940,
+          "MethodImpl": 6180,
+          "ModuleRef": 4,
+          "TypeSpec": 9947,
+          "ImplMap": 19,
+          "FieldRVA": 96,
+          "Assembly": 1,
+          "AssemblyRef": 73,
+          "ManifestResource": 1,
+          "NestedClass": 6454,
+          "GenericParam": 2077,
+          "MethodSpec": 9338,
+          "GenericParamConstraint": 1228
+        }
+      },
+      "identity_scope": {
+        "token_identity": "build-local",
+        "requires_artifact_sha256": "faef6f0b9f142f9d047495ec3dccfd5d6974ac048368dc7045955cf54b117982",
+        "requires_mvid": "ad47400a-25db-462c-bf0a-531df654c3c3"
+      },
+      "types": [
+        {
+          "token": "0x020003da",
+          "row_offset": 7627154,
+          "namespace": "",
+          "name": "GClass492",
+          "full_name": "GClass492",
+          "name_sha256": "322ade66d4397e3ea6a2b8c04965c788a63af7da52d6f99d5d2477100ccc8f0d",
+          "flags": 1048577,
+          "extends_token": "0x02000281",
+          "enclosing_type_token": null,
+          "field_list": {
+            "first_row": 5855,
+            "last_row": 5864,
+            "count": 10
+          },
+          "method_list": {
+            "first_row": 8143,
+            "last_row": 8150,
+            "count": 8
+          }
+        }
+      ],
+      "nesting_read": true,
+      "exported_types": null,
+      "fields": [],
+      "methods": [],
+      "member_refs": [],
+      "call_edges": [],
+      "field_accesses": [],
+      "user_strings": null,
+      "selection": {
+        "type_names": [
+          "GClass492"
+        ],
+        "unmatched_type_names": []
+      },
+      "method_rows": {
+        "offset": 0,
+        "count": 90767,
+        "total": 90767
+      },
+      "coverage": {
+        "state": "partial",
+        "issues": [
+          {
+            "code": "resource-limit",
+            "scope": "metadata.representation",
+            "offset": 12601902,
+            "detail": "Managed metadata exceeds the 67108864 byte representation budget"
+          }
+        ]
+      },
+      "limitations": [
+        "Types, fields, methods, call edges, field accesses, and user strings cover only the selected declaring types; coverage describes that selection. Edge targets outside it keep their names but are not described.",
+        "Member decoding exceeded capacity after the type inventory was admitted; fields, methods, member references, call edges, field accesses, exported types and user strings are not examined to completion. Empty member collections do not establish absence.",
+        "Use the returned TypeDef full_name values with type_names (CLI --type) to inspect a smaller selection; a single selected type can still exceed capacity.",
+        "Metadata tokens are build-local coordinates and require the reported artifact SHA-256 and MVID. Type names and list ranges retain their original metadata and nesting uncertainty."
+      ]
+    },
+    "confidence": "observed",
+    "authority": "shipped-artifact",
+    "environment": null,
+    "limitations": [
+      "Types, fields, methods, call edges, field accesses, and user strings cover only the selected declaring types; coverage describes that selection. Edge targets outside it keep their names but are not described.",
+      "Member decoding exceeded capacity after the type inventory was admitted; fields, methods, member references, call edges, field accesses, exported types and user strings are not examined to completion. Empty member collections do not establish absence.",
+      "Use the returned TypeDef full_name values with type_names (CLI --type) to inspect a smaller selection; a single selected type can still exceed capacity.",
+      "Metadata tokens are build-local coordinates and require the reported artifact SHA-256 and MVID. Type names and list ranges retain their original metadata and nesting uncertainty."
+    ],
+    "relationship_coverage": null,
+    "locations": [
+      {
+        "kind": "file-offset",
+        "offset": 7591872
+      }
+    ],
+    "evidence_links": []
+  },
+  "limitation": "REA selected-member decoder exceeded its metadata representation budget. No empty member array is absence proof. Targeted dnlib IL covers all eight GClass492 methods; see avoidance-il.txt and actual-plugin native transform test. No target game method executed."
+}

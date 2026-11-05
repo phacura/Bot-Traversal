@@ -1,0 +1,228 @@
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.10+RC147")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.11+RC148")]
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 10 loaded: V2-RC147-Beta10");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 11 loaded: V2-RC148-Beta11");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -260,7 +260,11 @@
+             if(owner!=FollowerMovementWriterAuthority.WriterDomain.Traversal&&owner!=FollowerMovementWriterAuthority.WriterDomain.PostTraversal)return false;
+             if(!TryRetireNativeMoverPathPreserveLocomotion(bot,"portalApproachOwnerHandoff",out _)||
+                 !FollowerMovementWriterAuthority.TryEnterBoundPhysicalMotion(bot,owner,generation,out var scope,out _))return false;
+-            using(scope)ClearCapabilityNativeDestinationData(bot);
++            using(scope)
++            {
++                ClearCapabilityNativeDestinationData(bot);
++                if(!TryScrubLearningV364NativeMoverEpochAnchor(bot,bot.GetPlayer.Position,"portalApproachOwnerHandoff",out _))return false;
++            }
+             EndLearningV375PersistentRouteTransaction(bot,"portalApproachOwnerHandoff");
+             bool yielded=owner==FollowerMovementWriterAuthority.WriterDomain.Traversal
+                 ?FollowerMovementWriterAuthority.TransitionTraversalToFollowIfIdleExact(bot,generation,"portalApproachOwnerHandoff")
+@@ -612,6 +616,8 @@
+             var step=m.Steps[m.CurrentStepIndex];if(step==null)return false;
+             bool hasProbe=TryGetActiveProbe(bot,out var probe);
+             if(hasProbe&&(!IsProbeLifecycleCurrent(probe)||!ReferenceEquals(probe.LifecycleMission,m)||!ReferenceEquals(probe.LifecycleStep,step)))return false;
++            if(hasProbe&&!FollowerCapabilityIngressMotionPolicy.ExecutionGaitPhase(probe.Stage==ProbeStage.Egress,
++                probe.Stage==ProbeStage.Verify,probe.Stage==ProbeStage.ExitCommit))return false;
+             if(!bot.GetPlayer.MovementContext.IsGrounded)return false;
+             if(hasProbe&&probe.NativeExecutorConsumed&&(probe.RequestedTraversalKind=="Jump"||probe.RequestedTraversalKind=="Vault"||probe.RequestedTraversalKind=="Climb"))return false;
+             if(!bot.GetPlayer.MovementContext.CanSprint||bot.GetPlayer.MovementContext.PoseLevel<.9f)return true;
+@@ -1147,9 +1153,19 @@
+                     body=Vec(body),candidate=Vec(candidate),age=Time.time-watch.ArmedAt,bodyRelocated=false,nativeSuccessRecorded=false});
+             return reject;
+         }
++        private static bool OwnsCapabilityAdmittedIngress(BotOwner bot)
++        {
++            if(bot==null||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m)||m==null)return false;
++            bool current=m.CurrentStepIndex>=0&&m.CurrentStepIndex<m.Steps.Count;
++            return FollowerCapabilityIngressMotionPolicy.OwnedIngress(!m.Lifecycle.Retired&&m.LifecycleRaid==raidGeneration&&
++                m.LifecycleBotId==bot.ProfileId&&Time.time<=m.ExpiresAt,current,
++                current&&m.PortalQueueStep==m.CurrentStepIndex&&m.PortalQueueAdmittedAt>=0&&m.PortalQueueClaimSerial>0,
++                current&&CapabilityPortalQueue.Owns(bot.ProfileId,m.MissionId,m.CurrentStepIndex),
++                current&&m.Steps[m.CurrentStepIndex]?.Lifecycle.DebtOutstanding==true);
++        }
+         private static bool ProtectCapabilityLocalBodyProjection(BotOwner bot)
+             => bot!=null&&FollowerCapabilityIngressMotionPolicy.ProtectLocalBody(IsCapabilityRouteRetrySafe(bot),
+-                IsCapabilityPortalWaiting(bot),IsCapabilityReturnInProgress(bot),HasCapabilityFailureStrategy(bot));
++                IsCapabilityPortalWaiting(bot),IsCapabilityReturnInProgress(bot),HasCapabilityFailureStrategy(bot)||OwnsCapabilityAdmittedIngress(bot));
+ 
+         private static bool TryGetCapabilityLiveResolvedFollow(BotOwner bot,out Player leader,out long generation)
+         {
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityExecutionMotionHost.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityExecutionMotionHost.cs
+@@ -46,6 +46,8 @@
+         private static Vector3 SelectCapabilityWalkThroughCornerTarget(ProbeRuntime probe,Vector3 position,float desiredS)
+         {
+             float from=probe.WalkThroughProgressS,safe=from;
++            var first=SampleWalkThroughCorridorAtDistance(probe,from);
++            double initial=GetPlanarDistance(position,first);
+             const float increment=.12f; // bounded geometry inspection; no new cursor or progress clock.
+             for(int i=1;i<=16;i++)
+             {
+@@ -55,13 +57,15 @@
+                 {
+                     var point=SampleWalkThroughCorridorAtDistance(probe,Mathf.Min(candidateS,from+j*increment));
+                     double deviation=FollowerCapabilityIngressMotionPolicy.ChordDeviation(position.x,position.z,candidate.x,candidate.z,point.x,point.z);
+-                    if(!FollowerCapabilityIngressMotionPolicy.ChordInside(deviation,WalkThroughPassageStraightLateralTolerance))
++                    if(!FollowerCapabilityIngressMotionPolicy.RejoinChordInside(deviation,WalkThroughPassageStraightLateralTolerance,initial,
++                        (Mathf.Min(candidateS,from+j*increment)-from)/Mathf.Max(.001f,candidateS-from)))
+                     {inside=false;break;}
+                 }
+                 if(!inside)break;
+                 safe=candidateS;if(candidateS>=desiredS-.001f)break;
+             }
+-            // An off-lane body first rejoins the nearest current route point; never a future shortcut.
++            // The recovery envelope decays toward a forward join, avoiding a perpendicular Sprint correction.
++            // It still rejects a new inside-corner shortcut; no cursor or body position is advanced here.
+             return SampleWalkThroughCorridorAtDistance(probe,safe);
+         }
+         private static bool TryConstrainCapabilityWalkThroughTarget(ProbeRuntime probe,ref Vector3 target)
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityIngressMotionPolicy.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityIngressMotionPolicy.cs
+@@ -20,6 +20,12 @@
+         }
+         internal static bool ChordInside(double deviation,double width)
+             => Finite(deviation)&&Finite(width)&&width>0&&deviation<=width*.5;
++        internal static bool RejoinChordInside(double deviation,double width,double initial,double fraction)
++            => Finite(deviation)&&deviation>=0&&Finite(width)&&width>0&&Finite(initial)&&initial>=0&&
++                Finite(fraction)&&fraction>=0&&fraction<=1&&deviation<=width*.5+initial*(1-fraction);
++        internal static bool ExecutionGaitPhase(bool egress,bool verify,bool commit)=>!egress&&!verify&&!commit;
++        internal static bool OwnedIngress(bool live,bool current,bool admitted,bool owns,bool debt)
++            => live&&current&&admitted&&owns&&debt;
+         internal static bool WallBlocks(bool hit,double normalY,double opposition,double distance)
+             => hit&&Finite(normalY)&&normalY<.65&&Finite(opposition)&&opposition>.10&&Finite(distance)&&distance>=0;
+         internal static bool KeepNativeMove(bool boundBefore,bool boundAfter)=>!boundBefore||boundAfter;
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityProbeLocomotionHost.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityProbeLocomotionHost.cs
+@@ -15,7 +15,9 @@
+             }
+ 
+             BotOwner bot = probe.Bot;
+-            preserveSprintMode = preserveSprintMode || ShouldPreserveCapabilityProbeGait(probe);
++            bool plannedGait=TryGetCapabilityRouteSprint(bot,probe.RequestedDirection,out bool plannedSprint);
++            if(plannedGait){allowSprint=plannedSprint;preserveSprintMode=false;}
++            preserveSprintMode = preserveSprintMode || !plannedGait&&ShouldPreserveCapabilityProbeGait(probe);
+             bot.Mover.SetBotMoverPause("R1-AF5E5E1E0C00",@bot,false);
+             if ((preserveSprintMode))
+             {
+@@ -75,7 +77,7 @@
+                 }
+                 return;
+             }
+-            if (probe.PreviousSprinting && allowSprint)
++            if ((probe.PreviousSprinting || plannedGait&&plannedSprint) && allowSprint)
+             {
+                 bot.BotOwnerSetTargetMoveSpeed("R1-1D771E72EF15",@bot,ProbeMomentumFullMoveSpeed);
+                 if (!bot.Mover.Sprinting)
+--- RC147/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC148/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -8978,7 +8978,14 @@
+             }
+ 
+             BotOwner owner = mover.BotOwner_0;
+-            if(ProtectCapabilityLocalBodyProjection(owner)||RejectCapabilityPostCompletionProjection(owner,possiblePosition))return true;
++            if(ProtectCapabilityLocalBodyProjection(owner)||RejectCapabilityPostCompletionProjection(owner,possiblePosition))
++            {
++                if(owner?.GetPlayer!=null&&IsFinite(possiblePosition)&&OwnsCapabilityAdmittedIngress(owner)&&
++                    ShouldEmitDiagnostic("capabilityIngressProjectionRejected",owner,.10f))
++                    WriteEvent("capabilityIngressProjectionRejected",owner,new{body=Vec(owner.GetPlayer.Position),
++                        candidate=Vec(possiblePosition),withExtra,bodyRelocated=false,nativeSuccessRecorded=false});
++                return true;
++            }
+             if (owner != null &&
+                 HasLearningV364UnsynchronizedPhysicalNavigationEpoch(
+                     owner, out PhysicalNavigationEpochHandoff learningV364Handoff))
+--- RC147/QA\CorridorIntegrity\Replay\Program.cs
++++ RC148/QA\CorridorIntegrity\Replay\Program.cs
+@@ -651,5 +651,16 @@
+ Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.ChordDeviation(0,0,0,0,.3,.4)==.5,"zero chord returns body distance");
+ for(int mask=0;mask<8;mask++)Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WallBlocks((mask&1)!=0,(mask&2)!=0?0:1,(mask&4)!=0?1:0,.4)==(mask==7),"wall versus floor tangent and absent hit "+mask);
+ foreach(double invalid in new[]{double.NaN,double.PositiveInfinity,-1})Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.WallBlocks(true,0,1,invalid),"invalid cast distance "+invalid);
++// RC148 recenter keeps forward pursuit; exact queue claim protects the released head.
++for(int mask=0;mask<32;mask++)Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.OwnedIngress((mask&1)!=0,(mask&2)!=0,(mask&4)!=0,(mask&8)!=0,(mask&16)!=0)==(mask==31),"admitted projection authority "+mask);
++for(int mask=0;mask<8;mask++)Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.ExecutionGaitPhase((mask&1)!=0,(mask&2)!=0,(mask&4)!=0)==(mask==0),"landing consumer owns its gait "+mask);
++foreach(double initial in new[]{0,.1,.25,.55})foreach(double fraction in new[]{0,.25,.5,.75,1}) {
++ double limit=.11+initial*(1-fraction);
++ Check(BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(limit,.22,initial,fraction),"decaying forward join boundary "+initial+":"+fraction);
++ Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(limit+.001,.22,initial,fraction),"new corner deviation cannot exceed join envelope "+initial+":"+fraction);
++}
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.ChordInside(.25,.22)&&BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(.25,.22,.55,0),"recorded off-lane body can pursue forward instead of perpendicular Sprint reversal");
++Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(.25,.22,.55,1),"terminal join never inherits initial lane allowance");
++foreach(double bad in new[]{double.NaN,double.PositiveInfinity,-1})Check(!BotTraversal.Core.FollowerCapabilityIngressMotionPolicy.RejoinChordInside(bad,.22,.2,.5),"invalid rejoin deviation "+bad);
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta10 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta11 production decision and recorded-order replay checks");
+--- RC147/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC148/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,12 +2,19 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('ProtectCapabilityLocalBodyProjection','OwnsCapabilityAdmittedIngress'),
++ @('OwnsCapabilityAdmittedIngress','OwnedIngress'),
++ @('OwnsCapabilityAdmittedIngress','Owns'),
++ @('TryPrepareCapabilityPortalApproachDelivery','TryScrubLearningV364NativeMoverEpochAnchor'),
++ @('ShouldSuppressNativeNavMeshBodyRelink','OwnsCapabilityAdmittedIngress'),
++ @('ApplyProbeLocomotionIntent','TryGetCapabilityRouteSprint'),
++ @('TryGetCapabilityRouteSprint','ExecutionGaitPhase'),
+  @('UpdateWalkThroughEntryConvergence','GetCapabilityWalkThroughEntryTarget'),
+  @('TryDriveCapabilityLocalWalkThroughEntry','GetCapabilityWalkThroughEntryTarget'),
+  @('NeedsCapabilityEntryRun','GetCapabilityWalkThroughEntryTarget'),
+  @('GetCurrentWalkThroughCorridorTarget','SelectCapabilityWalkThroughCornerTarget'),
+  @('SelectCapabilityWalkThroughCornerTarget','ChordDeviation'),
+- @('SelectCapabilityWalkThroughCornerTarget','ChordInside'),
++ @('SelectCapabilityWalkThroughCornerTarget','RejoinChordInside'),
+  @('TryConstrainCapabilityWalkThroughTarget','IsProbeLifecycleCurrent'),
+  @('TryConstrainCapabilityWalkThroughTarget','TryGetFirstNonSelfCapsuleCastHit'),
+  @('TryConstrainCapabilityWalkThroughTarget','WallBlocks'),
+--- RC147/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC148/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.10+RC147') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.11+RC148') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -470,7 +470,7 @@
+ # RC147 finite episodes, shared gait and observed wall-aware route target.
+ $f=M 'BeginWalkThroughProbe';Check ((C $f 'TryExtendWalkThroughProbeWithRouteMissionComposite').Count -eq 0) 'one physical WT attempt cannot consume a child episode before root completion'
+ $f=M 'GetCurrentWalkThroughCorridorTarget';Check ((C $f 'SelectCapabilityWalkThroughCornerTarget').Count -eq 1) 'lookahead follows bounded route chord'
+-$f=M 'SelectCapabilityWalkThroughCornerTarget';foreach($n in @('ChordDeviation','ChordInside')){Check ((C $f $n).Count -eq 1) ('corner geometry '+$n)}
++$f=M 'SelectCapabilityWalkThroughCornerTarget';foreach($n in @('ChordDeviation','RejoinChordInside')){Check ((C $f $n).Count -eq 1) ('corner geometry '+$n)}
+ $f=M 'TryConstrainCapabilityWalkThroughTarget';foreach($n in @('IsProbeLifecycleCurrent','TryGetFirstNonSelfCapsuleCastHit','WallBlocks')){Check ((C $f $n).Count -eq 1) ('current WT wall sensor '+$n)}
+ $f=M 'TryPublishLearningV414PathlessNativeInputLease';foreach($n in @('TryConstrainCapabilityWalkThroughTarget','TryGetCapabilityRouteSprint')){Check ((C $f $n).Count -eq 1) ('one native WT target/input '+$n)}
+ Check ((C $f 'TryCommitV2ProbePhysicalMotion').Count -eq 2) 'blocked target holds through existing exact physical writer without legacy fallback'
+@@ -480,8 +480,15 @@
+ $f=M 'EnforceLearningV368TraversalProducerOwnership';Check ((C $f 'HasCapabilityUnresolvedRouteWork').Count -eq 1 -and (C $f 'HasCapabilityUnresolvedRouteWork')[0].Offset -lt (C $f 'TryRetireNativeMoverPathPreserveLocomotion')[0].Offset) 'live queue strategy and return debt blocks obsolete orphan Follow takeover'
+ foreach($name in @('UpdateWalkThroughEntryConvergence','TryDriveCapabilityLocalWalkThroughEntry','NeedsCapabilityEntryRun')){Check ((C (M $name) 'GetCapabilityWalkThroughEntryTarget').Count -eq 1) ('same current episode entry target '+$name)}
+ $f=M 'GetCapabilityWalkThroughEntryTarget';Check (@($f.Body.Instructions|Where-Object{$_.Operand.Name -eq 'LearningV372CurrentEpisodeWalkThroughCorridorAuthority'}).Count -eq 1) 'current episode lane outranks former semantic root'
++# RC148 queue head admission owns physical epoch until the actual action takes over.
++$f=M 'ProtectCapabilityLocalBodyProjection';Check ((C $f 'OwnsCapabilityAdmittedIngress').Count -eq 1) 'released queue head still rejects stale native body projection'
++$f=M 'OwnsCapabilityAdmittedIngress';foreach($n in @('OwnedIngress','Owns')){Check ((C $f $n).Count -eq 1) ('finite exact admitted ingress '+$n)}
++$f=M 'TryPrepareCapabilityPortalApproachDelivery';Check ((C $f 'TryScrubLearningV364NativeMoverEpochAnchor').Count -eq 1 -and (C $f 'TryScrubLearningV364NativeMoverEpochAnchor')[0].Offset -lt (C $f 'TransitionTraversalToFollowIfIdleExact')[0].Offset) 'native bookkeeping anchored at current body before admitted approach Follow handoff'
++$f=M 'ShouldSuppressNativeNavMeshBodyRelink';Check ((C $f 'OwnsCapabilityAdmittedIngress').Count -eq 1) 'projection rejection logs exact queue-head scope'
++$f=M 'ApplyProbeLocomotionIntent';Check ((C $f 'TryGetCapabilityRouteSprint').Count -eq 1 -and (C $f 'TryGetCapabilityRouteSprint')[0].Offset -lt (C $f 'BotMoverSprint')[0].Offset) 'legacy locomotion setter shares physical-input gait decision'
++$f=M 'TryGetCapabilityRouteSprint';Check ((C $f 'ExecutionGaitPhase').Count -eq 1) 'entry/execution planner never rearms Sprint in egress verify or exit commit'
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta10 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta11 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}
+ 

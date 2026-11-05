@@ -1,0 +1,350 @@
+METHOD System.Void PathControllerClass::IncCornerIndex() PUBLIC:True
+IL_0000: ldarg.0
+IL_0001: ldarg.0
+IL_0002: ldfld UnityEngine.Vector3 PathControllerClass::Vector3_2
+IL_0007: stfld UnityEngine.Vector3 PathControllerClass::Vector3_1
+IL_000C: ldarg.0
+IL_000D: ldarg.0
+IL_000E: call BotCurrentPathAbstractClass PathControllerClass::get_CurPath()
+IL_0013: callvirt UnityEngine.Vector3 BotCurrentPathAbstractClass::CurrentCorner()
+IL_0018: stfld UnityEngine.Vector3 PathControllerClass::Vector3_2
+IL_001D: ldarg.0
+IL_001E: call BotCurrentPathAbstractClass PathControllerClass::get_CurPath()
+IL_0023: callvirt System.Void BotCurrentPathAbstractClass::IncCornerIndex()
+IL_0028: ret
+METHOD System.Boolean BotMover::IsComeTo(System.Single,System.Boolean,CustomNavigationPoint)
+IL_0000: ldarg.1
+IL_0001: ldarg.1
+IL_0002: mul
+IL_0003: stloc.0
+IL_0004: ldarg.3
+IL_0005: brtrue.s IL_001B
+IL_0007: ldarg.0
+IL_0008: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_000D: ldfld BotMemoryClass EFT.BotOwner::Memory
+IL_0012: callvirt CustomNavigationPoint BotMemoryClass::get_CurCustomCoverPoint()
+IL_0017: starg p
+IL_001B: ldarg.2
+IL_001C: brfalse.s IL_0082
+IL_001E: ldarg.3
+IL_001F: brfalse.s IL_0082
+IL_0021: ldarg.0
+IL_0022: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_0027: callvirt UnityEngine.Vector3 EFT.BotOwner::get_Position()
+IL_002C: ldarg.3
+IL_002D: callvirt UnityEngine.Vector3 CustomNavigationPoint::get_Position()
+IL_0032: call UnityEngine.Vector3 UnityEngine.Vector3::op_Subtraction(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_0037: stloc.1
+IL_0038: ldloc.1
+IL_0039: ldfld System.Single UnityEngine.Vector3::y
+IL_003E: call System.Single UnityEngine.Mathf::Abs(System.Single)
+IL_0043: ldarg.0
+IL_0044: ldfld EFT.BotOwner GClass429::BotOwner_0
+IL_0049: ldfld BotDifficultySettingsClass EFT.BotOwner::Settings
+IL_004E: callvirt BotSettingsComponents BotDifficultySettingsClass::get_FileSettings()
+IL_0053: ldfld BotGlobalsMoveSettings BotSettingsComponents::Move
+IL_0058: ldfld System.Single BotGlobalsMoveSettings::Y_APPROXIMATION
+IL_005D: bge.un.s IL_006B
+IL_005F: ldloca.s V_1
+IL_0061: ldc.r4 0
+IL_0066: stfld System.Single UnityEngine.Vector3::y
+IL_006B: ldarg.0
+IL_006C: ldloca.s V_1
+IL_006E: call System.Single UnityEngine.Vector3::get_sqrMagnitude()
+IL_0073: call System.Void BotMover::set_SDistDestination(System.Single)
+IL_0078: ldarg.0
+IL_0079: call System.Single BotMover::get_SDistDestination()
+IL_007E: ldloc.0
+IL_007F: clt
+IL_0081: ret
+IL_0082: ldarg.0
+IL_0083: call System.Single BotMover::get_DistDestination()
+IL_0088: ldloc.0
+IL_0089: clt
+IL_008B: ret
+METHOD System.Void BotMover::ManualFixedUpdate()
+IL_0000: ldarg.0
+IL_0001: call System.Void BotMover::method_16()
+IL_0006: ldarg.0
+IL_0007: call System.Void BotMover::method_12()
+IL_000C: ret
+METHOD System.Void BotMover::Stop()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.0
+IL_0002: call System.Void BotMover::set_IsMoving(System.Boolean)
+IL_0007: ldarg.0
+IL_0008: call PathControllerClass BotMover::get_ActualPathController()
+IL_000D: callvirt System.Void PathControllerClass::Stop()
+IL_0012: ret
+FOLLOW METHODS
+System.Void pitTeam.BigBrain.Actions.FollowAction::.ctor(EFT.BotOwner)
+System.Void pitTeam.BigBrain.Actions.FollowAction::Start()
+System.Void pitTeam.BigBrain.Actions.FollowAction::Update(DrakiaXYZ.BigBrain.Brains.CustomLayer/ActionData)
+System.Void pitTeam.BigBrain.Actions.FollowAction::Stop()
+System.Void pitTeam.BigBrain.Actions.FollowAction::HoldForBackpackInspection()
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::TryGetBossAndPlayer()
+UnityEngine.Vector3 pitTeam.BigBrain.Actions.FollowAction::GetLeaderTargetPosition()
+System.Single pitTeam.BigBrain.Actions.FollowAction::GetEffectiveFollowDistance()
+System.Void pitTeam.BigBrain.Actions.FollowAction::Follow(System.Boolean,System.Single)
+System.Void pitTeam.BigBrain.Actions.FollowAction::MaintainOutOfRangeChase(UnityEngine.Vector3,System.Single,System.Single)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::ShouldSprintFollow(System.Single,System.Single)
+System.Void pitTeam.BigBrain.Actions.FollowAction::ApplyFollowChaseMovementState(System.Boolean)
+CustomNavigationPoint pitTeam.BigBrain.Actions.FollowAction::TryGetSettleCoverPoint(UnityEngine.Vector3,System.Single)
+CustomNavigationPoint pitTeam.BigBrain.Actions.FollowAction::TryFindExpandedCoverPoint(UnityEngine.Vector3)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::TryGetRandomSettlePoint(UnityEngine.Vector3,System.Single,UnityEngine.Vector3&)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::IsSettlePositionClear(UnityEngine.Vector3)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::IsSettlePathClear(UnityEngine.Vector3)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::IsPointTooCloseToSettlePath(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3)
+System.Single pitTeam.BigBrain.Actions.FollowAction::DistancePointToSegmentSqrXZ(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single,System.Single)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::HasSettleDestinationClaimConflict(UnityEngine.Vector3)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::TryReserveSettleDestination(UnityEngine.Vector3)
+System.Void pitTeam.BigBrain.Actions.FollowAction::RefreshSettleDestinationClaim()
+System.Void pitTeam.BigBrain.Actions.FollowAction::ReleaseSettleDestinationClaim()
+pitTeam.Components.CombatEvents pitTeam.BigBrain.Actions.FollowAction::GetCombatEvents()
+System.Void pitTeam.BigBrain.Actions.FollowAction::Patrol()
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::ShouldRunPatrolMode(System.Boolean)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::HasLeaderMovedForPatrolGate(UnityEngine.Vector3)
+System.Void pitTeam.BigBrain.Actions.FollowAction::ResetPatrolRuntimeGate(System.Boolean)
+System.Void pitTeam.BigBrain.Actions.FollowAction::ResetActivePatrolState()
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::HasLeaderLeftPatrolAnchor(UnityEngine.Vector3,UnityEngine.Vector3)
+UnityEngine.AI.NavMeshPathStatus pitTeam.BigBrain.Actions.FollowAction::GoToPosition(UnityEngine.Vector3)
+System.Boolean pitTeam.BigBrain.Actions.FollowAction::TryApplyCommandLookOverride()
+System.Void pitTeam.BigBrain.Actions.FollowAction::UpdateFollowPath(UnityEngine.Vector3)
+System.Void pitTeam.BigBrain.Actions.FollowAction::SetPatrolEnabled(System.Boolean)
+System.Void pitTeam.BigBrain.Actions.FollowAction::ResetPeaceActions()
+METHOD System.Void pitTeam.BigBrain.Actions.FollowAction::Update(DrakiaXYZ.BigBrain.Brains.CustomLayer/ActionData)
+IL_0000: ldarg.0
+IL_0001: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0006: ldnull
+IL_0007: call System.Boolean UnityEngine.Object::op_Equality(UnityEngine.Object,UnityEngine.Object)
+IL_000C: brtrue.s IL_0020
+IL_000E: ldarg.0
+IL_000F: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0014: callvirt BotFollower EFT.BotOwner::get_BotFollower()
+IL_0019: callvirt System.Boolean BotFollower::get_HaveBoss()
+IL_001E: brtrue.s IL_0021
+IL_0020: ret
+IL_0021: ldarg.0
+IL_0022: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0027: call System.Void pitTeam.Utils.FollowerRecovery::StopShooting(EFT.BotOwner)
+IL_002C: ldarg.0
+IL_002D: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0032: callvirt BotDoorOpener EFT.BotOwner::get_DoorOpener()
+IL_0037: callvirt DoorInteractionStatus BotDoorOpener::UpdateDoorInteractionStatus()
+IL_003C: pop
+IL_003D: ldarg.0
+IL_003E: ldfld pitTeam.Components.BotFollowerPlayer pitTeam.BigBrain.Actions.FollowAction::followerData
+IL_0043: brtrue.s IL_0062
+IL_0045: ldarg.0
+IL_0046: call pitTeam.Modules.BossPlayers pitTeam.Modules.BossPlayers::get_Instance()
+IL_004B: dup
+IL_004C: brtrue.s IL_0052
+IL_004E: pop
+IL_004F: ldnull
+IL_0050: br.s IL_005D
+IL_0052: ldarg.0
+IL_0053: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0058: call pitTeam.Components.BotFollowerPlayer pitTeam.Modules.BossPlayers::GetFollower(EFT.BotOwner)
+IL_005D: stfld pitTeam.Components.BotFollowerPlayer pitTeam.BigBrain.Actions.FollowAction::followerData
+IL_0062: ldarg.0
+IL_0063: ldfld pitTeam.Components.BotFollowerPlayer pitTeam.BigBrain.Actions.FollowAction::followerData
+IL_0068: dup
+IL_0069: brtrue.s IL_006F
+IL_006B: pop
+IL_006C: ldc.i4.0
+IL_006D: br.s IL_0074
+IL_006F: call System.Boolean pitTeam.Components.BotFollowerPlayer::get_IsBackpackInspectionActive()
+IL_0074: brfalse.s IL_007D
+IL_0076: ldarg.0
+IL_0077: call System.Void pitTeam.BigBrain.Actions.FollowAction::HoldForBackpackInspection()
+IL_007C: ret
+IL_007D: ldarg.0
+IL_007E: call System.Boolean pitTeam.BigBrain.Actions.FollowAction::TryGetBossAndPlayer()
+IL_0083: brtrue.s IL_0091
+IL_0085: ldarg.0
+IL_0086: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_008B: callvirt System.Void EFT.BotOwner::StopMove()
+IL_0090: ret
+IL_0091: ldarg.0
+IL_0092: ldarg.0
+IL_0093: ldarg.0
+IL_0094: ldfld pitTeam.Components.BotFollowerPlayer pitTeam.BigBrain.Actions.FollowAction::followerData
+IL_0099: dup
+IL_009A: brtrue.s IL_00A0
+IL_009C: pop
+IL_009D: ldc.i4.0
+IL_009E: br.s IL_00A5
+IL_00A0: call System.Boolean pitTeam.Components.BotFollowerPlayer::get_CanPatrol()
+IL_00A5: call System.Boolean pitTeam.BigBrain.Actions.FollowAction::ShouldRunPatrolMode(System.Boolean)
+IL_00AA: call System.Void pitTeam.BigBrain.Actions.FollowAction::SetPatrolEnabled(System.Boolean)
+IL_00AF: ldarg.0
+IL_00B0: ldfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::patrolEnabled
+IL_00B5: brfalse.s IL_00BF
+IL_00B7: ldarg.0
+IL_00B8: call System.Void pitTeam.BigBrain.Actions.FollowAction::Patrol()
+IL_00BD: br.s IL_00CB
+IL_00BF: ldarg.0
+IL_00C0: ldc.i4.0
+IL_00C1: ldc.r4 0
+IL_00C6: call System.Void pitTeam.BigBrain.Actions.FollowAction::Follow(System.Boolean,System.Single)
+IL_00CB: leave.s IL_00DF
+IL_00CD: call System.Void pitTeam.Modules.Logger::LogError(System.Exception)
+IL_00D2: ldarg.0
+IL_00D3: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_00D8: callvirt System.Void EFT.BotOwner::StopMove()
+IL_00DD: leave.s IL_00DF
+IL_00DF: ret
+METHOD System.Void pitTeam.BigBrain.Actions.FollowAction::Stop()
+IL_0000: ldarg.0
+IL_0001: call System.Void pitTeam.BigBrain.Actions.FollowAction::ReleaseSettleDestinationClaim()
+IL_0006: ldarg.0
+IL_0007: ldfld pitTeam.Components.BotFollowerPlayer pitTeam.BigBrain.Actions.FollowAction::followerData
+IL_000C: dup
+IL_000D: brtrue.s IL_0012
+IL_000F: pop
+IL_0010: br.s IL_0018
+IL_0012: ldc.i4.0
+IL_0013: call System.Void pitTeam.Components.BotFollowerPlayer::SetBackpackInspectionActive(System.Boolean)
+IL_0018: ldarg.0
+IL_0019: call System.Void DrakiaXYZ.BigBrain.Brains.CustomLogic::Stop()
+IL_001E: ret
+METHOD System.Void pitTeam.BigBrain.Actions.FollowAction::HoldForBackpackInspection()
+IL_0000: ldarg.0
+IL_0001: ldc.i4.0
+IL_0002: stfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::movingToPatrolPoint
+IL_0007: ldarg.0
+IL_0008: ldc.i4.0
+IL_0009: stfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::movingToSettlePoint
+IL_000E: ldarg.0
+IL_000F: ldc.i4.0
+IL_0010: stfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::patrolEnabled
+IL_0015: ldarg.0
+IL_0016: call System.Void pitTeam.BigBrain.Actions.FollowAction::ReleaseSettleDestinationClaim()
+IL_001B: ldarg.0
+IL_001C: ldc.r4 0
+IL_0021: stfld System.Single pitTeam.BigBrain.Actions.FollowAction::holdPositionUntil
+IL_0026: ldarg.0
+IL_0027: ldc.i4.0
+IL_0028: stfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::isPatrolCampInitialized
+IL_002D: ldarg.0
+IL_002E: ldc.r4 0
+IL_0033: stfld System.Single pitTeam.BigBrain.Actions.FollowAction::nextPatrolUpdateAt
+IL_0038: ldarg.0
+IL_0039: ldc.r4 0
+IL_003E: stfld System.Single pitTeam.BigBrain.Actions.FollowAction::nextFollowUpdateAt
+IL_0043: ldarg.0
+IL_0044: ldc.r4 0
+IL_0049: stfld System.Single pitTeam.BigBrain.Actions.FollowAction::nextFollowPathRecoveryAt
+IL_004E: ldarg.0
+IL_004F: ldfld pitTeam.BigBrain.FollowerCoverCommitment pitTeam.BigBrain.Actions.FollowAction::coverCommitment
+IL_0054: callvirt System.Void pitTeam.BigBrain.FollowerCoverCommitment::ClearCommitment()
+IL_0059: ldarg.0
+IL_005A: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_005F: callvirt System.Void EFT.BotOwner::StopMove()
+IL_0064: ldarg.0
+IL_0065: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_006A: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_006F: brfalse.s IL_00E9
+IL_0071: ldarg.0
+IL_0072: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0077: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_007C: ldc.i4.1
+IL_007D: callvirt System.Void BotMover::set_Pause(System.Boolean)
+IL_0082: ldarg.0
+IL_0083: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0088: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_008D: callvirt System.Boolean BotMover::get_Sprinting()
+IL_0092: brfalse.s IL_00A6
+IL_0094: ldarg.0
+IL_0095: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_009A: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_009F: ldc.i4.0
+IL_00A0: ldc.i4.0
+IL_00A1: callvirt System.Void BotMover::Sprint(System.Boolean,System.Boolean)
+IL_00A6: ldarg.0
+IL_00A7: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_00AC: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_00B1: callvirt System.Single BotMover::get_TargetPose()
+IL_00B6: ldc.r4 0.15
+IL_00BB: bgt.s IL_00D4
+IL_00BD: ldarg.0
+IL_00BE: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_00C3: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_00C8: callvirt System.Single BotMover::get_TargetPose()
+IL_00CD: ldc.r4 0.05
+IL_00D2: bge.un.s IL_00E9
+IL_00D4: ldarg.0
+IL_00D5: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_00DA: callvirt BotMover EFT.BotOwner::get_Mover()
+IL_00DF: ldc.r4 0.1
+IL_00E4: callvirt System.Void BotMover::SetPose(System.Single)
+IL_00E9: ldarg.0
+IL_00EA: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_00EF: call System.Boolean pitTeam.Components.BotFollowerPlayer::TryApplyCommandLookOverride(EFT.BotOwner)
+IL_00F4: brtrue.s IL_014C
+IL_00F6: ldarg.0
+IL_00F7: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_00FC: callvirt BotFollower EFT.BotOwner::get_BotFollower()
+IL_0101: callvirt IBossToFollow BotFollower::get_BossToFollow()
+IL_0106: isinst pitTeam.Components.pitAIBossPlayer
+IL_010B: stloc.0
+IL_010C: ldloc.0
+IL_010D: brfalse.s IL_014C
+IL_010F: ldloc.0
+IL_0110: ldfld EFT.Player pitTeam.Components.pitAIBossPlayer::realPlayer
+IL_0115: ldnull
+IL_0116: call System.Boolean UnityEngine.Object::op_Inequality(UnityEngine.Object,UnityEngine.Object)
+IL_011B: brfalse.s IL_014C
+IL_011D: ldarg.0
+IL_011E: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_0123: callvirt BotSteering EFT.BotOwner::get_Steering()
+IL_0128: ldloc.0
+IL_0129: ldfld EFT.Player pitTeam.Components.pitAIBossPlayer::realPlayer
+IL_012E: callvirt UnityEngine.Vector3 EFT.Player::get_Position()
+IL_0133: call UnityEngine.Vector3 UnityEngine.Vector3::get_up()
+IL_0138: ldc.r4 1.2
+IL_013D: call UnityEngine.Vector3 UnityEngine.Vector3::op_Multiply(UnityEngine.Vector3,System.Single)
+IL_0142: call UnityEngine.Vector3 UnityEngine.Vector3::op_Addition(UnityEngine.Vector3,UnityEngine.Vector3)
+IL_0147: callvirt System.Void BotSteering::LookToPoint(UnityEngine.Vector3)
+IL_014C: ret
+METHOD System.Void pitTeam.BigBrain.Actions.FollowAction::UpdateFollowPath(UnityEngine.Vector3)
+IL_0000: ldarg.0
+IL_0001: ldc.i4.0
+IL_0002: stfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::isPathBlocked
+IL_0007: ldarg.0
+IL_0008: ldarg.1
+IL_0009: call UnityEngine.AI.NavMeshPathStatus pitTeam.BigBrain.Actions.FollowAction::GoToPosition(UnityEngine.Vector3)
+IL_000E: brtrue.s IL_0011
+IL_0010: ret
+IL_0011: ldarg.1
+IL_0012: ldloca.s V_0
+IL_0014: ldc.r4 5
+IL_0019: ldc.i4.m1
+IL_001A: call System.Boolean UnityEngine.AI.NavMesh::SamplePosition(UnityEngine.Vector3,UnityEngine.AI.NavMeshHit&,System.Single,System.Int32)
+IL_001F: brfalse.s IL_0031
+IL_0021: ldarg.0
+IL_0022: ldarg.1
+IL_0023: call UnityEngine.AI.NavMeshPathStatus pitTeam.BigBrain.Actions.FollowAction::GoToPosition(UnityEngine.Vector3)
+IL_0028: brfalse.s IL_0031
+IL_002A: ldarg.0
+IL_002B: ldc.i4.1
+IL_002C: stfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::isPathBlocked
+IL_0031: ldarg.0
+IL_0032: ldfld System.Boolean pitTeam.BigBrain.Actions.FollowAction::isPathBlocked
+IL_0037: brfalse.s IL_0061
+IL_0039: ldarg.0
+IL_003A: call EFT.BotOwner DrakiaXYZ.BigBrain.Brains.CustomLogic::get_BotOwner()
+IL_003F: callvirt BotCoversData EFT.BotOwner::get_Covers()
+IL_0044: ldarg.1
+IL_0045: ldc.r4 1
+IL_004A: ldc.i4.0
+IL_004B: callvirt CustomNavigationPoint BotCoversData::GetFreeClosePoint(UnityEngine.Vector3,System.Single,System.Boolean)
+IL_0050: stloc.1
+IL_0051: ldloc.1
+IL_0052: brfalse.s IL_0061
+IL_0054: ldarg.0
+IL_0055: ldloc.1
+IL_0056: callvirt UnityEngine.Vector3 CustomNavigationPoint::get_Position()
+IL_005B: call UnityEngine.AI.NavMeshPathStatus pitTeam.BigBrain.Actions.FollowAction::GoToPosition(UnityEngine.Vector3)
+IL_0060: pop
+IL_0061: ret

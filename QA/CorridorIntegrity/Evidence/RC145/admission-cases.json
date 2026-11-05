@@ -1,0 +1,1212 @@
+{
+  "source": "20261103-210532-731-bigmap-g2.jsonl",
+  "cases": [
+    {
+      "sequence": 4924,
+      "raidTime": 238.878525,
+      "bot": {
+        "profileId": "6ae4a3540baf05141c9fd843",
+        "nickname": "Ada_Wong",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": false,
+        "forward": -0.2932278,
+        "side": 0.0459972024,
+        "speed": 2.98757768,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 119,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.629,
+          "y": 5.641822,
+          "z": -142.4058
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 10,
+        "reservationPosition": {
+          "x": 466.629,
+          "y": 5.641822,
+          "z": -142.4058
+        },
+        "reservedForwardEntryProjection": -0.2932278,
+        "currentForwardEntryProjection": -0.2932278,
+        "maxReservedForwardProjection": 0.6567722,
+        "lateralEntryOffset": 0.0459972024,
+        "facingDot": 0.99999994,
+        "alignmentAngle": 0.01978234,
+        "movementHeadingDot": 0.9997794,
+        "frontierPlanarSpeed": 2.98757768,
+        "measuredPlanarSpeed": 2.98757768,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.19801715,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.298757762,
+        "cf60LegalOneFrameForecast": false,
+        "cf60OneFrameDistance": 0.0,
+        "cf60PhysicalTriggerLead": 0.298757762,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 5474,
+      "raidTime": 243.947,
+      "bot": {
+        "profileId": "6a6cbe4b6c32497adc5ad6b5",
+        "nickname": "Chris_Redfield",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.323909283,
+        "side": 0.04897759,
+        "speed": 3.02527046,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 117,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.659821,
+          "y": 5.617794,
+          "z": -142.405365
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 10,
+        "reservationPosition": {
+          "x": 466.659821,
+          "y": 5.617794,
+          "z": -142.405365
+        },
+        "reservedForwardEntryProjection": -0.323909283,
+        "currentForwardEntryProjection": -0.323909283,
+        "maxReservedForwardProjection": 0.6260907,
+        "lateralEntryOffset": 0.04897759,
+        "facingDot": 0.99999994,
+        "alignmentAngle": 0.01978234,
+        "movementHeadingDot": 0.999661565,
+        "frontierPlanarSpeed": 3.02527046,
+        "measuredPlanarSpeed": 3.02527046,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.19801715,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.30252704,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.0431294665,
+        "cf60PhysicalTriggerLead": 0.30252704,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 5717,
+      "raidTime": 245.225662,
+      "bot": {
+        "profileId": "6a6d6ce983abb9b738f8c265",
+        "nickname": "Ghost",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.2921142,
+        "side": 0.278384954,
+        "speed": 2.64955163,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 118,
+        "stepIndex": 2,
+        "edgeId": 118,
+        "position": {
+          "x": 466.647034,
+          "y": 5.64995337,
+          "z": -142.174118
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 10,
+        "reservationPosition": {
+          "x": 466.647034,
+          "y": 5.64995337,
+          "z": -142.174118
+        },
+        "reservedForwardEntryProjection": -0.2921142,
+        "currentForwardEntryProjection": -0.2921142,
+        "maxReservedForwardProjection": 0.6578858,
+        "lateralEntryOffset": 0.278384954,
+        "facingDot": 0.99999994,
+        "alignmentAngle": 0.01978234,
+        "movementHeadingDot": 0.99945426,
+        "frontierPlanarSpeed": 2.64955163,
+        "measuredPlanarSpeed": 2.64955163,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.19801715,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.264955163,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.04237587,
+        "cf60PhysicalTriggerLead": 0.264955163,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 6421,
+      "raidTime": 253.95816,
+      "bot": {
+        "profileId": "6ae4a4580baf05141ca00c91",
+        "nickname": "Knight",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": false,
+        "forward": -0.205475181,
+        "side": 0.0562584847,
+        "speed": 2.52532744,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 120,
+        "stepIndex": 2,
+        "edgeId": 118,
+        "position": {
+          "x": 466.5424,
+          "y": 5.71113062,
+          "z": -142.388351
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 11,
+        "reservationPosition": {
+          "x": 466.5424,
+          "y": 5.71113062,
+          "z": -142.388351
+        },
+        "reservedForwardEntryProjection": -0.205475181,
+        "currentForwardEntryProjection": -0.205475181,
+        "maxReservedForwardProjection": 0.744524837,
+        "lateralEntryOffset": 0.0562584847,
+        "facingDot": 0.99999994,
+        "alignmentAngle": 0.01978234,
+        "movementHeadingDot": 0.999983847,
+        "frontierPlanarSpeed": 2.52532744,
+        "measuredPlanarSpeed": 2.52532744,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.193512857,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.25253275,
+        "cf60LegalOneFrameForecast": false,
+        "cf60OneFrameDistance": 0.0,
+        "cf60PhysicalTriggerLead": 0.25253275,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 7870,
+      "raidTime": 275.1489,
+      "bot": {
+        "profileId": "6a6d6ce983abb9b738f8c265",
+        "nickname": "Ghost",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.465176016,
+        "side": 0.180738717,
+        "speed": 5.30639124,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Sprint",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 129,
+        "stepIndex": 2,
+        "edgeId": 118,
+        "position": {
+          "x": 466.811462,
+          "y": 5.510849,
+          "z": -142.28569
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Sprint",
+        "movementGeneration": 17,
+        "reservationPosition": {
+          "x": 466.811462,
+          "y": 5.510849,
+          "z": -142.28569
+        },
+        "reservedForwardEntryProjection": -0.465176016,
+        "currentForwardEntryProjection": -0.465176016,
+        "maxReservedForwardProjection": 0.5437528,
+        "lateralEntryOffset": 0.180738717,
+        "facingDot": 0.99999994,
+        "alignmentAngle": 0.01978234,
+        "movementHeadingDot": 0.998195648,
+        "frontierPlanarSpeed": 5.30639124,
+        "measuredPlanarSpeed": 5.30639124,
+        "requiredSpeed": 5.45297956,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.190134645,
+        "reservationLeadDistance": 1.00892878,
+        "physicalTriggerLeadDistance": 0.42,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.0803239048,
+        "cf60PhysicalTriggerLead": 0.42,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 8553,
+      "raidTime": 283.369354,
+      "bot": {
+        "profileId": "6a6cbe4b6c32497adc5ad6b5",
+        "nickname": "Chris_Redfield",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.213554531,
+        "side": 0.151884213,
+        "speed": 2.07642817,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 128,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.558319,
+          "y": 5.70776463,
+          "z": -142.293716
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 18,
+        "reservationPosition": {
+          "x": 466.558319,
+          "y": 5.70776463,
+          "z": -142.293716
+        },
+        "reservedForwardEntryProjection": -0.213554531,
+        "currentForwardEntryProjection": -0.213554531,
+        "maxReservedForwardProjection": 0.7364454,
+        "lateralEntryOffset": 0.151884213,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.948084235,
+        "frontierPlanarSpeed": 2.07642817,
+        "measuredPlanarSpeed": 2.07642817,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.187600985,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.207642823,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.02894977,
+        "cf60PhysicalTriggerLead": 0.207642823,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 9575,
+      "raidTime": 293.09552,
+      "bot": {
+        "profileId": "6ae4a3540baf05141c9fd843",
+        "nickname": "Ada_Wong",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": false,
+        "forward": 0.00711492,
+        "side": 0.276461452,
+        "speed": 4.627329,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 130,
+        "stepIndex": 2,
+        "edgeId": 118,
+        "position": {
+          "x": 466.348663,
+          "y": 5.88513756,
+          "z": -142.151382
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 18,
+        "reservationPosition": {
+          "x": 466.348663,
+          "y": 5.88513756,
+          "z": -142.151382
+        },
+        "reservedForwardEntryProjection": 0.00711492,
+        "currentForwardEntryProjection": 0.00711492,
+        "maxReservedForwardProjection": 0.957114935,
+        "lateralEntryOffset": 0.276461452,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.958898,
+        "frontierPlanarSpeed": 4.627329,
+        "measuredPlanarSpeed": 4.627329,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.185700744,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.42,
+        "cf60LegalOneFrameForecast": false,
+        "cf60OneFrameDistance": 0.0,
+        "cf60PhysicalTriggerLead": 0.42,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 9811,
+      "raidTime": 294.557159,
+      "bot": {
+        "profileId": "6ae4a4580baf05141ca00c91",
+        "nickname": "Knight",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.216157481,
+        "side": 0.253748059,
+        "speed": 1.93807876,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 131,
+        "stepIndex": 2,
+        "edgeId": 118,
+        "position": {
+          "x": 466.5693,
+          "y": 5.70889854,
+          "z": -142.192413
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 19,
+        "reservationPosition": {
+          "x": 466.5693,
+          "y": 5.70889854,
+          "z": -142.192413
+        },
+        "reservedForwardEntryProjection": -0.216157481,
+        "currentForwardEntryProjection": -0.216157481,
+        "maxReservedForwardProjection": 0.7338425,
+        "lateralEntryOffset": 0.253748059,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.9998082,
+        "frontierPlanarSpeed": 1.93807876,
+        "measuredPlanarSpeed": 1.93807876,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.185700744,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.193807885,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.0304140784,
+        "cf60PhysicalTriggerLead": 0.193807885,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 11769,
+      "raidTime": 318.107269,
+      "bot": {
+        "profileId": "6ae4a3540baf05141c9fd843",
+        "nickname": "Ada_Wong",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.2867418,
+        "side": 0.0259243865,
+        "speed": 2.81658363,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 142,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.62088,
+          "y": 5.646294,
+          "z": -142.425278
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 25,
+        "reservationPosition": {
+          "x": 466.62088,
+          "y": 5.646294,
+          "z": -142.425278
+        },
+        "reservedForwardEntryProjection": -0.2867418,
+        "currentForwardEntryProjection": -0.2867418,
+        "maxReservedForwardProjection": 0.6632582,
+        "lateralEntryOffset": 0.0259243865,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.9728042,
+        "frontierPlanarSpeed": 2.81658363,
+        "measuredPlanarSpeed": 2.81658363,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.183206677,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.281658381,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.0420637056,
+        "cf60PhysicalTriggerLead": 0.281658381,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 12456,
+      "raidTime": 326.41275,
+      "bot": {
+        "profileId": "6ae4a4580baf05141ca00c91",
+        "nickname": "Knight",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": false,
+        "reserved": false,
+        "forward": -0.234137729,
+        "side": 0.139224216,
+        "speed": 2.121592,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 143,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.5778,
+          "y": 5.69118738,
+          "z": -142.308029
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 27,
+        "reservationPosition": {
+          "x": 466.5778,
+          "y": 5.69118738,
+          "z": -142.308029
+        },
+        "reservedForwardEntryProjection": -0.234137729,
+        "currentForwardEntryProjection": -0.234137729,
+        "maxReservedForwardProjection": 0.7158623,
+        "lateralEntryOffset": 0.139224216,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.9859327,
+        "frontierPlanarSpeed": 2.121592,
+        "measuredPlanarSpeed": 2.121592,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.18240501,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.2121592,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.0300812051,
+        "cf60PhysicalTriggerLead": 0.2121592,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 13794,
+      "raidTime": 338.205658,
+      "bot": {
+        "profileId": "6a6d6ce983abb9b738f8c265",
+        "nickname": "Ghost",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": false,
+        "forward": -0.22502321,
+        "side": 0.156874374,
+        "speed": 2.33937788,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 141,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.57016,
+          "y": 5.698904,
+          "z": -142.289688
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 25,
+        "reservationPosition": {
+          "x": 466.57016,
+          "y": 5.698904,
+          "z": -142.289688
+        },
+        "reservedForwardEntryProjection": -0.22502321,
+        "currentForwardEntryProjection": -0.22502321,
+        "maxReservedForwardProjection": 0.7249768,
+        "lateralEntryOffset": 0.156874374,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.9996018,
+        "frontierPlanarSpeed": 2.33937788,
+        "measuredPlanarSpeed": 2.33937788,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.18240501,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.233937785,
+        "cf60LegalOneFrameForecast": false,
+        "cf60OneFrameDistance": 0.0,
+        "cf60PhysicalTriggerLead": 0.233937785,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 15609,
+      "raidTime": 363.448853,
+      "bot": {
+        "profileId": "6a6d6ce983abb9b738f8c265",
+        "nickname": "Ghost",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": false,
+        "forward": -0.1437026,
+        "side": 0.109333076,
+        "speed": 2.83025074,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 151,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.4852,
+          "y": 5.761351,
+          "z": -142.330368
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 31,
+        "reservationPosition": {
+          "x": 466.4852,
+          "y": 5.761351,
+          "z": -142.330368
+        },
+        "reservedForwardEntryProjection": -0.1437026,
+        "currentForwardEntryProjection": -0.1437026,
+        "maxReservedForwardProjection": 0.8062974,
+        "lateralEntryOffset": 0.109333076,
+        "facingDot": 0.998596132,
+        "alignmentAngle": 3.03634858,
+        "movementHeadingDot": 0.9987602,
+        "frontierPlanarSpeed": 2.83025074,
+        "measuredPlanarSpeed": 2.83025074,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.181352824,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.2830251,
+        "cf60LegalOneFrameForecast": false,
+        "cf60OneFrameDistance": 0.0,
+        "cf60PhysicalTriggerLead": 0.2830251,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 18663,
+      "raidTime": 382.600983,
+      "bot": {
+        "profileId": "6ae4a3540baf05141c9fd843",
+        "nickname": "Ada_Wong",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": false,
+        "forward": -0.113386266,
+        "side": 0.06452304,
+        "speed": 1.86358535,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Run",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 152,
+        "stepIndex": 1,
+        "edgeId": 118,
+        "position": {
+          "x": 466.4513,
+          "y": 5.783786,
+          "z": -142.372528
+        },
+        "rawEntry": {
+          "x": 466.332977,
+          "y": 5.870912,
+          "z": -142.42749
+        },
+        "rawExit": {
+          "x": 459.41272,
+          "y": 4.21953,
+          "z": -141.855408
+        },
+        "state": "Run",
+        "movementGeneration": 33,
+        "reservationPosition": {
+          "x": 466.4513,
+          "y": 5.783786,
+          "z": -142.372528
+        },
+        "reservedForwardEntryProjection": -0.113386266,
+        "currentForwardEntryProjection": -0.113386266,
+        "maxReservedForwardProjection": 0.8366137,
+        "lateralEntryOffset": 0.06452304,
+        "facingDot": 1.0,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.944887,
+        "frontierPlanarSpeed": 1.86358535,
+        "measuredPlanarSpeed": 1.86358535,
+        "requiredSpeed": 1.14784086,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.181014627,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.186358541,
+        "cf60LegalOneFrameForecast": false,
+        "cf60OneFrameDistance": 0.0,
+        "cf60PhysicalTriggerLead": 0.186358541,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 37266,
+      "raidTime": 687.5325,
+      "bot": {
+        "profileId": "6ae4a4580baf05141ca00c91",
+        "nickname": "Knight",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": true,
+        "forward": -0.447754145,
+        "side": 0.05598792,
+        "speed": 5.0632925,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Sprint",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 250,
+        "stepIndex": 1,
+        "edgeId": 117,
+        "position": {
+          "x": -275.342133,
+          "y": -0.892349243,
+          "z": -49.00935
+        },
+        "rawEntry": {
+          "x": -275.686554,
+          "y": -0.7756503,
+          "z": -49.3008842
+        },
+        "rawExit": {
+          "x": -277.126465,
+          "y": 0.110746935,
+          "z": -50.2402229
+        },
+        "state": "Sprint",
+        "movementGeneration": 61,
+        "reservationPosition": {
+          "x": -275.342133,
+          "y": -0.892349243,
+          "z": -49.00935
+        },
+        "reservedForwardEntryProjection": -0.447754145,
+        "currentForwardEntryProjection": -0.447754145,
+        "maxReservedForwardProjection": 0.502245843,
+        "lateralEntryOffset": 0.05598792,
+        "facingDot": 1.00000012,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.9999894,
+        "frontierPlanarSpeed": 5.0632925,
+        "measuredPlanarSpeed": 5.0632925,
+        "requiredSpeed": 5.386081,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.183864832,
+        "reservationLeadDistance": 0.95,
+        "physicalTriggerLeadDistance": 0.42,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.07619445,
+        "cf60PhysicalTriggerLead": 0.42,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 37974,
+      "raidTime": 692.8295,
+      "bot": {
+        "profileId": "6ae4a3540baf05141c9fd843",
+        "nickname": "Ada_Wong",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": true,
+        "forward": -0.4294362,
+        "side": 0.050976295,
+        "speed": 5.3579,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Sprint",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 249,
+        "stepIndex": 1,
+        "edgeId": 117,
+        "position": {
+          "x": -275.354736,
+          "y": -0.8712845,
+          "z": -49.0235558
+        },
+        "rawEntry": {
+          "x": -275.686554,
+          "y": -0.7756503,
+          "z": -49.3008842
+        },
+        "rawExit": {
+          "x": -277.126465,
+          "y": 0.110746935,
+          "z": -50.2402229
+        },
+        "state": "Sprint",
+        "movementGeneration": 63,
+        "reservationPosition": {
+          "x": -275.354736,
+          "y": -0.8712845,
+          "z": -49.0235558
+        },
+        "reservedForwardEntryProjection": -0.4294362,
+        "currentForwardEntryProjection": -0.4294362,
+        "maxReservedForwardProjection": 0.5556932,
+        "lateralEntryOffset": 0.050976295,
+        "facingDot": 1.00000012,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.999999642,
+        "frontierPlanarSpeed": 5.3579,
+        "measuredPlanarSpeed": 5.3579,
+        "requiredSpeed": 5.386081,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.183864832,
+        "reservationLeadDistance": 0.9851294,
+        "physicalTriggerLeadDistance": 0.42,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.07554317,
+        "cf60PhysicalTriggerLead": 0.42,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 38810,
+      "raidTime": 698.725342,
+      "bot": {
+        "profileId": "6a6cbe4b6c32497adc5ad6b5",
+        "nickname": "Chris_Redfield",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": true,
+        "forward": -0.420010954,
+        "side": 0.05395491,
+        "speed": 5.47351265,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Sprint",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 248,
+        "stepIndex": 1,
+        "edgeId": 117,
+        "position": {
+          "x": -275.364258,
+          "y": -0.8772583,
+          "z": -49.02621
+        },
+        "rawEntry": {
+          "x": -275.686554,
+          "y": -0.7756503,
+          "z": -49.3008842
+        },
+        "rawExit": {
+          "x": -277.126465,
+          "y": 0.110746935,
+          "z": -50.2402229
+        },
+        "state": "Sprint",
+        "movementGeneration": 60,
+        "reservationPosition": {
+          "x": -275.364258,
+          "y": -0.8772583,
+          "z": -49.02621
+        },
+        "reservedForwardEntryProjection": -0.420010954,
+        "currentForwardEntryProjection": -0.420010954,
+        "maxReservedForwardProjection": 0.5863756,
+        "lateralEntryOffset": 0.05395491,
+        "facingDot": 1.00000012,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.999999046,
+        "frontierPlanarSpeed": 5.47351265,
+        "measuredPlanarSpeed": 5.47351265,
+        "requiredSpeed": 5.386081,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.183864832,
+        "reservationLeadDistance": 1.00638652,
+        "physicalTriggerLeadDistance": 0.42,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.0756707639,
+        "cf60PhysicalTriggerLead": 0.42,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    },
+    {
+      "sequence": 39381,
+      "raidTime": 704.695862,
+      "bot": {
+        "profileId": "6a6d6ce983abb9b738f8c265",
+        "nickname": "Ghost",
+        "role": "pmcUSEC"
+      },
+      "final": {
+        "window": true,
+        "reserved": true,
+        "forward": -0.481802255,
+        "side": 0.0517672,
+        "speed": 5.41073561,
+        "entryAcquired": false,
+        "captured": false,
+        "grounded": true,
+        "canJump": true,
+        "state": "Sprint",
+        "nativeJumpTriggered": false
+      },
+      "atomic": {
+        "missionId": 251,
+        "stepIndex": 1,
+        "edgeId": 117,
+        "position": {
+          "x": -275.3113,
+          "y": -0.8723068,
+          "z": -48.99428
+        },
+        "rawEntry": {
+          "x": -275.686554,
+          "y": -0.7756503,
+          "z": -49.3008842
+        },
+        "rawExit": {
+          "x": -277.126465,
+          "y": 0.110746935,
+          "z": -50.2402229
+        },
+        "state": "Sprint",
+        "movementGeneration": 58,
+        "reservationPosition": {
+          "x": -275.3113,
+          "y": -0.8723068,
+          "z": -48.99428
+        },
+        "reservedForwardEntryProjection": -0.481802255,
+        "currentForwardEntryProjection": -0.481802255,
+        "maxReservedForwardProjection": 0.513041735,
+        "lateralEntryOffset": 0.0517672,
+        "facingDot": 1.00000012,
+        "alignmentAngle": 0.0,
+        "movementHeadingDot": 0.999999,
+        "frontierPlanarSpeed": 5.41073561,
+        "measuredPlanarSpeed": 5.41073561,
+        "requiredSpeed": 5.386081,
+        "momentumReady": true,
+        "forwardProducer": true,
+        "reservationLeadSeconds": 0.183864832,
+        "reservationLeadDistance": 0.994844,
+        "physicalTriggerLeadDistance": 0.42,
+        "cf60LegalOneFrameForecast": true,
+        "cf60OneFrameDistance": 0.07819433,
+        "cf60PhysicalTriggerLead": 0.42,
+        "reservationLeadRetainedForOwnershipOnly": true,
+        "traversalSuccessRecorded": false,
+        "persistentLearningChanged": false,
+        "action": "consumeExactReservedPhysicalFrontierAndTriggerNativeJumpInSameDispatchFrame"
+      }
+    }
+  ]
+}

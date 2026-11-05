@@ -1,0 +1,367 @@
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.6+RC143")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.7+RC144")]
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\BotTraversalPlugin.cs
+@@ -30,7 +30,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 6 loaded: V2-RC143-Beta6");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 7 loaded: V2-RC144-Beta7");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityActuationPolicy.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityActuationPolicy.cs
+@@ -20,6 +20,9 @@
+         internal static bool CanDispatchNativeJump(bool physicalWindow,bool locomotion,bool grounded,
+             bool canJump,bool centered,bool facing,bool heading,bool measuredMomentum) =>
+             physicalWindow&&locomotion&&grounded&&canJump&&centered&&facing&&heading&&measuredMomentum;
++        internal static bool LiveJumpAttempt(bool window,bool entry,bool captured,bool grounded,bool canJump,bool locomotion,
++            bool input,bool position,bool facing,bool heading,bool momentum)
++            => entry&&captured&&input&&CanDispatchNativeJump(window,locomotion,grounded,canJump,position,facing,heading,momentum);
+         internal static bool NativeDropConsumer(bool nativeDrop,bool attempted,bool lifecycleCurrent,
+             bool sameMission,bool sameStep,bool landingConsumer,bool farSide) =>
+             nativeDrop&&attempted&&lifecycleCurrent&&sameMission&&sameStep&&!landingConsumer&&!farSide;
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityCoordinationHost.cs
+@@ -1028,8 +1028,10 @@
+                 Vector3 next=target;
+                 if(valid&&path.Corners!=null)
+                     foreach(var corner in path.Corners)if(GetPlanarDistance(player.Position,corner)>.15f){next=corner;break;}
+-                if(valid&&player.MovementContext.IsGrounded&&Mathf.Abs(next.y-player.Position.y)<=.45f)
++                bool physicalAimReady=valid&&TryGetCapabilitySupportedLocalAim(player,next,out next);
++                if(physicalAimReady&&TryRetireNativeMoverPathPreserveLocomotion(bot,"strategyEntryManualConsumer",out _))
+                 {
++                    ClearCapabilityNativeDestinationData(bot);
+                     var direction=GetFlatDirection(next-player.Position);float dt=Mathf.Max(.001f,Time.deltaTime);
+                     ApplyCollisionActivePhysicalRouteMotion(bot,player,direction,direction*dt,dt,1f,false,
+                         CapabilityIngressSpeed(bot,.8f,Vector3.Distance(player.Position,target)),false,true);
+@@ -1040,7 +1042,7 @@
+                     CommitCapabilityRouteRetryZeroInput(bot,player);
+                 }
+                 if(ShouldEmitDiagnostic("capabilityStrategyApproachDrive",bot,.5f))WriteEvent("capabilityStrategyApproachDrive",bot,new{
+-                    missionId=m.MissionId,stage=state.Stage.ToString(),valid,body=Vec(player.Position),target=Vec(target),localTarget=Vec(next),
++                    missionId=m.MissionId,stage=state.Stage.ToString(),valid,physicalAimReady,body=Vec(player.Position),target=Vec(target),localTarget=Vec(next),
+                     pathLength=path?.PathLength??-1,oldInputRenewed=false,nativeSuccessRecorded=false});
+             }
+         }
+@@ -1343,6 +1345,17 @@
+                 return receipt.Accepted;
+             }
+         }
++        private static bool IsCapabilityCurrentPassageInFlight(BotOwner bot,FollowerRouteMission m)
++        {
++            if(bot==null||m==null||m.Lifecycle.Retired||m.LifecycleRaid!=raidGeneration||m.LifecycleBotId!=bot.ProfileId||
++                m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count||m.PortalQueueStep!=m.CurrentStepIndex||m.PortalQueueAdmittedAt<0||m.PortalQueueClaimSerial<=0)return false;
++            var step=m.Steps[m.CurrentStepIndex];if(step==null||!step.Lifecycle.DebtOutstanding||!IsFinite(step.RawEntry)||!IsFinite(step.RawExit))return false;
++            var axis=GetFlatDirection(step.RawExit-step.RawEntry);float span=GetPlanarDistance(step.RawEntry,step.RawExit);
++            var offset=GetFlatDelta(step.RawEntry,bot.Position);float forward=Vector3.Dot(offset,axis);
++            var closest=Vector3.Lerp(step.RawEntry,step.RawExit,Mathf.Clamp01(forward/Mathf.Max(.01f,span)));
++            return FollowerCapabilityPassagePolicy.PassageInFlight(step.Kind=="WalkThrough"||step.Kind=="PhysicalCorridor",true,
++                forward,span,(offset-axis*forward).magnitude,bot.Position.y-closest.y);
++        }
+         private static bool TickCapabilityPortalWait(BotOwner bot)
+         {
+             if(bot==null||!IsLiveBot(bot)||!FollowerRouteMissions.TryGetValue(bot.ProfileId,out var m))return false;
+@@ -1360,15 +1373,16 @@
+             {ReleaseCapabilityPortalWait(m);return false;}
+             var entry=step.RawEntry;var axis=GetFlatDirection(step.RawExit-entry);
+             float distance=GetPlanarDistance(bot.Position,entry);
++            bool passageInFlight=IsCapabilityCurrentPassageInFlight(bot,m);
+             if(FollowerCapabilityPassagePolicy.LeftAdmittedIngress(m.PortalQueueStep==m.CurrentStepIndex&&m.PortalQueueAdmittedAt>=0&&m.PortalQueueClaimSerial>0,
+-                active,m.FailureSequence!=null,distance)&&axis.sqrMagnitude>=.5f)
++                active,m.FailureSequence!=null,distance,passageInFlight)&&axis.sqrMagnitude>=.5f)
+             {
+                 WriteEvent("capabilityPortalQueueAdmittedIngressLost",bot,new{missionId=m.MissionId,stepIndex=m.CurrentStepIndex,
+                     step.EdgeId,distance,body=Vec(bot.Position),entry=Vec(entry),nativeSuccessRecorded=false});
+                 TryRequestCapabilityFullRouteRetry(bot,m,"portalQueueHeadLeftUnfinishedIngressWindow");
+                 return true; // A released head's failed approach is not an unregistered distant observer.
+             }
+-            if(!FollowerPortalAdmission.InWindow(distance,m.PortalQueueWaiting||m.PortalQueueStep==m.CurrentStepIndex&&m.PortalQueueAdmittedAt>=0)||axis.sqrMagnitude<.5f)
++            if((!FollowerPortalAdmission.InWindow(distance,m.PortalQueueWaiting||m.PortalQueueStep==m.CurrentStepIndex&&m.PortalQueueAdmittedAt>=0)&&!passageInFlight)||axis.sqrMagnitude<.5f)
+             {ReleaseCapabilityPortalWait(m);CapabilityPortalQueue.Cancel(bot.ProfileId,Time.time);m.PortalQueueAdmittedAt=-1;m.PortalQueueStep=-1;return false;}
+             // Enrol eligible near-side followers BEFORE choosing nearest. An unregistered observer
+             // may not veto the queue indefinitely, nor start an unbound legacy probe alongside it.
+@@ -1397,6 +1411,7 @@
+                 live.MissionId==mission&&live.CurrentStepIndex==index&&IsLiveBot(BossPlayers.GetFollowerByProfileId(id)?.GetBot())&&
+                 !IsCapabilityRouteRetryReturning(live)&&live.FailureSequence?.Stage!=S.RecoveryTeleport&&
+                 (HasActiveTraversalProbe(BossPlayers.GetFollowerByProfileId(id)?.GetBot())||
++                 IsCapabilityCurrentPassageInFlight(BossPlayers.GetFollowerByProfileId(id)?.GetBot(),live)||
+                  FollowerPortalAdmission.InWindow(GetPlanarDistance(BossPlayers.GetFollowerByProfileId(id).GetBot().Position,entry),true));
+             bool allowed=CapabilityPortalQueue.Admit(bot.ProfileId,m.MissionId,m.CurrentStepIndex,entry.x,entry.y,entry.z,
+                 axis.x,axis.z,Time.time,nearest||activeCurrent,Live);
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPassagePolicy.cs
+@@ -93,8 +93,14 @@
+             => issued>0&&issued==live&&clean&&complete&&path&&Finite(gap)&&gap>=0&&gap<=.35;
+         internal static bool NativeFollowIdle(bool clean,bool grounded,bool path,bool moving,bool actor,bool input)
+             => clean&&grounded&&!path&&!moving&&!actor&&input;
+-        internal static bool LeftAdmittedIngress(bool admitted,bool active,bool failure,double distance)
+-            => admitted&&!active&&!failure&&Finite(distance)&&distance>7;
++        internal static bool LeftAdmittedIngress(bool admitted,bool active,bool failure,double distance,bool passage=false)
++            => admitted&&!active&&!failure&&!passage&&Finite(distance)&&distance>7;
++        internal static double LocalAimFraction(double distance)
++            => Finite(distance)&&distance>0?Math.Min(1,.60/distance):0;
++        internal static bool GroundAim(bool grounded,bool finite,double height,bool support,bool blocked)
++            => grounded&&finite&&Finite(height)&&Math.Abs(height)<=.45&&support&&!blocked;
++        internal static bool PhysicalWalkEntry(bool lane,bool finite,double gap,double bodyDistance)
++            => !lane&&finite&&Finite(gap)&&gap>.05&&Finite(bodyDistance)&&bodyDistance>=0&&bodyDistance<=3.5;
+         internal static bool ObstacleNeedsCenter(double side,double maximum)
+             => !Finite(side)||!Finite(maximum)||side<0||maximum<=0||side>maximum;
+         internal static bool GenericFollowStart(bool safe,bool grounded,bool current,bool pending,bool actor,bool tight,bool path,
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPreparationHost.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilityPreparationHost.cs
+@@ -333,21 +333,32 @@
+         private static Vector3 GetFlatDelta(Vector3 from,Vector3 to){var delta=to-from;delta.y=0f;return delta;}
+         private static bool IsCapabilityJumpTriggerReady(ProbeRuntime probe,out string reason)
+         {
+-            reason="nativeStateOrMomentum";
+-            if(probe?.LifecycleMission==null||!string.Equals(probe.RequestedTraversalKind,"Jump",StringComparison.OrdinalIgnoreCase))
+-                return true; // Diagnostics and sibling Vault/Climb fallback retain their own semantic contract.
+-            var player=probe?.Player;var context=player?.MovementContext;
+-            if(context==null||!IsProbeLifecycleCurrent(probe)||!context.IsGrounded||!context.CanJump||
+-                !IsLearningV411JumpTakeoffModeReady(probe,player.CurrentStateName)||
+-                !IsLearningV329JumpTakeoffMomentumReady(probe,out float speed,out _))return false;
+-            var edge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==probe.LearnedEdgeId);
++            reason="nativeJumpOriginUnavailable";
++            if(probe?.LifecycleMission==null||!string.Equals(probe.RequestedTraversalKind,"Jump",StringComparison.OrdinalIgnoreCase))return true;
++            var player=probe.Player;var context=player?.MovementContext;
++            if(context==null||!IsProbeLifecycleCurrent(probe)||!TryGetLearnedCommitmentForProbe(probe,out var commitment)||commitment==null)return false;
++            float speed=GetLearningV329PlanarSpeed(player);
++            int template=commitment.SkillTransferTransient?commitment.SkillTemplateEdgeId:commitment.EdgeId;
++            var edge=LearnedTraversalEdges.FirstOrDefault(x=>x!=null&&x.Id==template);
+             if(FollowerCapabilityRouteRetryPolicy.UnsafeJumpSpeed(speed,edge?.ApproachSpeed??0f))
+             {reason=TryObserveCapabilityJumpBodyVelocity(player,out _,out _,out _)?"unsafeSpeed":"velocityObservationPending";return false;}
+-            if(player.CurrentStateName==EPlayerState.Sprint&&edge!=null&&!string.IsNullOrWhiteSpace(edge.ExperienceKey)&&
+-                LearningV322SkillEvidence.TryGetValue(edge.ExperienceKey,out var skill)&&skill!=null&&
+-                !FollowerCapabilityApproachPolicy.SprintFloor(speed,skill.NativeJumpSprintTakeoffSuccesses,skill.NativeJumpSprintMinSuccessfulTakeoffSpeed))
+-            {reason="nativeSprintSuccessFloor";return false;}
+-            reason=string.Empty;return true;
++            var identity=IsFinite(commitment.RawEntry)?commitment.RawEntry:commitment.Entry;
++            var entry=GetLearningV442JumpAdmissionEntry(commitment);
++            var axis=GetFlatDirection(commitment.RawExit-identity);
++            var offset=GetFlatDelta(entry,player.Position);float forward=Vector3.Dot(offset,axis);
++            float side=(offset-axis*forward).magnitude;
++            var velocity=GetCapabilityJumpPlanarVelocity(player);var facing=GetFlatDirection(context.PlayerRealForward);
++            bool reserved=TryGetLearningV459ReservedJumpExactSuccessorContinuity(probe,forward,out _,out float reservedMaximum);
++            bool window=IsLearningV449JumpInsidePhysicalTriggerHorizon(forward,speed,probe.Bot)||reserved;
++            bool ready=axis.sqrMagnitude>.5f&&IsLearningV450LiveEftJumpAttemptLegal(window,probe.LearningV32NativeEntryAcquired,
++                probe.JumpEntryCaptured,context.IsGrounded,context.CanJump,player.CurrentStateName,player.InputDirection,context.MovementDirection,
++                forward,side,Vector3.Dot(facing,axis),Vector3.Dot(GetFlatDirection(velocity),axis),speed,
++                reserved?reservedMaximum:LearningV352JumpTakeoffCorridorMaxForwardOvershoot);
++            if(!ready)WriteEvent("capabilityJumpFinalLiveEvidence",probe.Bot,new{window,reserved,forward,side,speed,
++                entryAcquired=probe.LearningV32NativeEntryAcquired,captured=probe.JumpEntryCaptured,grounded=context.IsGrounded,
++                canJump=context.CanJump,state=player.CurrentStateName.ToString(),nativeJumpTriggered=false});
++            reason=ready?string.Empty:"nativeLiveWindowOrGeometry";
++            return ready; // The same live EFT contract as admission. Historical gait/success floors rank preparation, never veto this consumer.
+         }
+         private static bool TryPrepareCapabilityAdjacentJumpRunup(BotOwner bot,Player player,FollowerRouteMission mission,FollowerRouteMissionStep current,Vector3 direction)
+         {
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilitySupportedAimHost.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerCapabilitySupportedAimHost.cs
+@@ -0,0 +1,27 @@
++using EFT;
++using UnityEngine;
++namespace BotTraversal.Core
++{
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        // Local terrain proof only. Existing callers own targets, progress clocks and movement tickets.
++        private static bool TryGetCapabilitySupportedLocalAim(Player player,Vector3 target,out Vector3 aim)
++        {
++            aim=target;
++            if(player?.MovementContext==null||!IsFinite(target)||!IsFinite(player.Position))return false;
++            float length=Vector3.Distance(player.Position,target);
++            aim=Vector3.Lerp(player.Position,target,(float)FollowerCapabilityPassagePolicy.LocalAimFraction(length));
++            bool supported=true;
++            foreach(var sample in new[]{Vector3.Lerp(player.Position,aim,.5f),aim})
++                if(!TryGetFirstNonSelfRaycastHit(player,sample+Vector3.up*.60f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var support)||
++                    Mathf.Abs(support.point.y-sample.y)>.35f||support.normal.y<.65f){supported=false;break;}
++            var delta=GetFlatDelta(player.Position,aim);var direction=GetFlatDirection(delta);
++            RaycastHit obstacle=default;
++            bool hit=delta.magnitude>.001f&&TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.40f,
++                player.Position+Vector3.up*1.35f,.18f,direction,delta.magnitude,LayerMaskClass.HighPolyWithTerrainMask,out obstacle);
++            // A walkable floor hit is not a wall. Native collision remains active throughout.
++            bool blocked=hit&&obstacle.normal.y<.65f;
++            return FollowerCapabilityPassagePolicy.GroundAim(player.MovementContext.IsGrounded,IsFinite(aim),aim.y-player.Position.y,supported,blocked);
++        }
++    }
++}
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalTestRuntime.cs
+@@ -12519,23 +12519,20 @@
+             float lateralEntryOffset,
+             float facingDot,
+             float movementHeadingDot,
+-            float planarSpeed)
++            float planarSpeed,
++            float maximumForward=LearningV352JumpTakeoffCorridorMaxForwardOvershoot)
+         {
+             // One helper is the actuator-attempt contract for every Jump consumer. Historical
+             // capability data may shape preparation and fallback ranking, but live EFT legality +
+             // the already-proven typed physical corridor is the only authority that can trigger
+             // TryJump. Keeping this in one place prevents RollingApproach and TakeoffPriming from
+             // drifting into different rules again.
+-            return (triggerWindowLive) && entryAcquired && jumpEntryCaptured &&
+-                   grounded && canJump &&
+-                   (state == EPlayerState.Run || state == EPlayerState.Sprint ||
+-                    ((state == EPlayerState.Transition))) &&
+-                   (inputDirection.y > 0f || movementDirection.y > 0f) &&
+-                   forwardEntryProjection <= LearningV352JumpTakeoffCorridorMaxForwardOvershoot &&
+-                   lateralEntryOffset <= LearningV352JumpTakeoffCorridorMaxLateral &&
+-                   facingDot >= LearningV352JumpTakeoffCorridorMinFacingDot &&
+-                   movementHeadingDot >= LearningV352JumpTakeoffCorridorMinMovementHeadingDot &&
+-                   planarSpeed >= RollingTraversalMinSpeed;
++            return FollowerCapabilityActuationPolicy.LiveJumpAttempt(triggerWindowLive,entryAcquired,jumpEntryCaptured,grounded,canJump,
++                state==EPlayerState.Run||state==EPlayerState.Sprint||state==EPlayerState.Transition,
++                inputDirection.y>0f||movementDirection.y>0f,
++                forwardEntryProjection<=maximumForward&&lateralEntryOffset<=LearningV352JumpTakeoffCorridorMaxLateral,
++                facingDot>=LearningV352JumpTakeoffCorridorMinFacingDot,movementHeadingDot>=LearningV352JumpTakeoffCorridorMinMovementHeadingDot,
++                planarSpeed>=RollingTraversalMinSpeed);
+         }
+ 
+         private static float GetLearningV452JumpPreparationLeadDistance(float planarSpeed)
+--- RC143/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalWalkThroughEntry.cs
++++ RC144/BotTraversal-0.9.0-BETA-SOURCE\src\Core\FollowerTraversalWalkThroughEntry.cs
+@@ -13,6 +13,10 @@
+             if(probe?.Bot?.Mover==null||probe.Player?.MovementContext==null||!IsProbeLifecycleCurrent(probe)||
+                 !IsCapabilityRouteRetrySafe(probe.Bot)||!FollowerMovementWriterAuthority.CanCommitScopedPhysicalMotion(probe.Bot,out _))return false;
+             var bot=probe.Bot;var player=probe.Player;var controller=bot.Mover.ActualPathController;
++            var step=probe.LifecycleStep;bool physicalEntry=false;
++            if(step!=null&&step.Kind=="WalkThrough"&&FollowerCapabilityPassagePolicy.PhysicalWalkEntry(insideLane,IsFinite(step.RawEntry),
++                Vector3.Distance(entry,step.RawEntry),Vector3.Distance(player.Position,step.RawEntry)))
++            {entry=step.RawEntry;distance=GetPlanarDistance(player.Position,entry);physicalEntry=true;}
+             Vector3? endpoint=controller?.CurPath?.TargetPoint?.Position;
+             var toEntry=GetFlatDirection(entry-player.Position);var corner=controller?.HavePath==true?controller.CurrentCornerPoint:player.Position;
+             bool healthy=FollowerCapabilityPassagePolicy.LocalEntryPath(bot.Mover.HasPathAndNoComplete,
+@@ -24,12 +28,16 @@
+             bool published=false;
+             if(safeHeight&&distance>.08f)
+             {
+-                float dt=Mathf.Max(.001f,Time.deltaTime);
+-                published=ApplyCollisionActivePhysicalRouteMotion(bot,player,toEntry,toEntry*Mathf.Min(distance,dt),dt,1f,false,.70f,false,true).Accepted;
++                bool physicalAimReady=!physicalEntry||TryGetCapabilitySupportedLocalAim(player,entry,out _);
++                if(physicalAimReady)
++                {
++                    float dt=Mathf.Max(.001f,Time.deltaTime);
++                    published=ApplyCollisionActivePhysicalRouteMotion(bot,player,toEntry,toEntry*Mathf.Min(distance,dt),dt,1f,false,.70f,false,true).Accepted;
++                }
+             }
+             if(!published)CommitCapabilityRouteRetryZeroInput(bot,player);
+             if(ShouldEmitDiagnostic("capabilityWalkThroughEntryResource",bot,.25f))WriteEvent("capabilityWalkThroughEntryResource",bot,new{
+-                edgeId=probe.LearnedEdgeId,episodeId=probe.TraversalEpisodeId,healthy,safeHeight,published,distance,
++                edgeId=probe.LearnedEdgeId,episodeId=probe.TraversalEpisodeId,healthy,safeHeight,published,distance,physicalEntry,
+                 body=Vec(player.Position),entry=Vec(entry),retiredCorner=Vec(corner),physicalEntryGranted=false,nativeSuccessRecorded=false});
+             return true;
+         }
+--- RC143/QA\CorridorIntegrity\Replay\Program.cs
++++ RC144/QA\CorridorIntegrity\Replay\Program.cs
+@@ -554,5 +554,34 @@
+ for(int mask=0;mask<8;mask++)Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.LeftAdmittedIngress((mask&1)!=0,(mask&2)!=0,(mask&4)!=0,11.99)==(mask==1),"Knight630 admitted queue head outside seven metres must fail current ingress, not disappear "+mask);
+ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.LeftAdmittedIngress(true,false,false,7),"normal queue window boundary remains legal");
+ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.LeftAdmittedIngress(false,false,false,12),"distant unadmitted follower does not fabricate a Native failure");
++// RC144 Ghost194.019: live window/canJump/entry/heading all passed; historical Sprint readiness must not veto final consumer.
++Check(BotTraversal.Core.FollowerCapabilityActuationPolicy.LiveJumpAttempt(true,true,true,true,true,true,true,true,true,true,true),"Ghost194.019 Run speed2.770 exceeds live1.1 floor and valid physical window may attempt native Jump");
++for(int guard=0;guard<11;guard++){
++ var flags=Enumerable.Repeat(true,11).ToArray();flags[guard]=false;
++ Check(!BotTraversal.Core.FollowerCapabilityActuationPolicy.LiveJumpAttempt(flags[0],flags[1],flags[2],flags[3],flags[4],flags[5],flags[6],flags[7],flags[8],flags[9],flags[10]),"same live final-consumer guard remains mandatory "+guard);
++}
++foreach(var fixture in new[]{new[]{6.99899,.26558,-.11168},new[]{7.01195,.28086,-.11207},new[]{6.99841,.26508,-.10629}}){
++ bool flight=BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageInFlight(true,true,fixture[0],9.86748,fixture[1],fixture[2]);
++ Check(flight,"recorded corridor253 body lies inside finite current passage "+fixture[0]);
++ Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.LeftAdmittedIngress(true,false,false,7.0176,flight),"Ada/Ghost/Chris advancing beyond7m cannot become failed ingress");
++}
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.LeftAdmittedIngress(true,false,false,11.99,false),"Knight old Vault retreat still fails an actually lost ingress");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageInFlight(true,true,-5.5,9.86748,.1,0),"Knight623 moving backward before corridor is not a protected passage");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageInFlight(false,true,7,9.86748,.1,0),"an actuator outside entry is not exempt as ordinary movement");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PassageInFlight(true,true,7,9.86748,.8,0),"body beside current finite passage is not an in-flight ticket");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.PhysicalWalkEntry(false,true,.747,.728),"Chris553 Nav entry.085m away still requires actual raw corridor entry.728m away");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PhysicalWalkEntry(true,true,.747,.728),"already acquired recorded lane retains existing progress");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PhysicalWalkEntry(false,false,.747,.728),"missing physical target cannot replace navigation");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PhysicalWalkEntry(false,true,.01,.728),"coincident Nav and physical entry need no alternate approach");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.PhysicalWalkEntry(false,true,.747,3.51),"distant recording cannot acquire local WT physical driver");
++double aim=BotTraversal.Core.FollowerCapabilityPassagePolicy.LocalAimFraction(1.43923509);
++Check(aim>0&&aim<1&&Math.Abs(aim*1.43923509-.60)<.00001,"retry1.439m path corner uses existing finite local terrain aim");
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.GroundAim(true,true,.577*aim,true,false),"Ghost196 supported ramp is not a.577m single vertical step");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.GroundAim(true,true,.577*aim,false,false),"missing ground support still refuses physical approach");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.GroundAim(true,true,.577*aim,true,true),"current wall still refuses physical approach");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.GroundAim(false,true,.1,true,false),"airborne body does not acquire walking approach");
++Check(!BotTraversal.Core.FollowerCapabilityPassagePolicy.GroundAim(true,true,.451,true,false),"bounded local aim cannot authorize abrupt vertical step");
++foreach(double v in new[]{double.NaN,double.PositiveInfinity,-1,0})Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.LocalAimFraction(v)==0,"invalid aim length cannot produce a move "+v);
++Check(BotTraversal.Core.FollowerCapabilityPassagePolicy.LocalAimFraction(.30)==1,"near aim retains exact target");
+ File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
+-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta6 production decision and recorded-order replay checks");
++Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta7 production decision and recorded-order replay checks");
+--- RC143/QA\CorridorIntegrity\Test-FaultDetection.ps1
++++ RC144/QA\CorridorIntegrity\Test-FaultDetection.ps1
+@@ -2,6 +2,20 @@
+ $ErrorActionPreference='Stop'
+ [Reflection.Assembly]::LoadFrom('D:/Games/SIT_DIR/mod or addon builds/dnSpy-net-win64/bin/dnlib.dll')|Out-Null
+ $cases=@(
++ @('IsCapabilityJumpTriggerReady','TryGetLearningV459ReservedJumpExactSuccessorContinuity'),
++ @('IsCapabilityJumpTriggerReady','IsLearningV450LiveEftJumpAttemptLegal'),
++ @('IsLearningV450LiveEftJumpAttemptLegal','LiveJumpAttempt'),
++ @('TryDriveCapabilityLocalWalkThroughEntry','PhysicalWalkEntry'),
++ @('TryDriveCapabilityLocalWalkThroughEntry','TryGetCapabilitySupportedLocalAim'),
++ @('TryGetCapabilitySupportedLocalAim','LocalAimFraction'),
++ @('TryGetCapabilitySupportedLocalAim','GroundAim'),
++ @('TryGetCapabilitySupportedLocalAim','TryGetFirstNonSelfRaycastHit'),
++ @('TryGetCapabilitySupportedLocalAim','TryGetFirstNonSelfCapsuleCastHit'),
++ @('DriveCapabilityStrategyApproach','TryGetCapabilitySupportedLocalAim'),
++ @('DriveCapabilityStrategyApproach','ClearCapabilityNativeDestinationData'),
++ @('IsCapabilityCurrentPassageInFlight','PassageInFlight'),
++ @('TickCapabilityPortalWait','IsCapabilityCurrentPassageInFlight'),
++ @('<TickCapabilityPortalWait>g__Live|0','IsCapabilityCurrentPassageInFlight','<>c__DisplayClass104_0'),
+  @('TickCapabilityPortalWait','LeftAdmittedIngress'),
+  @('PrepareCapabilityGenericFollowHandoff','GenericFollowStart'),
+  @('PrepareCapabilityGenericFollowHandoff','CanAcceptFollowPath'),
+@@ -392,7 +406,7 @@
+  $typeName=if($case.Count -gt 2){$case[2]}else{'FollowerTraversalTestRuntime'};$r=$m.GetTypes()|Where-Object Name -eq $typeName;$f=$r.Methods|Where-Object Name -eq $case[0]|Select-Object -First 1
+  $i=$f.Body.Instructions|Where-Object{$_.OpCode.Name -in @('call','callvirt') -and $_.Operand.Name -eq $case[1]}
+  if(!$i){throw "mutation target missing $case"};foreach($instruction in $i){$instruction.OpCode=[dnlib.DotNet.Emit.OpCodes]::Nop;$instruction.Operand=$null};$f.Body.KeepOldMaxStack=$true
+- $file=Join-Path $d ($case[0]+'-'+$case[1]+'.dll');$m.Write($file);$m.Dispose()
++ $safeCaseName=($case[0]+'-'+$case[1]) -replace '[^a-zA-Z0-9_.-]','_';$file=Join-Path $d ($safeCaseName+'.dll');$m.Write($file);$m.Dispose()
+  $result=Join-Path $d 'result.json';$detected=$false
+  try { & (Join-Path $PSScriptRoot 'Test-Ingress.ps1') -Dll $file -Output $result *> (Join-Path $d ($case[1]+'.log')) }
+  catch { $detected=$true; $_|Out-String|Set-Content (Join-Path $d ($case[1]+'.log')) }
+--- RC143/QA\CorridorIntegrity\Test-Ingress.ps1
++++ RC144/QA\CorridorIntegrity\Test-Ingress.ps1
+@@ -305,7 +305,7 @@
+ $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
+ Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+ $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
+-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.6+RC143') 'Beta release identity retained in assembly metadata'
++Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.7+RC144') 'Beta release identity retained in assembly metadata'
+ 
+ $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
+ 
+@@ -400,7 +400,21 @@
+ $f=$gait.Methods|Where-Object Name -eq 'Apply'|Select-Object -First 1;foreach($n in @('FollowPrefix','FollowFinalizer')){Check (@($f.Body.Instructions|Where-Object {$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq $n}).Count -eq 1) ('reviewed PIT build installs '+$n)}
+ $f=M 'TickCapabilityPortalWait';Check ((C $f 'LeftAdmittedIngress').Count -eq 1 -and (C $f 'LeftAdmittedIngress')[0].Offset -lt (C $f 'InWindow')[0].Offset) 'admitted ingress escape cannot silently cancel before failure arbitration'
+ Check ((C $f 'TryRequestCapabilityFullRouteRetry').Count -eq 2) 'queue head escape and measured stall share the existing failure ladder'
++$f=M 'IsCapabilityJumpTriggerReady';foreach($n in @('IsProbeLifecycleCurrent','TryGetLearnedCommitmentForProbe','UnsafeJumpSpeed','IsLearningV450LiveEftJumpAttemptLegal','IsLearningV449JumpInsidePhysicalTriggerHorizon')){Check ((C $f $n).Count -eq 1) ('last Jump consumer shares actual live physical contract '+$n)}
++foreach($n in @('IsLearningV411JumpTakeoffModeReady','IsLearningV329JumpTakeoffMomentumReady','SprintFloor')){Check ((C $f $n).Count -eq 0) ('historical preparation cannot veto actual legal Jump '+$n)}
++$f=M 'IsLearningV450LiveEftJumpAttemptLegal';Check ((C $f 'LiveJumpAttempt').Count -eq 1) 'all existing Jump admission consumers use same tested live policy'
++$f=M 'TryDriveCapabilityLocalWalkThroughEntry';Check ((C $f 'PhysicalWalkEntry').Count -eq 1 -and (C $f 'PhysicalWalkEntry')[0].Offset -lt (C $f 'LocalEntryPath')[0].Offset) 'current recorded WT entry outranks displaced Nav projection before resource selection'
++Check ((C $f 'TryGetCapabilitySupportedLocalAim').Count -eq 1 -and (C $f 'TryGetCapabilitySupportedLocalAim')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'off-lane physical WT entry needs current support and clearance before drive'
++$f=M 'TryGetCapabilitySupportedLocalAim';foreach($n in @('LocalAimFraction','GroundAim','TryGetFirstNonSelfRaycastHit','TryGetFirstNonSelfCapsuleCastHit')){Check ((C $f $n).Count -eq 1) ('bounded slope approach has real terrain sensor '+$n)}
++foreach($n in @('TryTeleportAcrossTraversalExit','CommitUnifiedTraversalSuccess','BotOwnerGoToPoint')){Check ((C $f $n).Count -eq 0) ('local aim has no body relocation or alternate route writer '+$n)}
++$f=M 'DriveCapabilityStrategyApproach';Check ((C $f 'TryGetCapabilitySupportedLocalAim').Count -eq 1 -and (C $f 'TryGetCapabilitySupportedLocalAim')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'pending retry samples finite supported ramp before motion'
++Check ((C $f 'TryRetireNativeMoverPathPreserveLocomotion').Count -eq 2 -and (C $f 'ClearCapabilityNativeDestinationData').Count -eq 1) 'pending physical approach retires old native target before its own input'
++$f=M 'IsCapabilityCurrentPassageInFlight';Check ((C $f 'PassageInFlight').Count -eq 1 -and @($f.Body.Instructions|Where-Object {$_.OpCode.Name -eq 'ldfld' -and $_.Operand.Name -eq 'PortalQueueClaimSerial'}).Count -eq 1) 'passage exemption belongs to already admitted current mission and finite recorded lane'
++$f=M 'TickCapabilityPortalWait';Check ((C $f 'IsCapabilityCurrentPassageInFlight').Count -eq 1 -and (C $f 'IsCapabilityCurrentPassageInFlight')[0].Offset -lt (C $f 'LeftAdmittedIngress')[0].Offset) 'finite in-flight passage protects distance cancellation and false failure'
++$live=@($m.GetTypes()|ForEach-Object {$_.Methods}|Where-Object {$_.Name -like '*TickCapabilityPortalWait*Live*'})
++Check ($live.Count -eq 1 -and (C $live[0] 'IsCapabilityCurrentPassageInFlight').Count -eq 1) 'other bots cannot evict an in-flight ticket as a distant observer'
++$f=M 'IsCapabilityJumpTriggerReady';Check ((C $f 'TryGetLearningV459ReservedJumpExactSuccessorContinuity').Count -eq 1 -and (C $f 'IsCf60LegalOneFrameJumpTriggerForecast').Count -eq 0) 'final consumer honours exact current successor reservation but cannot trigger from forecast alone'
+ @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
+-Write-Output "PASS $checks 0.9.0 Beta6 actual DLL sequence checks"
++Write-Output "PASS $checks 0.9.0 Beta7 actual DLL sequence checks"
+ 
+ } finally {$m.Dispose()}

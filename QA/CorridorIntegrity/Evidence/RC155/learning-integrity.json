@@ -1,0 +1,12 @@
+{
+  "bigmap.nativeproven.json": {
+    "records": 256,
+    "duplicateKeyKind": [],
+    "negativeCounters": []
+  },
+  "bigmap.skillevidence.json": {
+    "records": 367,
+    "duplicateKeyKind": [],
+    "negativeCounters": []
+  }
+}

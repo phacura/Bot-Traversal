@@ -1,0 +1,379 @@
+[
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 3532,
+    "utc": "2026-11-04T13:31:14.3558334Z",
+    "raidTime": 174.274887,
+    "frame": 8440,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 35738,
+    "utc": "2026-11-04T13:38:24.6119333Z",
+    "raidTime": 604.1361,
+    "frame": 34238,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Run:state=Run:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 43468,
+    "utc": "2026-11-04T13:39:51.5961727Z",
+    "raidTime": 691.1186,
+    "frame": 39520,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Run:state=Run:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 64114,
+    "utc": "2026-11-04T13:43:17.8386047Z",
+    "raidTime": 897.153748,
+    "frame": 51510,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 64122,
+    "utc": "2026-11-04T13:43:17.8519220Z",
+    "raidTime": 897.16925,
+    "frame": 51511,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 64148,
+    "utc": "2026-11-04T13:43:18.1320185Z",
+    "raidTime": 897.4496,
+    "frame": 51529,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 64164,
+    "utc": "2026-11-04T13:43:18.1944690Z",
+    "raidTime": 897.5125,
+    "frame": 51533,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 69877,
+    "utc": "2026-11-04T13:43:56.4552148Z",
+    "raidTime": 935.7721,
+    "frame": 53759,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 69890,
+    "utc": "2026-11-04T13:43:57.0140037Z",
+    "raidTime": 936.332031,
+    "frame": 53792,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6d6ce983abb9b738f8c265",
+      "nickname": "Ghost",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 69904,
+    "utc": "2026-11-04T13:43:57.2324893Z",
+    "raidTime": 936.5504,
+    "frame": 53805,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6ae4a3540baf05141c9fd843",
+      "nickname": "Ada_Wong",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 69915,
+    "utc": "2026-11-04T13:43:57.3317486Z",
+    "raidTime": 936.6497,
+    "frame": 53811,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 76570,
+    "utc": "2026-11-04T13:44:51.4302596Z",
+    "raidTime": 990.747742,
+    "frame": 56826,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6ae4a4580baf05141ca00c91",
+      "nickname": "Knight",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  },
+  {
+    "schema": 1,
+    "sessionId": "20261104-213030-067-bigmap-g2",
+    "sequence": 76605,
+    "utc": "2026-11-04T13:44:53.0307466Z",
+    "raidTime": 992.3485,
+    "frame": 56907,
+    "locationId": "bigmap",
+    "raidGeneration": 2,
+    "eventType": "automaticRecoveryTeleportCompleted",
+    "bot": {
+      "profileId": "6a6cbe4b6c32497adc5ad6b5",
+      "nickname": "Chris_Redfield",
+      "role": "pmcUSEC"
+    },
+    "payload": {
+      "reason": "capabilityFailureSequenceExhausted",
+      "missionId": 0,
+      "previousStepIndex": -1,
+      "currentStepIndex": -1,
+      "rebased": false,
+      "terminalRecoveryBoundary": false,
+      "recoveryFrontierReanchored": false,
+      "recoveryFrontierDisposition": "notApplicable",
+      "locomotionRecovered": true,
+      "locomotionDetail": "automaticRecoveryPostTeleport:capabilityFailureSequenceExhausted:PlayerAnimatorEnableJump(False),PlayerAnimatorEnableLanding(False),zeroMovementIntent,nativeMoverQuiesced:before=Idle:state=Idle:forwardIntentInjected=False",
+      "routeMissionPreserved": false
+    }
+  }
+]

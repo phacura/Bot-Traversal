@@ -1,0 +1,70 @@
+﻿{
+    "gameLaunched":  false,
+    "cases":  [
+                  {
+                      "oracle":  "actual DLL behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "failure_skips_alternate",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "ranking_ignores_evidence",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "queue_always_admits",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL behavior",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "queue_cooldown_removed",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration/native IL transform",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "native_first_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration/native IL transform",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "teleport_cleanup_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration/native IL transform",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "walking_guard_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration/native IL transform",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "friendly_filter_disconnected",
+                      "compiledFromMutantSource":  false
+                  },
+                  {
+                      "oracle":  "actual DLL integration/native IL transform",
+                      "actualBinaryModified":  true,
+                      "rejected":  true,
+                      "id":  "native_transform_noop",
+                      "compiledFromMutantSource":  false
+                  }
+              ],
+    "physicsSimulated":  false,
+    "passed":  true
+}

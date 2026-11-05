@@ -1,0 +1,12 @@
+541.703 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -152.217529, 'y': 1.00846422, 'z': -47.8373222}}
+541.77 learningV409NativeLocomotionIntentPublished {'direction': {'x': 0.1679285, 'y': 0.0, 'z': 0.9857992}, 'sprint': True, 'preserveSprintMode': False}
+541.903 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -151.257233, 'y': 0.9846297, 'z': -47.8524246}}
+542.119 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -150.45639, 'y': 1.15701425, 'z': -47.23842}}
+542.334 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -150.467636, 'y': 1.4242475, 'z': -46.2615623}}
+542.551 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -150.554153, 'y': 1.32748163, 'z': -45.98074}}
+542.752 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -150.5572, 'y': 1.32748163, 'z': -45.97213}}
+542.953 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -150.5573, 'y': 1.32748163, 'z': -45.9718628}}
+543.17 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -151.006683, 'y': 1.24098921, 'z': -46.34947}}
+543.386 learningV409MeasuredNativeLocomotionProgress {'position': {'x': -151.454208, 'y': 1.09336829, 'z': -46.81583}}
+543.453 capabilityWalkThroughWallTargetConstrained {'target': {'x': -151.695038, 'y': 0.9934351, 'z': -47.0898857}}
+543.453 learningV409NativeLocomotionIntentPublished {'direction': {'x': 0.998980641, 'y': 0.0, 'z': -0.04514}, 'sprint': False, 'preserveSprintMode': True}
