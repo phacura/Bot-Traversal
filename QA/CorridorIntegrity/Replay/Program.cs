@@ -824,5 +824,68 @@ Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,fal
 Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,true,5,3,2,.7,1)==BotTraversal.Core.FollowerCapabilityFailureSequence.Rank(3,2,.7,1),"persisted current counters are not added twice");
 Check(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,true,0,0,0,0,1)==BotTraversal.Core.FollowerCapabilityFailureSequence.Rank(3,2,.7,1),"empty persisted evidence cannot supply an artificial zero evaluation");
 Check(!double.IsNaN(BotTraversal.Core.FollowerCapabilityLearningPolicy.RecoveryRank(3,2,.7,true,5,3,2,double.NaN,1)),"corrupt persisted score follows original finite ranking fallback");
+// RC156 standalone PIT identity, reviewed gait build, and explicit command ownership.
+foreach(string version in new[]{"0.9.1","1.1.1"})Check(BotTraversal.Core.PITCompatibilityPolicy.SupportedStandalone(version),"reviewed standalone PIT identity "+version);
+foreach(string version in new[]{"","0.9.1.242","1.1.0","1.1.2","2.0.0","1.1.1-other"})Check(!BotTraversal.Core.PITCompatibilityPolicy.SupportedStandalone(version),"unknown or embedded PIT build cannot obtain standalone takeover "+version);
+Check(BotTraversal.Core.PITCompatibilityPolicy.ReviewedFollowBuild(new Guid("084ae5d2-4ba7-4f08-ad73-d22b300816e8")),"PIT1.1.1 actual installed gait module recognized");
+Check(BotTraversal.Core.PITCompatibilityPolicy.ReviewedFollowBuild(new Guid("e77f8971-589a-4c6d-bee9-07a778a2b081")),"previous reviewed original gait contract retained");
+Check(!BotTraversal.Core.PITCompatibilityPolicy.ReviewedFollowBuild(Guid.Empty),"unreviewed gait implementation retains PIT's original controller");
+Check(BotTraversal.Core.PITCompatibilityPolicy.CommandClaim(true,false)==0,"normal PIT Follow can offer traversal work");
+Check(BotTraversal.Core.PITCompatibilityPolicy.CommandClaim(true,true)!=0,"every explicit PIT command preempts traversal regardless of enum ordinals");
+Check(BotTraversal.Core.PITCompatibilityPolicy.CommandClaim(false,false)!=0,"failed command read cannot masquerade as no command");
+Check(BotTraversal.Core.PITCompatibilityPolicy.CommandClaim(false,true)!=0,"read failure never releases a known explicit command");
+// RC157: posture is explicit player evidence and constrains the existing WT, including reload.
+var postureDto=typeof(BotTraversal.Core.FollowerCapabilityPosturePolicy).Assembly.GetType("BotTraversal.Core.FollowerTraversalTestRuntime+PersistentTraversalLink",true)!;
+var postureField=postureDto.GetField("RequiredPose")!;
+var legacyPose=Newtonsoft.Json.JsonConvert.DeserializeObject("{}",postureDto)!;
+Check((float)postureField.GetValue(legacyPose)! ==1f,"old schema missing RequiredPose remains standing, never falsely inferred crouch");
+foreach(float pose in new[]{0f,.25f,.6f,1f}){
+ var dto=Newtonsoft.Json.JsonConvert.DeserializeObject("{\"RequiredPose\":"+pose.ToString(System.Globalization.CultureInfo.InvariantCulture)+"}",postureDto)!;
+ var round=Newtonsoft.Json.JsonConvert.DeserializeObject(Newtonsoft.Json.JsonConvert.SerializeObject(dto),postureDto)!;
+ Check((float)postureField.GetValue(round)! ==pose,"actual persistent DTO preserves posture round trip "+pose);
+}
+foreach(float bad in new[]{float.NaN,float.PositiveInfinity,float.NegativeInfinity,-.1f,1.1f})
+ Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Normalize(bad)==1f,"invalid posture must not shrink clearance "+bad);
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Same(0f,1f),"same geometry standing proof cannot overwrite crouch contract");
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,0,"ProneMove","ProneMove",1,0,.5f),"prone demonstration is not crouch");
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,0,"Run","Run",.01f,0,.5f),"stationary crouch cannot create a passage");
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,0,"Jump","Run",1,.2f,.5f),"airborne action retains its own capability");
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,0,"Run","Run",1,1.2f,.5f),"major drop cannot become a crouch passage");
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,1,"Run","Run",1,0,.5f),"posture boundary cannot stretch a mixed corridor");
+Check(!BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,0,"Run","Run",1,0,5f),"old nonadjacent nodes cannot create crouch debt");
+// Actual Interchange truck roof approach: Run, pose0, y22.0250721, seq297->298, .5153126m.
+Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(0,0,"Run","Run",.5153126f,0,.64f),"recorded Cargo_Gazel crouch passage is authored despite invalid NavMesh");
+foreach(float requested in new[]{0f,.25f,.6f,.8f,1f}){
+ Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Resolve(requested,0f)==0,"crouch constraint wins over standing input "+requested);
+ Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Resolve(requested,1f)==requested,"no contract leaves ordinary pose intact "+requested);
+}
+
+Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Required(0,0,"ProneMove","Run")==1,"actual builder posture excludes prone-to-run boundary");
+Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Required(0,0,"Run","Run")==0,"actual builder carries recorded crouch");
+using(var observedCrouch=JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"crouch-fixture.json"))))
+ foreach(var sample in observedCrouch.RootElement.EnumerateArray())
+  Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.Capture(sample.GetProperty("fromPose").GetSingle(),sample.GetProperty("toPose").GetSingle(),
+   sample.GetProperty("fromState").GetString()!,sample.GetProperty("toState").GetString()!,sample.GetProperty("distance").GetSingle(),
+   sample.GetProperty("vertical").GetSingle(),sample.GetProperty("seconds").GetSingle()),"actual Interchange crouch pair "+sample.GetProperty("fromSequence")+" -> "+sample.GetProperty("toSequence"));
+// RC158: numeric native capsule envelopes (synthetic surfaces, no Unity scene).
+var crouchShape=BotTraversal.Core.FollowerCapabilityPosturePolicy.QueryCapsule(1.2f,.68f,.30f,.08f);
+var standingShape=BotTraversal.Core.FollowerCapabilityPosturePolicy.QueryCapsule(1.6f,.88f,.30f,.08f);
+Check(crouchShape.Top+crouchShape.Radius<1.4f&&standingShape.Top+standingShape.Radius>1.4f,"synthetic 1.4m overhead clears crouch and blocks standing");
+Check(standingShape.Top+standingShape.Radius<1.42f+.30f,"native standing envelope removes former oversized roof probe");
+foreach(float height in new[]{1.2f,1.3f,1.44f,1.6f})foreach(float radius in new[]{.2f,.3f,.4f})foreach(float skin in new[]{0f,.02f,.08f}){
+ float center=height*.5f+skin;
+ var shape=BotTraversal.Core.FollowerCapabilityPosturePolicy.QueryCapsule(height,center,radius,skin);
+ Check(shape.Bottom-shape.Radius>=center-height*.5f-.00001f&&shape.Top+shape.Radius<=center+height*.5f+.00001f,"query stays within native body vertical envelope "+height+"/"+radius+"/"+skin);
+ Check(shape.Radius>0&&shape.Radius<=radius&&shape.Bottom<=shape.Top,"valid inset cannot invert or enlarge native capsule "+height+"/"+radius+"/"+skin);
+}
+foreach(float bad in new[]{float.NaN,float.PositiveInfinity,-1f,0f,5f}){
+ var shape=BotTraversal.Core.FollowerCapabilityPosturePolicy.QueryCapsule(bad,.8f,.3f,.02f);
+ Check(shape.Top==1.42f&&shape.Radius==.3f,"malformed shape uses conservative existing envelope "+bad);
+}
+foreach(bool published in new[]{false,true})foreach(bool current in new[]{false,true})foreach(float oldPose in new[]{0f,1f})foreach(float newPose in new[]{0f,1f})
+ Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.MergeSnapshot(published,current,oldPose,newPose)==(!published&&(!current||oldPose==newPose)),"snapshot publication and posture boundary "+published+"/"+current+"/"+oldPose+"/"+newPose);
+foreach(bool pending in new[]{false,true})foreach(int snapshot in new[]{0,16,26})foreach(int active in new[]{0,16,26})
+ Check(BotTraversal.Core.FollowerCapabilityPosturePolicy.HoldDropBoundary(pending,snapshot,active)==(pending&&snapshot>0&&snapshot==active),"floor-flicker hold belongs only to exact live builder "+pending+"/"+snapshot+"/"+active);
+
 File.WriteAllText(args[0],JsonSerializer.Serialize(new{passed=true,checks=cases.Count,cases,physicsSimulated=false,kind="production DLL decision replay; host wiring checked separately"},new JsonSerializerOptions{WriteIndented=true}));
-Console.WriteLine($"PASS {cases.Count} 0.9.0 Beta18 production decision and recorded-order replay checks");
+Console.WriteLine($"PASS {cases.Count} 1.0.1 RC158 production decision and recorded-order replay checks");

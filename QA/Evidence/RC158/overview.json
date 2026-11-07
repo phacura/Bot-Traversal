@@ -1,0 +1,219 @@
+{
+  "events": 8132,
+  "attemptSummaries": 28,
+  "successes": 6,
+  "failures": 22,
+  "misclassifiedWindows": [
+    {
+      "eventSequence": 856,
+      "episodeId": 1,
+      "edgeId": 8,
+      "reason": "corridorBoundary",
+      "posture": "Standing",
+      "requiredPose": 1.0,
+      "startSequence": 112,
+      "endSequence": 120,
+      "start": {
+        "x": -169.3215,
+        "y": 21.78262,
+        "z": -118.02282
+      },
+      "end": {
+        "x": -170.682816,
+        "y": 21.7103672,
+        "z": -121.13829
+      },
+      "directDistance": 3.40066934,
+      "allObservedPose": 0,
+      "samples": 9
+    },
+    {
+      "eventSequence": 3465,
+      "episodeId": 8,
+      "edgeId": 10,
+      "reason": "corridorBoundary",
+      "posture": "Standing",
+      "requiredPose": 1.0,
+      "startSequence": 262,
+      "endSequence": 272,
+      "start": {
+        "x": -169.220749,
+        "y": 21.6357079,
+        "z": -117.002373
+      },
+      "end": {
+        "x": -170.68515,
+        "y": 21.7081451,
+        "z": -121.088982
+      },
+      "directDistance": 4.341669,
+      "allObservedPose": 0,
+      "samples": 11
+    },
+    {
+      "eventSequence": 5644,
+      "episodeId": 20,
+      "edgeId": 13,
+      "reason": "corridorBoundary",
+      "posture": "Standing",
+      "requiredPose": 1.0,
+      "startSequence": 464,
+      "endSequence": 466,
+      "start": {
+        "x": -169.519226,
+        "y": 22.0211449,
+        "z": -121.23246
+      },
+      "end": {
+        "x": -170.68544,
+        "y": 21.70764,
+        "z": -121.098183
+      },
+      "directDistance": 1.21506011,
+      "allObservedPose": 0,
+      "samples": 3
+    },
+    {
+      "eventSequence": 6818,
+      "episodeId": 26,
+      "edgeId": 16,
+      "reason": "corridorBoundary",
+      "posture": "Standing",
+      "requiredPose": 1.0,
+      "startSequence": 545,
+      "endSequence": 551,
+      "start": {
+        "x": -169.198486,
+        "y": 22.0218678,
+        "z": -120.33857
+      },
+      "end": {
+        "x": -169.37001,
+        "y": 21.8371658,
+        "z": -118.029312
+      },
+      "directDistance": 2.32297349,
+      "allObservedPose": 0,
+      "samples": 7
+    }
+  ],
+  "wallConstraints": 96,
+  "wallZeroDistance": 88,
+  "crouchMotion": 95,
+  "inputs": {
+    "20261106-230229-601-Interchange-g2.jsonl": "C3CA715A2A7B9905227E7EE93A0C383D3B0019CAAF1196DA8F24693B5D5C86CE",
+    "event-counts.json": "6F81AA011ECBC9575BFA8692AE755902E50ECAFE2CF2A5FFE1BE4020C4C5D463",
+    "Interchange.nativeproven.json": "57C790CFC2DDAC8F23D59878DC6AB5D73D04631D9BD752ECE1BE7FE1AED322E4",
+    "Interchange.skillevidence.json": "58B8ACC598E6E43CF27D400A33079F891218D822EB9E33DFF766AC187C3D858B",
+    "LogOutput.log": "3B16163B37418DC19CEEBB171EEE26AF640432E3E72EC7EBF577BC0650FEF9B4"
+  },
+  "sampledWallEvents": [
+    {
+      "eventSequence": 1001,
+      "raidTime": 156.796844,
+      "edgeId": 8,
+      "body": {
+        "x": -169.309189,
+        "y": 21.92863,
+        "z": -118.126587
+      },
+      "target": {
+        "x": -169.308746,
+        "y": 21.9296856,
+        "z": -118.133995
+      },
+      "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+      "distance": 0.03742042,
+      "normal": {
+        "x": 0.009358606,
+        "y": -0.374477774,
+        "z": 0.9271887
+      },
+      "available": 0.00742042251,
+      "nativeSuccessRecorded": false,
+      "bodyRelocated": false
+    },
+    {
+      "eventSequence": 1032,
+      "raidTime": 157.058548,
+      "edgeId": 8,
+      "body": {
+        "x": -169.3808,
+        "y": 21.94739,
+        "z": -118.290474
+      },
+      "target": {
+        "x": -169.3808,
+        "y": 21.94739,
+        "z": -118.290474
+      },
+      "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+      "distance": 0.0,
+      "normal": {
+        "x": -0.158308744,
+        "y": 0.0,
+        "z": 0.9873897
+      },
+      "available": 0.0,
+      "nativeSuccessRecorded": false,
+      "bodyRelocated": false
+    },
+    {
+      "eventSequence": 7561,
+      "raidTime": 277.7428,
+      "edgeId": 14,
+      "body": {
+        "x": -170.275955,
+        "y": 22.0172386,
+        "z": -120.889442
+      },
+      "target": {
+        "x": -170.275955,
+        "y": 22.0172386,
+        "z": -120.889442
+      },
+      "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+      "distance": 0.0,
+      "normal": {
+        "x": -0.983380258,
+        "y": 0.0,
+        "z": 0.181557715
+      },
+      "available": 0.0,
+      "nativeSuccessRecorded": false,
+      "bodyRelocated": false
+    },
+    {
+      "eventSequence": 7585,
+      "raidTime": 277.9207,
+      "edgeId": 14,
+      "body": {
+        "x": -170.2187,
+        "y": 22.0231247,
+        "z": -120.874512
+      },
+      "target": {
+        "x": -170.2187,
+        "y": 22.0231247,
+        "z": -120.874512
+      },
+      "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+      "distance": 0.0,
+      "normal": {
+        "x": -0.9749172,
+        "y": 0.0,
+        "z": 0.2225679
+      },
+      "available": 0.0,
+      "nativeSuccessRecorded": false,
+      "bodyRelocated": false
+    }
+  ],
+  "classificationByKind": {
+    "WalkThrough/failed": 18,
+    "Climb/failed": 3,
+    "Jump/success": 3,
+    "Jump/failed": 1,
+    "DropDown/success": 3
+  }
+}

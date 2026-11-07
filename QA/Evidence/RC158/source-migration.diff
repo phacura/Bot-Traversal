@@ -1,0 +1,285 @@
+--- RC157/BotTraversal.csproj
++++ RC158/BotTraversal.csproj
+@@ -4,7 +4,7 @@
+         <OutputType>Library</OutputType>
+         <RootNamespace>BotTraversal</RootNamespace>
+         <AssemblyName>BotTraversal</AssemblyName>
+-        <Version>1.0.0</Version>
++        <Version>1.0.1</Version>
+         <LangVersion>latest</LangVersion>
+         <Nullable>enable</Nullable>
+         <NoWarn>$(NoWarn);CS0618;CS0649;CS8600;CS8601;CS8602;CS8604;CS8618;CS8620;CS8625</NoWarn>
+--- RC157/src/AssemblyVersion.cs
++++ RC158/src/AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+-[assembly: AssemblyVersion("1.0.0.0")]
+-[assembly: AssemblyFileVersion("1.0.0.0")]
+-[assembly: AssemblyInformationalVersion("1.0.0+RC157.SPT416")]
++[assembly: AssemblyVersion("1.0.1.0")]
++[assembly: AssemblyFileVersion("1.0.1.0")]
++[assembly: AssemblyInformationalVersion("1.0.1+RC158.SPT416")]
+--- RC157/src/BotTraversalPlugin.cs
++++ RC158/src/BotTraversalPlugin.cs
+@@ -10,7 +10,7 @@
+ 
+ namespace BotTraversal
+ {
+-    [BepInPlugin("bottraversal.standalone", "Bot Traversal", "1.0.0")]
++    [BepInPlugin("bottraversal.standalone", "Bot Traversal", "1.0.1")]
+     [BepInDependency("xyz.pit.fireteam", BepInDependency.DependencyFlags.SoftDependency)]
+     public sealed class BotTraversalPlugin : BaseUnityPlugin
+     {
+@@ -31,7 +31,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 1.0.0 loaded: V2-RC157-SPT416");
++            Logger.LogInfo("Bot Traversal 1.0.1 loaded: V2-RC158-SPT416");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC157/src/Core/FollowerCapabilityExecutionMotionHost.cs
++++ RC158/src/Core/FollowerCapabilityExecutionMotionHost.cs
+@@ -158,8 +158,9 @@
+             var player=probe.Player;var delta=GetFlatDelta(player.Position,target);float distance=delta.magnitude;
+             if(distance<=.015f)return false;
+             var direction=delta/distance;
+-            bool hit=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*WalkThroughCapsuleBottom,
+-                player.Position+Vector3.up*WalkThroughCapsuleTop,WalkThroughCapsuleRadius,direction,distance,
++            GetCapabilityCorridorCapsule(player,player.Position,out var capsuleBottom,out var capsuleTop,out float capsuleRadius);
++            bool hit=TryGetFirstNonSelfCapsuleCastHit(player,capsuleBottom,
++                capsuleTop,capsuleRadius,direction,distance,
+                 LayersMaskController.HighPolyWithTerrainMask,out var obstacle);
+             bool blocked=FollowerCapabilityIngressMotionPolicy.WallBlocks(hit,hit?obstacle.normal.y:0,
+                 hit?-Vector3.Dot(direction,obstacle.normal):0,hit?obstacle.distance:0);
+@@ -169,7 +170,9 @@
+             target=Vector3.Lerp(player.Position,target,Mathf.Clamp01(available/distance));
+             if(ShouldEmitDiagnostic("capabilityWTWallTarget",probe.Bot,.25f))WriteEvent("capabilityWalkThroughWallTargetConstrained",probe.Bot,new{
+                 edgeId=probe.LearnedEdgeId,body=Vec(player.Position),target=Vec(target),blocker=obstacle.collider?.name,
+-                distance=obstacle.distance,normal=Vec(obstacle.normal),available,nativeSuccessRecorded=false,bodyRelocated=false});
++                distance=obstacle.distance,normal=Vec(obstacle.normal),available,pose=player.MovementContext.PoseLevel,
++                capsuleBottom=Vec(capsuleBottom-player.Position),capsuleTop=Vec(capsuleTop-player.Position),capsuleRadius,
++                nativeSuccessRecorded=false,bodyRelocated=false});
+             return available>.015f;
+         }
+     }
+--- RC157/src/Core/FollowerCapabilityPostureHost.cs
++++ RC158/src/Core/FollowerCapabilityPostureHost.cs
+@@ -28,15 +28,35 @@
+             var edge=LearnedTraversalEdges.FirstOrDefault(e=>e!=null&&e.Id==probe.LearnedEdgeId&&e.Kind=="WalkThrough");
+             return FollowerCapabilityPosturePolicy.Normalize(edge?.RequiredPose??1f);
+         }
+-        private static float GetCapabilityCorridorCapsuleTop(Player player)
++        private static void GetCapabilityCorridorCapsule(Player player,Vector3 origin,out Vector3 bottom,out Vector3 top,out float radius)
+         {
+-            float pose=player==FollowerEnvironment.LocalPlayer?FollowerCapabilityPosturePolicy.Normalize(player.MovementContext.PoseLevel):
+-                GetCapabilityWalkingPosture(player?.AIData?.BotOwner,1f);
+-            if(!FollowerCapabilityPosturePolicy.Crouched(pose)||player?.CharacterController==null)return WalkThroughCapsuleTop;
++            bottom=origin+Vector3.up*WalkThroughCapsuleBottom;top=origin+Vector3.up*WalkThroughCapsuleTop;radius=WalkThroughCapsuleRadius;
++            if(player?.MovementContext==null||player.CharacterController==null)return;
++            float pose=GetCapabilityWalkingPosture(player.AIData?.BotOwner,FollowerCapabilityPosturePolicy.Normalize(player.MovementContext.PoseLevel));
+             var cc=player.CharacterController;
+-            MovementContext.CalculatePoseLevelValues(pose,cc.center,cc.skinWidth,false,out float height,out _);
+-            // A read-only query envelope from EFT's posture formula, never a controller resize.
+-            return Mathf.Max(WalkThroughCapsuleBottom,Mathf.Min(WalkThroughCapsuleTop,height-WalkThroughCapsuleRadius));
++            MovementContext.CalculatePoseLevelValues(pose,cc.center,cc.skinWidth,false,out float height,out var center);
++            if(!IsFinite(center))return;
++            var capsule=FollowerCapabilityPosturePolicy.QueryCapsule(height,center.y,cc.radius,cc.skinWidth);
++            // Same finite native posture envelope for every walking query. Only the read-only
++            // query is inset by at most 2 cm of the native contact skin; body collision stays active.
++            bottom=origin+new Vector3(center.x,capsule.Bottom,center.z);
++            top=origin+new Vector3(center.x,capsule.Top,center.z);radius=capsule.Radius;
++        }
++        private static bool IsCapabilityWalkThroughSnapshotPublished(WalkThroughEpisodeBuilder snapshot)
++            =>snapshot!=null&&TraversalEpisodeStream.Any(e=>e!=null&&e.EpisodeId==snapshot.EpisodeId);
++        private static void FinalizeCapabilityWalkThroughSnapshot(WalkThroughEpisodeBuilder snapshot,string reason)
++        {
++            if(snapshot==null)return;
++            if(IsCapabilityWalkThroughSnapshotPublished(snapshot))
++            {
++                WriteEvent("capabilityWalkThroughSnapshotAlreadyPublished",null,new{snapshotEpisode=snapshot.EpisodeId,reason,nativeSuccessRecorded=false});
++                return;
++            }
++            var current=activeWalkThroughEpisode;
++            activeWalkThroughEpisode=CloneWalkThroughEpisode(snapshot);
++            FinalizeActiveWalkThroughEpisode(reason);
++            // A newer posture episode must not be discarded by an older airborne snapshot.
++            if(current!=null&&current.EpisodeId!=snapshot.EpisodeId)activeWalkThroughEpisode=current;
+         }
+         private static void CompleteCapabilityPostureEpisode(PlayerBreadcrumbNode exit)
+         {
+--- RC157/src/Core/FollowerCapabilityPosturePolicy.cs
++++ RC158/src/Core/FollowerCapabilityPosturePolicy.cs
+@@ -14,5 +14,23 @@
+             =>Crouched(from)&&Crouched(to)&&Locomotion(fromState)&&Locomotion(toState)?Math.Min(Normalize(from),Normalize(to)):1f;
+         internal static bool Same(float a,float b)=>Crouched(a)==Crouched(b)&&(!Crouched(a)||Math.Abs(Normalize(a)-Normalize(b))<=.1f);
+         internal static float Resolve(float requested,float contract)=>Crouched(contract)?Math.Min(Normalize(requested),Normalize(contract)):Normalize(requested);
++        internal readonly struct Capsule
++        {
++            internal readonly float Bottom,Top,Radius;
++            internal Capsule(float bottom,float top,float radius){Bottom=bottom;Top=top;Radius=radius;}
++        }
++        private static bool Finite(float value)=>!float.IsNaN(value)&&!float.IsInfinity(value);
++        internal static Capsule QueryCapsule(float height,float center,float bodyRadius,float skin)
++        {
++            if(!Finite(height)||!Finite(center)||!Finite(bodyRadius)||!Finite(skin)||height<.2f||height>3f||
++                bodyRadius<.05f||bodyRadius>height*.5f||skin<0f||skin>.5f)
++                return new Capsule(.38f,1.42f,.30f);
++            float radius=Math.Min(.30f,bodyRadius),inset=Math.Min(.02f,skin);
++            return new Capsule(center-height*.5f+radius,center+height*.5f-radius,Math.Max(.03f,radius-inset));
++        }
++        internal static bool MergeSnapshot(bool published,bool hasCurrent,float snapshotPose,float currentPose)
++            =>!published&&(!hasCurrent||Same(snapshotPose,currentPose));
++        internal static bool HoldDropBoundary(bool pending,int snapshotId,int activeId)
++            =>pending&&snapshotId>0&&snapshotId==activeId;
+     }
+ }
+--- RC157/src/Core/FollowerCapabilitySupportedAimHost.cs
++++ RC158/src/Core/FollowerCapabilitySupportedAimHost.cs
+@@ -17,8 +17,9 @@
+                     Mathf.Abs(support.point.y-sample.y)>.35f||support.normal.y<.65f){supported=false;break;}
+             var delta=GetFlatDelta(player.Position,aim);var direction=GetFlatDirection(delta);
+             RaycastHit obstacle=default;
+-            bool hit=delta.magnitude>.001f&&TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.40f,
+-                player.Position+Vector3.up*1.35f,.18f,direction,delta.magnitude,LayersMaskController.HighPolyWithTerrainMask,out obstacle);
++            GetCapabilityCorridorCapsule(player,player.Position,out var capsuleBottom,out var capsuleTop,out float capsuleRadius);
++            bool hit=delta.magnitude>.001f&&TryGetFirstNonSelfCapsuleCastHit(player,capsuleBottom,
++                capsuleTop,capsuleRadius,direction,delta.magnitude,LayersMaskController.HighPolyWithTerrainMask,out obstacle);
+             // A walkable floor hit is not a wall. Native collision remains active throughout.
+             bool blocked=hit&&obstacle.normal.y<.65f;
+             return FollowerCapabilityPassagePolicy.GroundAim(player.MovementContext.IsGrounded,IsFinite(aim),aim.y-player.Position.y,supported,blocked);
+--- RC157/src/Core/FollowerTraversalTestRuntime.cs
++++ RC158/src/Core/FollowerTraversalTestRuntime.cs
+@@ -37593,13 +37593,12 @@
+ 
+             Vector3 direction = planar / distance;
+             float capsuleDistance = Mathf.Max(0.05f, distance - 0.08f);
+-            Vector3 capsuleBottom = start + Vector3.up * WalkThroughCapsuleBottom;
+-            Vector3 capsuleTop = start + Vector3.up * GetCapabilityCorridorCapsuleTop(player);
++            GetCapabilityCorridorCapsule(player,start,out var capsuleBottom,out var capsuleTop,out float capsuleRadius);
+             if (TryGetFirstNonSelfCapsuleCastHit(
+                     player,
+                     capsuleBottom,
+                     capsuleTop,
+-                    WalkThroughCapsuleRadius,
++                    capsuleRadius,
+                     direction,
+                     capsuleDistance,
+                     LayersMaskController.HighPolyWithTerrainMask,
+@@ -37611,7 +37610,7 @@
+                         player,
+                         raisedBottom,
+                         raisedTop,
+-                        WalkThroughCapsuleRadius,
++                        capsuleRadius,
+                         direction,
+                         capsuleDistance,
+                         LayersMaskController.HighPolyWithTerrainMask,
+@@ -61700,11 +61699,12 @@
+             }
+ 
+             Vector3 direction = planar / distance;
++            GetCapabilityCorridorCapsule(player,start,out var capsuleBottom,out var capsuleTop,out float capsuleRadius);
+             if (TryGetFirstNonSelfCapsuleCastHit(
+                     player,
+-                    start + Vector3.up * WalkThroughCapsuleBottom,
+-                    start + Vector3.up * GetCapabilityCorridorCapsuleTop(player),
+-                    WalkThroughCapsuleRadius,
++                    capsuleBottom,
++                    capsuleTop,
++                    capsuleRadius,
+                     direction,
+                     Mathf.Max(0.05f, distance - 0.08f),
+                     LayersMaskController.HighPolyWithTerrainMask,
+@@ -64485,8 +64485,7 @@
+                 }
+                 if (localNaturalDropWalkThroughSnapshot != null)
+                 {
+-                    activeWalkThroughEpisode = localNaturalDropWalkThroughSnapshot;
+-                    FinalizeActiveWalkThroughEpisode("naturalDropCancelledByExplicitTraversal");
++                    FinalizeCapabilityWalkThroughSnapshot(localNaturalDropWalkThroughSnapshot,"naturalDropCancelledByExplicitTraversal");
+                 }
+                 localNaturalDropWalkThroughSnapshot = null;
+                 localNaturalDropCandidateActive = false;
+@@ -64533,8 +64532,7 @@
+                     });
+                     if (localNaturalDropWalkThroughSnapshot != null)
+                     {
+-                        activeWalkThroughEpisode = localNaturalDropWalkThroughSnapshot;
+-                        FinalizeActiveWalkThroughEpisode("naturalDropAirborneTimeoutBoundary");
++                        FinalizeCapabilityWalkThroughSnapshot(localNaturalDropWalkThroughSnapshot,"naturalDropAirborneTimeoutBoundary");
+                     }
+                     localNaturalDropWalkThroughSnapshot = null;
+                     localNaturalDropCandidateActive = false;
+@@ -64638,8 +64636,7 @@
+                     {
+                         if (localNaturalDropWalkThroughSnapshot != null)
+                         {
+-                            activeWalkThroughEpisode = localNaturalDropWalkThroughSnapshot;
+-                            FinalizeActiveWalkThroughEpisode("learningV417NativeProvenDropDownRevalidated");
++                            FinalizeCapabilityWalkThroughSnapshot(localNaturalDropWalkThroughSnapshot,"learningV417NativeProvenDropDownRevalidated");
+                         }
+                         localTraversalWalkThroughSuppressUntil = Mathf.Max(
+                             localTraversalWalkThroughSuppressUntil,
+@@ -64679,8 +64676,7 @@
+                     {
+                         if (localNaturalDropWalkThroughSnapshot != null)
+                         {
+-                            activeWalkThroughEpisode = localNaturalDropWalkThroughSnapshot;
+-                            FinalizeActiveWalkThroughEpisode("naturalDropConfirmed");
++                            FinalizeCapabilityWalkThroughSnapshot(localNaturalDropWalkThroughSnapshot,"naturalDropConfirmed");
+                         }
+                         localTraversalWalkThroughSuppressUntil = Mathf.Max(
+                             localTraversalWalkThroughSuppressUntil,
+@@ -64773,8 +64769,7 @@
+                             // already-recorded WT segment truthful even when the separate DropDown
+                             // candidate misses its existing horizontal envelope; do not widen that
+                             // envelope and do not invent a DropDown edge.
+-                            activeWalkThroughEpisode = localNaturalDropWalkThroughSnapshot;
+-                            FinalizeActiveWalkThroughEpisode("learningV336RejectedMajorDropBoundary");
++                            FinalizeCapabilityWalkThroughSnapshot(localNaturalDropWalkThroughSnapshot,"learningV336RejectedMajorDropBoundary");
+                             localTraversalWalkThroughSuppressUntil = Mathf.Max(
+                                 localTraversalWalkThroughSuppressUntil,
+                                 Time.time + PlayerNaturalDropDownWalkThroughSuppressSeconds);
+@@ -66273,7 +66268,9 @@
+             }
+ 
+             if (activeWalkThroughEpisode != null &&
+-                (Time.time - activeWalkThroughEpisode.LastUpdatedAt >= WalkThroughEpisodeCloseGraceSeconds ||
++                ((Time.time - activeWalkThroughEpisode.LastUpdatedAt >= WalkThroughEpisodeCloseGraceSeconds&&
++                  !FollowerCapabilityPosturePolicy.HoldDropBoundary(localNaturalDropCandidateActive,
++                      localNaturalDropWalkThroughSnapshot?.EpisodeId??0,activeWalkThroughEpisode.EpisodeId)) ||
+                  IsTraversalStateName(node.State)))
+             {
+                 FinalizeActiveWalkThroughEpisode(IsTraversalStateName(node.State) ? "stateBoundary" : "candidateGap");
+@@ -66421,12 +66418,20 @@
+             }
+         }
+ 
+-        private static WalkThroughEpisodeBuilder MergeRejectedNaturalDropIntoWalkThrough(
++        private static WalkThroughEpisodeBuilder? MergeRejectedNaturalDropIntoWalkThrough(
+             WalkThroughEpisodeBuilder snapshot,
+             WalkThroughEpisodeBuilder current,
+             Vector3 landing,
+             int landingSequence)
+         {
++            bool published=IsCapabilityWalkThroughSnapshotPublished(snapshot);
++            if(!FollowerCapabilityPosturePolicy.MergeSnapshot(published,current!=null,snapshot?.RequiredPose??1f,current?.RequiredPose??1f))
++            {
++                WriteEvent("capabilityWalkThroughSnapshotRestoreRejected",null,new{snapshotEpisode=snapshot?.EpisodeId??0,
++                    currentEpisode=current?.EpisodeId??0,published,snapshotPose=snapshot?.RequiredPose??1f,currentPose=current?.RequiredPose??1f,
++                    nativeSuccessRecorded=false});
++                return current;
++            }
+             WalkThroughEpisodeBuilder merged = CloneWalkThroughEpisode(snapshot);
+             if (merged == null)
+             {
+@@ -66560,6 +66565,7 @@
+             return new WalkThroughEpisodeBuilder
+             {
+                 EpisodeId = source.EpisodeId,
++                RequiredPose = FollowerCapabilityPosturePolicy.Normalize(source.RequiredPose),
+                 StartSequence = source.StartSequence,
+                 EndSequence = source.EndSequence,
+                 RawStart = source.RawStart,

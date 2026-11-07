@@ -1,0 +1,526 @@
+--- RC156/BotTraversal.csproj
++++ RC157/BotTraversal.csproj
+@@ -4,7 +4,7 @@
+         <OutputType>Library</OutputType>
+         <RootNamespace>BotTraversal</RootNamespace>
+         <AssemblyName>BotTraversal</AssemblyName>
+-        <Version>0.9.0</Version>
++        <Version>1.0.0</Version>
+         <LangVersion>latest</LangVersion>
+         <Nullable>enable</Nullable>
+         <NoWarn>$(NoWarn);CS0618;CS0649;CS8600;CS8601;CS8602;CS8604;CS8618;CS8620;CS8625</NoWarn>
+--- RC156/src/AssemblyVersion.cs
++++ RC157/src/AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+-[assembly: AssemblyVersion("0.9.0.0")]
+-[assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.19+RC156.SPT416")]
++[assembly: AssemblyVersion("1.0.0.0")]
++[assembly: AssemblyFileVersion("1.0.0.0")]
++[assembly: AssemblyInformationalVersion("1.0.0+RC157.SPT416")]
+--- RC156/src/BotTraversalPlugin.cs
++++ RC157/src/BotTraversalPlugin.cs
+@@ -10,7 +10,7 @@
+ 
+ namespace BotTraversal
+ {
+-    [BepInPlugin("bottraversal.standalone", "Bot Traversal", "0.9.0")]
++    [BepInPlugin("bottraversal.standalone", "Bot Traversal", "1.0.0")]
+     [BepInDependency("xyz.pit.fireteam", BepInDependency.DependencyFlags.SoftDependency)]
+     public sealed class BotTraversalPlugin : BaseUnityPlugin
+     {
+@@ -31,7 +31,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 19 loaded: V2-RC156-Beta19-SPT416");
++            Logger.LogInfo("Bot Traversal 1.0.0 loaded: V2-RC157-SPT416");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC156/src/Core/FollowerCapabilityPostureHost.cs
++++ RC157/src/Core/FollowerCapabilityPostureHost.cs
+@@ -0,0 +1,53 @@
++using System;
++using System.Linq;
++using EFT;
++using UnityEngine;
++namespace BotTraversal.Core
++{
++    internal static partial class FollowerTraversalTestRuntime
++    {
++        private static LearnedTraversalEdge? GetCapabilityPostureEdge(BotOwner bot)
++        {
++            if(bot==null)return null;
++            if(TryGetActiveProbe(bot,out var probe)&&IsProbeLifecycleCurrent(probe))
++            {
++                if(!string.Equals(probe.TraversalKind??probe.RequestedTraversalKind,"WalkThrough",StringComparison.OrdinalIgnoreCase))return null;
++                var edge=LearnedTraversalEdges.FirstOrDefault(e=>e!=null&&e.Id==probe.LearnedEdgeId);
++                if(edge?.Kind=="WalkThrough")return edge;
++            }
++            if(!TryGetActiveFollowerRouteMission(bot,out var m)||m.CurrentStepIndex<0||m.CurrentStepIndex>=m.Steps.Count)return null;
++            var step=m.Steps[m.CurrentStepIndex];
++            if(step?.Kind!="WalkThrough"||!step.Lifecycle.DebtOutstanding)return null;
++            return LearnedTraversalEdges.FirstOrDefault(e=>e!=null&&e.Id==step.EdgeId&&e.Kind=="WalkThrough");
++        }
++        private static float GetCapabilityWalkingPosture(BotOwner bot,float requested)
++            =>FollowerCapabilityPosturePolicy.Resolve(requested,GetCapabilityPostureEdge(bot)?.RequiredPose??1f);
++        private static float GetCapabilityProbePosture(ProbeRuntime probe)
++        {
++            if(probe==null)return 1f;
++            var edge=LearnedTraversalEdges.FirstOrDefault(e=>e!=null&&e.Id==probe.LearnedEdgeId&&e.Kind=="WalkThrough");
++            return FollowerCapabilityPosturePolicy.Normalize(edge?.RequiredPose??1f);
++        }
++        private static float GetCapabilityCorridorCapsuleTop(Player player)
++        {
++            float pose=player==FollowerEnvironment.LocalPlayer?FollowerCapabilityPosturePolicy.Normalize(player.MovementContext.PoseLevel):
++                GetCapabilityWalkingPosture(player?.AIData?.BotOwner,1f);
++            if(!FollowerCapabilityPosturePolicy.Crouched(pose)||player?.CharacterController==null)return WalkThroughCapsuleTop;
++            var cc=player.CharacterController;
++            MovementContext.CalculatePoseLevelValues(pose,cc.center,cc.skinWidth,false,out float height,out _);
++            // A read-only query envelope from EFT's posture formula, never a controller resize.
++            return Mathf.Max(WalkThroughCapsuleBottom,Mathf.Min(WalkThroughCapsuleTop,height-WalkThroughCapsuleRadius));
++        }
++        private static void CompleteCapabilityPostureEpisode(PlayerBreadcrumbNode exit)
++        {
++            var episode=activeWalkThroughEpisode;
++            if(episode==null||!FollowerCapabilityPosturePolicy.Crouched(episode.RequiredPose)||exit==null||
++                FollowerCapabilityPosturePolicy.Crouched(exit.Pose)||!exit.Grounded||
++                !FollowerCapabilityPosturePolicy.Locomotion(exit.State)||
++                Vector3.Distance(episode.RawEnd,exit.Position)>.75f||exit.CreatedAt-episode.LastUpdatedAt>2f)return;
++            // The first observed standing point is the finite exit; keep crouching until that point.
++            episode.RawEnd=exit.Position;episode.EndSequence=exit.Sequence;episode.LastUpdatedAt=exit.CreatedAt;
++            episode.CorridorSamples.Add(exit.Position);
++        }
++    }
++}
+--- RC156/src/Core/FollowerCapabilityPosturePolicy.cs
++++ RC157/src/Core/FollowerCapabilityPosturePolicy.cs
+@@ -0,0 +1,18 @@
++using System;
++namespace BotTraversal.Core
++{
++    // Posture is a constraint on the existing walking capability, never another movement owner.
++    internal static class FollowerCapabilityPosturePolicy
++    {
++        internal static float Normalize(float pose)=>float.IsNaN(pose)||float.IsInfinity(pose)||pose<0f||pose>1f?1f:pose;
++        internal static bool Crouched(float pose)=>Normalize(pose)<=.6f;
++        internal static bool Locomotion(string state)=>state=="Run"||state=="Idle"||state=="Walk";
++        internal static bool Capture(float from,float to,string fromState,string toState,float distance,float vertical,float seconds)
++            =>Crouched(from)&&Crouched(to)&&Locomotion(fromState)&&Locomotion(toState)&&
++              !float.IsNaN(distance)&&distance>=.15f&&distance<=1.75f&&vertical>=0f&&vertical<=.85f&&seconds>0f&&seconds<=2f;
++        internal static float Required(float from,float to,string fromState,string toState)
++            =>Crouched(from)&&Crouched(to)&&Locomotion(fromState)&&Locomotion(toState)?Math.Min(Normalize(from),Normalize(to)):1f;
++        internal static bool Same(float a,float b)=>Crouched(a)==Crouched(b)&&(!Crouched(a)||Math.Abs(Normalize(a)-Normalize(b))<=.1f);
++        internal static float Resolve(float requested,float contract)=>Crouched(contract)?Math.Min(Normalize(requested),Normalize(contract)):Normalize(requested);
++    }
++}
+--- RC156/src/Core/FollowerCapabilityWalkThroughHandoffHost.cs
++++ RC157/src/Core/FollowerCapabilityWalkThroughHandoffHost.cs
+@@ -11,7 +11,7 @@
+             if(original?.Kind!="WalkThrough"||!IsFinite(original.RawEntry)||!IsFinite(original.RawExit))return null;
+             var axis=GetFlatDirection(original.RawExit-original.RawEntry);
+             return LearnedTraversalEdges.Where(e=>e!=null&&e.Kind=="WalkThrough"&&e.PlayerValidated&&
+-                IsLearningV3NativeProvenEdge(e)&&e.NativeVaultParameters==null&&IsFinite(e.RawStart)&&IsFinite(e.RawEnd)&&
++                (IsLearningV3NativeProvenEdge(e)||(e.Id==original.EdgeId&&FollowerCapabilityPosturePolicy.Crouched(e.RequiredPose)))&&e.NativeVaultParameters==null&&IsFinite(e.RawStart)&&IsFinite(e.RawEnd)&&
+                 FollowerCapabilityPassagePolicy.WalkingIdentity(e.Id==original.EdgeId,FollowerCapabilityPassagePolicy.SameWalkingPortal(GetPlanarDistance(original.RawEntry,e.RawStart),
+                     GetPlanarDistance(original.RawExit,e.RawEnd),Vector3.Dot(axis,GetFlatDirection(e.RawEnd-e.RawStart)))))
+                 .OrderByDescending(e=>e.NativeSuccessCount).ThenBy(e=>e.Id).FirstOrDefault();
+--- RC156/src/Core/FollowerTraversalPhysicalInput.cs
++++ RC157/src/Core/FollowerTraversalPhysicalInput.cs
+@@ -64,10 +64,11 @@
+             if(motion.sqrMagnitude>0.000001f&&TryGetActiveProbe(bot,out var precisionProbe)&&precisionProbe.Stage==ProbeStage.WalkThrough&&
+                 NeedsCapabilityWalkThroughPrecision(precisionProbe,direction))
+                 targetMoveSpeed=(float)FollowerCapabilityIngressMotionPolicy.WalkingTurnSpeed(targetMoveSpeed,true);
++            pose=GetCapabilityWalkingPosture(bot,pose);
++            if(FollowerCapabilityPosturePolicy.Crouched(pose)){sprint=false;preserveSprintMode=false;targetMoveSpeed=Mathf.Min(targetMoveSpeed,.8f);}
+             if(motion.sqrMagnitude>0.000001f)PrepareCapabilityJumpLocomotion(bot,player);
+             if(motion.sqrMagnitude>0.000001f)PrepareCapabilityDropIngressLocomotion(bot,player,deliveryPurpose);
+ 
+-            if (TryApplyMeasuredGroundDelivery(bot,player,out CapabilityMotionCommit deliveryCommit,deliveryTarget,deliveryPurpose,direction,motion.sqrMagnitude>0.000001f,pose,targetMoveSpeed)) return deliveryCommit;
+ 
+             bool holdJumpAlignment=false;
+             Vector3 facingDirection=direction;
+@@ -104,6 +105,20 @@
+                     bot.Mover.BotMoverSprint("R1-79C180D4C2D8",@bot,sprint,false);
+                 }
+             }
++
++            if(FollowerCapabilityPosturePolicy.Crouched(pose)&&player.MovementContext.PoseLevel>pose+.05f)
++            {
++                TryRetireNativeMoverPathPreserveLocomotion(bot,"crouchPostureAcquisition",out _);
++                CommitCapabilityRouteRetryZeroInput(bot,player);
++                if(ShouldEmitDiagnostic("capabilityCrouchPostureAcquisition",bot,.5f))
++                    WriteEvent("capabilityCrouchPostureAcquisition",bot,new{requestedPose=pose,actualPose=player.MovementContext.PoseLevel,
++                        nativeActuatorAllowed=false,existingProgressWatchdog=true});
++                return CapabilityMotionCommit.ManualFrame;
++            }
++            if(FollowerCapabilityPosturePolicy.Crouched(pose)&&ShouldEmitDiagnostic("capabilityCrouchMotion",bot,.5f))
++                WriteEvent("capabilityCrouchMotion",bot,new{requestedPose=pose,actualPose=player.MovementContext.PoseLevel,sprint,
++                    kind="WalkThrough",body=Vec(player.Position),nativeSuccessRecorded=false});
++            if (TryApplyMeasuredGroundDelivery(bot,player,out CapabilityMotionCommit deliveryCommit,deliveryTarget,deliveryPurpose,direction,motion.sqrMagnitude>0.000001f,pose,targetMoveSpeed)) return deliveryCommit;
+ 
+             if(holdJumpAlignment)
+             {
+--- RC156/src/Core/FollowerTraversalTestRuntime.cs
++++ RC157/src/Core/FollowerTraversalTestRuntime.cs
+@@ -3190,7 +3190,7 @@
+                     {
+                         bot.Mover?.LocalAvoidance?.GClass492DropOffset("R1-3472A93B6269",@bot);
+                         if (bot.Mover != null)
+-                            bot.Mover.BotMoverSetPose("R1-3BB7219EBAC2",@bot,1f);
++                            bot.Mover.BotMoverSetPose("R1-3BB7219EBAC2",@bot,GetCapabilityProbePosture(probe));
+                     }
+                     if (probe.TraversalChainId > 0)
+                     {
+@@ -15220,6 +15220,7 @@
+             ordinarySampleCount = 0;
+             localBypassCost = 0f;
+             localBypassRatio = 0f;
++            if(FollowerCapabilityPosturePolicy.Crouched(semanticEdge?.RequiredPose??1f))return false;
+             if ((startSequence <= 0) || endSequence < startSequence ||
+                 !IsFinite(observedStart) || !IsFinite(observedEnd))
+             {
+@@ -22701,6 +22702,7 @@
+                 reverseEdge.HasSettledEnd = bestForward.HasSettledStart;
+                 reverseEdge.SettledEnd = bestForward.SettledStart;
+                 reverseEdge.SettledBreadcrumbSequence = 0;
++                reverseEdge.RequiredPose=bestForward.RequiredPose;
+                 reverseEdge.WalkThroughCorridorSamples = bestForward.WalkThroughCorridorSamples != null
+                     ? bestForward.WalkThroughCorridorSamples.Where(IsFinite).Reverse().ToList()
+                     : new List<Vector3>();
+@@ -26538,6 +26540,7 @@
+ 
+             string normalizedKind = string.IsNullOrWhiteSpace(kind) ? "Vault" : kind;
+             bool walkThrough = string.Equals(normalizedKind, "WalkThrough", StringComparison.OrdinalIgnoreCase);
++            float requiredPose=walkThrough?FollowerCapabilityPosturePolicy.Normalize(motion?.RequiredPose??1f):1f;
+             bool jump = string.Equals(normalizedKind, "Jump", StringComparison.OrdinalIgnoreCase);
+             bool dropDownKind = string.Equals(normalizedKind, "DropDown", StringComparison.OrdinalIgnoreCase);
+             float displacement = Vector3.Distance(rawStart, rawEnd);
+@@ -26626,6 +26629,7 @@
+                 ? LearnedTraversalEdges
+                     .Where(edge => edge != null &&
+                         string.Equals(edge.Kind, normalizedKind, StringComparison.OrdinalIgnoreCase) &&
++                        FollowerCapabilityPosturePolicy.Same(edge.RequiredPose,requiredPose) &&
+                         edge.PlayerTraversalSequence > 0 &&
+                         currentPlayerTraversalSequence - edge.PlayerTraversalSequence <= 2 &&
+                         GetPlanarDistance(edge.RawStart, rawStart) <= 0.08f &&
+@@ -26658,6 +26662,7 @@
+                         (edge.PlayerTraversalSequence > 0 ||
+                          ((IsLearningV3NativeProvenEdge(edge)))) &&
+                         string.Equals(edge.Kind, normalizedKind, StringComparison.OrdinalIgnoreCase) &&
++                        FollowerCapabilityPosturePolicy.Same(edge.RequiredPose,requiredPose) &&
+                         !IsTraversalEdgeActivelyReferenced(edge.Id) &&
+                         IsLearningV2SameLocalSkill(edge, rawStart, rawEnd, directionalKind))
+                     .OrderByDescending(edge => IsLearningV3NativeProvenEdge(edge) ? 1 : 0)
+@@ -26797,6 +26802,7 @@
+                 {
+                     existing.Disabled = true;
+                 }
++                existing.RequiredPose=requiredPose;
+                 existing.ApproachDirection = motion?.ApproachDirection ?? GetFlatDirection(rawEnd - rawStart);
+                 float candidateApproachSpeed = motion?.ApproachSpeed ?? 0f;
+                 string candidateApproachMode = motion?.ApproachMode;
+@@ -26890,6 +26896,7 @@
+                 SupersedesProvenEdgeId = learningV3SupersedesProvenEdgeId,
+                 DemonstrationRevision = 1,
+                 Kind = normalizedKind,
++                RequiredPose = requiredPose,
+                 A = a,
+                 B = b,
+                 RawStart = rawStart,
+@@ -34550,7 +34557,7 @@
+             try
+             {
+                 probe.Bot.Mover.SetBotMoverPause("R1-2AC09B31BC26",@probe?.Bot,false);
+-                probe.Bot.BotOwnerSetPose("R1-016F260A128D",@probe?.Bot,1f);
++                probe.Bot.BotOwnerSetPose("R1-016F260A128D",@probe?.Bot,GetCapabilityProbePosture(probe));
+                 probe.Bot.BotOwnerSetTargetMoveSpeed("R1-6B663310343C",@probe?.Bot,WalkThroughPrecisionSlowSpeed);
+                 if (probe.Bot.Mover.Sprinting)
+                 {
+@@ -34891,7 +34898,7 @@
+                     try
+                     {
+                         probe.Bot.Mover.SetBotMoverPause("R1-A68DB77F2322",@probe?.Bot,false);
+-                        probe.Bot.BotOwnerSetPose("R1-4C71E5FD8D1C",@probe?.Bot,1f);
++                        probe.Bot.BotOwnerSetPose("R1-4C71E5FD8D1C",@probe?.Bot,GetCapabilityProbePosture(probe));
+                         probe.Bot.BotOwnerSetTargetMoveSpeed("R1-096F143352E2",@probe?.Bot,Mathf.Max(WalkThroughPrecisionMediumSpeed, 0.86f));
+                         HoldForwardInput(probe);
+                         if (steeringDirection.sqrMagnitude > 0.5f)
+@@ -34937,7 +34944,7 @@
+             try
+             {
+                 probe.Bot.Mover.SetBotMoverPause("R1-FDD71B7EC874",@probe?.Bot,false);
+-                probe.Bot.BotOwnerSetPose("R1-0D90187E8917",@probe?.Bot,1f);
++                probe.Bot.BotOwnerSetPose("R1-0D90187E8917",@probe?.Bot,GetCapabilityProbePosture(probe));
+                 probe.Bot.BotOwnerSetTargetMoveSpeed("R1-8F1409468B85",@probe?.Bot,WalkThroughSharpTurnSpeed);
+                 if (probe.Bot.Mover.Sprinting)
+                 {
+@@ -35747,7 +35754,7 @@
+                 {
+                     if (!probe.Bot.Mover.Sprinting)
+                     {
+-                        probe.Bot.Mover.BotMoverSprint("R1-04CA14949037",@probe?.Bot,true,false);
++                        probe.Bot.Mover.BotMoverSprint("R1-04CA14949037",@probe?.Bot,!FollowerCapabilityPosturePolicy.Crouched(GetCapabilityProbePosture(probe)),false);
+                     }
+                 }
+                 else if ((precisionRecovery || !walkThroughSprintCoherent) && probe.Bot.Mover.Sprinting)
+@@ -36220,7 +36227,7 @@
+             // CompileFix26: entering WalkThrough is a rolling authority handoff. Do not Stop()
+             // the body just to replace the short mover target; that was visible as a hitch before
+             // every private-corridor traversal.
+-            probe.Bot.BotOwnerSetPose("R1-A700B5015130",@probe?.Bot,1f);
++            probe.Bot.BotOwnerSetPose("R1-A700B5015130",@probe?.Bot,GetCapabilityProbePosture(probe));
+             Vector3 initialMotionTarget = GetCurrentWalkThroughCorridorTarget(probe, probe.Player.Position);
+             Vector3 initialDirection = GetFlatDirection(initialMotionTarget - probe.Player.Position);
+             probe.Bot.Steering?.BotSteeringLookToDirection("R1-E18771A547E4",@probe?.Bot,initialDirection.sqrMagnitude > 0.5f ? initialDirection : probe.RequestedDirection);
+@@ -36815,7 +36822,7 @@
+                         }
+                         else if (probe.PreviousSprinting && graceSpeed >= 0.88f && !probe.Bot.Mover.Sprinting)
+                         {
+-                            probe.Bot.Mover.BotMoverSprint("R1-676BB3E5922D",@probe?.Bot,true,false);
++                            probe.Bot.Mover.BotMoverSprint("R1-676BB3E5922D",@probe?.Bot,!FollowerCapabilityPosturePolicy.Crouched(GetCapabilityProbePosture(probe)),false);
+                         }
+                     }
+                     probe.Bot.BotOwnerSetTargetMoveSpeed("R1-183D475022DF",@probe?.Bot,graceSpeed);
+@@ -37304,7 +37311,7 @@
+ 
+             Vector3 direction = toTarget / Mathf.Max(segmentDistance, 0.001f);
+             probe.Bot.Mover.SetBotMoverPause("R1-D7344C4A55D8",@probe?.Bot,false);
+-            probe.Bot.BotOwnerSetPose("R1-1978EC569B8C",@probe?.Bot,1f);
++            probe.Bot.BotOwnerSetPose("R1-1978EC569B8C",@probe?.Bot,GetCapabilityProbePosture(probe));
+             probe.Bot.Steering?.BotSteeringLookToDirection("R1-A658231679C6",@probe?.Bot,direction);
+ 
+             try
+@@ -37387,7 +37394,7 @@
+                 {
+                     if (!probe.Bot.Mover.Sprinting)
+                     {
+-                        probe.Bot.Mover.BotMoverSprint("R1-E0FB931974E3",@probe?.Bot,true,false);
++                        probe.Bot.Mover.BotMoverSprint("R1-E0FB931974E3",@probe?.Bot,!FollowerCapabilityPosturePolicy.Crouched(GetCapabilityProbePosture(probe)),false);
+                     }
+                     liveCommandedSpeed = WalkThroughStableRunSpeed;
+                 }
+@@ -37587,7 +37594,7 @@
+             Vector3 direction = planar / distance;
+             float capsuleDistance = Mathf.Max(0.05f, distance - 0.08f);
+             Vector3 capsuleBottom = start + Vector3.up * WalkThroughCapsuleBottom;
+-            Vector3 capsuleTop = start + Vector3.up * WalkThroughCapsuleTop;
++            Vector3 capsuleTop = start + Vector3.up * GetCapabilityCorridorCapsuleTop(player);
+             if (TryGetFirstNonSelfCapsuleCastHit(
+                     player,
+                     capsuleBottom,
+@@ -38308,7 +38315,7 @@
+                 SupportsRollingEntry=traits.Rolling,MayLeaveTransitionState=traits.Transition,
+                 RequiresLandingProof=traits.Landing,ActuatorLeadSeconds=traits.Lead,
+                 RecentSuccessScore=0.5f,SeedSource=string.Equals(normalized,"Crouch",StringComparison.OrdinalIgnoreCase)
+-                    ?"futurePostureActuatorConservativeSeed":traits.Source
++                    ?"postureContractOnWalkThrough":traits.Source
+             };
+             return profile;
+         }
+@@ -40299,6 +40306,7 @@
+                         SupersedesProvenEdgeId = 0,
+                         DemonstrationRevision = Math.Max(1, item.DemonstrationRevision),
+                         Kind = item.Kind,
++                        RequiredPose = FollowerCapabilityPosturePolicy.Normalize(item.RequiredPose),
+                         A = a,
+                         B = b,
+                         RawStart = rawStart,
+@@ -40539,6 +40547,7 @@
+                             SupersedesProvenEdgeId = 0,
+                             DemonstrationRevision = Math.Max(1, edge.DemonstrationRevision),
+                             Kind = edge.Kind,
++                            RequiredPose = FollowerCapabilityPosturePolicy.Normalize(edge.RequiredPose),
+                             RawStart = PersistentVector3.From(edge.RawStart),
+                             RawEnd = PersistentVector3.From(edge.RawEnd),
+                             HasSettledStart = edge.HasSettledStart,
+@@ -40810,6 +40819,7 @@
+                         ExperienceKey = string.IsNullOrWhiteSpace(item.ExperienceKey) ? CreateTraversalExperienceKey() : item.ExperienceKey,
+                         DemonstrationRevision = database.SchemaVersion >= 9 ? Math.Max(1, item.DemonstrationRevision) : 1,
+                         Kind = item.Kind,
++                        RequiredPose = FollowerCapabilityPosturePolicy.Normalize(item.RequiredPose),
+                         A = a,
+                         B = b,
+                         RawStart = rawStart,
+@@ -40968,6 +40978,7 @@
+                             ExperienceKey = string.IsNullOrWhiteSpace(edge.ExperienceKey) ? CreateTraversalExperienceKey() : edge.ExperienceKey,
+                             DemonstrationRevision = Math.Max(1, edge.DemonstrationRevision),
+                             Kind = edge.Kind,
++                            RequiredPose = FollowerCapabilityPosturePolicy.Normalize(edge.RequiredPose),
+                             RawStart = PersistentVector3.From(edge.RawStart),
+                             RawEnd = PersistentVector3.From(edge.RawEnd),
+                             HasSettledStart = edge.HasSettledStart,
+@@ -43609,6 +43620,7 @@
+                         {
+                             LearnedTraversalEdge second = exactDuplicateCandidates[j];
+                             if (second == null || removedEdges.Contains(second)) continue;
++                            if(!FollowerCapabilityPosturePolicy.Same(first.RequiredPose,second.RequiredPose))continue;
+ 
+                             Vector3 secondDirection = GetFlatDirection(second.RawEnd - second.RawStart);
+                             if (secondDirection.sqrMagnitude < 0.5f || Vector3.Dot(firstDirection, secondDirection) < 0.995f)
+@@ -61691,7 +61703,7 @@
+             if (TryGetFirstNonSelfCapsuleCastHit(
+                     player,
+                     start + Vector3.up * WalkThroughCapsuleBottom,
+-                    start + Vector3.up * WalkThroughCapsuleTop,
++                    start + Vector3.up * GetCapabilityCorridorCapsuleTop(player),
+                     WalkThroughCapsuleRadius,
+                     direction,
+                     Mathf.Max(0.05f, distance - 0.08f),
+@@ -66093,7 +66105,8 @@
+                 return;
+             }
+ 
+-            bool shouldRecord = force || !haveLastBreadcrumb ||
++            bool postureBoundary=BreadcrumbRoute.Count>0&&FollowerCapabilityPosturePolicy.Crouched(BreadcrumbRoute[BreadcrumbRoute.Count-1].Pose)!=FollowerCapabilityPosturePolicy.Crouched(player.MovementContext.PoseLevel);
++            bool shouldRecord = postureBoundary || force || !haveLastBreadcrumb ||
+                                 Vector3.Distance(position, lastBreadcrumbPosition) >= BreadcrumbMinDistance ||
+                                 Time.time - lastBreadcrumbAt >= BreadcrumbMaxInterval ||
+                                 Vector3.Angle(direction, lastBreadcrumbDirection) >= BreadcrumbTurnDegrees;
+@@ -66130,12 +66143,24 @@
+             PruneBreadcrumbRoute();
+             UpdatePendingTraversalSettledExitCaptures(node);
+             RegisterLearningV347KnownWalkThroughCrossings(node);
+-            TryCaptureLearningV379CurrentPortalPhysicalAlternative(player, node);
++            bool crouchSegment=previousNode!=null&&FollowerCapabilityPosturePolicy.Capture(
++                previousNode.Pose,node.Pose,previousNode.State,node.State,Vector3.Distance(previousNode.Position,node.Position),
++                Mathf.Abs(previousNode.Position.y-node.Position.y),node.CreatedAt-previousNode.CreatedAt);
++            bool crouchContinuation=activeWalkThroughEpisode!=null&&FollowerCapabilityPosturePolicy.Crouched(activeWalkThroughEpisode.RequiredPose)&&
++                previousNode!=null&&FollowerCapabilityPosturePolicy.Crouched(previousNode.Pose)&&FollowerCapabilityPosturePolicy.Crouched(node.Pose)&&
++                FollowerCapabilityPosturePolicy.Locomotion(previousNode.State)&&FollowerCapabilityPosturePolicy.Locomotion(node.State)&&
++                Vector3.Distance(previousNode.Position,node.Position)<.15f&&node.CreatedAt-previousNode.CreatedAt<=2f;
++            if(postureBoundary&&activeWalkThroughEpisode!=null)
++            {
++                CompleteCapabilityPostureEpisode(node);
++                FinalizeActiveWalkThroughEpisode("postureBoundary");
++            }
++            if(!crouchSegment&&!crouchContinuation&&!postureBoundary)TryCaptureLearningV379CurrentPortalPhysicalAlternative(player, node);
+ 
+             // Traversal V3: a short ordinary player step can teach a persistent
+             // WalkThrough edge when NavMesh cannot represent the same local move. Grounded/floor
+             // continuity is advisory; explicit Jump/Vault/Climb states remain authoritative.
+-            if (previousNode != null &&
++            if (previousNode != null && !postureBoundary &&
+                 !localNaturalDropCandidateActive &&
+                 Time.time >= localTraversalWalkThroughSuppressUntil &&
+                 !IsTraversalStateName(node.State) &&
+@@ -66143,19 +66168,19 @@
+             {
+                 float stepDirect = Vector3.Distance(previousNode.Position, node.Position);
+                 float stepVertical = Mathf.Abs(node.Position.y - previousNode.Position.y);
+-                if (stepDirect >= WalkThroughCandidateMinDistance &&
++                if (crouchSegment || crouchContinuation || (stepDirect >= WalkThroughCandidateMinDistance &&
+                     stepDirect <= WalkThroughCandidateMaxDistance &&
+-                    stepVertical <= WalkThroughCandidateMaxVerticalDelta)
++                    stepVertical <= WalkThroughCandidateMaxVerticalDelta))
+                 {
+                     StrictPathResult segmentPath = CalculateStrictPath(previousNode.Position, node.Position);
+-                    bool walkThroughCandidate = !segmentPath.StrictComplete ||
++                    bool walkThroughCandidate = crouchSegment || crouchContinuation || !segmentPath.StrictComplete ||
+                                                 segmentPath.PathLength >= Mathf.Max(
+                                                     stepDirect * 2.0f,
+                                                     stepDirect + 3.5f);
+                     if (walkThroughCandidate)
+                     {
+                         bool suppressCandidate = false;
+-                        if (TryFindCheapLocalWalkThroughBypass(
++                        if (!crouchSegment&&!crouchContinuation&&TryFindCheapLocalWalkThroughBypass(
+                                 previousNode.Position,
+                                 node.Position,
+                                 out float localBypassCost,
+@@ -66291,8 +66316,10 @@
+                 return 0;
+             }
+ 
++            float requiredPose=FollowerCapabilityPosturePolicy.Required(from.Pose,to.Pose,from.State,to.State);
+             Vector3 segmentDirection = GetFlatDirection(to.Position - from.Position);
+             bool canExtend = activeWalkThroughEpisode != null &&
++                             FollowerCapabilityPosturePolicy.Same(activeWalkThroughEpisode.RequiredPose,requiredPose) &&
+                              activeWalkThroughEpisode.EndSequence == from.Sequence &&
+                              Time.time - activeWalkThroughEpisode.LastUpdatedAt <= WalkThroughEpisodeMaxGapSeconds &&
+                              Vector3.Distance(activeWalkThroughEpisode.RawStart, to.Position) <= WalkThroughEpisodeMaxDirectDistance &&
+@@ -66306,6 +66333,7 @@
+                 activeWalkThroughEpisode = new WalkThroughEpisodeBuilder
+                 {
+                     EpisodeId = ++traversalEpisodeSequence,
++                    RequiredPose = requiredPose,
+                     StartSequence = from.Sequence,
+                     EndSequence = to.Sequence,
+                     RawStart = from.Position,
+@@ -66758,7 +66786,7 @@
+             }
+ 
+             string tinyTopologyEvidence = string.Empty;
+-            if (directDistance < WalkThroughStandalonePersistMinDistance &&
++            if (!FollowerCapabilityPosturePolicy.Crouched(episode.RequiredPose)&&directDistance < WalkThroughStandalonePersistMinDistance &&
+                 !HasStrongPersistentWalkThroughTopologyEvidence(episode, out tinyTopologyEvidence))
+             {
+                 WriteEvent("playerWalkThroughEpisodeDiscarded", null, new
+@@ -66793,7 +66821,7 @@
+             episode.CorridorSamples = SimplifyWalkThroughPassageSamples(
+                 episode.CorridorSamples, episode.RawStart, episode.RawEnd);
+ 
+-            if (TryFindCheapLocalWalkThroughBypass(
++            if (!FollowerCapabilityPosturePolicy.Crouched(episode.RequiredPose)&&TryFindCheapLocalWalkThroughBypass(
+                     episode.RawStart,
+                     episode.RawEnd,
+                     out float episodeBypassCost,
+@@ -66893,6 +66921,7 @@
+                 true,
+                 new PlayerTraversalMotionProfile
+                 {
++                    RequiredPose = episode.RequiredPose,
+                     ApproachDirection = episode.Direction,
+                     ApproachSpeed = directDistance / Mathf.Max(0.10f, episode.LastUpdatedAt - episode.StartedAt),
+                     ApproachMode = string.IsNullOrWhiteSpace(episode.MovementMode) ? "Run" : episode.MovementMode,
+@@ -66972,6 +67001,8 @@
+                 episodeId = episode.EpisodeId,
+                 edgeId,
+                 reason,
++                posture = FollowerCapabilityPosturePolicy.Crouched(episode.RequiredPose)?"Crouch":"Standing",
++                requiredPose = episode.RequiredPose,
+                 startSequence = episode.StartSequence,
+                 endSequence = episode.EndSequence,
+                 start = Vec(episode.RawStart),
+@@ -66984,6 +67015,7 @@
+             IList<PlayerBreadcrumbNode> samples,
+             StrictPathResult strictPath)
+         {
++            if(samples!=null&&samples.Any(n=>n!=null&&FollowerCapabilityPosturePolicy.Crouched(n.Pose)))return false;
+             if ((samples == null) || samples.Count < 2 ||
+                 strictPath == null || !strictPath.StrictComplete ||
+                 samples.Any(node => node == null || !node.NavMeshSampled || !IsFinite(node.NavMeshPosition)))
+@@ -73909,6 +73941,7 @@
+ 
+         private sealed class PlayerTraversalMotionProfile
+         {
++            public float RequiredPose = 1f;
+             public Vector3 ApproachDirection;
+             public float ApproachSpeed;
+             public string ApproachMode;
+@@ -74325,6 +74358,7 @@
+ 
+         private sealed class PersistentTraversalLink
+         {
++            public float RequiredPose = 1f;
+             public string ExperienceKey;
+             public int SupersedesProvenEdgeId;
+             public int DemonstrationRevision;
+@@ -74397,6 +74431,7 @@
+ 
+         private sealed class LearnedTraversalEdge
+         {
++            public float RequiredPose = 1f;
+             public int Id;
+             public string ExperienceKey;
+             // LearningV3 monotonic re-demonstration: a shadow candidate may replace this
+@@ -74561,6 +74596,7 @@
+ 
+         private sealed class WalkThroughEpisodeBuilder
+         {
++            public float RequiredPose = 1f;
+             public int EpisodeId;
+             public int StartSequence;
+             public int EndSequence;

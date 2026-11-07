@@ -1,4 +1,4 @@
-<Project><PropertyGroup><PluginDll>$(MSBuildThisFileDirectory)BotTraversal-0.9.0-BETA-SOURCE\bin\Release\net472\BotTraversal.dll</PluginDll></PropertyGroup><ItemGroup>
+<Project><PropertyGroup><PluginDll>$(MSBuildThisFileDirectory)BotTraversal-1.0.1-SOURCE\bin\Release\net472\BotTraversal.dll</PluginDll></PropertyGroup><ItemGroup>
   <CheckProject Include="QA\Regression\Round2\LifecycleTests\LifecycleTests.csproj" />
   <CheckProject Include="QA\Regression\Round3\CapabilityTests\CapabilityTests.csproj" />
   <CheckProject Include="QA\Regression\Round3C\PhaseTests\PhaseTests.csproj" />

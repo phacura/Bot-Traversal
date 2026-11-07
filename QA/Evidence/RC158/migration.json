@@ -1,0 +1,384 @@
+{
+  "inputs": {
+    "events": 8132,
+    "attemptSummaries": 28,
+    "successes": 6,
+    "failures": 22,
+    "misclassifiedWindows": [
+      {
+        "eventSequence": 856,
+        "episodeId": 1,
+        "edgeId": 8,
+        "reason": "corridorBoundary",
+        "posture": "Standing",
+        "requiredPose": 1.0,
+        "startSequence": 112,
+        "endSequence": 120,
+        "start": {
+          "x": -169.3215,
+          "y": 21.78262,
+          "z": -118.02282
+        },
+        "end": {
+          "x": -170.682816,
+          "y": 21.7103672,
+          "z": -121.13829
+        },
+        "directDistance": 3.40066934,
+        "allObservedPose": 0,
+        "samples": 9
+      },
+      {
+        "eventSequence": 3465,
+        "episodeId": 8,
+        "edgeId": 10,
+        "reason": "corridorBoundary",
+        "posture": "Standing",
+        "requiredPose": 1.0,
+        "startSequence": 262,
+        "endSequence": 272,
+        "start": {
+          "x": -169.220749,
+          "y": 21.6357079,
+          "z": -117.002373
+        },
+        "end": {
+          "x": -170.68515,
+          "y": 21.7081451,
+          "z": -121.088982
+        },
+        "directDistance": 4.341669,
+        "allObservedPose": 0,
+        "samples": 11
+      },
+      {
+        "eventSequence": 5644,
+        "episodeId": 20,
+        "edgeId": 13,
+        "reason": "corridorBoundary",
+        "posture": "Standing",
+        "requiredPose": 1.0,
+        "startSequence": 464,
+        "endSequence": 466,
+        "start": {
+          "x": -169.519226,
+          "y": 22.0211449,
+          "z": -121.23246
+        },
+        "end": {
+          "x": -170.68544,
+          "y": 21.70764,
+          "z": -121.098183
+        },
+        "directDistance": 1.21506011,
+        "allObservedPose": 0,
+        "samples": 3
+      },
+      {
+        "eventSequence": 6818,
+        "episodeId": 26,
+        "edgeId": 16,
+        "reason": "corridorBoundary",
+        "posture": "Standing",
+        "requiredPose": 1.0,
+        "startSequence": 545,
+        "endSequence": 551,
+        "start": {
+          "x": -169.198486,
+          "y": 22.0218678,
+          "z": -120.33857
+        },
+        "end": {
+          "x": -169.37001,
+          "y": 21.8371658,
+          "z": -118.029312
+        },
+        "directDistance": 2.32297349,
+        "allObservedPose": 0,
+        "samples": 7
+      }
+    ],
+    "wallConstraints": 96,
+    "wallZeroDistance": 88,
+    "crouchMotion": 95,
+    "inputs": {
+      "20261106-230229-601-Interchange-g2.jsonl": "C3CA715A2A7B9905227E7EE93A0C383D3B0019CAAF1196DA8F24693B5D5C86CE",
+      "event-counts.json": "6F81AA011ECBC9575BFA8692AE755902E50ECAFE2CF2A5FFE1BE4020C4C5D463",
+      "Interchange.nativeproven.json": "57C790CFC2DDAC8F23D59878DC6AB5D73D04631D9BD752ECE1BE7FE1AED322E4",
+      "Interchange.skillevidence.json": "58B8ACC598E6E43CF27D400A33079F891218D822EB9E33DFF766AC187C3D858B",
+      "LogOutput.log": "3B16163B37418DC19CEEBB171EEE26AF640432E3E72EC7EBF577BC0650FEF9B4"
+    },
+    "sampledWallEvents": [
+      {
+        "eventSequence": 1001,
+        "raidTime": 156.796844,
+        "edgeId": 8,
+        "body": {
+          "x": -169.309189,
+          "y": 21.92863,
+          "z": -118.126587
+        },
+        "target": {
+          "x": -169.308746,
+          "y": 21.9296856,
+          "z": -118.133995
+        },
+        "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+        "distance": 0.03742042,
+        "normal": {
+          "x": 0.009358606,
+          "y": -0.374477774,
+          "z": 0.9271887
+        },
+        "available": 0.00742042251,
+        "nativeSuccessRecorded": false,
+        "bodyRelocated": false
+      },
+      {
+        "eventSequence": 1032,
+        "raidTime": 157.058548,
+        "edgeId": 8,
+        "body": {
+          "x": -169.3808,
+          "y": 21.94739,
+          "z": -118.290474
+        },
+        "target": {
+          "x": -169.3808,
+          "y": 21.94739,
+          "z": -118.290474
+        },
+        "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+        "distance": 0.0,
+        "normal": {
+          "x": -0.158308744,
+          "y": 0.0,
+          "z": 0.9873897
+        },
+        "available": 0.0,
+        "nativeSuccessRecorded": false,
+        "bodyRelocated": false
+      },
+      {
+        "eventSequence": 7561,
+        "raidTime": 277.7428,
+        "edgeId": 14,
+        "body": {
+          "x": -170.275955,
+          "y": 22.0172386,
+          "z": -120.889442
+        },
+        "target": {
+          "x": -170.275955,
+          "y": 22.0172386,
+          "z": -120.889442
+        },
+        "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+        "distance": 0.0,
+        "normal": {
+          "x": -0.983380258,
+          "y": 0.0,
+          "z": 0.181557715
+        },
+        "available": 0.0,
+        "nativeSuccessRecorded": false,
+        "bodyRelocated": false
+      },
+      {
+        "eventSequence": 7585,
+        "raidTime": 277.9207,
+        "edgeId": 14,
+        "body": {
+          "x": -170.2187,
+          "y": 22.0231247,
+          "z": -120.874512
+        },
+        "target": {
+          "x": -170.2187,
+          "y": 22.0231247,
+          "z": -120.874512
+        },
+        "blocker": "Cargo_Gazel_BALLISTIC_Metalthin",
+        "distance": 0.0,
+        "normal": {
+          "x": -0.9749172,
+          "y": 0.0,
+          "z": 0.2225679
+        },
+        "available": 0.0,
+        "nativeSuccessRecorded": false,
+        "bodyRelocated": false
+      }
+    ],
+    "classificationByKind": {
+      "WalkThrough/failed": 18,
+      "Climb/failed": 3,
+      "Jump/success": 3,
+      "Jump/failed": 1,
+      "DropDown/success": 3
+    }
+  },
+  "installedDependencies": {
+    "D:\\Games\\SIT_DIR\\SPT AKI 4.1.6\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll": "EE25CEE1259777B38ED8B3E7841FDC2DB3C98540B1469FA539B1FF183476E436",
+    "D:\\Games\\SIT_DIR\\SPT AKI 4.1.6\\BepInEx\\plugins\\pitFireTeam\\pitFireTeam.dll": "1FC038078F70BA8A8F5BF4FA1A2ADE3CBEAD20CE0BC391628721989D5DA47846"
+  },
+  "fieldChanges": {
+    "<snapshotEpisode>j__TPar anon[snapshotEpisode,currentEpisode,published,snapshotPose,currentPose,nativeSuccessRecorded]`6::<snapshotEpisode>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<body>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<body>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<target>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<target>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "System.Single BotTraversal.Core.FollowerCapabilityPosturePolicy/Capsule::Top": {
+      "before": null,
+      "after": "Assembly, InitOnly|"
+    },
+    "<blocker>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<blocker>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<published>j__TPar anon[snapshotEpisode,currentEpisode,published,snapshotPose,currentPose,nativeSuccessRecorded]`6::<published>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<available>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<available>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<nativeSuccessRecorded>j__TPar anon[snapshotEpisode,reason,nativeSuccessRecorded]`3::<nativeSuccessRecorded>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<nativeSuccessRecorded>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<nativeSuccessRecorded>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<distance>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<distance>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<body>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<body>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<edgeId>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<edgeId>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<target>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<target>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<capsuleBottom>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<capsuleBottom>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<nativeSuccessRecorded>j__TPar anon[snapshotEpisode,currentEpisode,published,snapshotPose,currentPose,nativeSuccessRecorded]`6::<nativeSuccessRecorded>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<normal>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<normal>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<blocker>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<blocker>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<bodyRelocated>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<bodyRelocated>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<capsuleRadius>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<capsuleRadius>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<pose>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<pose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<currentEpisode>j__TPar anon[snapshotEpisode,currentEpisode,published,snapshotPose,currentPose,nativeSuccessRecorded]`6::<currentEpisode>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<capsuleTop>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<capsuleTop>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<nativeSuccessRecorded>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<nativeSuccessRecorded>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<edgeId>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<edgeId>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "System.Single BotTraversal.Core.FollowerCapabilityPosturePolicy/Capsule::Bottom": {
+      "before": null,
+      "after": "Assembly, InitOnly|"
+    },
+    "<snapshotPose>j__TPar anon[snapshotEpisode,currentEpisode,published,snapshotPose,currentPose,nativeSuccessRecorded]`6::<snapshotPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<snapshotEpisode>j__TPar anon[snapshotEpisode,reason,nativeSuccessRecorded]`3::<snapshotEpisode>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Single BotTraversal.Core.FollowerCapabilityPosturePolicy/Capsule::Radius": {
+      "before": null,
+      "after": "Assembly, InitOnly|"
+    },
+    "<currentPose>j__TPar anon[snapshotEpisode,currentEpisode,published,snapshotPose,currentPose,nativeSuccessRecorded]`6::<currentPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<bodyRelocated>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<bodyRelocated>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<normal>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,pose,capsuleBottom,capsuleTop,capsuleRadius,nativeSuccessRecorded,bodyRelocated]`13::<normal>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<distance>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<distance>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "BotTraversal.Core.FollowerTraversalTestRuntime/WalkThroughEpisodeBuilder closure[IsCapabilityWalkThroughSnapshotPublished|snapshot:BotTraversal.Core.FollowerTraversalTestRuntime/WalkThroughEpisodeBuilder]::snapshot": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<reason>j__TPar anon[snapshotEpisode,reason,nativeSuccessRecorded]`3::<reason>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<available>j__TPar anon[edgeId,body,target,blocker,distance,normal,available,nativeSuccessRecorded,bodyRelocated]`9::<available>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    }
+  },
+  "ordinaryFieldChanges": {
+    "System.Single BotTraversal.Core.FollowerCapabilityPosturePolicy/Capsule::Top": {
+      "before": null,
+      "after": "Assembly, InitOnly|"
+    },
+    "System.Single BotTraversal.Core.FollowerCapabilityPosturePolicy/Capsule::Bottom": {
+      "before": null,
+      "after": "Assembly, InitOnly|"
+    },
+    "System.Single BotTraversal.Core.FollowerCapabilityPosturePolicy/Capsule::Radius": {
+      "before": null,
+      "after": "Assembly, InitOnly|"
+    }
+  },
+  "catalogUnchangedFromRC157": true,
+  "gameExecuted": false,
+  "baselineInstalledDLL": "ADE1D8486DA732E8D9F73465CA608C08906BDA3FA4137C3DBBE782419FA5551F"
+}

@@ -1,0 +1,189 @@
+[
+  {
+    "fromSequence": 2866,
+    "toSequence": 2872,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.5021422615596463,
+    "vertical": 0.24082319999999768,
+    "seconds": 0.5357970000000023
+  },
+  {
+    "fromSequence": 2872,
+    "toSequence": 2875,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.52651507531334,
+    "vertical": 0.0016289000000000442,
+    "seconds": 0.42883299999999736
+  },
+  {
+    "fromSequence": 2875,
+    "toSequence": 2883,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.515312856664759,
+    "vertical": 0.0,
+    "seconds": 0.42910799999998517
+  },
+  {
+    "fromSequence": 2883,
+    "toSequence": 2886,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.5116809684989343,
+    "vertical": 0.0,
+    "seconds": 0.42794800000001487
+  },
+  {
+    "fromSequence": 2886,
+    "toSequence": 2891,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.5022907892894283,
+    "vertical": 0.0,
+    "seconds": 0.4282840000000192
+  },
+  {
+    "fromSequence": 2891,
+    "toSequence": 2894,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.3634909068917721,
+    "vertical": 0.0,
+    "seconds": 0.32208199999996623
+  },
+  {
+    "fromSequence": 2894,
+    "toSequence": 2904,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.29434695957322043,
+    "vertical": 0.0,
+    "seconds": 0.5357360000000426
+  },
+  {
+    "fromSequence": 2928,
+    "toSequence": 2956,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.49738288416169185,
+    "vertical": 0.0,
+    "seconds": 0.5381760000000213
+  },
+  {
+    "fromSequence": 2956,
+    "toSequence": 2962,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.24567690677940465,
+    "vertical": 0.05874629999999925,
+    "seconds": 0.20212400000002617
+  },
+  {
+    "fromSequence": 2962,
+    "toSequence": 3003,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.4098723105029151,
+    "vertical": 0.2965680000000006,
+    "seconds": 0.23003599999998414
+  },
+  {
+    "fromSequence": 3007,
+    "toSequence": 3042,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.33175633588675324,
+    "vertical": 0.23522399999999877,
+    "seconds": 0.2142029999999977
+  },
+  {
+    "fromSequence": 3045,
+    "toSequence": 3063,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.22441747849265203,
+    "vertical": 0.0,
+    "seconds": 0.21410000000003038
+  },
+  {
+    "fromSequence": 3063,
+    "toSequence": 3090,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.25828658684685596,
+    "vertical": 0.06263000000000218,
+    "seconds": 0.27389999999996917
+  },
+  {
+    "fromSequence": 3119,
+    "toSequence": 3164,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.5727826585267822,
+    "vertical": 0.017953000000002106,
+    "seconds": 0.5358280000000377
+  },
+  {
+    "fromSequence": 3164,
+    "toSequence": 3174,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.15252034381025784,
+    "vertical": 0.0018899999999995032,
+    "seconds": 0.13104999999995925
+  },
+  {
+    "fromSequence": 3935,
+    "toSequence": 3944,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.21850226016643423,
+    "vertical": 0.0008277999999997121,
+    "seconds": 0.5358279999999809
+  },
+  {
+    "fromSequence": 3955,
+    "toSequence": 3957,
+    "fromPose": 0.0,
+    "toPose": 0.0,
+    "fromState": "Run",
+    "toState": "Run",
+    "distance": 0.32712638497316626,
+    "vertical": 0.23731309999999795,
+    "seconds": 0.21404999999998608
+  }
+]

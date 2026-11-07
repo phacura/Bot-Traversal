@@ -8,5 +8,5 @@ for name,h in j.items():
  assert hashlib.sha256(p.read_bytes()).hexdigest().upper()==h,name+' changed reviewed input'
 c=json.loads((q/'reviewed-contract.json').read_text(encoding='utf-8'))
 for name,h in (c['sourcePins']|c['projectPins']).items():
- assert hashlib.sha256((r/'BotTraversal-0.9.0-BETA-SOURCE'/name).read_bytes()).hexdigest().upper()==h,name+' changed reviewed production input'
+ assert hashlib.sha256((r/'BotTraversal-1.0.1-SOURCE'/name).read_bytes()).hexdigest().upper()==h,name+' changed reviewed production input'
 print('PASS',len(j),'fixed reviewed QA inputs; no automatic contract refresh')

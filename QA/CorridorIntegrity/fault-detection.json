@@ -2,6 +2,176 @@
     "kind":  "structural IL omission detection; mutated DLLs never executed",
     "faults":  [
                    {
+                       "method":  "TryConstrainCapabilityWalkThroughTarget",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityCorridorCapsule"
+                   },
+                   {
+                       "method":  "TryGetCapabilitySupportedLocalAim",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityCorridorCapsule"
+                   },
+                   {
+                       "method":  "TryValidatePostTraversalEgressCorridor",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityCorridorCapsule"
+                   },
+                   {
+                       "method":  "GetCapabilityCorridorCapsule",
+                       "detected":  true,
+                       "removedCall":  "QueryCapsule"
+                   },
+                   {
+                       "method":  "CloneWalkThroughEpisode",
+                       "detected":  true,
+                       "removedCall":  "Normalize"
+                   },
+                   {
+                       "method":  "MergeRejectedNaturalDropIntoWalkThrough",
+                       "detected":  true,
+                       "removedCall":  "MergeSnapshot"
+                   },
+                   {
+                       "method":  "MergeRejectedNaturalDropIntoWalkThrough",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityWalkThroughSnapshotPublished"
+                   },
+                   {
+                       "method":  "CaptureBreadcrumb",
+                       "detected":  true,
+                       "removedCall":  "HoldDropBoundary"
+                   },
+                   {
+                       "method":  "FinalizeCapabilityWalkThroughSnapshot",
+                       "detected":  true,
+                       "removedCall":  "IsCapabilityWalkThroughSnapshotPublished"
+                   },
+                   {
+                       "method":  "FinalizeCapabilityWalkThroughSnapshot",
+                       "detected":  true,
+                       "removedCall":  "CloneWalkThroughEpisode"
+                   },
+                   {
+                       "method":  "FinalizeCapabilityWalkThroughSnapshot",
+                       "detected":  true,
+                       "removedCall":  "FinalizeActiveWalkThroughEpisode"
+                   },
+                   {
+                       "method":  "UpdateNaturalDropDownCandidate",
+                       "detected":  true,
+                       "removedCall":  "FinalizeCapabilityWalkThroughSnapshot"
+                   },
+                   {
+                       "method":  "ExtendActiveWalkThroughEpisode",
+                       "detected":  true,
+                       "removedCall":  "Required"
+                   },
+                   {
+                       "method":  "CaptureBreadcrumb",
+                       "detected":  true,
+                       "removedCall":  "Capture"
+                   },
+                   {
+                       "method":  "CaptureBreadcrumb",
+                       "detected":  true,
+                       "removedCall":  "CompleteCapabilityPostureEpisode"
+                   },
+                   {
+                       "method":  "ExtendActiveWalkThroughEpisode",
+                       "detected":  true,
+                       "removedCall":  "Same"
+                   },
+                   {
+                       "method":  "FinalizeActiveWalkThroughEpisode",
+                       "detected":  true,
+                       "removedCall":  "Crouched"
+                   },
+                   {
+                       "method":  "GetCapabilityWalkingPosture",
+                       "detected":  true,
+                       "removedCall":  "Resolve"
+                   },
+                   {
+                       "method":  "GetCapabilityWalkingPosture",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityPostureEdge"
+                   },
+                   {
+                       "method":  "GetCapabilityPostureEdge",
+                       "detected":  true,
+                       "removedCall":  "IsProbeLifecycleCurrent"
+                   },
+                   {
+                       "method":  "GetCapabilityPostureEdge",
+                       "detected":  true,
+                       "removedCall":  "TryGetActiveFollowerRouteMission"
+                   },
+                   {
+                       "method":  "ApplyCollisionActivePhysicalRouteMotion",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityWalkingPosture"
+                   },
+                   {
+                       "method":  "GetCapabilityCorridorCapsule",
+                       "detected":  true,
+                       "removedCall":  "CalculatePoseLevelValues"
+                   },
+                   {
+                       "method":  "TryValidateWalkThroughCorridor",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityCorridorCapsule"
+                   },
+                   {
+                       "method":  "UpdateWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityProbePosture"
+                   },
+                   {
+                       "method":  "BeginWalkThroughProbe",
+                       "detected":  true,
+                       "removedCall":  "GetCapabilityProbePosture"
+                   },
+                   {
+                       "method":  "SanitizeTraversalPersistenceAfterLoad",
+                       "detected":  true,
+                       "removedCall":  "Same"
+                   },
+                   {
+                       "method":  "*GetCapabilityWalkingRecoveryProof*",
+                       "detected":  true,
+                       "removedCall":  "Crouched"
+                   },
+                   {
+                       "method":  "*RememberLearnedTraversalEdge*",
+                       "detected":  true,
+                       "removedCall":  "Same"
+                   },
+                   {
+                       "method":  "IsLearningV349CurrentRaidOrdinaryWalkThroughDisproof",
+                       "detected":  true,
+                       "removedCall":  "Crouched"
+                   },
+                   {
+                       "method":  "TryAttach",
+                       "detected":  true,
+                       "removedCall":  "HasStandalonePluginIdentity"
+                   },
+                   {
+                       "method":  "Apply",
+                       "detected":  true,
+                       "removedCall":  "ReviewedFollowBuild"
+                   },
+                   {
+                       "method":  "*HasStandalonePluginIdentity*",
+                       "detected":  true,
+                       "removedCall":  "SupportedStandalone"
+                   },
+                   {
+                       "method":  "*InstallOriginalPITCommandReader*",
+                       "detected":  true,
+                       "removedCall":  "CommandClaim"
+                   },
+                   {
                        "method":  "PruneLearnedTraversalEdges",
                        "detected":  true,
                        "removedCall":  "CanDiscardCapabilityTraversalEdge"
@@ -2558,6 +2728,6 @@
                    }
                ],
     "gameExecuted":  false,
-    "checks":  511,
+    "checks":  545,
     "passed":  true
 }

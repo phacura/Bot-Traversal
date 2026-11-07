@@ -1,0 +1,916 @@
+--- RC155/Directory.Build.props
++++ RC156/Directory.Build.props
+@@ -1,6 +1,6 @@
+ <Project>
+   <PropertyGroup>
+-    <SptRoot Condition="'$(SptRoot)' == ''">D:\Games\SIT_DIR\SPT AKI 4.0.13</SptRoot>
++    <SptRoot Condition="'$(SptRoot)' == ''">D:\Games\SIT_DIR\SPT AKI 4.1.6</SptRoot>
+     <SptManagedDir>$(SptRoot)\EscapeFromTarkov_Data\Managed</SptManagedDir>
+     <SptBepInExCoreDir>$(SptRoot)\BepInEx\core</SptBepInExCoreDir>
+     <SptBepInExPluginsDir>$(SptRoot)\BepInEx\plugins</SptBepInExPluginsDir>
+--- RC155/src/AssemblyVersion.cs
++++ RC156/src/AssemblyVersion.cs
+@@ -1,4 +1,4 @@
+ using System.Reflection;
+ [assembly: AssemblyVersion("0.9.0.0")]
+ [assembly: AssemblyFileVersion("0.9.0.0")]
+-[assembly: AssemblyInformationalVersion("0.9.0-beta.18+RC155")]
++[assembly: AssemblyInformationalVersion("0.9.0-beta.19+RC156.SPT416")]
+--- RC155/src/BotTraversalPlugin.cs
++++ RC156/src/BotTraversalPlugin.cs
+@@ -11,6 +11,7 @@
+ namespace BotTraversal
+ {
+     [BepInPlugin("bottraversal.standalone", "Bot Traversal", "0.9.0")]
++    [BepInDependency("xyz.pit.fireteam", BepInDependency.DependencyFlags.SoftDependency)]
+     public sealed class BotTraversalPlugin : BaseUnityPlugin
+     {
+         internal static ConfigEntry<bool> TraversalEnabled;
+@@ -30,7 +31,7 @@
+         private void Awake()
+         {
+             Core.Logger.Instance = Logger;
+-            Logger.LogInfo("Bot Traversal 0.9.0 Beta 18 loaded: V2-RC155-Beta18");
++            Logger.LogInfo("Bot Traversal 0.9.0 Beta 19 loaded: V2-RC156-Beta19-SPT416");
+             TraversalEnabled = Config.Bind("Bot Traversal", "01 Traversal功能", true,
+                 F12("Enable full Traversal, including learned routes, off-NavMesh movement, Vault, Jump, Climb, WalkThrough and DropDown.", "01 Traversal", -1));
+             PassThroughEnabled = Config.Bind("Bot Traversal", "02 友軍互相穿透", true,
+--- RC155/src/Core/FollowerCapabilityCoordinationHost.cs
++++ RC156/src/Core/FollowerCapabilityCoordinationHost.cs
+@@ -827,7 +827,7 @@
+             var player=bot?.GetPlayer;
+             if(player?.MovementContext==null||axis.sqrMagnitude<.5f)return false;
+             bool hit=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.40f,
+-                player.Position+Vector3.up*1.35f,.18f,axis,.85f,LayerMaskClass.HighPolyWithTerrainMask,out var obstacle);
++                player.Position+Vector3.up*1.35f,.18f,axis,.85f,LayersMaskController.HighPolyWithTerrainMask,out var obstacle);
+             bool accepted=FollowerCapabilityPassagePolicy.RescueObstacle(player.MovementContext.IsGrounded,hit,
+                 hit?obstacle.normal.y:0,hit?-Vector3.Dot(obstacle.normal,axis):0,hit?obstacle.distance:0);
+             if(accepted)reason=string.Empty;
+@@ -1240,11 +1240,11 @@
+                     Vector3.Dot(GetFlatDelta(boundary,entry),axis),Vector3.Dot(GetFlatDelta(boundary,target),axis),Vector3.Dot(GetFlatDelta(boundary,target),axis)))return false;
+             bool support=true;
+             foreach(var point in new[]{Vector3.Lerp(player.Position,target,.5f),target})
+-                if(!TryGetFirstNonSelfRaycastHit(player,point+Vector3.up*.6f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var hit)||
++                if(!TryGetFirstNonSelfRaycastHit(player,point+Vector3.up*.6f,Vector3.down,1f,LayersMaskController.HighPolyWithTerrainMask,out var hit)||
+                     Mathf.Abs(hit.point.y-point.y)>.35f||hit.normal.y<.65f){support=false;break;}
+             var delta=target-player.Position;
+             bool blocked=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.4f,player.Position+Vector3.up*1.35f,
+-                .18f,delta.normalized,delta.magnitude,LayerMaskClass.HighPolyWithTerrainMask,out _);
++                .18f,delta.normalized,delta.magnitude,LayersMaskController.HighPolyWithTerrainMask,out _);
+             if(!FollowerCapabilityPassagePolicy.GroundLead(true,true,true,false,distance,height,support,blocked))return false;
+             long generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
+             if(generation<=0||(owner!=FollowerMovementWriterAuthority.WriterDomain.Follow&&owner!=FollowerMovementWriterAuthority.WriterDomain.Traversal)||
+@@ -1276,10 +1276,10 @@
+             {
+                 var point=Vector3.Lerp(body,target,(float)i/count);
+                 bool hit=TryGetFirstNonSelfRaycastHit(probe.Player,point+Vector3.up*.6f,Vector3.down,1f,
+-                    LayerMaskClass.HighPolyWithTerrainMask,out var floor);
++                    LayersMaskController.HighPolyWithTerrainMask,out var floor);
+                 var delta=point-previous;
+                 bool blocked=TryGetFirstNonSelfCapsuleCastHit(probe.Player,previous+Vector3.up*.4f,previous+Vector3.up*1.35f,
+-                    .18f,delta.normalized,delta.magnitude,LayerMaskClass.HighPolyWithTerrainMask,out _);
++                    .18f,delta.normalized,delta.magnitude,LayersMaskController.HighPolyWithTerrainMask,out _);
+                 if(!FollowerCapabilityPassagePolicy.RampSample(hit,hit?floor.point.y-point.y:float.PositiveInfinity,hit?floor.normal.y:0,blocked))
+                 {supported=false;break;}
+                 previous=point;
+@@ -1359,10 +1359,10 @@
+                     Vector3.Dot(GetFlatDelta(boundary,target),prefixAxis)))return false;
+             bool support=true;
+             foreach(var sample in new[]{Vector3.Lerp(player.Position,target,.5f),target})
+-                if(!TryGetFirstNonSelfRaycastHit(player,sample+Vector3.up*.6f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var hit)||
++                if(!TryGetFirstNonSelfRaycastHit(player,sample+Vector3.up*.6f,Vector3.down,1f,LayersMaskController.HighPolyWithTerrainMask,out var hit)||
+                     Mathf.Abs(hit.point.y-sample.y)>.35f||hit.normal.y<.65f){support=false;break;}
+             bool blocked=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.4f,player.Position+Vector3.up*1.35f,
+-                .18f,direction,segment,LayerMaskClass.HighPolyWithTerrainMask,out _);
++                .18f,direction,segment,LayersMaskController.HighPolyWithTerrainMask,out _);
+             if(!FollowerCapabilityIngressMotionPolicy.Connector(true,true,false,false,true,distance,localJoin?0:join,segment,target.y-player.Position.y,support,blocked,true))return false;
+             long generation=FollowerMovementWriterAuthority.PeekExactGeneration(bot,out var owner);
+             if(generation<=0||(owner!=FollowerMovementWriterAuthority.WriterDomain.Follow&&owner!=FollowerMovementWriterAuthority.WriterDomain.Traversal)||
+--- RC155/src/Core/FollowerCapabilityExecutionMotionHost.cs
++++ RC156/src/Core/FollowerCapabilityExecutionMotionHost.cs
+@@ -160,7 +160,7 @@
+             var direction=delta/distance;
+             bool hit=TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*WalkThroughCapsuleBottom,
+                 player.Position+Vector3.up*WalkThroughCapsuleTop,WalkThroughCapsuleRadius,direction,distance,
+-                LayerMaskClass.HighPolyWithTerrainMask,out var obstacle);
++                LayersMaskController.HighPolyWithTerrainMask,out var obstacle);
+             bool blocked=FollowerCapabilityIngressMotionPolicy.WallBlocks(hit,hit?obstacle.normal.y:0,
+                 hit?-Vector3.Dot(direction,obstacle.normal):0,hit?obstacle.distance:0);
+             if(!blocked)return true;
+--- RC155/src/Core/FollowerCapabilityFollowControlHost.cs
++++ RC156/src/Core/FollowerCapabilityFollowControlHost.cs
+@@ -784,7 +784,7 @@
+             }
+ 
+             float leaderDistance = Vector3.Distance(bot.Position, leader.Position);
+-            PathControllerClass controller = bot.Mover?.ActualPathController;
++            BotPathController controller = bot.Mover?.ActualPathController;
+             bool moverAccepted = bot.Mover != null &&
+                                 !bot.Mover.Pause &&
+                                 (controller?.HavePath == true || bot.Mover.IsMoving);
+@@ -884,7 +884,7 @@
+                 RecordFollowPathWriteException(bot, leader.Position, "authority-reacquire", ex);
+             }
+ 
+-            PathControllerClass refreshedController = bot.Mover?.ActualPathController;
++            BotPathController refreshedController = bot.Mover?.ActualPathController;
+             WriteEvent("movementAuthorityResetFollowReacquire", bot, new
+             {
+                 reason = watch.Reason,
+--- RC155/src/Core/FollowerCapabilityFollowGaitHost.cs
++++ RC156/src/Core/FollowerCapabilityFollowGaitHost.cs
+@@ -42,7 +42,7 @@
+             if(type==null)return; // Optional compatibility with the installed PIT assembly.
+             if(!string.Equals(type.Assembly.GetName().Name,"pitFireTeam",StringComparison.OrdinalIgnoreCase)||
+                 !typeof(CustomLogic).IsAssignableFrom(type))return;
+-            if(type.Module.ModuleVersionId!=new Guid("e77f8971-589a-4c6d-bee9-07a778a2b081"))
++            if(!PITCompatibilityPolicy.ReviewedFollowBuild(type.Module.ModuleVersionId))
+             {
+                 Logger.LogRuntimeInfo("[RC105 Follow gait] PIT build differs from the reviewed getter contract; original gait retained.");
+                 return;
+--- RC155/src/Core/FollowerCapabilityFrontierHost.cs
++++ RC156/src/Core/FollowerCapabilityFrontierHost.cs
+@@ -204,7 +204,7 @@
+     {
+         internal static void Apply(Harmony harmony)
+         {
+-            foreach(var type in new[]{typeof(MovementContext),AccessTools.TypeByName("GClass2109")}.Where(t=>t!=null))
++            foreach(var type in new[]{typeof(MovementContext),typeof(ClientPlayerMovementContext)}.Where(t=>t!=null))
+             {
+                 var method=AccessTools.DeclaredMethod(type,"ApplyMotion",new[]{typeof(Vector3),typeof(float)});
+                 if(method!=null)harmony.Patch(method,prefix:new HarmonyMethod(AccessTools.Method(typeof(FollowerCapabilityFrontierPatch),nameof(Prefix))){priority=Priority.Last});
+--- RC155/src/Core/FollowerCapabilityGeneralRecoveryHost.cs
++++ RC156/src/Core/FollowerCapabilityGeneralRecoveryHost.cs
+@@ -1375,7 +1375,7 @@
+                 // forward input is asserted, the body is grounded, yet world position does not move.
+                 // Do not run during traversal/teleport transactions or when the leader is already close.
+                 BotFollowerPlayer followerState = BossPlayers.GetFollowerByProfileId(profileId);
+-                PathControllerClass pathController = bot.Mover?.ActualPathController;
++                BotPathController pathController = bot.Mover?.ActualPathController;
+                 Player leader = FollowerEnvironment.LocalPlayer;
+                 float leaderDistance = IsLivePlayer(leader) && IsFinite(leader.Position)
+                     ? GetPlanarDistance(bot.Position, leader.Position)
+--- RC155/src/Core/FollowerCapabilityHelperRules.Generated.cs
++++ RC156/src/Core/FollowerCapabilityHelperRules.Generated.cs
+@@ -385,7 +385,7 @@
+ internal static bool UpdateUnifiedTraversalVerify_stable_D5B9932F_8(bool f0_probe_TraversalVerifyMoving,bool f1_completionBodySafe,bool f2_exitSide,bool f3_downstreamSafe,float f4_forwardVelocity,bool f5_fullEgressSatisfied,bool f6_completionBodySafe,bool f7_exitSide,bool f8_downstreamSafe,bool f9_targetStable,float f10_moved) => (f0_probe_TraversalVerifyMoving ? ((((f1_completionBodySafe && f2_exitSide) && f3_downstreamSafe) && (f4_forwardVelocity >= (-0.75f))) && f5_fullEgressSatisfied) : ((((f6_completionBodySafe && f7_exitSide) && f8_downstreamSafe) && f9_targetStable) && (f10_moved <= 0.22f)));
+ // BotTraversal.Core.FollowerTraversalTestRuntime.UpdateUnifiedTraversalVerify(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime) : entryDistance + 0.35f < exitDistance && targetDistance > UnifiedTraversalVerifyTargetTolerance
+ internal static bool UpdateUnifiedTraversalVerify_droppedBack_D5B9932F_9(float f0_entryDistance,float f1_exitDistance,float f2_targetDistance,float f3_UnifiedTraversalVerifyTargetTolerance) => (((f0_entryDistance + 0.35f) < f1_exitDistance) && (f2_targetDistance > f3_UnifiedTraversalVerifyTargetTolerance));
+-// BotTraversal.Core.FollowerTraversalTestRuntime.UpdateExitAuthorityTopologyRejoin(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, UnityEngine.Vector3, bool, bool) : mover.LinkedToNavmeshInitially &&                                linkedDistance <= ExitAuthorityTopologyRejoinMaxLinkedDistance &&                                linkedVertical <= ExitAuthorityMaxNavVertical
++// BotTraversal.Core.FollowerTraversalTestRuntime.UpdateExitAuthorityTopologyRejoin(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, UnityEngine.Vector3, bool, bool) : mover._linkedToNavmeshInitially &&                                linkedDistance <= ExitAuthorityTopologyRejoinMaxLinkedDistance &&                                linkedVertical <= ExitAuthorityMaxNavVertical
+ internal static bool UpdateExitAuthorityTopologyRejoin_linkedLocal_49813066_1(bool f0_mover_LinkedToNavmeshInitially,float f1_linkedDistance,float f2_ExitAuthorityTopologyRejoinMaxLinkedDistance,float f3_linkedVertical,float f4_ExitAuthorityMaxNavVertical) => ((f0_mover_LinkedToNavmeshInitially && (f1_linkedDistance <= f2_ExitAuthorityTopologyRejoinMaxLinkedDistance)) && (f3_linkedVertical <= f4_ExitAuthorityMaxNavVertical));
+ // BotTraversal.Core.FollowerTraversalTestRuntime.UpdateExitAuthorityTopologyRejoin(BotTraversal.Core.FollowerTraversalTestRuntime.ProbeRuntime, UnityEngine.Vector3, bool, bool) : probe.ExitAuthorityTopologyRejoinRequested &&                 !probe.ExitAuthorityTopologyRejoinConfirmed &&                 !probe.ExitAuthorityActionableTopologyCandidate &&                 string.Equals(probe.TraversalKind, "WalkThrough", StringComparison.OrdinalIgnoreCase) &&                 navStable
+ internal static bool UpdateExitAuthorityTopologyRejoin_cf50WalkThroughFarSideConsumerRecheck_49813066_2(bool f0_probe_ExitAuthorityTopologyRejoinRequested,bool f1_probe_ExitAuthorityTopologyRejoinConfirmed,bool f2_probe_ExitAuthorityActionableTopologyCandidate,string f3_probe_TraversalKind,bool f4_navStable) => ((((f0_probe_ExitAuthorityTopologyRejoinRequested && (!f1_probe_ExitAuthorityTopologyRejoinConfirmed)) && (!f2_probe_ExitAuthorityActionableTopologyCandidate)) && string.Equals(f3_probe_TraversalKind,"WalkThrough",(System.StringComparison)5)) && f4_navStable);
+--- RC155/src/Core/FollowerCapabilityLocomotionHost.cs
++++ RC156/src/Core/FollowerCapabilityLocomotionHost.cs
+@@ -71,7 +71,7 @@
+                     coherent=locomotion && (current.fullPathHash==liveHash||current.shortNameHash==liveHash);
+                     // FastAnimator.Play queues a ForcePlayState for its NEXT native update.
+                     // Observe that existing native queue; do not create a second request clock.
+-                    if(animator is FastAnimatorProcessorClass fast && fast.FastControllerInfo!=null)
++                    if(animator is FastAnimatorSystem.FastAnimatorProcessor fast && fast.FastControllerInfo!=null)
+                     {
+                         var queued=fast.FastControllerInfo.GetStateInfo(0)?.ForcePlayState;
+                         pending=queued!=null && queued.Hash==run.AnimatorStateHash;
+--- RC155/src/Core/FollowerCapabilityNativeInputHost.cs
++++ RC156/src/Core/FollowerCapabilityNativeInputHost.cs
+@@ -37,7 +37,7 @@
+                     (context.CurrentState.Name==EPlayerState.Run||context.CurrentState.Name==EPlayerState.Sprint) &&
+                     context.States.TryGetValue(context.CurrentState.Name,out observedLocomotion) &&
+                     ReferenceEquals(context.CurrentState,observedLocomotion)&&ReferenceEquals(managed,observedLocomotion);
+-                bool idle=context.CurrentState is IdleStateClass&&context.States.TryGetValue(EPlayerState.Idle,out observedIdle)&&
++                bool idle=context.CurrentState is EFT.IdlePlayerState&&context.States.TryGetValue(EPlayerState.Idle,out observedIdle)&&
+                     ReferenceEquals(context.CurrentState,observedIdle)&&ReferenceEquals(managed,observedIdle);
+                 InputObserved=true;
+                 CanWalkObserved=context.CanWalk;
+@@ -56,7 +56,7 @@
+                     FollowerMedical.IsUsingMedical(bot)||FollowerMedical.IsHandsInteractionActiveForAuthority(player)||IsTeleportTransactionActive(bot)||
+                     FollowerEnvironment.TryGetImmediateSurvivalThreat(bot,out _)||FollowerStateAuthorityCoordinator.HasCombatMovementClaim(bot,out _)||
+                     !IsCurrent(capturedOrigin)||!ReferenceEquals(context.CurrentState,expectedConsumer)||!ReferenceEquals(managed,expectedConsumer)||
+-                    (observed.IdleConsumer&&!(context.CurrentState is IdleStateClass))||
++                    (observed.IdleConsumer&&!(context.CurrentState is EFT.IdlePlayerState))||
+                     (observed.LocomotionConsumer&&(expectedConsumer==null||
+                         (expectedConsumer.Name!=EPlayerState.Run&&expectedConsumer.Name!=EPlayerState.Sprint)))||!context.CanWalk||
+                     player.InputDirection.x!=observed.X||player.InputDirection.y!=observed.Y||
+--- RC155/src/Core/FollowerCapabilityNativeInputPolicy.cs
++++ RC156/src/Core/FollowerCapabilityNativeInputPolicy.cs
+@@ -20,7 +20,7 @@
+             if(!s.IdleConsumer&&!s.LocomotionConsumer)return Action.Unavailable;
+             if(!s.CanWalk||float.IsNaN(s.X)||float.IsInfinity(s.X)||float.IsNaN(s.Y)||float.IsInfinity(s.Y))return Action.Reject;
+             if(s.X>1.0001f||s.X< -1.0001f||s.Y>1.0001f||s.Y< -1.0001f)return Action.Reject;
+-            // Same per-axis epsilon as native IdleStateClass.smethod_0.
++            // Same per-axis epsilon as native EFT.IdlePlayerState.smethod_0.
+             return s.X>0.00001f||s.X< -0.00001f||s.Y>0.00001f||s.Y< -0.00001f?Action.Publish:Action.AwaitInput;
+         }
+     }
+--- RC155/src/Core/FollowerCapabilityNativeObstacleHost.cs
++++ RC156/src/Core/FollowerCapabilityNativeObstacleHost.cs
+@@ -1934,7 +1934,7 @@
+                     return false;
+                 }
+ 
+-                if (player.VaultingComponent is GClass2679 nativeComponent)
++                if (player.VaultingComponent is EFT.Vaulting.VaultingComponent nativeComponent)
+                 {
+                     nativeComponent.SetGClass2679Func_0("R1-20558E61DB00",@player?.AIData?.BotOwner,() => false);
+                 }
+--- RC155/src/Core/FollowerCapabilityPreparationHost.cs
++++ RC156/src/Core/FollowerCapabilityPreparationHost.cs
+@@ -288,7 +288,7 @@
+             if(Mathf.Abs(forward-expectedForward)>.04f||forward<-.55f||forward>.16f||speed<RollingTraversalMinSpeed)return false;
+             if(!TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*WalkThroughCapsuleBottom,
+                 player.Position+Vector3.up*WalkThroughCapsuleTop,WalkThroughCapsuleRadius,axis,.15f,
+-                LayerMaskClass.HighPolyWithTerrainMask,out var hit))return false;
++                LayersMaskController.HighPolyWithTerrainMask,out var hit))return false;
+             var velocity=GetCapabilityJumpPlanarVelocity(player);velocity.y=0f;
+             bool ready=FollowerCapabilityApproachPolicy.JumpContact(forward,(delta-axis*forward).magnitude,
+                 Vector3.Dot(GetFlatDirection(context.PlayerRealForward),axis),Vector3.Dot(GetFlatDirection(velocity),axis),speed,
+@@ -442,10 +442,10 @@
+             bodyHit=default;raisedHit=default;raisedClear=false;
+             var bottom=player.Position+Vector3.up*(WalkThroughCapsuleRadius+.02f);var top=player.Position+Vector3.up*WalkThroughCapsuleTop;
+             if(!TryGetFirstNonSelfCapsuleCastHit(player,bottom,top,WalkThroughCapsuleRadius,direction,
+-                WalkThroughStepAssistForwardProbeDistance,LayerMaskClass.HighPolyWithTerrainMask,out bodyHit))return false;
++                WalkThroughStepAssistForwardProbeDistance,LayersMaskController.HighPolyWithTerrainMask,out bodyHit))return false;
+             raisedClear=!TryGetFirstNonSelfCapsuleCastHit(player,bottom+Vector3.up*WalkThroughStepAssistLift,
+                 top+Vector3.up*WalkThroughStepAssistLift,WalkThroughCapsuleRadius,direction,
+-                WalkThroughStepAssistForwardProbeDistance,LayerMaskClass.HighPolyWithTerrainMask,out raisedHit);
++                WalkThroughStepAssistForwardProbeDistance,LayersMaskController.HighPolyWithTerrainMask,out raisedHit);
+             return true;
+         }
+         private static bool IsCapabilityLowStepProducerCurrent(BotOwner bot,LearningV365ContinuousRouteProducerState producer)
+--- RC155/src/Core/FollowerCapabilityRouteRetryHost.cs
++++ RC156/src/Core/FollowerCapabilityRouteRetryHost.cs
+@@ -369,10 +369,10 @@
+                 {
+                     var point=Vector3.Lerp(start,corner,(float)i/count);
+                     if(!Retry.ReturnSegment(GetPlanarDistance(previous,point),Mathf.Abs(previous.y-point.y))||
+-                        !TryGetFirstNonSelfRaycastHit(player,point+Vector3.up*.6f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var hit)||
++                        !TryGetFirstNonSelfRaycastHit(player,point+Vector3.up*.6f,Vector3.down,1f,LayersMaskController.HighPolyWithTerrainMask,out var hit)||
+                         Mathf.Abs(hit.point.y-point.y)>.35f||hit.normal.y<.65f||
+                         TryGetFirstNonSelfCapsuleCastHit(player,previous+Vector3.up*.4f,previous+Vector3.up*1.35f,.18f,
+-                            GetFlatDirection(point-previous),GetPlanarDistance(previous,point),LayerMaskClass.HighPolyWithTerrainMask,out _))return false;
++                            GetFlatDirection(point-previous),GetPlanarDistance(previous,point),LayersMaskController.HighPolyWithTerrainMask,out _))return false;
+                     points.Add(point);previous=point;
+                 }
+             }
+--- RC155/src/Core/FollowerCapabilitySupportedAimHost.cs
++++ RC156/src/Core/FollowerCapabilitySupportedAimHost.cs
+@@ -13,12 +13,12 @@
+             aim=Vector3.Lerp(player.Position,target,(float)FollowerCapabilityPassagePolicy.LocalAimFraction(length));
+             bool supported=true;
+             foreach(var sample in new[]{Vector3.Lerp(player.Position,aim,.5f),aim})
+-                if(!TryGetFirstNonSelfRaycastHit(player,sample+Vector3.up*.60f,Vector3.down,1f,LayerMaskClass.HighPolyWithTerrainMask,out var support)||
++                if(!TryGetFirstNonSelfRaycastHit(player,sample+Vector3.up*.60f,Vector3.down,1f,LayersMaskController.HighPolyWithTerrainMask,out var support)||
+                     Mathf.Abs(support.point.y-sample.y)>.35f||support.normal.y<.65f){supported=false;break;}
+             var delta=GetFlatDelta(player.Position,aim);var direction=GetFlatDirection(delta);
+             RaycastHit obstacle=default;
+             bool hit=delta.magnitude>.001f&&TryGetFirstNonSelfCapsuleCastHit(player,player.Position+Vector3.up*.40f,
+-                player.Position+Vector3.up*1.35f,.18f,direction,delta.magnitude,LayerMaskClass.HighPolyWithTerrainMask,out obstacle);
++                player.Position+Vector3.up*1.35f,.18f,direction,delta.magnitude,LayersMaskController.HighPolyWithTerrainMask,out obstacle);
+             // A walkable floor hit is not a wall. Native collision remains active throughout.
+             bool blocked=hit&&obstacle.normal.y<.65f;
+             return FollowerCapabilityPassagePolicy.GroundAim(player.MovementContext.IsGrounded,IsFinite(aim),aim.y-player.Position.y,supported,blocked);
+--- RC155/src/Core/FollowerControlBackend.Generated.cs
++++ RC156/src/Core/FollowerControlBackend.Generated.cs
+@@ -249,9 +249,9 @@
+             return value;
+         }
+ 
+-        internal static void GClass492DropOffset(this global::GClass492 controlTarget, string site, global::EFT.BotOwner bot)
+-        {
+-            if (!Authorize(bot, controlTarget, site, "GClass492DropOffset", "GClass492.DropOffset"))
++        internal static void GClass492DropOffset(this global::BotLocalAvoidance controlTarget, string site, global::EFT.BotOwner bot)
++        {
++            if (!Authorize(bot, controlTarget, site, "GClass492DropOffset", "BotLocalAvoidance.DropOffset"))
+             {
+                 return;
+             }
+@@ -363,34 +363,34 @@
+ 
+         internal static global::UnityEngine.Vector3 SetBotMoverPrevSuccessLinkedFrom_1(this global::BotMover controlTarget, string site, global::EFT.BotOwner bot, global::UnityEngine.Vector3 value)
+         {
+-            if (!Authorize(bot, controlTarget, site, "SetBotMoverPrevSuccessLinkedFrom_1", "BotMover.PrevSuccessLinkedFrom_1"))
+-            {
+-                return value;
+-            }
+-
+-            controlTarget.@PrevSuccessLinkedFrom_1 = value;
++            if (!Authorize(bot, controlTarget, site, "SetBotMoverPrevSuccessLinkedFrom_1", "BotMover._prevSuccessLinkedFrom"))
++            {
++                return value;
++            }
++
++            controlTarget.@_prevSuccessLinkedFrom = value;
+             return value;
+         }
+ 
+         internal static float SetBotMoverPrevPosLinkedTime_1(this global::BotMover controlTarget, string site, global::EFT.BotOwner bot, float value)
+         {
+-            if (!Authorize(bot, controlTarget, site, "SetBotMoverPrevPosLinkedTime_1", "BotMover.PrevPosLinkedTime_1"))
+-            {
+-                return value;
+-            }
+-
+-            controlTarget.@PrevPosLinkedTime_1 = value;
++            if (!Authorize(bot, controlTarget, site, "SetBotMoverPrevPosLinkedTime_1", "BotMover._prevPosLinkedTime"))
++            {
++                return value;
++            }
++
++            controlTarget.@_prevPosLinkedTime = value;
+             return value;
+         }
+ 
+         internal static bool SetBotMoverLinkedToNavmeshInitially(this global::BotMover controlTarget, string site, global::EFT.BotOwner bot, bool value)
+         {
+-            if (!Authorize(bot, controlTarget, site, "SetBotMoverLinkedToNavmeshInitially", "BotMover.LinkedToNavmeshInitially"))
+-            {
+-                return value;
+-            }
+-
+-            controlTarget.@LinkedToNavmeshInitially = value;
++            if (!Authorize(bot, controlTarget, site, "SetBotMoverLinkedToNavmeshInitially", "BotMover._linkedToNavmeshInitially"))
++            {
++                return value;
++            }
++
++            controlTarget.@_linkedToNavmeshInitially = value;
+             return value;
+         }
+ 
+@@ -587,14 +587,14 @@
+             controlTarget.@InitVaultingComponent(@aiControlled);
+         }
+ 
+-        internal static global::System.Func<bool> SetGClass2679Func_0(this global::GClass2679 controlTarget, string site, global::EFT.BotOwner bot, global::System.Func<bool> value)
+-        {
+-            if (!Authorize(bot, controlTarget, site, "SetGClass2679Func_0", "GClass2679.Func_0"))
+-            {
+-                return value;
+-            }
+-
+-            controlTarget.@Func_0 = value;
++        internal static global::System.Func<bool> SetGClass2679Func_0(this global::EFT.Vaulting.VaultingComponent controlTarget, string site, global::EFT.BotOwner bot, global::System.Func<bool> value)
++        {
++            if (!Authorize(bot, controlTarget, site, "SetGClass2679Func_0", "EFT.Vaulting.VaultingComponent.Func_0"))
++            {
++                return value;
++            }
++
++            controlTarget.@_isAutoVaultingSettingEnable = value;
+             return value;
+         }
+ 
+@@ -610,12 +610,12 @@
+ 
+         internal static void EFTPhysicsClassIgnoreCollision(string site, global::EFT.BotOwner bot, global::UnityEngine.Collider @collider1, global::UnityEngine.Collider @collider2, bool @ignore = true)
+         {
+-            if (!Authorize(bot, null, site, "EFTPhysicsClassIgnoreCollision", "global::EFTPhysicsClass.IgnoreCollision"))
+-            {
+-                return;
+-            }
+-
+-            global::EFTPhysicsClass.@IgnoreCollision(@collider1, @collider2, @ignore);
++            if (!Authorize(bot, null, site, "EFTPhysicsClassIgnoreCollision", "global::PhysicsExtensions.IgnoreCollision"))
++            {
++                return;
++            }
++
++            global::PhysicsExtensions.@IgnoreCollision(@collider1, @collider2, @ignore);
+         }
+ 
+         internal static void ColliderExtrusionAddIgnoredCollider(this global::ColliderExtrusion controlTarget, string site, global::EFT.BotOwner bot, global::UnityEngine.Collider @collider)
+@@ -630,12 +630,12 @@
+ 
+         internal static void EFTPhysicsClasssmethod_0(string site, global::EFT.BotOwner bot, global::UnityEngine.Collider @collider1, global::UnityEngine.Collider @collider2, bool @ignore)
+         {
+-            if (!Authorize(bot, null, site, "EFTPhysicsClasssmethod_0", "global::EFTPhysicsClass.smethod_0"))
+-            {
+-                return;
+-            }
+-
+-            global::EFTPhysicsClass.@smethod_0(@collider1, @collider2, @ignore);
++            if (!Authorize(bot, null, site, "EFTPhysicsClasssmethod_0", "global::PhysicsExtensions.smethod_0"))
++            {
++                return;
++            }
++
++            global::PhysicsExtensions.@WriteIgnoreCollisionMatrix(@collider1, @collider2, @ignore);
+         }
+ 
+         internal static void ColliderExtrusionRemoveIgnoredCollider(this global::ColliderExtrusion controlTarget, string site, global::EFT.BotOwner bot, global::UnityEngine.Collider @collider)
+@@ -663,7 +663,7 @@
+         {
+             if (!Authorize(bot, controlTarget, site, "RelinkBotMoverBody", "BotMover.method_10"))
+                 return global::EBotLinkResult.fail;
+-            return controlTarget.method_10(position, force);
++            return controlTarget.CastFromPos(position, force);
+         }
+     }
+ }
+--- RC155/src/Core/FollowerMovementWriterAuthorityPatch.cs
++++ RC156/src/Core/FollowerMovementWriterAuthorityPatch.cs
+@@ -21,7 +21,7 @@
+     {
+         private static bool _applied;
+         private static readonly FieldInfo BotMoverOwnerField =
+-            AccessTools.Field(typeof(BotMover), "BotOwner_0") ??
++            AccessTools.Field(typeof(BotMover), "_owner") ??
+             AccessTools.Field(typeof(BotMover), "_botOwner") ??
+             AccessTools.Field(typeof(BotMover), "botOwner");
+         private static readonly PropertyInfo BotMoverOwnerProperty =
+--- RC155/src/Core/FollowerTraversalPhysicalInput.cs
++++ RC156/src/Core/FollowerTraversalPhysicalInput.cs
+@@ -377,7 +377,7 @@
+ 
+                 exactWorldDirectionInput=FollowerCapabilityPassagePolicy.WorldInput(exactWorldDirectionInput,
+                     deliveryPurpose!=CapabilityMotionPurpose.NativeProbe&&deliveryPurpose!=CapabilityMotionPurpose.NativeExecution,HasCapabilityFailureStrategy(bot));
+-                Vector2 moverNativeInput = bot.Mover.method_17();
++                Vector2 moverNativeInput = bot.Mover.TurnMove();
+                 Vector2 nativeInput = moverNativeInput;
+                 if (exactWorldDirectionInput)
+                 {
+--- RC155/src/Core/FollowerTraversalRecoveryOwnership.cs
++++ RC156/src/Core/FollowerTraversalRecoveryOwnership.cs
+@@ -1146,7 +1146,7 @@
+                 generation = expectedTraversalGeneration,
+                 body = Vec(bot.Position),
+                 nativeLinkAnchor = Vec(bot.Mover.PositionOnWayInner),
+-                previousNativeLinkAnchor = Vec(bot.Mover.PrevSuccessLinkedFrom_1),
++                previousNativeLinkAnchor = Vec(bot.Mover._prevSuccessLinkedFrom),
+                 retireDetail,
+                 bodyRelocated = false,
+                 traversalSuccessRecorded = false,
+--- RC155/src/Core/FollowerTraversalTestPatch.cs
++++ RC156/src/Core/FollowerTraversalTestPatch.cs
+@@ -87,7 +87,7 @@
+     }
+ 
+     /// <summary>
+-    /// GClass494.method_21 integrates actual motion into BotMover's path state AND ends by
++    /// BotMoverImpostor.OnMotionApplied integrates actual motion into BotMover's path state AND ends by
+     /// calling SetPlayerToNavMesh. WalkThrough needs the integration/corner advancement, so R5
+     /// only skips the whole callback for native root-motion/teleport stages. A separate patch
+     /// below suppresses only SetPlayerToNavMesh during WalkThrough.
+@@ -98,11 +98,11 @@
+ 
+         protected override MethodBase GetTargetMethod()
+         {
+-            return AccessTools.Method(typeof(GClass494), "method_21");
+-        }
+-
+-        [PatchPrefix]
+-        private static bool PatchPrefix(GClass494 __instance, out Vector3 __state)
++            return AccessTools.Method(typeof(BotMoverImpostor), "OnMotionApplied");
++        }
++
++        [PatchPrefix]
++        private static bool PatchPrefix(BotMoverImpostor __instance, out Vector3 __state)
+         {
+             __state = new Vector3(float.NaN, float.NaN, float.NaN);
+             try
+@@ -124,16 +124,16 @@
+         }
+ 
+         [PatchPostfix]
+-        private static void PatchPostfix(GClass494 __instance, Vector3 __state)
+-        {
+-            FollowerTraversalTestRuntime.ReportLearningV338WriterBodyEnd(
+-                __instance, __state, "GClass494.method_21");
+-        }
+-    }
+-
+-
+-    /// <summary>
+-    /// R5 narrow WalkThrough anti-snap gate. Let GClass494.method_21 update PositionOnWayInner
++        private static void PatchPostfix(BotMoverImpostor __instance, Vector3 __state)
++        {
++            FollowerTraversalTestRuntime.ReportLearningV338WriterBodyEnd(
++                __instance, __state, "BotMoverImpostor.OnMotionApplied");
++        }
++    }
++
++
++    /// <summary>
++    /// R5 narrow WalkThrough anti-snap gate. Let BotMoverImpostor.OnMotionApplied update PositionOnWayInner
+     /// and advance corridor corners, but suppress only its final NavMesh projection while PIT owns
+     /// the demonstrated off-mesh passage.
+     /// </summary>
+@@ -194,7 +194,7 @@
+ 
+         protected override MethodBase GetTargetMethod()
+         {
+-            return AccessTools.Method(typeof(BotMover), "method_10");
++            return AccessTools.Method(typeof(BotMover), "CastFromPos");
+         }
+ 
+         [PatchPrefix]
+--- RC155/src/Core/FollowerTraversalTestRuntime.cs
++++ RC156/src/Core/FollowerTraversalTestRuntime.cs
+@@ -4007,7 +4007,7 @@
+             float tightPlanar = tightSampled ? GetPlanarDistance(body, tightHit.position) : float.MaxValue;
+             float tightVertical = tightSampled ? Mathf.Abs(body.y - tightHit.position.y) : float.MaxValue;
+ 
+-            PathControllerClass pathController = bot.Mover.ActualPathController;
++            BotPathController pathController = bot.Mover.ActualPathController;
+             bool havePath = pathController?.HavePath == true;
+             Vector3 currentCorner = default(Vector3);
+             bool currentCornerFinite = false;
+@@ -6516,7 +6516,7 @@
+                 return new Vector3(float.NaN, float.NaN, float.NaN);
+             }
+ 
+-            BotOwner owner = mover.BotOwner_0;
++            BotOwner owner = mover._owner;
+             if (owner == null)
+             {
+                 return new Vector3(float.NaN, float.NaN, float.NaN);
+@@ -6544,7 +6544,7 @@
+ 
+             try
+             {
+-                BotOwner owner = mover.BotOwner_0;
++                BotOwner owner = mover._owner;
+                 if (owner == null)
+                 {
+                     return;
+@@ -8486,7 +8486,7 @@
+                 return false;
+             }
+ 
+-            BotOwner owner = mover.BotOwner_0;
++            BotOwner owner = mover._owner;
+             BotFollowerPlayer follower = owner != null
+                 ? BossPlayers.GetFollowerByProfileId(owner.ProfileId)
+                 : null;
+@@ -8610,7 +8610,7 @@
+                 return false;
+             }
+ 
+-            BotOwner owner = mover.BotOwner_0;
++            BotOwner owner = mover._owner;
+             BotFollowerPlayer follower = owner != null
+                 ? BossPlayers.GetFollowerByProfileId(owner.ProfileId)
+                 : null;
+@@ -8690,7 +8690,7 @@
+             {
+                 // V3.48: ExitCommit still belongs to the completed physical traversal. Do not
+                 // let stale NavMesh projection relocate the body while mover validation is
+-                // examining the landing. GClass494.method_21 remains enabled separately so
++                // examining the landing. BotMoverImpostor.method_21 remains enabled separately so
+                 // legitimate motion/path integration is preserved.
+                 return (true);
+             }
+@@ -8977,7 +8977,7 @@
+                 return false;
+             }
+ 
+-            BotOwner owner = mover.BotOwner_0;
++            BotOwner owner = mover._owner;
+             if(ProtectCapabilityLocalBodyProjection(owner)||RejectCapabilityPostCompletionProjection(owner,possiblePosition))
+             {
+                 if(owner?.GetPlayer!=null&&IsFinite(possiblePosition)&&OwnsCapabilityAdmittedIngress(owner)&&
+@@ -9237,7 +9237,7 @@
+                 return false;
+             }
+ 
+-            owner = mover.BotOwner_0;
++            owner = mover._owner;
+             if (owner != null && TryGetActiveProbe(owner, out ProbeRuntime probe) &&
+                 probe != null && probe.Generation == raidGeneration &&
+                 ShouldEmitDiagnostic("nativeBotMoverBodyRelinkSuppressed", owner, 0.08f))
+@@ -9258,7 +9258,7 @@
+         }
+ 
+         /// <summary>
+-        /// GClass494.method_21 is not merely a NavMesh relink. It also integrates actual motion
++        /// BotMoverImpostor.method_21 is not merely a NavMesh relink. It also integrates actual motion
+         /// into PositionOnWayInner and advances the active path corner. WalkThrough therefore
+         /// MUST let method_21 run; SetPlayerToNavMesh itself is suppressed by a narrower patch.
+         /// Native Vault and teleport stabilization still skip the whole callback because their
+@@ -9271,7 +9271,7 @@
+                 return false;
+             }
+ 
+-            BotOwner owner = mover.BotOwner_0;
++            BotOwner owner = mover._owner;
+             BotFollowerPlayer follower = owner != null
+                 ? BossPlayers.GetFollowerByProfileId(owner.ProfileId)
+                 : null;
+@@ -9305,14 +9305,14 @@
+         /// </summary>
+         public static bool ShouldSuppressSetPlayerToNavMesh(BotMover mover)
+         {
+-            if(ProtectCapabilityLocalBodyProjection(mover?.BotOwner_0))return true;
++            if(ProtectCapabilityLocalBodyProjection(mover?._owner))return true;
+             if (mover != null &&
+                 HasLearningV364UnsynchronizedPhysicalNavigationEpoch(
+-                    mover.BotOwner_0, out PhysicalNavigationEpochHandoff _))
++                    mover._owner, out PhysicalNavigationEpochHandoff _))
+             {
+                 return true;
+             }
+-            if (mover != null && TryGetActiveProbe(mover.BotOwner_0, out ProbeRuntime probe))
++            if (mover != null && TryGetActiveProbe(mover._owner, out ProbeRuntime probe))
+             {
+                 if (IsLearningV349TraversalOwnedPhysicalEpoch(probe))
+                 {
+@@ -28695,7 +28695,7 @@
+                 SampleCF75FreshFollowPhysicalWatch(bot, botPosition);
+ 
+                 StrictPathResult strict = CalculateStrictPath(botPosition, leaderPosition);
+-                PathControllerClass pathController = bot.Mover?.ActualPathController;
++                BotPathController pathController = bot.Mover?.ActualPathController;
+                 Vector3? moverTarget = pathController?.TargetPoint;
+                 Vector3[] moverWaypoints = Array.Empty<Vector3>();
+                 if (pathController?.HavePath == true)
+@@ -28716,7 +28716,7 @@
+                     ? command.ToString()
+                     : FollowerCommandType.None.ToString();
+ 
+-                NavMeshDoorLink currentDoorLink = bot.DoorOpener?.CurrentDoorLink;
++                NavMeshDoorLink currentDoorLink = bot.DoorOpener?._currentDoorLink;
+                 WriteEvent("followerSnapshot", bot, new
+                 {
+                     breadcrumbSequence,
+@@ -33764,7 +33764,7 @@
+                     origin,
+                     -right,
+                     WalkThroughPrecisionWallProbeDistance,
+-                    LayerMaskClass.HighPolyWithTerrainMask,
++                    LayersMaskController.HighPolyWithTerrainMask,
+                     out RaycastHit leftHit))
+             {
+                 leftClearance = leftHit.distance;
+@@ -33774,7 +33774,7 @@
+                     origin,
+                     right,
+                     WalkThroughPrecisionWallProbeDistance,
+-                    LayerMaskClass.HighPolyWithTerrainMask,
++                    LayersMaskController.HighPolyWithTerrainMask,
+                     out RaycastHit rightHit))
+             {
+                 rightClearance = rightHit.distance;
+@@ -33805,7 +33805,7 @@
+                         floorOrigin,
+                         Vector3.down,
+                         WalkThroughFloorProbeDistance,
+-                        LayerMaskClass.HighPolyWithTerrainMask,
++                        LayersMaskController.HighPolyWithTerrainMask,
+                         out RaycastHit floorHit) &&
+                     Mathf.Abs(floorHit.point.y - corrected.y) <= WalkThroughFloorMaxOffset)
+                 {
+@@ -35671,7 +35671,7 @@
+             // CompileFix47 Legacy Best-of Merge: restore the proven R5/R6 execution model.
+             // PIT still owns the directional/validated/monotonic corridor, but EFT BotMover gets
+             // the complete remaining path in one transaction instead of a new one-point path every
+-            // few tenths of a second. GClass494.method_21 can therefore advance its own corner state.
++            // few tenths of a second. BotMoverImpostor.method_21 can therefore advance its own corner state.
+             Vector3[] way = BuildRemainingWalkThroughWay(probe.Bot, probe);
+             if (way == null || way.Length == 0)
+             {
+@@ -37595,7 +37595,7 @@
+                     WalkThroughCapsuleRadius,
+                     direction,
+                     capsuleDistance,
+-                    LayerMaskClass.HighPolyWithTerrainMask,
++                    LayersMaskController.HighPolyWithTerrainMask,
+                     out RaycastHit bodyHit))
+             {
+                 Vector3 raisedBottom = capsuleBottom + Vector3.up * WalkThroughStepAssistLift;
+@@ -37607,7 +37607,7 @@
+                         WalkThroughCapsuleRadius,
+                         direction,
+                         capsuleDistance,
+-                        LayerMaskClass.HighPolyWithTerrainMask,
++                        LayersMaskController.HighPolyWithTerrainMask,
+                         out RaycastHit raisedHit))
+                 {
+                     blocker = raisedHit.collider?.name ?? bodyHit.collider?.name ?? "unknown";
+@@ -37628,7 +37628,7 @@
+                         floorOrigin,
+                         Vector3.down,
+                         WalkThroughFloorProbeDistance,
+-                        LayerMaskClass.HighPolyWithTerrainMask,
++                        LayersMaskController.HighPolyWithTerrainMask,
+                         out RaycastHit floorHit))
+                 {
+                     failure = $"WalkThrough floor probe {index + 1} found no physical floor";
+@@ -57546,7 +57546,7 @@
+             Vector3 linked = mover.PrevSuccessLinkedFrom;
+             float linkedDistance = IsFinite(linked) ? GetPlanarDistance(position, linked) : float.MaxValue;
+             float linkedVertical = IsFinite(linked) ? Mathf.Abs(position.y - linked.y) : float.MaxValue;
+-            bool linkedLocal = FollowerCapabilityHelperRules.UpdateExitAuthorityTopologyRejoin_linkedLocal_49813066_1(mover.LinkedToNavmeshInitially,linkedDistance,ExitAuthorityTopologyRejoinMaxLinkedDistance,linkedVertical,ExitAuthorityMaxNavVertical);
++            bool linkedLocal = FollowerCapabilityHelperRules.UpdateExitAuthorityTopologyRejoin_linkedLocal_49813066_1(mover._linkedToNavmeshInitially,linkedDistance,ExitAuthorityTopologyRejoinMaxLinkedDistance,linkedVertical,ExitAuthorityMaxNavVertical);
+             probe.ExitAuthorityTopologyRejoinLinkedDistance = linkedDistance;
+ 
+             if (linkedLocal)
+@@ -57605,7 +57605,7 @@
+                                 // The runtime metadata exposes an AllowTeleport field alongside an
+                                 // obfuscated method with the same metadata name, so set the field by
+                                 // reflection to avoid a C# member-name ambiguity in the consumer build.
+-                                typeof(BotMover).GetField("AllowTeleport", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
++                                typeof(BotMover).GetField("_allowTeleport", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+                                     ?.FieldInfoSetValue("R1-9666D0107DF7",@probe?.Bot,mover,false);
+                             }
+                             catch { }
+@@ -57624,7 +57624,7 @@
+                 linked = mover.PrevSuccessLinkedFrom;
+                 linkedDistance = IsFinite(linked) ? GetPlanarDistance(probe.Player.Position, linked) : float.MaxValue;
+                 linkedVertical = IsFinite(linked) ? Mathf.Abs(probe.Player.Position.y - linked.y) : float.MaxValue;
+-                linkedLocal = mover.LinkedToNavmeshInitially &&
++                linkedLocal = mover._linkedToNavmeshInitially &&
+                               linkedDistance <= ExitAuthorityTopologyRejoinMaxLinkedDistance &&
+                               linkedVertical <= ExitAuthorityMaxNavVertical;
+                 probe.ExitAuthorityTopologyRejoinLinkedDistance = linkedDistance;
+@@ -61695,7 +61695,7 @@
+                     WalkThroughCapsuleRadius,
+                     direction,
+                     Mathf.Max(0.05f, distance - 0.08f),
+-                    LayerMaskClass.HighPolyWithTerrainMask,
++                    LayersMaskController.HighPolyWithTerrainMask,
+                     out RaycastHit hit))
+             {
+                 blocker = hit.collider?.name ?? "unknown";
+@@ -61709,7 +61709,7 @@
+                     floorOrigin,
+                     Vector3.down,
+                     WalkThroughFloorProbeDistance + 0.5f,
+-                    LayerMaskClass.HighPolyWithTerrainMask,
++                    LayersMaskController.HighPolyWithTerrainMask,
+                     out RaycastHit floorHit))
+             {
+                 failure = "egress exit has no physical floor";
+@@ -68965,7 +68965,7 @@
+                     botPosition = Vec(bot.Position),
+                     playerPosition = bot.GetPlayer == null ? (object)null : Vec(bot.GetPlayer.Position),
+                     moverLinkAnchor = Vec(bot.Mover.PositionOnWayInner),
+-                    moverPreviousLink = Vec(bot.Mover.PrevSuccessLinkedFrom_1),
++                    moverPreviousLink = Vec(bot.Mover._prevSuccessLinkedFrom),
+                     requestedArguments = arguments,
+                     caller = callsite,
+                     action = "traceRejectedNativeTeleportWithoutGrantingMovementAuthority"
+--- RC155/src/Core/PITCompatibilityPolicy.cs
++++ RC156/src/Core/PITCompatibilityPolicy.cs
+@@ -0,0 +1,11 @@
++using System;
++namespace BotTraversal.Core
++{
++    internal static class PITCompatibilityPolicy
++    {
++        internal static bool SupportedStandalone(string version)=>version=="0.9.1"||version=="1.1.1";
++        internal static bool ReviewedFollowBuild(Guid mvid)=>mvid==new Guid("e77f8971-589a-4c6d-bee9-07a778a2b081")||
++            mvid==new Guid("084ae5d2-4ba7-4f08-ad73-d22b300816e8");
++        internal static int CommandClaim(bool readSucceeded,bool present)=>!readSucceeded||present?(int)FollowerCommandType.HoldPosition:0;
++    }
++}
+--- RC155/src/FollowerFriendlyAvoidancePatch.cs
++++ RC156/src/FollowerFriendlyAvoidancePatch.cs
+@@ -11,20 +11,20 @@
+ {
+     internal static class FollowerFriendlyAvoidancePatch
+     {
+-        private static readonly FieldInfo Owner=AccessTools.Field(typeof(GClass492),"BotOwner_0");
++        private static readonly FieldInfo Owner=AccessTools.Field(typeof(BotLocalAvoidance),"_owner");
+         internal static void Apply(Harmony harmony)
+         {
+-            harmony.Patch(AccessTools.Method(typeof(GClass492),"ManualUpdate"),
++            harmony.Patch(AccessTools.Method(typeof(BotLocalAvoidance),"ManualUpdate"),
+                 transpiler:new HarmonyMethod(typeof(FollowerFriendlyAvoidancePatch),nameof(FilterFriendlyPairs)));
+         }
+-        private static bool SkipFriendlyPair(GClass492 context,BotOwner other)
++        private static bool SkipFriendlyPair(BotLocalAvoidance context,BotOwner other)
+         {
+             if(BotTraversalPlugin.PassThroughEnabled?.Value!=true||context==null||other==null)return false;
+             var bot=Owner?.GetValue(context) as BotOwner;
+             return bot!=null&&FollowerEnvironment.Owns(bot)&&FollowerEnvironment.Owns(other)&&
+                 FollowerEnvironment.PassThroughPermitted(bot)&&FollowerEnvironment.PassThroughPermitted(other);
+         }
+-        // Verified SPT4.0.13 loop compares local2.Id with this.BotOwner_0.Id and skips self.
++        // Verified SPT4.0.13 loop compares local2.Id with this._owner.Id and skips self.
+         // Branch to that same loop continuation for a registered friendly pair *before*
+         // method_1 adds reciprocal offsets. Enemy and world collision code stays intact.
+         internal static IEnumerable<CodeInstruction> FilterFriendlyPairs(IEnumerable<CodeInstruction> input)
+--- RC155/src/GenericSoftCollision.cs
++++ RC156/src/GenericSoftCollision.cs
+@@ -33,9 +33,9 @@
+             public readonly List<PomRecord> Extrusions = new List<PomRecord>();
+         }
+         private static readonly FieldInfo HeadExtrusion =
+-            typeof(PlayerOverlapManager).GetField("_headColliderExtrusion", BindingFlags.Instance | BindingFlags.NonPublic);
++            typeof(PlayerOverlapManager).GetField("_headColliderExtrusion", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+         private static readonly FieldInfo CameraExtrusion =
+-            typeof(PlayerOverlapManager).GetField("_cameraColliderExtrusion", BindingFlags.Instance | BindingFlags.NonPublic);
++            typeof(PlayerOverlapManager).GetField("_cameraColliderExtrusion", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+         private static bool Healthy(Player p) => p?.HealthController?.IsAlive == true &&
+             p.CharacterController?.GetCollider() != null;
+         private static string Key(Player a, Player b) =>
+@@ -128,8 +128,8 @@
+             try
+             {
+                 pair.UnityIgnored = Physics.GetIgnoreCollision(ca,cb);
+-                pair.EftAB = EFTPhysicsClass.GetIgnoreCollision(ca,cb);
+-                pair.EftBA = EFTPhysicsClass.GetIgnoreCollision(cb,ca);
++                pair.EftAB = PhysicsExtensions.GetIgnoreCollision(ca,cb);
++                pair.EftBA = PhysicsExtensions.GetIgnoreCollision(cb,ca);
+                 pair.PomAIgnored = pa != null && Physics.GetIgnoreCollision(pa, cb);
+                 pair.PomBIgnored = pb != null && Physics.GetIgnoreCollision(pb, ca);
+                 AddPomExtrusions(pair.Extrusions, a.POM, cb);
+@@ -144,8 +144,8 @@
+             {
+                 if (p.A == null || p.B == null) return;
+                 if (!Physics.GetIgnoreCollision(p.A,p.B)) global::BotTraversal.Core.FollowerControlBackend.PhysicsIgnoreCollision("R1-2B9F76BB391C",null,p.A,p.B,true);
+-                if (!EFTPhysicsClass.GetIgnoreCollision(p.A,p.B) ||
+-                    !EFTPhysicsClass.GetIgnoreCollision(p.B,p.A))
++                if (!PhysicsExtensions.GetIgnoreCollision(p.A,p.B) ||
++                    !PhysicsExtensions.GetIgnoreCollision(p.B,p.A))
+                     global::BotTraversal.Core.FollowerControlBackend.EFTPhysicsClassIgnoreCollision("R1-4A348AA4ECFA",null,p.A,p.B,true);
+                 if (p.PomA != null && !Physics.GetIgnoreCollision(p.PomA,p.B))
+                     global::BotTraversal.Core.FollowerControlBackend.PhysicsIgnoreCollision("R1-75D5E1ADA4B7",null,p.PomA,p.B,true);
+@@ -153,7 +153,7 @@
+                     global::BotTraversal.Core.FollowerControlBackend.PhysicsIgnoreCollision("R1-82E6EB85D12D",null,p.PomB,p.A,true);
+                 foreach (PomRecord record in p.Extrusions)
+                     if (record.Extrusion != null && record.Other != null &&
+-                        !record.Extrusion.method_1(record.Other))
++                        !record.Extrusion.IsColliderIgnored(record.Other))
+                         record.Extrusion.ColliderExtrusionAddIgnoredCollider("R1-4A4845E8CA67",null,record.Other);
+             }
+             catch { /* Respawn and disposal races fail closed. */ }
+@@ -166,7 +166,7 @@
+                 try
+                 {
+                     if (field?.GetValue(pom) is not ColliderExtrusion extrusion) continue;
+-                    bool ignored = extrusion.method_1(other);
++                    bool ignored = extrusion.IsColliderIgnored(other);
+                     records.Add(new PomRecord { Extrusion = extrusion, Other = other, WasIgnored = ignored });
+                 }
+                 catch { }
+@@ -190,7 +190,7 @@
+                 foreach (PomRecord record in p.Extrusions)
+                 {
+                     if (record.Extrusion == null || record.Other == null) continue;
+-                    bool ignored = record.Extrusion.method_1(record.Other);
++                    bool ignored = record.Extrusion.IsColliderIgnored(record.Other);
+                     if (record.WasIgnored && !ignored) record.Extrusion.ColliderExtrusionAddIgnoredCollider("R1-DFF73A094299",null,record.Other);
+                     else if (!record.WasIgnored && ignored) record.Extrusion.ColliderExtrusionRemoveIgnoredCollider("R1-B5A88A7ED132",null,record.Other);
+                 }
+--- RC155/src/LegacyPITCompatibility.cs
++++ RC156/src/LegacyPITCompatibility.cs
+@@ -66,15 +66,16 @@
+             if (runtime == null)
+             {
+                 Type originalPlugin = legacy.GetType("pitTeam.pitFireTeam", false);
+-                bool isOriginalBeta = HasPluginIdentity(originalPlugin, "0.9.1") &&
++                bool isOriginalBeta = HasStandalonePluginIdentity(originalPlugin) &&
+                     legacy.GetType("pitTeam.Modules.BossPlayers", false) != null &&
+                     legacy.GetType("pitTeam.Components.BotFollowerPlayer", false) != null;
+                 if (isOriginalBeta)
+                 {
+                     originalPITWithoutTraversal = true;
+                     InstallOriginalPITCommandReader(legacy);
++                    if(!legacyCommandReaderReady)return;
+                     InstallOriginalPITManualRegroupHook(legacy);
+-                    Core.Logger.LogInfo("[Legacy PIT] Original beta 0.9.1 detected: no embedded Traversal runtime; enabling BT learned-route Follow consumer. Original PIT keeps combat, commands and F4.");
++                    Core.Logger.LogInfo("[PIT compatibility] Supported standalone PIT detected (0.9.1 / 1.1.1); learned-route Follow integration ready. PIT retains combat, explicit commands and manual regroup.");
+                 }
+                 return;
+             }
+@@ -132,6 +133,12 @@
+             }
+         }
+ 
++        private static bool HasStandalonePluginIdentity(Type plugin)
++            => plugin!=null&&plugin.GetCustomAttributesData().Any(attribute=>
++                attribute.AttributeType.FullName=="BepInEx.BepInPlugin"&&attribute.ConstructorArguments.Count>=3&&
++                string.Equals(attribute.ConstructorArguments[0].Value as string,"xyz.pit.fireteam",StringComparison.Ordinal)&&
++                PITCompatibilityPolicy.SupportedStandalone(attribute.ConstructorArguments[2].Value as string));
++
+         private static bool HasPluginIdentity(Type plugin, string version)
+         {
+             return plugin != null && plugin.GetCustomAttributesData().Any(attribute =>
+@@ -154,7 +161,12 @@
+                 MethodInfo lookup = bossPlayers?.GetMethod("GetFollowerByProfileId", Flags, null, new[] { typeof(string) }, null);
+                 MethodInfo peek = followerType?.GetMethod("TryPeekActiveCommand",
+                     BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+-                if (lookup == null || peek == null || peek.GetParameters().Length != 3)
++                var parameters=peek?.GetParameters();
++                if (lookup == null || followerType==null || !followerType.IsAssignableFrom(lookup.ReturnType) ||
++                    peek == null || peek.ReturnType!=typeof(bool) || parameters.Length != 3 ||
++                    !parameters[0].ParameterType.IsByRef || !parameters[0].ParameterType.GetElementType().IsEnum ||
++                    parameters[1].ParameterType!=typeof(Vector3).MakeByRefType() ||
++                    parameters[2].ParameterType!=typeof(float).MakeByRefType())
+                 {
+                     Core.Logger.LogWarning("[Legacy PIT] No command-reader contract; BT's independent Follow bridge will remain disabled to protect Hold/Move orders.");
+                     originalPITWithoutTraversal = false;
+@@ -168,9 +180,9 @@
+                         if (follower == null) return 0;
+                         object[] args = { null, Vector3.zero, 0f };
+                         bool present = peek.MethodBaseInvoke("R1-51EAFE1DF656",null,follower,args) is bool result && result;
+-                        return present ? (int)FollowerCommandType.HoldPosition : 0;
++                        return PITCompatibilityPolicy.CommandClaim(true,present);
+                     }
+-                    catch { return 0; }
++                    catch { return PITCompatibilityPolicy.CommandClaim(false,false); }
+                 });
+                 legacyCommandReaderReady = true;
+             }

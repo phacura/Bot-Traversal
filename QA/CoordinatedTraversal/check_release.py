@@ -1,6 +1,6 @@
 from pathlib import Path
 import json,hashlib,collections
-q=Path(__file__).resolve().parent;r=q.parents[1];s=r/'BotTraversal-0.9.0-BETA-SOURCE'
+q=Path(__file__).resolve().parent;r=q.parents[1];s=r/'BotTraversal-1.0.1-SOURCE'
 j=lambda p:json.loads(p.read_text(encoding='utf-8-sig'));sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest().upper()
 c=j(q/'reviewed-contract.json');a=j(q/'baseline-il.json');b=j(q/'current-il.json');checks=[]
 def check(v,n):

@@ -1,12 +1,12 @@
-param([string]$Dll,[string]$Output=(Join-Path $PSScriptRoot 'native-avoidance-transform.json'))
+﻿param([string]$Dll,[string]$Output=(Join-Path $PSScriptRoot 'native-avoidance-transform.json'))
 $ErrorActionPreference='Stop'
-$game='D:/Games/SIT_DIR/SPT AKI 4.0.13/EscapeFromTarkov_Data/Managed'
-$core='D:/Games/SIT_DIR/SPT AKI 4.0.13/BepInEx/core'
+$game='D:/Games/SIT_DIR/SPT AKI 4.1.6/EscapeFromTarkov_Data/Managed'
+$core='D:/Games/SIT_DIR/SPT AKI 4.1.6/BepInEx/core'
 # Resolve dependencies in managed code, with a re-entry guard. PowerShell command
 # discovery inside AssemblyResolve can recursively load its own cmdlet assemblies.
 $resolvedDll=(Resolve-Path -LiteralPath $Dll).Path
 $nativeSha=(Get-FileHash -LiteralPath (Join-Path $game 'Assembly-CSharp.dll') -Algorithm SHA256).Hash
-if($nativeSha -ne 'FAEF6F0B9F142F9D047495EC3DCCFD5D6974AC048368DC7045955CF54B117982'){throw 'native game build differs from reviewed SPT4.0.13 artifact'}
+if($nativeSha -ne 'EE25CEE1259777B38ED8B3E7841FDC2DB3C98540B1469FA539B1FF183476E436'){throw 'native game build differs from reviewed SPT4.1.6 artifact'}
 Add-Type -TypeDefinition @'
 using System;
 using System.IO;
@@ -33,7 +33,7 @@ $resolve=[CoordinationMetadataResolver]::Handler
 try{
  [Reflection.Assembly]::LoadFrom((Join-Path $core '0Harmony.dll'))|Out-Null
  $gameAssembly=[Reflection.Assembly]::LoadFrom((Join-Path $game 'Assembly-CSharp.dll'))
- $native=$gameAssembly.GetType('GClass492').GetMethod('ManualUpdate')
+ $native=$gameAssembly.GetType('BotLocalAvoidance').GetMethod('ManualUpdate')
  $original=[HarmonyLib.PatchProcessor]::GetOriginalInstructions($native)
  $old=@($original);$site=-1;$branch=-1
  for($i=0;$i+7 -lt $old.Count;$i++){
@@ -56,5 +56,5 @@ try{
  $file=(Resolve-Path -LiteralPath $Dll).Path
  $sha=(Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash
  @{passed=$true;checks=6;dllSha256=$sha;nativeGameSha256=(Get-FileHash -LiteralPath (Join-Path $game 'Assembly-CSharp.dll') -Algorithm SHA256).Hash;originalInstructions=$old.Count;filteredInstructions=$result.Count;nativeCodeExecuted=$false;gameLaunched=$false;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 -LiteralPath $Output
- Write-Output "PASS actual SPT4.0.13 avoidance IL transformed by actual plugin; six invariants; no game method executed"
+ Write-Output "PASS actual SPT4.1.6 avoidance IL transformed by actual plugin; six invariants; no game method executed"
 }finally{[AppDomain]::CurrentDomain.remove_AssemblyResolve($resolve)}

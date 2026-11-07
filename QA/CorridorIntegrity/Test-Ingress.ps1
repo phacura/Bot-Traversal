@@ -154,7 +154,7 @@ $f=M 'IsCapabilityRetryWalking';Check ((C $f 'NeedsCapabilityEntryRun').Count -e
 $f=M 'OnBotOwnerUpdate';Check ((C $f 'ApplyCapabilitySequenceWalking').Count -eq 1 -and (C $f 'ApplyCapabilitySequenceWalking')[0].Offset -lt (C $f 'TickCapabilityFullRouteRetry')[0].Offset) 'inherited Sprint is neutralized before route processing'
 foreach($name in @('PatchBotOwnerIngressSpeed','PatchBotMoverIngressSpeed')){$f=$patch.Methods|Where-Object Name -eq $name|Select-Object -First 1;Check ((C $f 'LimitCapabilityIngressSpeed').Count -eq 1) ('native speed write cannot rearm chase speed '+$name)}
 $f=M 'TryGetCapabilityCurrentJumpGait';Check ((C $f 'TryGetCapabilityRouteSprint').Count -eq 1) 'Jump acceleration requires alignment and adequate run-up'
-$f=M 'ApplyCollisionActivePhysicalRouteMotion';Check ((C $f 'TryGetCapabilityCurrentJumpGait').Count -eq 1 -and (C $f 'CommitCapabilityRouteRetryZeroInput').Count -eq 2) 'Jump alignment and explicit zero manual frame both clear old input'
+$f=M 'ApplyCollisionActivePhysicalRouteMotion';Check ((C $f 'TryGetCapabilityCurrentJumpGait').Count -eq 1 -and (C $f 'CommitCapabilityRouteRetryZeroInput').Count -eq 3) 'Jump alignment, explicit zero frame and posture acquisition all clear old input'
 $f=M 'TickCapabilityFailureSequence';Check ((C $f 'StrategyExpired').Count -eq 1 -and (C $f 'ApplyCapabilitySequenceWalking')[0].Offset -lt (C $f 'DriveCapabilityStrategyApproach')[0].Offset) 'strategy gait precedes approach; only measured progress extends no-progress budget'
 $f=M 'TryValidateCapabilityPortalApproachPath';Check ((C $f 'TryGetCapabilityCompletedPrefixBoundary').Count -eq 1 -and (C $f 'PrefixPath').Count -eq 1) 'path preservation uses resolved predecessor geometry'
 $f=M 'MaintainCapabilityInputBeforeNativeConsumer';Check ((C $f 'TryDispatchCapabilityJumpAtNativeUpdate').Count -eq 1 -and (C $f 'TryDispatchCapabilityJumpAtNativeUpdate')[0].Offset -lt (C $f 'TryMaintainCapabilityNativeInput')[0].Offset) 'physical Jump dispatch sampled before native movement'
@@ -232,7 +232,7 @@ $f=M 'TryGetCapabilityPortalApproachTarget';Check ((C $f 'IsCapabilityPassageInF
 $f=M 'IsCapabilityPassageInFlight';foreach($n in @('PassageInFlight','PeekExactGeneration')){Check ((C $f $n).Count -eq 1) ('exact current corridor progress '+$n)}
 $f=M 'DriveCapabilityStrategyApproach';foreach($n in @('IsCapabilityRouteRetrySafe','HasActiveTraversalProbe','IsCapabilityPortalWaiting','Owns','LocalApproachPath','PrefixPath','TryEnterBoundPhysicalMotion','ApplyCollisionActivePhysicalRouteMotion','CommitCapabilityRouteRetryZeroInput')){Check ((C $f $n).Count -gt 0) ('selected strategy drives or holds under same mission '+$n)}
 $f=$bridge.Methods|Where-Object Name -eq 'Tick'|Select-Object -First 1;Check ((C $f 'HasCapabilityFailureStrategy').Count -eq 1 -and (C $f 'HasCapabilityFailureStrategy')[0].Offset -lt (C $f 'TryGetCapabilityPortalApproachTarget')[0].Offset) 'independent Follow bridge cannot fight pending strategy driver'
-$f=M 'ApplyCollisionActivePhysicalRouteMotion';Check ((C $f 'WorldInput').Count -eq 1 -and (C $f 'WorldInput')[0].Offset -lt (C $f 'method_17')[0].Offset) 'manual route input uses actual current player frame'
+$f=M 'ApplyCollisionActivePhysicalRouteMotion';Check ((C $f 'WorldInput').Count -eq 1 -and (C $f 'WorldInput')[0].Offset -lt (C $f 'TurnMove')[0].Offset) 'manual route input uses actual current player frame'
 $f=M 'ReconcileCapabilityRetiredProbeConsumer';Check ((C $f 'CommitCapabilityRouteRetryZeroInput').Count -eq 1) 'terminal no-path consumer clears old forward input after actual completion'
 $f=M 'TryBeginLearningV331NativeGroundContinuation';Check ((C $f 'ContinuationBudget').Count -eq 1) 'Jump deadline is issued from remaining real exit distance'
 $f=M 'UpdateLearningV331NativeGroundContinuation';foreach($n in @('ExitOverrun','LandingCorrection')){Check ((C $f $n).Count -eq 1) ('bounded current landing correction '+$n)}
@@ -299,13 +299,13 @@ $f=M 'TryYieldCapabilityCompletedFollow';Check ((C $f 'CalculateStrictPath').Cou
 
 $f=M 'TryDriveCapabilityGroundEntryLead';Check ((C $f 'EntryTurnHold').Count -eq 1 -and (C $f 'EntryTurnHold')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'grounded WT lead chooses hold before physical publication'
 $f=M 'TryDriveCapabilityObstacleEntry';foreach($n in @('SideCenterTurn','ObstacleEntrySpeed')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) ('native obstacle precision before movement '+$n)}
-Check ($m.Assembly.Version.ToString() -eq '0.9.0.0') 'Beta assembly version 0.9.0.0'
+Check ($m.Assembly.Version.ToString() -eq '1.0.1.0') 'Beta assembly version 0.9.0.0'
 $plugin=$m.GetTypes()|Where-Object Name -eq 'BotTraversalPlugin';$meta=$plugin.CustomAttributes|Where-Object {$_.AttributeType.FullName -eq 'BepInEx.BepInPlugin'}
-Check ($meta.ConstructorArguments[2].Value.ToString() -eq '0.9.0') 'Beta BepInEx/F12 version 0.9.0'
+Check ($meta.ConstructorArguments[2].Value.ToString() -eq '1.0.1') 'Beta BepInEx/F12 version 0.9.0'
 $fileVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyFileVersionAttribute'}
-Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0.0') 'Beta Windows DLL file version'
+Check ($fileVersion.ConstructorArguments[0].Value.ToString() -eq '1.0.1.0') 'Beta Windows DLL file version'
 $infoVersion=$m.Assembly.CustomAttributes|Where-Object {$_.AttributeType.Name -eq 'AssemblyInformationalVersionAttribute'}
-Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '0.9.0-beta.18+RC155') 'Beta release identity retained in assembly metadata'
+Check ($infoVersion.ConstructorArguments[0].Value.ToString() -eq '1.0.1+RC158.SPT416') 'Beta release identity retained in assembly metadata'
 
 $f=M 'TryDriveCapabilityObstacleEntry';Check ((C $f 'ObstacleNear').Count -eq 1 -and (C $f 'ObstacleNear')[0].Offset -lt (C $f 'ApplyCollisionActivePhysicalRouteMotion')[0].Offset) 'near entry selects precision before sprint flags and shared physical governor'
 
@@ -551,7 +551,7 @@ $f=M 'TrySelectCapabilityWalkingRescue';Check (@($f.Body.Instructions|Where-Obje
 $f=M 'TickCapabilityPortalWait';foreach($n in @('portalOwnedByOtherBot','oneSecondCompletionCooldown','nearerEligibleBot','admissionNotGranted')){Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq $n}).Count -eq 1) ('queue diagnostics distinguish actual admission wait '+$n)}
 $f=M 'FinalizeActiveWalkThroughEpisode';Check ((C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry').Count -eq 2) 'both finalized recorded WT branches publish current physical lane before alias selects old parent geometry'
 Check ((C $f 'RegisterTraversalEpisodeForEdge')[0].Offset -lt (C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry')[0].Offset -and (C $f 'RegisterTraversalEpisodeForEdge')[-1].Offset -lt (C $f 'ApplyLearningV372CurrentEpisodeWalkThroughExecutionGeometry')[-1].Offset) 'current lane binding consumes the actual registered episode identity'
-$f=($m.GetTypes()|Where-Object Name -eq 'BotTraversalPlugin').Methods|Where-Object Name -eq 'Awake';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'Bot Traversal 0.9.0 Beta 18 loaded: V2-RC155-Beta18'}).Count -eq 1) 'startup human Beta label matches release marker'
+$f=($m.GetTypes()|Where-Object Name -eq 'BotTraversalPlugin').Methods|Where-Object Name -eq 'Awake';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'Bot Traversal 1.0.1 loaded: V2-RC158-SPT416'}).Count -eq 1) 'startup human Beta label matches release marker'
 $f=M 'TryGetCapabilityRouteSprint';Check ((C $f 'WalkingGaitCorrection').Count -eq 1) 'only entry precision can force Run; in-passage Sprint intent survives bends'
 $f=M 'TryPublishLearningV414PathlessNativeInputLease';foreach($n in @('WalkingTurnSpeed','NeedsCapabilityWalkThroughPrecision')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -lt (C $f 'TryCommitV2ProbePhysicalMotion')[-1].Offset) ('predictive bend tapers existing native Sprint speed before same bound writer '+$n)}
 $f=M 'ApplyCollisionActivePhysicalRouteMotion';foreach($n in @('WalkingTurnSpeed','NeedsCapabilityWalkThroughPrecision')){Check ((C $f $n).Count -eq 1 -and (C $f $n)[0].Offset -gt (C $f 'TryGetCapabilityRouteSprint')[0].Offset -and (C $f $n)[0].Offset -lt (C $f 'BotOwnerSetTargetMoveSpeed')[0].Offset) ('central Sprint full-speed restoration cannot overwrite finite WT envelope '+$n)}
@@ -570,8 +570,61 @@ foreach($n in @('SaveLearningV31NativeProvenStore','SaveLearningV322PersistentSk
 $f=M 'RegisterTraversalEpisodeForEdge';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'edgeMissingBeforeEpisodePublication'}).Count -eq 1) 'publication rejects orphan definition with explicit reason'
 $f=M 'CreateFollowerRouteMissionStep';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'recordedEpisodeDefinitionMissing'}).Count -eq 1) 'failed mission construction reports actual missing definition'
 $f=M 'CanDiscardCapabilityTraversalEdge';Check ((C $f 'CanDiscard')[0].Offset -lt (C $f 'IsTraversalEdgeActivelyReferenced')[0].Offset) 'protected native and fresh definitions short-circuit before live mission graph lookup'
+# RC156 actual 4.1.6 engine bindings and 1.1.1 original PIT integration.
+$pitCompat=($m.GetTypes()|Where-Object Name -eq 'LegacyPITCompatibility');$f=$pitCompat.Methods|Where-Object Name -eq 'TryAttach';Check ((C $f 'HasStandalonePluginIdentity').Count -eq 1 -and (C $f 'HasStandalonePluginIdentity')[0].Offset -lt (C $f 'InstallOriginalPITCommandReader')[0].Offset) 'reviewed standalone PIT identity precedes any command or manual hook'
+$f=($m.GetTypes()|Where-Object Name -eq 'FollowerCapabilityFollowGaitPatch').Methods|Where-Object Name -eq 'Apply';Check ((C $f 'ReviewedFollowBuild').Count -eq 1) 'ordinary follow handoff admits actual reviewed PIT1.1.1 MVID'
+$identityReaders=@($pitCompat.NestedTypes|ForEach-Object Methods|Where-Object{$_.Name -like '*HasStandalonePluginIdentity*'});Check (@($identityReaders|Where-Object{(C $_ 'SupportedStandalone').Count -eq 1}).Count -eq 1) 'plugin attribute reader uses exact supported version policy'
+$commandReaders=@($pitCompat.NestedTypes|ForEach-Object Methods|Where-Object{$_.Name -like '*InstallOriginalPITCommandReader*'});Check (@($commandReaders|Where-Object{(C $_ 'CommandClaim').Count -eq 2}).Count -eq 1) 'explicit and failed PIT command reads both use guarded ownership policy'
+$f=($m.GetTypes()|Where-Object Name -eq 'FollowerTraversalTestBotMoverBodyRelinkPatch').Methods|Where-Object Name -eq 'GetTargetMethod';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'CastFromPos'}).Count -eq 1) 'body projection barrier targets renamed native CastFromPos'
+$f=($m.GetTypes()|Where-Object Name -eq 'FollowerTraversalTestMotionRelinkPatch').Methods|Where-Object Name -eq 'GetTargetMethod';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldstr' -and $_.Operand -eq 'OnMotionApplied'}).Count -eq 1) 'motion integration barrier targets actual BotMoverImpostor callback'
+$f=($m.GetTypes()|Where-Object Name -eq 'FollowerCapabilityFrontierPatch').Methods|Where-Object Name -eq 'Apply';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldtoken' -and $_.Operand.FullName -eq 'EFT.ClientPlayerMovementContext'}).Count -eq 1) 'frontier includes renamed client movement context override'
+$f=($m.GetTypes()|Where-Object Name -eq 'GenericSoftCollision').Methods|Where-Object Name -eq '.cctor';Check (@($f.Body.Instructions|Where-Object{$_.IsLdcI4() -and $_.GetLdcI4Value() -eq 52}).Count -ge 2) 'extrusion discovery covers actual public and historical private collider fields'
+$f=($m.GetTypes()|Where-Object Name -eq 'FollowerControlBackend').Methods|Where-Object Name -eq 'SetGClass2679Func_0';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq '_isAutoVaultingSettingEnable'}).Count -eq 1) 'existing reviewed vault gate writes renamed native auto-vault callback'
+$dependency=$plugin.CustomAttributes|Where-Object{$_.AttributeType.FullName -eq 'BepInEx.BepInDependency' -and $_.ConstructorArguments[0].Value.ToString() -eq 'xyz.pit.fireteam'};Check ($null -ne $dependency) 'PIT initializes before optional compatibility hooks'
+# RC157 posture contract: production authoring, persistence, native geometry and existing input owner.
+$f=M 'CaptureBreadcrumb';Check ((C $f 'Capture').Count -eq 1) 'crouch demonstration is captured independently of NavMesh failure';Check ((C $f 'CompleteCapabilityPostureEpisode').Count -eq 1) 'first standing witness terminates finite crouch episode'
+$f=M 'ExtendActiveWalkThroughEpisode';Check ((C $f 'Required').Count -eq 1) 'builder excludes prone and preserves crouch posture';Check ((C $f 'Same').Count -eq 1) 'builder cannot merge standing and crouch posture contracts'
+$f=M 'FinalizeActiveWalkThroughEpisode';Check ((C $f 'Crouched').Count -ge 2) 'cheap NavMesh bypass and microterrain filters cannot erase authored crouch'
+foreach($n in @('LearnedTraversalEdge','PersistentTraversalLink','PlayerTraversalMotionProfile','WalkThroughEpisodeBuilder')){
+ $type=$r.NestedTypes|Where-Object Name -eq $n;$ctor=$type.Methods|Where-Object Name -eq '.ctor'
+ Check (@($ctor.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'RequiredPose'}).Count -eq 1) ($n+' explicitly defaults old data to standing')
+}
+foreach($n in @('SaveLearningV31NativeProvenStore','SavePersistentTraversalLinks')){
+ $writers=@($r.NestedTypes|ForEach-Object Methods|Where-Object{$_.Name -like ('*'+$n+'*') -and $_.HasBody})
+ Check (@($writers|Where-Object{@($_.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'RequiredPose'}).Count -eq 1}).Count -eq 1) ($n+' serializes posture with existing proven identity')
+}
+foreach($n in @('LoadLearningV31NativeProvenStore','LoadPersistentTraversalLinks')){
+ $f=M $n;Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'RequiredPose'}).Count -eq 1) ($n+' restores sanitized posture')
+}
+$f=M 'GetCapabilityWalkingPosture';Check ((C $f 'Resolve').Count -eq 1 -and (C $f 'GetCapabilityPostureEdge').Count -eq 1) 'one posture resolver uses existing active origin'
+$f=M 'GetCapabilityPostureEdge';Check ((C $f 'IsProbeLifecycleCurrent').Count -eq 1 -and (C $f 'TryGetActiveFollowerRouteMission').Count -eq 1) 'retired probe and route cannot retain crouch ownership'
+$f=M 'ApplyCollisionActivePhysicalRouteMotion';Check ((C $f 'GetCapabilityWalkingPosture')[0].Offset -lt (C $f 'BotOwnerSetPose')[0].Offset) 'contract resolves before existing pose writer';Check ((C $f 'BotOwnerSetPose')[0].Offset -lt (C $f 'TryApplyMeasuredGroundDelivery')[0].Offset) 'native path delivery cannot bypass pose application';Check ((C $f 'BotMoverSprint')[0].Offset -lt (C $f 'TryApplyMeasuredGroundDelivery')[0].Offset) 'sprint is cleared before native ground path takes ownership';Check ((C $f 'CommitCapabilityRouteRetryZeroInput').Count -eq 3) 'posture acquisition reuses bounded zero input rather than standing movement'
+$f=M 'GetCapabilityCorridorCapsule';Check ((C $f 'CalculatePoseLevelValues').Count -eq 1) 'query capsule uses native EFT pose formula';Check ((C $f 'set_height').Count -eq 0 -and (C $f 'IgnoreCollision').Count -eq 0) 'posture changes query envelope without resizing body or disabling geometry'
+$f=M 'TryValidateWalkThroughCorridor';Check ((C $f 'GetCapabilityCorridorCapsule').Count -eq 1) 'WT geometry validates the demonstrated posture'
+$f=M 'UpdateWalkThroughProbe';Check ((C $f 'GetCapabilityProbePosture').Count -eq 2) 'live walking pose and sprint paths obey posture'
+$f=M 'BeginWalkThroughProbe';Check ((C $f 'GetCapabilityProbePosture').Count -eq 1) 'WT begins with crouch rather than forced stand'
+$f=M 'SanitizeTraversalPersistenceAfterLoad';Check ((C $f 'Same').Count -eq 1) 'sanitizer cannot merge different posture identities'
+$f=M 'TryCaptureLearningV314ReverseKnownWalkThroughRouteFact';Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.Name -eq 'RequiredPose'}).Count -eq 1) 'reverse WT retains posture requirement'
+$proof=@($r.NestedTypes|ForEach-Object Methods|Where-Object{$_.Name -like '*GetCapabilityWalkingRecoveryProof*'});Check (@($proof|Where-Object{(C $_ 'Crouched').Count -eq 1}).Count -eq 1) 'player crouch forbids actuator rescue without inventing Native proof'
+$identity=@($r.NestedTypes|ForEach-Object Methods|Where-Object{$_.Name -like '*RememberLearnedTraversalEdge*'});Check (@($identity|Where-Object{(C $_ 'Same').Count -eq 1}).Count -eq 2) 'fresh and proven matching keep posture identities distinct'
+$f=M 'IsLearningV349CurrentRaidOrdinaryWalkThroughDisproof';Check ((C $f 'Crouched').Count -eq 1) 'NavMesh continuity cannot disprove overhead posture'
+
+Check (@($proof|Where-Object{@($_.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'ldfld' -and $_.Operand.Name -eq 'EdgeId'}).Count -eq 2}).Count -eq 1) 'unproven crouch recovery proof belongs to exact original edge, not a nearby unproven template'
+# RC158: the live wall limiter, local fallback and validator share the same native query shape.
+foreach($n in @('TryConstrainCapabilityWalkThroughTarget','TryGetCapabilitySupportedLocalAim','TryValidatePostTraversalEgressCorridor')){
+ $f=M $n;Check ((C $f 'GetCapabilityCorridorCapsule').Count -eq 1) ($n+' cannot retain a separate standing-only capsule')
+}
+$f=M 'GetCapabilityCorridorCapsule';Check ((C $f 'QueryCapsule').Count -eq 1) 'native envelope and contact skin use the one value policy'
+$f=M 'CloneWalkThroughEpisode';Check ((C $f 'Normalize').Count -eq 1) 'snapshot preserves sanitized posture rather than constructor standing default'
+$builder=$r.NestedTypes|Where-Object Name -eq 'WalkThroughEpisodeBuilder'
+foreach($field in $builder.Fields){Check (@($f.Body.Instructions|Where-Object{$_.OpCode.Name -eq 'stfld' -and $_.Operand.FullName -eq $field.FullName}).Count -eq 1) ('snapshot copies every builder field including future contracts '+$field.Name)}
+$f=M 'MergeRejectedNaturalDropIntoWalkThrough';Check ((C $f 'MergeSnapshot').Count -eq 1) 'rejected airborne movement respects posture boundaries';Check ((C $f 'IsCapabilityWalkThroughSnapshotPublished').Count -eq 1) 'published episode cannot be resurrected by a stale snapshot'
+$f=M 'CaptureBreadcrumb';Check ((C $f 'HoldDropBoundary').Count -eq 1) 'pending floor flicker keeps the existing episode until drop disposition'
+$f=M 'FinalizeCapabilityWalkThroughSnapshot';Check ((C $f 'IsCapabilityWalkThroughSnapshotPublished').Count -eq 1) 'all terminal snapshot restores share publication guard';Check ((C $f 'CloneWalkThroughEpisode').Count -eq 1) 'terminal snapshot preserves contract';Check ((C $f 'FinalizeActiveWalkThroughEpisode').Count -eq 1) 'terminal snapshot uses existing publication lifecycle'
+$f=M 'UpdateNaturalDropDownCandidate';Check ((C $f 'FinalizeCapabilityWalkThroughSnapshot').Count -eq 5) 'explicit action, timeout, known drop, new drop and rejected major drop all use guarded snapshot finalization'
+
 @{passed=$true;checks=$checks;dllSha256=(Get-FileHash $Dll -Algorithm SHA256).Hash;physicsSimulated=$false}|ConvertTo-Json|Set-Content -Encoding UTF8 $Output
-Write-Output "PASS $checks 0.9.0 Beta18 actual DLL sequence checks"
+Write-Output "PASS $checks 1.0.1 RC158 actual DLL sequence checks"
 
 } finally {$m.Dispose()}
 

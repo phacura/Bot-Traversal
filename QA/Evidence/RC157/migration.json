@@ -1,0 +1,440 @@
+{
+  "inputs": {
+    "events": 5577,
+    "summaries": 19,
+    "nativePhysical": 13,
+    "failed": 6,
+    "lowPoseBreadcrumbs": 49,
+    "crouchDispatchEvents": 0,
+    "inputs": {
+      "20261106-220408-596-Interchange-g2.jsonl": "B6E6E8F501C3E344D1EC5F2332873605CED3A074BAAA3A163DE55150DCCF7E60",
+      "event-counts.json": "FC6FD9EC55A9821BDADA5CA847CFE6D5579A91C3AD9E447C5A6A851ECEA21850",
+      "Interchange.nativeproven.json": "11C37442F3050660DB68348F98B815AF7481E241A017D0DC7C5D4DCB2E9F331A",
+      "Interchange.skillevidence.json": "DF245ED5917B71067206FF7332D9E4687526FC343A4E77EAEE247664C1FB6016",
+      "LogOutput-supplement.log": "9DCD91D777A6A66EBD88C799D37D7E36A637632937AF90918BE3C68D7584D787",
+      "LogOutput.log": "9DCD91D777A6A66EBD88C799D37D7E36A637632937AF90918BE3C68D7584D787"
+    },
+    "failures": [
+      {
+        "attemptId": 1,
+        "parentAttemptId": 0,
+        "edgeId": 1,
+        "templateEdgeId": 0,
+        "kind": "Climb",
+        "requestSource": "learnedTraversalCommitment",
+        "selectedExecutor": "Native",
+        "actualExecutor": "Native",
+        "nativeAttempted": true,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": true,
+        "physicalCrossing": false,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": false,
+        "stableExit": false,
+        "topologyRejoined": false,
+        "zeroShot": false,
+        "nativePhysicalSuccess": false,
+        "executionTruth": "Unproven",
+        "completionMode": "Native",
+        "success": false,
+        "failureStage": "Landing",
+        "reason": "implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeLandingContinuation",
+        "elapsed": 2.19377136
+      },
+      {
+        "attemptId": 2,
+        "parentAttemptId": 0,
+        "edgeId": 1,
+        "templateEdgeId": 0,
+        "kind": "Climb",
+        "requestSource": "learnedTraversalCommitment",
+        "selectedExecutor": "Native",
+        "actualExecutor": "Native",
+        "nativeAttempted": true,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": true,
+        "physicalCrossing": false,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": false,
+        "stableExit": false,
+        "topologyRejoined": false,
+        "zeroShot": false,
+        "nativePhysicalSuccess": false,
+        "executionTruth": "Unproven",
+        "completionMode": "Native",
+        "success": false,
+        "failureStage": "Landing",
+        "reason": "implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeLandingContinuation",
+        "elapsed": 2.187851
+      },
+      {
+        "attemptId": 12,
+        "parentAttemptId": 0,
+        "edgeId": 5,
+        "templateEdgeId": 0,
+        "kind": "WalkThrough",
+        "requestSource": "learningV341FreshTraversalPartialFrontierBridge",
+        "selectedExecutor": "Auto",
+        "actualExecutor": "Legacy",
+        "nativeAttempted": false,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": false,
+        "physicalCrossing": false,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": false,
+        "stableExit": false,
+        "topologyRejoined": false,
+        "zeroShot": false,
+        "nativePhysicalSuccess": false,
+        "executionTruth": "Unproven",
+        "completionMode": "Legacy",
+        "success": false,
+        "failureStage": "Executor",
+        "reason": "implicitUnregister:forceRelease:sequenceAttemptFailed:genericWatchdogCurrentTypedAttemptStalled",
+        "elapsed": 3.172577
+      },
+      {
+        "attemptId": 13,
+        "parentAttemptId": 0,
+        "edgeId": 5,
+        "templateEdgeId": 3,
+        "kind": "Climb",
+        "requestSource": "capabilitySequenceOwnedDispatch",
+        "selectedExecutor": "Native",
+        "actualExecutor": "Native",
+        "nativeAttempted": true,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": true,
+        "physicalCrossing": true,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": false,
+        "stableExit": false,
+        "topologyRejoined": false,
+        "zeroShot": true,
+        "nativePhysicalSuccess": false,
+        "executionTruth": "Unproven",
+        "completionMode": "Native",
+        "success": false,
+        "failureStage": "Executor",
+        "reason": "implicitUnregister:forceRelease:sequenceAttemptFailed:nativeRecovery:nativeTraversalNoProgress",
+        "elapsed": 1.77722168
+      },
+      {
+        "attemptId": 14,
+        "parentAttemptId": 0,
+        "edgeId": 6,
+        "templateEdgeId": 0,
+        "kind": "WalkThrough",
+        "requestSource": "learningV341FreshTraversalPartialFrontierBridge",
+        "selectedExecutor": "Auto",
+        "actualExecutor": "Legacy",
+        "nativeAttempted": false,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": false,
+        "physicalCrossing": false,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": false,
+        "stableExit": false,
+        "topologyRejoined": false,
+        "zeroShot": false,
+        "nativePhysicalSuccess": false,
+        "executionTruth": "Unproven",
+        "completionMode": "Legacy",
+        "success": false,
+        "failureStage": "Executor",
+        "reason": "implicitUnregister:forceRelease:sequenceAttemptFailed:walkThroughSolidGeometryQuarantined:Cargo_Gazel_BALLISTIC_Metalthin",
+        "elapsed": 1.32449341
+      },
+      {
+        "attemptId": 15,
+        "parentAttemptId": 0,
+        "edgeId": 6,
+        "templateEdgeId": 3,
+        "kind": "Climb",
+        "requestSource": "capabilitySequenceOwnedDispatch",
+        "selectedExecutor": "Native",
+        "actualExecutor": "Native",
+        "nativeAttempted": true,
+        "assistedAttempted": false,
+        "teleportUsed": false,
+        "nativeActuatorTriggered": true,
+        "physicalCrossing": true,
+        "assistedPhysicalCompletion": false,
+        "teleportRescue": false,
+        "forcedEgressUsed": false,
+        "forcedEgressDistance": 0.0,
+        "cleanSuccess": false,
+        "stableExit": false,
+        "topologyRejoined": false,
+        "zeroShot": true,
+        "nativePhysicalSuccess": false,
+        "executionTruth": "Unproven",
+        "completionMode": "Native",
+        "success": false,
+        "failureStage": "Executor",
+        "reason": "implicitUnregister:forceRelease:sequenceAttemptFailed:localRescueSemanticHeightUnresolved",
+        "elapsed": 1.499939
+      }
+    ],
+    "actualCrouchPairs": 17
+  },
+  "installedDependencies": {
+    "D:\\Games\\SIT_DIR\\SPT AKI 4.1.6\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll": "EE25CEE1259777B38ED8B3E7841FDC2DB3C98540B1469FA539B1FF183476E436",
+    "D:\\Games\\SIT_DIR\\SPT AKI 4.1.6\\BepInEx\\plugins\\pitFireTeam\\pitFireTeam.dll": "1FC038078F70BA8A8F5BF4FA1A2ADE3CBEAD20CE0BC391628721989D5DA47846"
+  },
+  "fieldChanges": {
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::b": {
+      "before": "Public|",
+      "after": null
+    },
+    "System.String closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::normalizedKind": {
+      "before": null,
+      "after": "Public|"
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::b": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<existingProgressWatchdog>j__TPar anon[requestedPose,actualPose,nativeActuatorAllowed,existingProgressWatchdog]`4::<existingProgressWatchdog>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean> closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::sameGeometry": {
+      "before": "Public|",
+      "after": null
+    },
+    "<nativeActuatorAllowed>j__TPar anon[requestedPose,actualPose,nativeActuatorAllowed,existingProgressWatchdog]`4::<nativeActuatorAllowed>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<end>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<end>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<nativeSuccessRecorded>j__TPar anon[requestedPose,actualPose,sprint,kind,body,nativeSuccessRecorded]`6::<nativeSuccessRecorded>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/WalkThroughEpisodeBuilder::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/PersistentTraversalLink::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::rawStart": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<requestedPose>j__TPar anon[requestedPose,actualPose,sprint,kind,body,nativeSuccessRecorded]`6::<requestedPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::a": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<end>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<end>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<directDistance>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<directDistance>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime closure[GetCapabilityProbePosture|probe:BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime]::probe": {
+      "before": null,
+      "after": "Public|"
+    },
+    "BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep closure[GetCapabilityPostureEdge|probe:BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime,step:BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep]::step": {
+      "before": null,
+      "after": "Public|"
+    },
+    "System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean> closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::sameGeometry": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<start>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<start>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<sprint>j__TPar anon[requestedPose,actualPose,sprint,kind,body,nativeSuccessRecorded]`6::<sprint>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/PlayerBreadcrumbNode,System.Boolean> BotTraversal.Core.FollowerTraversalTestRuntime/<>c::<>9__IsLearningV369OrdinaryNavMeshRouteWindow_1": {
+      "before": null,
+      "after": "Public, Static|"
+    },
+    "<start>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<start>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<endSequence>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<endSequence>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::rawEnd": {
+      "before": "Public|",
+      "after": null
+    },
+    "<posture>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<posture>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime closure[GetCapabilityPostureEdge|probe:BotTraversal.Core.FollowerTraversalTestRuntime/ProbeRuntime,step:BotTraversal.Core.FollowerTraversalTestRuntime/FollowerRouteMissionStep]::probe": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<body>j__TPar anon[requestedPose,actualPose,sprint,kind,body,nativeSuccessRecorded]`6::<body>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<requestedPose>j__TPar anon[requestedPose,actualPose,nativeActuatorAllowed,existingProgressWatchdog]`4::<requestedPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Int32 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::currentPlayerTraversalSequence": {
+      "before": "Public|",
+      "after": null
+    },
+    "System.String closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::normalizedKind": {
+      "before": "Public|",
+      "after": null
+    },
+    "<endSequence>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<endSequence>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "System.Boolean closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::directionalKind": {
+      "before": "Public|",
+      "after": null
+    },
+    "System.Boolean closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::directionalKind": {
+      "before": null,
+      "after": "Public|"
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::a": {
+      "before": "Public|",
+      "after": null
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/PlayerTraversalMotionProfile::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<startSequence>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<startSequence>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<startSequence>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<startSequence>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<kind>j__TPar anon[requestedPose,actualPose,sprint,kind,body,nativeSuccessRecorded]`6::<kind>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<reason>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<reason>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<actualPose>j__TPar anon[requestedPose,actualPose,nativeActuatorAllowed,existingProgressWatchdog]`4::<actualPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<reason>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<reason>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<episodeId>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<episodeId>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "System.Single closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::requiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::rawStart": {
+      "before": "Public|",
+      "after": null
+    },
+    "<edgeId>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<edgeId>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<edgeId>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<edgeId>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "System.Int32 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::currentPlayerTraversalSequence": {
+      "before": null,
+      "after": "Public|"
+    },
+    "UnityEngine.Vector3 closure[RememberLearnedTraversalEdge|directionalKind:System.Boolean,a:UnityEngine.Vector3,b:UnityEngine.Vector3,normalizedKind:System.String,requiredPose:System.Single,currentPlayerTraversalSequence:System.Int32,rawStart:UnityEngine.Vector3,rawEnd:UnityEngine.Vector3,sameGeometry:System.Func`2<BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge,System.Boolean>]::rawEnd": {
+      "before": null,
+      "after": "Public|"
+    },
+    "<episodeId>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<episodeId>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<requiredPose>j__TPar anon[episodeId,edgeId,reason,posture,requiredPose,startSequence,endSequence,start,end,directDistance]`10::<requiredPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    },
+    "<directDistance>j__TPar anon[episodeId,edgeId,reason,startSequence,endSequence,start,end,directDistance]`8::<directDistance>i__Field": {
+      "before": "Private, InitOnly|",
+      "after": null
+    },
+    "<actualPose>j__TPar anon[requestedPose,actualPose,sprint,kind,body,nativeSuccessRecorded]`6::<actualPose>i__Field": {
+      "before": null,
+      "after": "Private, InitOnly|"
+    }
+  },
+  "ordinaryFieldChanges": {
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/WalkThroughEpisodeBuilder::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/PersistentTraversalLink::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/LearnedTraversalEdge::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    },
+    "System.Single BotTraversal.Core.FollowerTraversalTestRuntime/PlayerTraversalMotionProfile::RequiredPose": {
+      "before": null,
+      "after": "Public|"
+    }
+  },
+  "catalogUnchangedFromRC156": true,
+  "gameExecuted": false,
+  "baselineInstalledDLL": "90AB820F185BF084B753C95320354A788071F5F4132D201413B86DF7EC046020"
+}

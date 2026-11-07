@@ -1,0 +1,216 @@
+{
+  "inputs": {
+    "assembly": {
+      "path": "D:\\Games\\SIT_DIR\\mod or addon builds\\dnSpy-net-win64\\Assembly.zip",
+      "sha256": "F7F2A4926B32349BB789656375D342B6C9CF5CF4E32DC9F1ECBA4B0D95F09E00",
+      "extracted": 8645
+    },
+    "pit": {
+      "path": "D:\\Games\\SIT_DIR\\mod or addon builds\\SPT-PitFireTeam-1.1.1.zip",
+      "sha256": "29002612189625D2BDD02239A75DCC2C8D42A16C70F94FA6FD5F0CC52741D5A4",
+      "extracted": 1122
+    }
+  },
+  "installedDependencies": {
+    "D:\\Games\\SIT_DIR\\SPT AKI 4.1.6\\EscapeFromTarkov_Data\\Managed\\Assembly-CSharp.dll": "EE25CEE1259777B38ED8B3E7841FDC2DB3C98540B1469FA539B1FF183476E436",
+    "D:\\Games\\SIT_DIR\\SPT AKI 4.1.6\\BepInEx\\plugins\\pitFireTeam\\pitFireTeam.dll": "1FC038078F70BA8A8F5BF4FA1A2ADE3CBEAD20CE0BC391628721989D5DA47846"
+  },
+  "fieldChanges": {
+    "System.Func`2<System.Reflection.CustomAttributeData,System.Boolean> BotTraversal.LegacyPITCompatibility/<>c::<>9__HasStandalonePluginIdentity_0": {
+      "before": null,
+      "after": "Public, Static|"
+    }
+  },
+  "catalogUnchangedFromRC155": true,
+  "sourceOnlyMigration": true,
+  "gameExecuted": false,
+  "centralWriterTargetComparison": {
+    "gameExecuted": false,
+    "targets": [
+      {
+        "method": "LookToDirection",
+        "baselineOverloads": 2,
+        "signatures": [
+          "System.Void BotSteering::LookToDirection(UnityEngine.Vector3)",
+          "System.Void BotSteering::LookToDirection(UnityEngine.Vector3,System.Single)"
+        ],
+        "type": "BotSteering",
+        "present": true
+      },
+      {
+        "method": "LookToPoint",
+        "baselineOverloads": 2,
+        "signatures": [
+          "System.Void BotSteering::LookToPoint(UnityEngine.Vector3)",
+          "System.Void BotSteering::LookToPoint(UnityEngine.Vector3,System.Single)"
+        ],
+        "type": "BotSteering",
+        "present": true
+      },
+      {
+        "method": "LookToMovingDirection",
+        "baselineOverloads": 2,
+        "signatures": [
+          "System.Void BotSteering::LookToMovingDirection()",
+          "System.Void BotSteering::LookToMovingDirection(System.Single)"
+        ],
+        "type": "BotSteering",
+        "present": true
+      },
+      {
+        "method": "Teleport",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void EFT.Player::Teleport(UnityEngine.Vector3,System.Boolean)"
+        ],
+        "type": "EFT.Player",
+        "present": true
+      },
+      {
+        "method": "EnableSprint",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void EFT.Player::EnableSprint(System.Boolean)"
+        ],
+        "type": "EFT.Player",
+        "present": true
+      },
+      {
+        "method": "GoToPoint",
+        "baselineOverloads": 2,
+        "signatures": [
+          "System.Void EFT.BotOwner::GoToPoint(CustomNavigationPoint)",
+          "UnityEngine.AI.NavMeshPathStatus EFT.BotOwner::GoToPoint(UnityEngine.Vector3,System.Boolean,System.Single,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)"
+        ],
+        "type": "EFT.BotOwner",
+        "present": true
+      },
+      {
+        "method": "StopMove",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void EFT.BotOwner::StopMove()"
+        ],
+        "type": "EFT.BotOwner",
+        "present": true
+      },
+      {
+        "method": "SetTargetMoveSpeed",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void EFT.BotOwner::SetTargetMoveSpeed(System.Single)"
+        ],
+        "type": "EFT.BotOwner",
+        "present": true
+      },
+      {
+        "method": "Sprint",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void EFT.BotOwner::Sprint(System.Boolean,System.Boolean)"
+        ],
+        "type": "EFT.BotOwner",
+        "present": true
+      },
+      {
+        "method": "GoToPointNoWay",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::GoToPointNoWay(System.Nullable`1<UnityEngine.Vector3>)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "SetPointOnWay",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::SetPointOnWay(UnityEngine.Vector3)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "Stop",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::Stop()"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "Sprint",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::Sprint(System.Boolean,System.Boolean)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "Teleport",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::Teleport(UnityEngine.Vector3)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "SetPose",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::SetPose(System.Single)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "SetTargetPose",
+        "baselineOverloads": 0,
+        "signatures": [],
+        "type": "BotMover",
+        "present": false
+      },
+      {
+        "method": "SetTargetMoveSpeed",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::SetTargetMoveSpeed(System.Single)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "set_Pause",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotMover::set_Pause(System.Boolean)"
+        ],
+        "type": "BotMover",
+        "present": true
+      },
+      {
+        "method": "SetPoint",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotGoToPointData::SetPoint(UnityEngine.Vector3)"
+        ],
+        "type": "BotGoToPointData",
+        "present": true
+      },
+      {
+        "method": "UpdateToGo",
+        "baselineOverloads": 1,
+        "signatures": [
+          "System.Void BotGoToPointData::UpdateToGo(System.Boolean,System.Single,System.Single)"
+        ],
+        "type": "BotGoToPointData",
+        "present": true
+      }
+    ],
+    "checks": 20,
+    "passed": true
+  }
+}
